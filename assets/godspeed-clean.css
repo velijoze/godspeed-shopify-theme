@@ -1,1 +1,17 @@
-/* TEMPORARILY EMPTY - DEBUGGING LOADING ISSUE */
+/* HIDE ALL LOADING SPINNERS */
+.loading__spinner,
+.spinner,
+.loading-overlay,
+[class*="loading"],
+[class*="spinner"] {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* Navigation hover effects */
+.nav-link:hover,
+.header__nav-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+}
