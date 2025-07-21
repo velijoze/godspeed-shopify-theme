@@ -1,5 +1,33 @@
 /* GODSPEED CLEAN CSS - NO TAILWIND */
 
+/* Basic body styling */
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: white;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header styling */
+.header-clean {
+  background: white;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 1rem 0;
+}
+
+.header-drawer-toggle {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.header-drawer-toggle svg {
+  width: 24px;
+  height: 24px;
+}
+
 /* Navigation hover effects */
 .nav-link:hover,
 .header__nav-link:hover {
@@ -8,11 +36,21 @@
   text-decoration-thickness: 2px;
 }
 
-/* Basic body styling to replace Tailwind */
-body {
-  font-family: system-ui, -apple-system, sans-serif;
-  background-color: white;
-  color: #333;
-  margin: 0;
-  padding: 0;
+/* Container */
+.container-custom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Remove all Tailwind utility classes */
+.flex, .items-center, .justify-between, .h-16,
+.p-2, .rounded-md, .text-primary-600, .hover\:text-primary-900,
+.hover\:bg-primary-50, .focus\:outline-none, .focus\:ring-2,
+.focus\:ring-primary-500, .bg-white, .border-b, .border-primary-200,
+.text-2xl, .font-bold, .text-primary-900, .hover\:text-primary-700,
+.transition-colors, .flex-shrink-0, .sr-only, .h-6, .w-6,
+.relative, .absolute, .-top-1, .-right-1, .bg-primary-900,
+.text-white, .text-xs, .rounded-full, .h-5, .w-5 {
+  /* Reset any Tailwind styling */
 }
