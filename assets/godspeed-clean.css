@@ -1,4 +1,7 @@
-/* GODSPEED CLEAN CSS - Professional E-bike Store Styling */
+/* GODSPEED CLEAN CSS - Professional E-bike Store Styling - TEST UPDATE */
+
+/* TEST - This should make the body background red if CSS is loading */
+body { background-color: red !important; }
 
 /* ==========================================================================
    RESET & BASE STYLES
