@@ -1,40 +1,42 @@
-/* GODSPEED CLEAN STYLING - FIXED THE GARBAGE */
+/* GODSPEED ULTRA CLEAN STYLING - NO EFFECTS */
 
 /* Reset everything to normal */
-body {
+body, html {
   background: #ffffff !important;
   color: #333333 !important;
 }
 
-/* Remove all overlays */
-body::before {
+/* Kill ALL overlays and backgrounds */
+body::before, body::after, html::before, html::after {
   display: none !important;
+  background: none !important;
+  content: none !important;
 }
 
-/* Fix search button overlay */
-.search-modal, .search-overlay, .modal-overlay {
-  z-index: 1000 !important;
-  background: rgba(0, 0, 0, 0.5) !important;
+/* COMPLETELY REMOVE SEARCH OVERLAY */
+.modal-overlay, .search-modal, .search-overlay {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  z-index: -1 !important;
 }
 
-.search-modal__content, .predictive-search {
-  background: #ffffff !important;
-  color: #333333 !important;
-  z-index: 1001 !important;
-}
-
-/* Fix search input */
-.search__input, input[type="search"] {
-  background: #ffffff !important;
-  color: #333333 !important;
-  border: 1px solid #e5e7eb !important;
-}
-
-/* Fix search button */
-.search__button, .search-submit {
+/* Fix search - make it normal */
+.search__button, .search-submit, button[type="submit"] {
   background: #ab8257 !important;
   color: #ffffff !important;
   border: none !important;
+  opacity: 1 !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+}
+
+.search__input, input[type="search"], .predictive-search {
+  background: #ffffff !important;
+  color: #333333 !important;
+  border: 1px solid #e5e7eb !important;
+  opacity: 1 !important;
+  filter: none !important;
 }
 
 /* Clean navigation */
@@ -66,60 +68,94 @@ body::before {
   opacity: 0.8 !important;
 }
 
-/* Clean product cards */
-.product-card {
+/* CRYSTAL CLEAR PRODUCT GRID - NO BLUR */
+.product-card, .card, .grid__item {
   background: #ffffff !important;
   border: 1px solid #e5e7eb !important;
   border-radius: 8px !important;
   transition: all 0.3s ease !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+  opacity: 1 !important;
+  transform: none !important;
 }
 
-.product-card:hover {
+.product-card:hover, .card:hover {
   transform: translateY(-4px) !important;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+  filter: none !important;
 }
 
-.product-card-image {
+.product-card-image, .card__media img, .grid img {
   transition: transform 0.3s ease !important;
+  filter: none !important;
+  opacity: 1 !important;
+  backdrop-filter: none !important;
 }
 
-.product-card:hover .product-card-image {
-  transform: scale(1.05) !important;
+.product-card:hover .product-card-image, .card:hover img {
+  transform: scale(1.02) !important;
+  filter: none !important;
 }
 
-/* Remove all spectacular effects */
+/* DESTROY ALL SPARKLY SHIT */
 .sparkle,
 .custom-cursor,
 .custom-cursor-trail,
-.loading-spectacular {
+.loading-spectacular,
+.particle,
+.effect,
+.glow,
+.shine,
+.shimmer,
+.twinkle,
+.glitter,
+*[class*="sparkle"],
+*[class*="particle"],
+*[class*="effect"],
+*[class*="glow"],
+*[class*="shine"] {
   display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  animation: none !important;
+  background: none !important;
 }
 
-/* Clean text */
-.product-card-title {
+/* Clean sharp text */
+.product-card-title, .card__heading, h1, h2, h3 {
   color: #333333 !important;
   font-weight: 600 !important;
+  filter: none !important;
+  text-shadow: none !important;
 }
 
-.product-card-price {
+.product-card-price, .price {
   color: #ab8257 !important;
   font-weight: 700 !important;
+  filter: none !important;
 }
 
-/* Normal hero section */
-.hero-professional {
+/* Normal sections */
+.hero-professional, .banner, section {
   background: #ffffff !important;
   color: #333333 !important;
+  filter: none !important;
+  backdrop-filter: none !important;
 }
 
-.hero-professional .banner__heading {
-  color: #333333 !important;
-  font-weight: 700 !important;
-}
-
-/* Remove all animations */
+/* KILL ALL ANIMATIONS AND EFFECTS */
 @keyframes none { }
-* {
+*, *::before, *::after {
   animation: none !important;
+  transition: none !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+  transform: none !important;
+}
+
+/* Allow only basic hover transitions */
+.product-card, .card, button {
+  transition: all 0.3s ease !important;
 }
