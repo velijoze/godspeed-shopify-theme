@@ -1,18 +1,103 @@
-/* GODSPEED CLEAN CSS - MINIMAL TEST */
+/* GODSPEED CLEAN CSS - Clean Professional Styling */
 
-/* TEST: This should make all h1 elements red */
-h1 {
-  color: red !important;
+/* ==========================================================================
+   BASIC RESET
+   ========================================================================== */
+
+* {
+  box-sizing: border-box;
 }
 
-/* TEST: This should make all buttons blue */
-.button, button {
-  background: blue !important;
-  color: white !important;
+/* ==========================================================================
+   NAVIGATION - Subtle Underlined Hover Effects
+   ========================================================================== */
+
+.nav-link:hover,
+.header__nav-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
 }
 
-/* TEST: Featured products grid */
-.grid.product-grid {
-  background: yellow !important;
-  padding: 20px !important;
+/* ==========================================================================
+   BUTTONS - No Jumping Effects
+   ========================================================================== */
+
+.button:hover,
+button:hover {
+  background: #96734a;
+  /* Removed transform effects */
+}
+
+/* ==========================================================================
+   HEADER - Compact Layout
+   ========================================================================== */
+
+.header {
+  max-height: 80px;
+  padding: 1rem 2rem;
+}
+
+.header__heading-logo {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+/* ==========================================================================
+   BREADCRUMBS - Make Visible
+   ========================================================================== */
+
+.breadcrumb,
+.breadcrumbs {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  padding: 0.75rem 1rem;
+  background: #fafbfc;
+  margin: 1rem 0;
+}
+
+/* ==========================================================================
+   PRODUCT PAGES - Default Layout
+   ========================================================================== */
+
+.product {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.product__info-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media screen and (min-width: 750px) {
+  .product__info-wrapper {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+}
+
+/* ==========================================================================
+   FEATURED PRODUCTS - Let Theme Handle It
+   ========================================================================== */
+
+/* No custom featured products styling - using default theme */
+
+/* ==========================================================================
+   MOBILE DRAWER MENU
+   ========================================================================== */
+
+.menu-drawer {
+  max-width: 320px;
+  background: #ffffff;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.menu-drawer__menu-item:hover {
+  background-color: #f9fafb;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
