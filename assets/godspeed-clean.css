@@ -1,4 +1,13 @@
-/* GODSPEED CLEAN CSS - Fixed Version */
+/* EMERGENCY: HIDE EVERYTHING PURPLE */
+*[style*="purple"],
+*[class*="purple"],
+*[style*="#800080"],
+*[style*="#663399"],
+*[style*="#9932cc"],
+*[style*="rgb(128,0,128)"],
+*[style*="rgb(153,50,204)"] {
+  display: none !important;
+}
 
 /* Navigation hover effects */
 .nav-link:hover,
@@ -6,18 +15,4 @@
   text-decoration: underline;
   text-underline-offset: 4px;
   text-decoration-thickness: 2px;
-}
-
-/* Simple breadcrumbs - NO CIRCLE */
-.breadcrumb,
-.breadcrumbs,
-nav[aria-label="breadcrumb"] {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  padding: 8px 16px;
-  background: #f8f9fa;
-  margin: 8px 0;
-  font-size: 14px;
-  border-bottom: 1px solid #e9ecef;
 }
