@@ -191,8 +191,6 @@ button:hover {
   background: #96734a;
   color: #ffffff;
   text-decoration: none;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(171, 130, 87, 0.3);
 }
 
 .button:focus,
@@ -203,8 +201,7 @@ button:focus {
 
 .button:active,
 button:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(171, 130, 87, 0.3);
+  background: #8a6740;
 }
 
 /* Button variants */
@@ -269,8 +266,6 @@ button:active {
 .collection-hero__button:hover,
 .collection__view-all:hover {
   background: #96734a;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(171, 130, 87, 0.3);
   color: #ffffff;
   text-decoration: none;
 }
@@ -289,20 +284,19 @@ button:active {
 }
 
 .product-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
   border-color: #d1d5db;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .product-card-image {
   height: 16rem;
   width: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 
 .product-card:hover .product-card-image {
-  transform: scale(1.02);
+  opacity: 0.95;
 }
 
 .product-card-content {
@@ -343,12 +337,15 @@ button:active {
 .nav-link {
   font-weight: 500;
   color: #5f6368;
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
   text-decoration: none;
 }
 
 .nav-link:hover {
   color: #202124;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
 }
 
 /* Header specific styles - Professional with Effects */
@@ -384,8 +381,9 @@ button:active {
 
 .header__nav-link:hover {
   color: #111827;
-  background: rgba(171, 130, 87, 0.1);
-  transform: translateY(-1px);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
 }
 
 .header__logo-clean,
@@ -399,7 +397,7 @@ button:active {
 
 .header__logo-clean:hover,
 .header__heading-logo:hover {
-  transform: scale(1.02);
+  opacity: 0.9;
 }
 
 /* Professional search styling */
@@ -417,8 +415,6 @@ button:active {
 .search__button:hover,
 .search-submit:hover {
   background: #96734a !important;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(171, 130, 87, 0.3);
 }
 
 /* ==========================================================================
@@ -603,6 +599,160 @@ button:active {
 
 .menu-drawer__localization .localization-form {
   margin-bottom: 1rem;
+}
+
+/* ==========================================================================
+   MOBILE DRAWER MENU - Header Navigation Drawer
+   ========================================================================== */
+
+/* Menu drawer trigger (hamburger) */
+.header__icon--menu {
+  position: relative;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* Drawer container and background overlay */
+.js menu-drawer > details > summary::before,
+.js menu-drawer > details[open]:not(.menu-opening) > summary::before {
+  content: '';
+  position: absolute;
+  cursor: default;
+  width: 100%;
+  height: calc(100vh - 100%);
+  top: 100%;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 2;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+menu-drawer > details[open] > summary::before {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Main drawer panel */
+.menu-drawer {
+  position: absolute;
+  transform: translateX(-100%);
+  visibility: hidden;
+  z-index: 3;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  max-width: 320px;
+  padding: 0;
+  background-color: #ffffff;
+  overflow-x: hidden;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, visibility 0.3s ease;
+}
+
+/* Active drawer state */
+.js details[open] > .menu-drawer {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+/* Drawer inner container */
+.menu-drawer__inner-container {
+  height: calc(100vh - 100%);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Drawer navigation */
+.menu-drawer__navigation {
+  padding: 2rem 0;
+  flex-grow: 1;
+}
+
+.menu-drawer__navigation-container {
+  padding: 0;
+}
+
+/* Menu items */
+.menu-drawer__menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-drawer__menu-item {
+  display: block;
+  padding: 1rem 2rem;
+  color: #374151;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  border-bottom: 1px solid #f3f4f6;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.menu-drawer__menu-item:hover {
+  background-color: #f9fafb;
+  color: #111827;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+}
+
+.menu-drawer__menu-item--active {
+  background-color: rgba(171, 130, 87, 0.1);
+  color: #ab8257;
+  font-weight: 600;
+}
+
+/* Close button */
+.menu-drawer__close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: #6b7280;
+  font-size: 1.5rem;
+  transition: color 0.2s ease;
+}
+
+.menu-drawer__close-button:hover {
+  color: #111827;
+}
+
+/* Utility links in drawer */
+.menu-drawer__utility-links {
+  padding: 1.5rem 2rem;
+  border-top: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+}
+
+.menu-drawer__utility-links a {
+  display: block;
+  padding: 0.5rem 0;
+  color: #6b7280;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.menu-drawer__utility-links a:hover {
+  color: #ab8257;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Responsive drawer behavior */
+@media screen and (max-width: 989px) {
+  .menu-drawer {
+    height: calc(100vh - 100%);
+  }
 }
 
 /* Visually hidden but accessible */
@@ -1009,9 +1159,8 @@ button:active {
 }
 
 .card--card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
   border-color: #d1d5db;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .card--standard .card__inner {
@@ -1054,11 +1203,11 @@ button:active {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 
 .card--card:hover .card__media .media img {
-  transform: scale(1.02);
+  opacity: 0.95;
 }
 
 /* Card content area */
@@ -1144,11 +1293,11 @@ button:active {
 }
 
 .media--hover-effect img {
-  transition: transform 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 
 .card:hover .media--hover-effect img {
-  transform: scale(1.02);
+  opacity: 0.95;
 }
 
 /* Gradient backgrounds */
@@ -1174,7 +1323,6 @@ button:active {
   .card__media .media img,
   .media--hover-effect img {
     transition: none !important;
-    transform: none !important;
     animation: none !important;
   }
 }
@@ -1230,13 +1378,9 @@ button:active {
   font-size: 1.5rem;
   opacity: 0.7;
   z-index: 2;
-  animation: bike-bounce 0.6s ease-in-out;
 }
 
-@keyframes bike-bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
-}
+/* Removed bike-bounce animation */
 
 /* Enhanced typography for bicycle products */
 .card__information .card__heading h3 {
@@ -1328,11 +1472,11 @@ button:active {
   height: auto;
   object-fit: cover;
   border-radius: 0;
-  transition: transform 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 
 .product__media:hover img {
-  transform: scale(1.02);
+  opacity: 0.95;
 }
 
 .product__media-list {
@@ -1441,15 +1585,11 @@ button:active {
 
 .product-form__cart-submit:hover {
   background: #96734a;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(171, 130, 87, 0.3);
 }
 
 .product-form__cart-submit:disabled {
   background: #d1d5db;
   cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
 }
 
 /* Variant picker */
@@ -1653,7 +1793,6 @@ product-modal.media-modal:target,
 .product-media-modal__toggle:hover,
 .product-media-modal__close:hover {
   background: #ffffff;
-  transform: scale(1.1);
 }
 
 .product-media-modal__toggle svg {
@@ -1804,7 +1943,6 @@ product-modal.media-modal:target,
 .product__media-toggle:hover,
 .product__media-toggle.active {
   border-color: #ab8257;
-  transform: scale(1.05);
 }
 
 /* Zoom functionality for larger screens */
@@ -1815,11 +1953,11 @@ product-modal.media-modal:target,
   }
   
   .product__media img {
-    transition: transform 0.3s ease;
+    transition: opacity 0.3s ease;
   }
   
   .product__media:hover img {
-    transform: scale(1.1);
+    opacity: 0.92;
   }
 }
 
