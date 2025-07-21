@@ -1381,74 +1381,10 @@ menu-drawer > details[open] > summary::before {
 /* Removed quick view overlay effect */
 
 /* ==========================================================================
-   FEATURED PRODUCTS SECTION - Fix Product Grid Layout
+   FEATURED PRODUCTS SECTION - Use Stock Theme Styling
    ========================================================================== */
 
-/* Fix the actual grid classes that Shopify uses */
-.grid.product-grid {
-  display: grid !important;
-  gap: 2rem !important;
-  padding: 0 2rem !important;
-  margin: 2rem auto !important;
-  max-width: 1400px !important;
-}
-
-/* Grid columns - mobile to desktop responsive */
-.grid--2-col-tablet-down {
-  grid-template-columns: repeat(2, 1fr) !important;
-}
-
-@media screen and (min-width: 750px) {
-  .grid--3-col-desktop {
-    grid-template-columns: repeat(3, 1fr) !important;
-  }
-  .grid--4-col-desktop {
-    grid-template-columns: repeat(4, 1fr) !important;
-  }
-  .grid.product-grid {
-    gap: 2.5rem !important;
-  }
-}
-
-@media screen and (min-width: 990px) {
-  .grid.product-grid {
-    gap: 3rem !important;
-  }
-}
-
-/* Fix slider component when it's interfering */
-.slider-component .grid.product-grid {
-  display: grid !important;
-}
-
-/* Grid items */
-.grid__item {
-  width: 100% !important;
-  display: flex !important;
-  flex-direction: column !important;
-}
-
-/* Product cards */
-.card-wrapper {
-  height: 100% !important;
-  display: flex !important;
-  flex-direction: column !important;
-}
-
-.card {
-  height: 100% !important;
-  display: flex !important;
-  flex-direction: column !important;
-  background: #ffffff !important;
-  border: 1px solid #e5e7eb !important;
-  transition: all 0.2s ease !important;
-  overflow: hidden !important;
-}
-
-.card:hover {
-  border-color: #d1d5db !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
-}
+/* Let the stock Shopify theme handle featured products completely */
 
 /* ==========================================================================
    PRODUCT PAGES - Individual Product Layout
