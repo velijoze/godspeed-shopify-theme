@@ -1381,140 +1381,73 @@ menu-drawer > details[open] > summary::before {
 /* Removed quick view overlay effect */
 
 /* ==========================================================================
-   FEATURED PRODUCTS SECTION - Homepage Featured Products Grid
+   FEATURED PRODUCTS SECTION - Fix Product Grid Layout
    ========================================================================== */
 
-/* Featured products container */
-.featured-collection,
-.collection.section {
-  padding: 3rem 0;
-  margin: 0 auto;
-  max-width: 1400px;
-}
-
-/* Featured products title */
-.featured-collection h2,
-.collection__title {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 3rem;
-  color: #111827;
-  font-weight: 600;
-}
-
-/* Featured products grid */
-.featured-collection .grid,
-.collection .grid {
+/* Fix the actual grid classes that Shopify uses */
+.grid.product-grid {
   display: grid !important;
-  grid-template-columns: repeat(2, 1fr) !important;
   gap: 2rem !important;
-  padding: 0 1rem !important;
+  padding: 0 2rem !important;
+  margin: 2rem auto !important;
+  max-width: 1400px !important;
+}
+
+/* Grid columns - mobile to desktop responsive */
+.grid--2-col-tablet-down {
+  grid-template-columns: repeat(2, 1fr) !important;
 }
 
 @media screen and (min-width: 750px) {
-  .featured-collection .grid,
-  .collection .grid {
+  .grid--3-col-desktop {
     grid-template-columns: repeat(3, 1fr) !important;
+  }
+  .grid--4-col-desktop {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+  .grid.product-grid {
     gap: 2.5rem !important;
-    padding: 0 2rem !important;
   }
 }
 
 @media screen and (min-width: 990px) {
-  .featured-collection .grid,
-  .collection .grid {
-    grid-template-columns: repeat(4, 1fr) !important;
+  .grid.product-grid {
     gap: 3rem !important;
   }
 }
 
-/* Featured product cards */
-.featured-collection .grid__item {
+/* Fix slider component when it's interfering */
+.slider-component .grid.product-grid {
+  display: grid !important;
+}
+
+/* Grid items */
+.grid__item {
   width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
 }
 
-.featured-collection .card-wrapper,
-.collection .card-wrapper {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+/* Product cards */
+.card-wrapper {
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
 }
 
-.featured-collection .card {
+.card {
   height: 100% !important;
   display: flex !important;
   flex-direction: column !important;
   background: #ffffff !important;
   border: 1px solid #e5e7eb !important;
   transition: all 0.2s ease !important;
+  overflow: hidden !important;
 }
 
-.featured-collection .card:hover {
-  border-color: #d1d5db;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-/* Product image in featured */
-.featured-collection .card__media {
-  position: relative;
-  padding-bottom: 125%; /* 4:5 aspect ratio */
-  overflow: hidden;
-}
-
-.featured-collection .card__media img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Product info in featured */
-.featured-collection .card__content {
-  padding: 1.5rem;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.featured-collection .card__information {
-  flex-grow: 1;
-}
-
-.featured-collection .card__heading {
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
-  color: #111827;
-  font-weight: 600;
-}
-
-.featured-collection .price {
-  font-size: 1.25rem;
-  color: #111827;
-  font-weight: 700;
-}
-
-/* View all button */
-.featured-collection .center {
-  text-align: center;
-  margin-top: 3rem;
-}
-
-.featured-collection .button,
-.collection__view-all {
-  background: #ab8257;
-  color: #ffffff;
-  padding: 14px 32px;
-  font-weight: 600;
-  text-decoration: none;
-  display: inline-block;
-  transition: background-color 0.2s ease;
-}
-
-.featured-collection .button:hover,
-.collection__view-all:hover {
-  background: #96734a;
+.card:hover {
+  border-color: #d1d5db !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
 }
 
 /* ==========================================================================
