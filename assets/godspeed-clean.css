@@ -16,6 +16,23 @@ body {
   padding: 1rem 0;
 }
 
+.header__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.header__logo-wrapper {
+  flex-shrink: 0;
+}
+
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .header-drawer-toggle {
   background: none;
   border: none;
@@ -23,9 +40,25 @@ body {
   cursor: pointer;
 }
 
-.header-drawer-toggle svg {
+.header__icon {
   width: 24px;
   height: 24px;
+}
+
+.header__title {
+  margin: 0;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* Navigation hover effects */
@@ -99,16 +132,28 @@ body {
   justify-content: center;
 }
 
-/* Remove ALL Tailwind utility classes completely */
-.flex, .items-center, .justify-between, .h-16,
-.p-2, .rounded-md, .text-primary-600, .hover\:text-primary-900,
-.hover\:bg-primary-50, .focus\:outline-none, .focus\:ring-2,
-.focus\:ring-primary-500, .bg-white, .border-b, .border-primary-200,
-.text-2xl, .font-bold, .text-primary-900, .hover\:text-primary-700,
-.transition-colors, .flex-shrink-0, .sr-only, .h-6, .w-6,
-.relative, .absolute, .-top-1, .-right-1, .bg-primary-900,
-.text-white, .text-xs, .rounded-full, .h-5, .w-5,
-.bg-primary-100, .text-primary-300, .border-primary-200 {
+/* NUCLEAR OPTION: Remove ALL possible Tailwind utility classes */
+[class*="bg-"], [class*="text-"], [class*="border-"], [class*="rounded"],
+[class*="flex"], [class*="grid"], [class*="w-"], [class*="h-"],
+[class*="p-"], [class*="m-"], [class*="space-"], [class*="gap-"],
+[class*="items-"], [class*="justify-"], [class*="relative"], [class*="absolute"],
+[class*="top-"], [class*="left-"], [class*="right-"], [class*="bottom-"],
+[class*="primary-"], [class*="purple"], [class*="violet"], [class*="indigo"],
+.sr-only, .transition-colors, .focus\:outline-none, .focus\:ring-2 {
   all: unset !important;
   display: revert !important;
+  position: static !important;
+  background: transparent !important;
+  color: inherit !important;
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Force override any purple/circle elements */
+*[style*="purple"], *[class*="purple"], *[class*="circle"],
+*[style*="circle"], *[style*="border-radius: 50%"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
 }
