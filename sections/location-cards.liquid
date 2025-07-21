@@ -1,0 +1,60 @@
+{% comment %} Location Cards Section - displays store or team locations in a responsive grid {% endcomment %}
+{{ 'section-location-cards.css' | asset_url | stylesheet_tag }}
+
+<section class="location-cards page-width section-{{ section.id }}-padding">
+  {% if section.settings.heading != blank %}
+    <h2 class="location-cards__heading">{{ section.settings.heading }}</h2>
+  {% endif %}
+  <div class="gs-grid location-cards__grid">
+    {% for block in section.blocks %}
+      <div class="location-card gs-col-span-4" {{ block.shopify_attributes }}>
+        {% if block.settings.image != blank %}
+          <div class="location-card__image-wrapper">
+            <img src="{{ block.settings.image | image_url: width: 600 }}" alt="{{ block.settings.image.alt | escape }}" loading="lazy">
+          </div>
+        {% endif %}
+        <div class="location-card__content">
+          <h3 class="location-card__title">{{ block.settings.title }}</h3>
+          <p class="location-card__address">{{ block.settings.address }}</p>
+          <p class="location-card__phone">{{ block.settings.phone }}</p>
+          {% if block.settings.link != blank %}
+            <a href="{{ block.settings.link }}" class="button" target="_blank">{{ block.settings.link_label }}</a>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Location cards",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Our locations"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "location",
+      "name": "Location card",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Store name" },
+        { "type": "textarea", "id": "address", "label": "Address" },
+        { "type": "text", "id": "phone", "label": "Phone" },
+        { "type": "url", "id": "link", "label": "Link" },
+        { "type": "text", "id": "link_label", "label": "Link label", "default": "View map" }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    { "name": "Location cards", "category": "Contact" }
+  ]
+}
+{% endschema %} 

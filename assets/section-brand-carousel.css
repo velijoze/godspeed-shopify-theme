@@ -1,0 +1,39 @@
+.brand-carousel {
+  margin: 2rem 0;
+  position: relative;
+}
+
+.brand-carousel__list {
+  align-items: center;
+}
+
+.brand-carousel__item img {
+  max-width: 100%;
+  transition: transform 0.3s ease;
+  filter: grayscale(100%);
+}
+
+.brand-carousel__item img:hover {
+  transform: scale(1.05);
+  filter: grayscale(0);
+}
+
+.slider-button {
+  background: var(--brand-primary);
+  border: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+.slider-button:hover { opacity: 1; }
+.slider-button--prev { left: -1.5rem; }
+.slider-button--next { right: -1.5rem; } 

@@ -1,0 +1,45 @@
+.location-cards {
+  margin: 2rem 0;
+}
+
+.location-cards__heading {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+}
+
+.location-card {
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.location-card__image-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.location-card__content {
+  padding: 1rem;
+}
+
+.location-card__title {
+  font-family: 'Oswald', sans-serif;
+  margin: 0 0 0.5rem;
+  text-transform: uppercase;
+}
+
+.location-card__address,
+.location-card__phone {
+  margin: 0 0 0.5rem;
+}
+
+.location-card .button {
+  margin-top: auto;
+  width: fit-content;
+} 

@@ -1,0 +1,60 @@
+{% comment %} Brand Carousel Section - Displays partner brand logos in a horizontal slider {% endcomment %}
+{{ 'section-brand-carousel.css' | asset_url | stylesheet_tag }}
+
+<div class="brand-carousel slider slider--tablet" id="brand-carousel-{{ section.id }}">
+  <div class="slider__viewport">
+    <ul class="brand-carousel__list gs-grid slider__grid" id="Slider-{{ section.id }}">
+      {% for block in section.blocks %}
+        <li class="brand-carousel__item slider__slide gs-col-span-2" {{ block.shopify_attributes }}>
+          {% if block.settings.logo != blank %}
+            <img src="{{ block.settings.logo | image_url: width: 300 }}" alt="{{ block.settings.logo.alt | escape }}" loading="lazy">
+          {% else %}
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="Previous">
+    {% render 'icon-arrow' %}
+  </button>
+  <button type="button" class="slider-button slider-button--next" name="next" aria-label="Next">
+    {% render 'icon-arrow' %}
+  </button>
+</div>
+
+{% schema %}
+{
+  "name": "Brand carousel",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Brands we carry"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo image"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [
+    {
+      "name": "Brand carousel",
+      "category": "Media"
+    }
+  ]
+}
+{% endschema %} 
