@@ -1,55 +1,90 @@
-/* GODSPEED ULTRA CLEAN STYLING - NO EFFECTS */
+/* GODSPEED.CH INSPIRED PROFESSIONAL DESIGN */
 
-/* Reset everything to normal */
+/* Clean foundation */
 body, html {
   background: #ffffff !important;
-  color: #333333 !important;
+  color: #2d2d2d !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  line-height: 1.6 !important;
 }
 
-/* Kill ALL overlays and backgrounds */
+/* Kill overlays and effects */
 body::before, body::after, html::before, html::after {
   display: none !important;
   background: none !important;
   content: none !important;
 }
 
-/* COMPLETELY REMOVE SEARCH OVERLAY */
-.modal-overlay, .search-modal, .search-overlay {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  z-index: -1 !important;
+/* Professional Header - godspeed.ch style */
+.header {
+  background: #ffffff !important;
+  border-bottom: 1px solid #f0f0f0 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+  padding: 0 !important;
 }
 
-/* Fix search - make it normal */
-.search__button, .search-submit, button[type="submit"] {
+.header__heading-logo {
+  font-weight: 700 !important;
+  font-size: 1.8rem !important;
+  color: #2d2d2d !important;
+}
+
+/* Clean Search */
+.search__button, .search-submit {
   background: #ab8257 !important;
   color: #ffffff !important;
   border: none !important;
-  opacity: 1 !important;
-  filter: none !important;
-  backdrop-filter: none !important;
-}
-
-.search__input, input[type="search"], .predictive-search {
-  background: #ffffff !important;
-  color: #333333 !important;
-  border: 1px solid #e5e7eb !important;
-  opacity: 1 !important;
-  filter: none !important;
-}
-
-/* Clean navigation */
-.nav-link, .header__menu-item a, .header a, nav a {
-  color: #333333 !important;
+  padding: 12px 20px !important;
   font-weight: 500 !important;
-  padding: 8px 15px !important;
-  transition: color 0.3s ease !important;
-  text-decoration: none !important;
+  transition: background-color 0.2s ease !important;
 }
 
-.nav-link:hover, .header__menu-item a:hover, .header a:hover, nav a:hover {
+.search__button:hover {
+  background: #96734a !important;
+}
+
+.search__input, input[type="search"] {
+  background: #ffffff !important;
+  color: #2d2d2d !important;
+  border: 2px solid #f0f0f0 !important;
+  padding: 12px 16px !important;
+  font-size: 16px !important;
+  border-radius: 0 !important;
+  transition: border-color 0.2s ease !important;
+}
+
+.search__input:focus {
+  border-color: #ab8257 !important;
+  outline: none !important;
+}
+
+/* Professional Navigation - godspeed.ch style */
+.nav-link, .header__menu-item a, .header a, nav a, .list-menu__item a {
+  color: #2d2d2d !important;
+  font-weight: 400 !important;
+  font-size: 0.95rem !important;
+  padding: 1rem 1.5rem !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease !important;
+  letter-spacing: 0.3px !important;
+}
+
+.nav-link:hover, .header__menu-item a:hover, .header a:hover, nav a:hover, .list-menu__item a:hover {
   color: #ab8257 !important;
+}
+
+/* Clean menu structure */
+.header__inline-menu, .list-menu {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0 !important;
+}
+
+/* Cart and account icons */
+.header__icon, .icon {
+  width: 20px !important;
+  height: 20px !important;
+  color: #2d2d2d !important;
 }
 
 /* Simple buttons with brand color */
@@ -68,35 +103,63 @@ body::before, body::after, html::before, html::after {
   opacity: 0.8 !important;
 }
 
-/* CRYSTAL CLEAR PRODUCT GRID - NO BLUR */
-.product-card, .card, .grid__item {
+/* GODSPEED.CH INSPIRED PRODUCT GRID */
+.product-card, .card, .grid__item, .featured-collection .grid__item {
   background: #ffffff !important;
-  border: 1px solid #e5e7eb !important;
-  border-radius: 8px !important;
-  transition: all 0.3s ease !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid #f5f5f5 !important;
+  border-radius: 0 !important;
+  transition: all 0.2s ease !important;
+  box-shadow: none !important;
   filter: none !important;
   backdrop-filter: none !important;
   opacity: 1 !important;
   transform: none !important;
+  display: block !important;
+  visibility: visible !important;
+  margin-bottom: 2rem !important;
 }
 
 .product-card:hover, .card:hover {
-  transform: translateY(-4px) !important;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
-  filter: none !important;
+  border-color: #ab8257 !important;
+  transform: none !important;
+  box-shadow: 0 2px 12px rgba(171, 130, 87, 0.1) !important;
 }
 
-.product-card-image, .card__media img, .grid img {
-  transition: transform 0.3s ease !important;
+/* Ensure product images display */
+.product-card-image, .card__media, .card__media img, .grid img {
   filter: none !important;
   opacity: 1 !important;
   backdrop-filter: none !important;
+  display: block !important;
+  visibility: visible !important;
+  width: 100% !important;
+  height: auto !important;
 }
 
-.product-card:hover .product-card-image, .card:hover img {
-  transform: scale(1.02) !important;
+.product-card:hover .product-card-image, .card:hover .card__media img {
+  transform: none !important;
   filter: none !important;
+}
+
+/* Product titles - godspeed.ch style */
+.product-card-title, .card__heading, .card__heading a {
+  color: #2d2d2d !important;
+  font-weight: 500 !important;
+  font-size: 1rem !important;
+  line-height: 1.4 !important;
+  margin-bottom: 0.5rem !important;
+  text-decoration: none !important;
+}
+
+.product-card-title:hover, .card__heading a:hover {
+  color: #ab8257 !important;
+}
+
+/* Prices - clean and clear */
+.product-card-price, .price, .card__information .price {
+  color: #2d2d2d !important;
+  font-weight: 600 !important;
+  font-size: 1.1rem !important;
 }
 
 /* DESTROY ALL SPARKLY SHIT */
