@@ -1370,6 +1370,197 @@ menu-drawer > details[open] > summary::before {
 /* Removed quick view overlay effect */
 
 /* ==========================================================================
+   FEATURED PRODUCTS SECTION - Homepage Featured Products
+   ========================================================================== */
+
+/* Featured product container */
+.featured-product {
+  margin: 2rem auto;
+  max-width: 1200px;
+  padding: 2rem 1rem;
+}
+
+.featured-product .product {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin: 0;
+  max-width: none;
+}
+
+@media screen and (min-width: 750px) {
+  .featured-product .product {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+}
+
+/* Featured product media */
+.featured-product .product__media-wrapper {
+  margin-bottom: 1rem;
+}
+
+.featured-product .product__media {
+  position: relative;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.featured-product .product__media img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 0;
+  transition: opacity 0.3s ease;
+}
+
+.featured-product .product__media:hover img {
+  opacity: 0.95;
+}
+
+.featured-product .product__media-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.featured-product .product__media-toggle {
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.featured-product .product__media-toggle:hover,
+.featured-product .product__media-toggle.active {
+  border-color: #ab8257;
+}
+
+/* Featured product info */
+.featured-product .product__info-wrapper {
+  padding: 0;
+}
+
+.featured-product .product__info {
+  padding: 0;
+}
+
+.featured-product .product__title {
+  font-size: 2rem;
+  line-height: 1.2;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 1rem;
+  letter-spacing: -0.025em;
+}
+
+@media screen and (min-width: 750px) {
+  .featured-product .product__title {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.featured-product .product__text,
+.featured-product .product__description {
+  color: #6b7280;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+/* Featured product price */
+.featured-product .price {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.featured-product .price__regular {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.featured-product .price__sale {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ef4444;
+}
+
+.featured-product .price__compare {
+  font-size: 1.5rem;
+  color: #9ca3af;
+  text-decoration: line-through;
+}
+
+/* Featured product form */
+.featured-product .product-form {
+  margin-bottom: 3rem;
+}
+
+.featured-product .product-form__buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+@media screen and (min-width: 490px) {
+  .featured-product .product-form__buttons {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.featured-product .product-form__cart-submit {
+  background: #ab8257;
+  color: #ffffff;
+  border: none;
+  padding: 14px 28px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+  flex: 1;
+  min-height: 52px;
+}
+
+.featured-product .product-form__cart-submit:hover {
+  background: #96734a;
+}
+
+.featured-product .product-form__cart-submit:disabled {
+  background: #d1d5db;
+  cursor: not-allowed;
+}
+
+/* Fix for featured product layout issues */
+.featured-product .product.grid {
+  gap: 2rem;
+}
+
+@media screen and (min-width: 750px) {
+  .featured-product .product.grid {
+    gap: 4rem;
+  }
+  
+  .featured-product .product__info-wrapper {
+    padding: 0;
+  }
+}
+
+/* Featured product background sections */
+.background-secondary .featured-product {
+  background: #f9fafb;
+  padding: 3rem 2rem;
+  border-radius: 8px;
+}
+
+/* ==========================================================================
    PRODUCT PAGES - Individual Product Layout
    ========================================================================== */
 
