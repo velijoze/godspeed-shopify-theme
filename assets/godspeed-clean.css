@@ -1,7 +1,4 @@
-/* GODSPEED CLEAN CSS - Professional E-bike Store Styling - TEST UPDATE */
-
-/* TEST - This should make the body background red if CSS is loading */
-body { background-color: red !important; }
+/* GODSPEED CLEAN CSS - Professional E-bike Store Styling */
 
 /* ==========================================================================
    RESET & BASE STYLES
@@ -1409,25 +1406,25 @@ menu-drawer > details[open] > summary::before {
 .featured-collection .grid,
 .collection .grid {
   display: grid !important;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  padding: 0 1rem;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 2rem !important;
+  padding: 0 1rem !important;
 }
 
 @media screen and (min-width: 750px) {
   .featured-collection .grid,
   .collection .grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem;
-    padding: 0 2rem;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 2.5rem !important;
+    padding: 0 2rem !important;
   }
 }
 
 @media screen and (min-width: 990px) {
   .featured-collection .grid,
   .collection .grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 3rem;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 3rem !important;
   }
 }
 
@@ -1444,12 +1441,12 @@ menu-drawer > details[open] > summary::before {
 }
 
 .featured-collection .card {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  transition: all 0.2s ease;
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+  transition: all 0.2s ease !important;
 }
 
 .featured-collection .card:hover {
