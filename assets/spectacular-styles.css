@@ -15,6 +15,11 @@ body::before, body::after, html::before, html::after {
   content: none !important;
 }
 
+/* Hide announcement bar */
+.announcement-bar {
+  display: none !important;
+}
+
 /* Professional Header - godspeed.ch style */
 .header {
   background: #ffffff !important;
@@ -25,7 +30,7 @@ body::before, body::after, html::before, html::after {
 
 .header__heading-logo {
   font-weight: 700 !important;
-  font-size: 1.8rem !important;
+  font-size: 2.5rem !important;
   color: #2d2d2d !important;
 }
 
