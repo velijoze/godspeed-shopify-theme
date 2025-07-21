@@ -41,8 +41,7 @@
     {%- endif -%}
     
     <!-- SPECTACULAR EFFECTS -->
-    <script src="{{ 'spectacular-effects.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'spectacular-advanced.js' | asset_url }}" defer="defer"></script>
+    <!-- Removed spectacular effects scripts -->
 
     {{ content_for_header }}
 
@@ -307,7 +306,7 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
-    <script src="{{ 'wow-effects.js' | asset_url }}" defer="defer"></script>
+    <!-- Removed wow-effects script -->
   </head>
 
   <body class="bg-white text-primary-900 font-sans antialiased gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
