@@ -518,3 +518,303 @@ img {
 .group:hover .group-hover\:scale-105 { transform: scale(1.05); }
 .group:hover .group-hover\:text-gray-700 { color: #374151; }
 .group:hover .group-hover\:opacity-100 { opacity: 1; }
+
+/* ==========================================================================
+   SHOPIFY CARD SYSTEM - Required for Product Display
+   ========================================================================== */
+
+/* Card wrapper and base card styles */
+.card-wrapper {
+  color: inherit;
+  height: 100%;
+  position: relative;
+  text-decoration: none;
+}
+
+.card {
+  text-decoration: none;
+  text-align: var(--text-alignment, left);
+}
+
+.card:not(.ratio) {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Card variants */
+.card--card,
+.card--standard .card__inner {
+  position: relative;
+  box-sizing: border-box;
+  border-radius: var(--border-radius, 0);
+  border: var(--border-width, 1px) solid rgba(var(--color-foreground, 0, 0, 0), var(--border-opacity, 0.08));
+}
+
+.card--card {
+  height: 100%;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.card--card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  border-color: #d1d5db;
+}
+
+.card--standard .card__inner {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s ease;
+}
+
+.card--horizontal {
+  --text-alignment: left;
+  --image-padding: 0rem;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+/* Card inner container */
+.card__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-decoration: inherit;
+  color: inherit;
+  box-sizing: border-box;
+}
+
+/* Card media/image container */
+.card__media {
+  position: relative;
+  overflow: hidden;
+}
+
+.card__media .media {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.card__media .media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.card--card:hover .card__media .media img {
+  transform: scale(1.02);
+}
+
+/* Card content area */
+.card__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 1.5rem;
+}
+
+.card__information {
+  padding: 1.3rem 1.3rem 1rem 1.3rem;
+  text-align: var(--text-alignment, left);
+}
+
+.card__badge {
+  align-self: flex-end;
+  grid-row-start: 3;
+  justify-self: flex-start;
+}
+
+/* Card heading/title */
+.card__heading {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.card__heading h3 {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  color: #111827;
+  transition: color 0.2s ease;
+  margin: 0;
+}
+
+.card--card:hover .card__heading h3 {
+  color: #374151;
+}
+
+/* Ratio system for consistent image sizing */
+.ratio {
+  position: relative;
+  display: block;
+}
+
+.ratio:before {
+  content: "";
+  display: block;
+  width: 100%;
+  padding-bottom: var(--ratio-percent, 100%);
+}
+
+.ratio > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Media element styling */
+.media {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+.media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.media--transparent {
+  background: transparent;
+}
+
+.media--hover-effect {
+  overflow: hidden;
+}
+
+.media--hover-effect img {
+  transition: transform 0.3s ease;
+}
+
+.card:hover .media--hover-effect img {
+  transform: scale(1.02);
+}
+
+/* Gradient backgrounds */
+.gradient {
+  background: linear-gradient(rgba(var(--color-foreground), 0.04), rgba(var(--color-foreground), 0.04));
+}
+
+/* Color schemes */
+.color-scheme-1 {
+  --color-foreground: 33, 35, 38;
+  --color-background: 255, 255, 255;
+}
+
+/* Motion reduce accessibility */
+.motion-reduce {
+  transition: none !important;
+  animation: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-reduce,
+  .card--card:hover,
+  .card__media .media img,
+  .media--hover-effect img {
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+/* Product card wrapper enhancements */
+.product-card-wrapper {
+  transition: all 0.2s ease;
+}
+
+.underline-links-hover a:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   BICYCLE STORE SPECIFIC ENHANCEMENTS
+   ========================================================================== */
+
+/* Enhanced bicycle product cards */
+.card-wrapper.product-card-wrapper {
+  border-radius: 0;
+  overflow: hidden;
+  background: #ffffff;
+  position: relative;
+}
+
+.card-wrapper.product-card-wrapper:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #374151, transparent);
+  transition: left 0.5s ease;
+  z-index: 1;
+}
+
+.card-wrapper.product-card-wrapper:hover:before {
+  left: 100%;
+}
+
+/* Bicycle-specific hover animations */
+.card-wrapper:hover .card__media {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-wrapper:hover .card__media:after {
+  content: '🚴';
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 1.5rem;
+  opacity: 0.7;
+  z-index: 2;
+  animation: bike-bounce 0.6s ease-in-out;
+}
+
+@keyframes bike-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* Enhanced typography for bicycle products */
+.card__information .card__heading h3 {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  letter-spacing: -0.025em;
+  line-height: 1.3;
+}
+
+/* Quick view overlay effect */
+.card-wrapper:hover .card__media:before {
+  content: 'Quick View';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.card-wrapper:hover .card__media:before {
+  opacity: 1;
+}
