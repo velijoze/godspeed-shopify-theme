@@ -1,13 +1,4 @@
-/* EMERGENCY: HIDE EVERYTHING PURPLE */
-*[style*="purple"],
-*[class*="purple"],
-*[style*="#800080"],
-*[style*="#663399"],
-*[style*="#9932cc"],
-*[style*="rgb(128,0,128)"],
-*[style*="rgb(153,50,204)"] {
-  display: none !important;
-}
+/* GODSPEED CLEAN CSS - NO TAILWIND */
 
 /* Navigation hover effects */
 .nav-link:hover,
@@ -15,4 +6,13 @@
   text-decoration: underline;
   text-underline-offset: 4px;
   text-decoration-thickness: 2px;
+}
+
+/* Basic body styling to replace Tailwind */
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: white;
+  color: #333;
+  margin: 0;
+  padding: 0;
 }
