@@ -1,4 +1,4 @@
-/* GODSPEED CLEAN CSS - NO CIRCLES, NO PURPLE */
+/* GODSPEED CLEAN CSS - NO TAILWIND */
 
 /* Basic body styling */
 body {
@@ -117,7 +117,6 @@ body {
   background: #f5f5f5;
 }
 
-/* Cart badge - NO CIRCLE */
 .cart-count-badge {
   position: absolute;
   top: -4px;
@@ -125,45 +124,22 @@ body {
   background: #333;
   color: white;
   font-size: 12px;
-  padding: 2px 6px;
-  border-radius: 0 !important;
-  display: inline-block;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Simple breadcrumbs - NO CIRCLES */
-.breadcrumb,
-.breadcrumbs,
-nav[aria-label="breadcrumb"] {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  padding: 8px 16px;
-  background: #f8f9fa;
-  margin: 8px 0;
-  font-size: 14px;
-  border-bottom: 1px solid #e9ecef;
-  border-radius: 0 !important;
-}
-
-/* DESTROY ALL CIRCLES AND PURPLE */
-* {
-  border-radius: 0 !important;
-}
-
-*[style*="purple"], *[class*="purple"], *[class*="circle"],
-*[style*="circle"], *[style*="border-radius"], *[class*="rounded"] {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-}
-
-/* Nuclear reset for any remaining Tailwind */
+/* NUCLEAR OPTION: Remove ALL possible Tailwind utility classes */
 [class*="bg-"], [class*="text-"], [class*="border-"], [class*="rounded"],
 [class*="flex"], [class*="grid"], [class*="w-"], [class*="h-"],
 [class*="p-"], [class*="m-"], [class*="space-"], [class*="gap-"],
 [class*="items-"], [class*="justify-"], [class*="relative"], [class*="absolute"],
 [class*="top-"], [class*="left-"], [class*="right-"], [class*="bottom-"],
-[class*="primary-"], [class*="purple"], [class*="violet"], [class*="indigo"] {
+[class*="primary-"], [class*="purple"], [class*="violet"], [class*="indigo"],
+.sr-only, .transition-colors, .focus\:outline-none, .focus\:ring-2 {
   all: unset !important;
   display: revert !important;
   position: static !important;
@@ -172,5 +148,12 @@ nav[aria-label="breadcrumb"] {
   border: none !important;
   margin: 0 !important;
   padding: 0 !important;
-  border-radius: 0 !important;
+}
+
+/* Force override any purple/circle elements */
+*[style*="purple"], *[class*="purple"], *[class*="circle"],
+*[style*="circle"], *[style*="border-radius: 50%"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
 }
