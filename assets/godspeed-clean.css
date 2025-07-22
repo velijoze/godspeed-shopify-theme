@@ -10,31 +10,43 @@ body {
   line-height: 1.6;
 }
 
-/* Header wrapper and structure */
-.header-wrapper {
-  background-color: #ffffff;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  position: relative;
-  z-index: 10;
-  padding: 0 !important;
-  margin: 0 !important;
+/* Header wrapper and structure - OVERRIDE ALL BASE THEME CSS */
+.header-wrapper,
+.header-wrapper * {
+  box-sizing: border-box !important;
 }
 
-.header-clean {
-  background: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
+.header-wrapper {
+  background-color: #ffffff !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  position: relative !important;
+  z-index: 10 !important;
   padding: 0 !important;
   margin: 0 !important;
+  height: auto !important;
+}
+
+.header-clean,
+.header,
+.section-header {
+  background: #ffffff !important;
+  border-bottom: 1px solid #e5e7eb !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  height: auto !important;
 }
 
 .header__row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  height: 70px;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 2rem !important;
+  height: 70px !important;
+  min-height: 70px !important;
+  max-height: 70px !important;
+  box-sizing: border-box !important;
 }
 
 /* Logo section */
@@ -58,14 +70,17 @@ body {
   color: #666666;
 }
 
-/* Navigation menu */
+/* Navigation menu - FORCE HORIZONTAL LAYOUT */
 .header__nav-menu {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  flex: 1;
-  justify-content: center;
-  margin: 0 2rem;
+  display: flex !important;
+  align-items: center !important;
+  gap: 2rem !important;
+  flex: 1 !important;
+  justify-content: center !important;
+  margin: 0 2rem !important;
+  padding: 0 !important;
+  height: auto !important;
+  flex-direction: row !important;
 }
 
 .header__nav-link {
@@ -155,9 +170,34 @@ body {
 /* Container for page content */
 .page-width,
 .container-custom {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 2rem !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* AGGRESSIVE OVERRIDE: Reset any base theme header styles */
+.shopify-section-header-sticky,
+.shopify-section-header,
+.header-wrapper .header,
+[class*="header-"] {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Force proper header height regardless of base theme */
+.header-wrapper,
+.header-wrapper > *,
+.shopify-section-header {
+  min-height: auto !important;
+  height: auto !important;
+}
+
+.header-wrapper .header__row {
+  height: 70px !important;
+  min-height: 70px !important;
+  max-height: 70px !important;
 }
 
 /* Main content spacing */
