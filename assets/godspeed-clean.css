@@ -221,10 +221,10 @@ h3, .h3 {
   padding: 2rem 0 !important;
 }
 
-/* PRODUCT CARDS - SIMPLIFIED, WORKING LAYOUT */
+/* PRODUCT CARDS - BETTER PROPORTIONS AND SPACING */
 .card-wrapper,
 .product-card-wrapper {
-  margin-bottom: 2rem !important;
+  margin-bottom: 0 !important;
   padding: 0 !important;
 }
 
@@ -233,15 +233,17 @@ h3, .h3 {
 .collection-card,
 .card--standard,
 .card--media {
-  padding: 1rem !important;
-  border-radius: 8px !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  padding: 2rem !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12) !important;
   background: #ffffff !important;
   margin-bottom: 0 !important;
-  border: 1px solid #e5e7eb !important;
+  border: none !important;
   transition: all 0.3s ease !important;
   width: 100% !important;
-  min-height: auto !important;
+  min-height: 400px !important;
+  display: flex !important;
+  flex-direction: column !important;
 }
 
 .card:hover,
@@ -250,16 +252,16 @@ h3, .h3 {
   transform: translateY(-2px) !important;
 }
 
-/* PRODUCT GRID - SIMPLER, WORKING LAYOUT */
+/* PRODUCT GRID - PROPER SPACING AND PROPORTIONS */
 .collection__products,
 .product-grid,
 .grid--2-col,
 .grid--3-col,
 .grid--4-col {
   display: grid !important;
-  gap: 2rem !important;
-  padding: 2rem 0 !important;
-  max-width: 1200px !important;
+  gap: 4rem !important;
+  padding: 4rem 2rem !important;
+  max-width: 1400px !important;
   margin: 0 auto !important;
 }
 
@@ -272,14 +274,18 @@ h3, .h3 {
 }
 
 .grid--4-col {
-  grid-template-columns: repeat(4, 1fr) !important;
+  grid-template-columns: repeat(2, 1fr) !important;
 }
 
 @media (max-width: 768px) {
+  .collection__products,
+  .product-grid,
   .grid--2-col,
   .grid--3-col,
   .grid--4-col {
     grid-template-columns: 1fr !important;
+    gap: 3rem !important;
+    padding: 2rem 1rem !important;
   }
 }
 
@@ -309,22 +315,26 @@ h3, .h3 {
   transform: scale(1.05) !important;
 }
 
-/* PRODUCT CONTENT - MORE GENEROUS SPACING */
+/* PRODUCT CONTENT - PROPER TEXT LAYOUT */
 .card__content,
 .product-card__content,
 .card__information {
   padding: 0 !important;
-  margin-top: 1rem !important;
+  margin-top: 2rem !important;
+  flex-grow: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
 }
 
-/* PRODUCT TITLES - ENHANCED */
+/* PRODUCT TITLES - BETTER SPACING */
 .card__heading,
 .product-title,
 .card__heading a {
-  font-size: 18px !important;
+  font-size: 22px !important;
   font-weight: 600 !important;
-  line-height: 1.4 !important;
-  margin-bottom: 1rem !important;
+  line-height: 1.3 !important;
+  margin-bottom: 1.5rem !important;
   color: #1a1a1a !important;
   text-decoration: none !important;
   display: block !important;
@@ -334,15 +344,15 @@ h3, .h3 {
   color: #4f46e5 !important;
 }
 
-/* PRICE STYLING - PROMINENT */
+/* PRICE STYLING - CLEANER */
 .price,
 .price__container,
 .card__price {
-  font-size: 20px !important;
+  font-size: 24px !important;
   font-weight: 700 !important;
   color: #1a1a1a !important;
-  margin-top: 1rem !important;
-  margin-bottom: 0.5rem !important;
+  margin-top: auto !important;
+  margin-bottom: 0 !important;
 }
 
 .price--on-sale .price__sale {
