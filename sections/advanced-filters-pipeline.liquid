@@ -1,0 +1,459 @@
+{% comment %}
+  Pipeline-Style Advanced Product Filtering
+  Perfect for e-bike selection with technical specifications
+{% endcomment %}
+
+<style>
+  .filters-pipeline {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    border-radius: 8px;
+  }
+  
+  .filters-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 1rem;
+  }
+  
+  .filters-title {
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: #2c2c2c;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  
+  .filters-clear {
+    background: none;
+    border: none;
+    color: #666666;
+    font-size: 1.1rem;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+  }
+  
+  .filters-clear:hover {
+    color: #2c2c2c;
+  }
+  
+  .filters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+  }
+  
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .filter-label {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #2c2c2c;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .filter-select {
+    padding: 0.8rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    background: white;
+    font-size: 1.1rem;
+    color: #2c2c2c;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+  }
+  
+  .filter-select:focus {
+    outline: none;
+    border-color: #2c2c2c;
+    box-shadow: 0 0 0 2px rgba(44, 44, 44, 0.1);
+  }
+  
+  .filter-checkboxes {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  .filter-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    cursor: pointer;
+  }
+  
+  .filter-checkbox input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #2c2c2c;
+    cursor: pointer;
+  }
+  
+  .filter-checkbox-label {
+    font-size: 1.1rem;
+    color: #4b5563;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .price-range {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .price-input {
+    flex: 1;
+    padding: 0.8rem;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    text-align: center;
+  }
+  
+  .price-separator {
+    color: #666666;
+    font-weight: 500;
+  }
+  
+  .filters-apply {
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    background: #2c2c2c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+  }
+  
+  .filters-apply:hover {
+    background: #1a1a1a;
+  }
+  
+  .active-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e5e7eb;
+  }
+  
+  .filter-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: #2c2c2c;
+    color: white;
+    font-size: 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  
+  .filter-tag-remove {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+  }
+  
+  /* Mobile responsive */
+  @media (max-width: 768px) {
+    .filters-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .filters-header {
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+  }
+</style>
+
+<div class="filters-pipeline" data-filters-pipeline>
+  <div class="filters-header">
+    <h3 class="filters-title">{{ section.settings.title | default: "Filter E-Bikes" }}</h3>
+    <button class="filters-clear" data-filters-clear style="display: none;">
+      Clear All Filters
+    </button>
+  </div>
+  
+  <form class="filters-form" data-filters-form>
+    <div class="filters-grid">
+      
+      <!-- Bike Type Filter -->
+      <div class="filter-group">
+        <label class="filter-label">Bike Type</label>
+        <div class="filter-checkboxes">
+          <label class="filter-checkbox">
+            <input type="checkbox" name="bike_type" value="commuter" data-filter-input>
+            <span class="filter-checkbox-label">Commuter ({{ collections.all.products | where: 'tags', 'commuter' | size }})</span>
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="bike_type" value="mountain" data-filter-input>
+            <span class="filter-checkbox-label">Mountain ({{ collections.all.products | where: 'tags', 'mountain' | size }})</span>
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="bike_type" value="cargo" data-filter-input>
+            <span class="filter-checkbox-label">Cargo ({{ collections.all.products | where: 'tags', 'cargo' | size }})</span>
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="bike_type" value="folding" data-filter-input>
+            <span class="filter-checkbox-label">Folding ({{ collections.all.products | where: 'tags', 'folding' | size }})</span>
+          </label>
+        </div>
+      </div>
+      
+      <!-- Price Range Filter -->
+      <div class="filter-group">
+        <label class="filter-label">Price Range</label>
+        <div class="price-range">
+          <input type="number" class="price-input" name="price_min" placeholder="Min" min="0" step="100" data-filter-input>
+          <span class="price-separator">–</span>
+          <input type="number" class="price-input" name="price_max" placeholder="Max" min="0" step="100" data-filter-input>
+        </div>
+      </div>
+      
+      <!-- Battery Range Filter -->
+      <div class="filter-group">
+        <label class="filter-label">Battery Range</label>
+        <select class="filter-select" name="battery_range" data-filter-input>
+          <option value="">Any Range</option>
+          <option value="20-40">20-40 miles</option>
+          <option value="40-60">40-60 miles</option>
+          <option value="60-80">60-80 miles</option>
+          <option value="80+">80+ miles</option>
+        </select>
+      </div>
+      
+      <!-- Motor Power Filter -->
+      <div class="filter-group">
+        <label class="filter-label">Motor Power</label>
+        <select class="filter-select" name="motor_power" data-filter-input>
+          <option value="">Any Power</option>
+          <option value="250w">250W</option>
+          <option value="350w">350W</option>
+          <option value="500w">500W</option>
+          <option value="750w">750W+</option>
+        </select>
+      </div>
+      
+      <!-- Frame Type Filter -->
+      <div class="filter-group">
+        <label class="filter-label">Frame Type</label>
+        <div class="filter-checkboxes">
+          <label class="filter-checkbox">
+            <input type="checkbox" name="frame_type" value="step-through" data-filter-input>
+            <span class="filter-checkbox-label">Step-Through</span>
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="frame_type" value="step-over" data-filter-input>
+            <span class="filter-checkbox-label">Step-Over</span>
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="frame_type" value="unisex" data-filter-input>
+            <span class="filter-checkbox-label">Unisex</span>
+          </label>
+        </div>
+      </div>
+      
+      <!-- Brand Filter -->
+      <div class="filter-group">
+        <label class="filter-label">Brand</label>
+        <select class="filter-select" name="brand" data-filter-input>
+          <option value="">Any Brand</option>
+          {% assign all_vendors = collections.all.products | map: 'vendor' | uniq | sort %}
+          {% for vendor in all_vendors %}
+            <option value="{{ vendor | handleize }}">{{ vendor }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      
+    </div>
+    
+    <button type="submit" class="filters-apply">
+      Apply Filters
+    </button>
+    
+    <!-- Active Filters Display -->
+    <div class="active-filters" data-active-filters style="display: none;"></div>
+  </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const filtersContainer = document.querySelector('[data-filters-pipeline]');
+  const filtersForm = document.querySelector('[data-filters-form]');
+  const filterInputs = document.querySelectorAll('[data-filter-input]');
+  const activeFiltersContainer = document.querySelector('[data-active-filters]');
+  const clearAllButton = document.querySelector('[data-filters-clear]');
+  
+  let activeFilters = {};
+  
+  // Handle filter input changes
+  filterInputs.forEach(input => {
+    input.addEventListener('change', updateActiveFilters);
+  });
+  
+  // Handle form submission
+  filtersForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    applyFilters();
+  });
+  
+  // Handle clear all filters
+  clearAllButton.addEventListener('click', clearAllFilters);
+  
+  function updateActiveFilters() {
+    activeFilters = {};
+    
+    filterInputs.forEach(input => {
+      if (input.type === 'checkbox' && input.checked) {
+        if (!activeFilters[input.name]) activeFilters[input.name] = [];
+        activeFilters[input.name].push({
+          value: input.value,
+          label: input.closest('.filter-checkbox').querySelector('.filter-checkbox-label').textContent.trim()
+        });
+      } else if ((input.type === 'select-one' || input.type === 'number') && input.value) {
+        activeFilters[input.name] = [{
+          value: input.value,
+          label: input.type === 'number' ? `$${input.value}` : input.options[input.selectedIndex].text
+        }];
+      }
+    });
+    
+    displayActiveFilters();
+  }
+  
+  function displayActiveFilters() {
+    const hasFilters = Object.keys(activeFilters).length > 0;
+    
+    if (hasFilters) {
+      activeFiltersContainer.style.display = 'flex';
+      clearAllButton.style.display = 'block';
+      
+      let filtersHTML = '';
+      for (const [filterName, filterValues] of Object.entries(activeFilters)) {
+        filterValues.forEach(filter => {
+          filtersHTML += `
+            <div class="filter-tag" data-filter-tag="${filterName}" data-filter-value="${filter.value}">
+              ${filter.label}
+              <button class="filter-tag-remove" onclick="removeFilter('${filterName}', '${filter.value}')">&times;</button>
+            </div>
+          `;
+        });
+      }
+      activeFiltersContainer.innerHTML = filtersHTML;
+    } else {
+      activeFiltersContainer.style.display = 'none';
+      clearAllButton.style.display = 'none';
+    }
+  }
+  
+  function applyFilters() {
+    // Build URL parameters from active filters
+    const params = new URLSearchParams();
+    
+    for (const [filterName, filterValues] of Object.entries(activeFilters)) {
+      filterValues.forEach(filter => {
+        params.append(filterName, filter.value);
+      });
+    }
+    
+    // Add price range as single parameter
+    const priceMin = document.querySelector('[name="price_min"]').value;
+    const priceMax = document.querySelector('[name="price_max"]').value;
+    
+    if (priceMin) params.append('price_min', priceMin);
+    if (priceMax) params.append('price_max', priceMax);
+    
+    // Redirect to filtered collection page
+    const currentPath = window.location.pathname;
+    const newUrl = `${currentPath}?${params.toString()}`;
+    
+    console.log('Applying filters:', newUrl);
+    
+    // For now, just log the filters (in real implementation, this would filter products)
+    showFilterResults(activeFilters);
+  }
+  
+  function showFilterResults(filters) {
+    // This would integrate with Shopify's filtering system
+    // For demo purposes, we'll show a simple alert
+    const filterCount = Object.keys(filters).length;
+    if (filterCount > 0) {
+      alert(`Filters applied! ${filterCount} filter categories selected.`);
+    }
+  }
+  
+  window.removeFilter = function(filterName, filterValue) {
+    // Find and uncheck the corresponding input
+    const input = document.querySelector(`[name="${filterName}"][value="${filterValue}"]`);
+    if (input) {
+      if (input.type === 'checkbox') {
+        input.checked = false;
+      } else {
+        input.value = '';
+      }
+      updateActiveFilters();
+    }
+  };
+  
+  function clearAllFilters() {
+    filterInputs.forEach(input => {
+      if (input.type === 'checkbox') {
+        input.checked = false;
+      } else {
+        input.value = '';
+      }
+    });
+    
+    activeFilters = {};
+    displayActiveFilters();
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "Advanced Filters Pipeline",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Filter Title",
+      "default": "Filter E-Bikes"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Advanced Filters Pipeline"
+    }
+  ]
+}
+{% endschema %}

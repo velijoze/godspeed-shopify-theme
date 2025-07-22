@@ -1,0 +1,695 @@
+{% comment %}
+  Pipeline-Style Image Hotspots
+  Perfect for showcasing e-bike components and features
+{% endcomment %}
+
+<style>
+  .hotspots-section {
+    padding: 6rem 0;
+    background: #ffffff;
+  }
+  
+  .hotspots-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .hotspots-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  
+  .hotspots-title {
+    font-size: 3.2rem;
+    font-weight: 300;
+    color: #2c2c2c;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  
+  .hotspots-subtitle {
+    font-size: 1.8rem;
+    color: #666666;
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+  
+  .hotspots-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .hotspots-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+  }
+  
+  .hotspot {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 5;
+  }
+  
+  .hotspot-pin {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    border: 3px solid #2c2c2c;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: #2c2c2c;
+    font-size: 1.4rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .hotspot-pin::before {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border: 2px solid rgba(44, 44, 44, 0.3);
+    border-radius: 50%;
+    animation: hotspotPulse 2s infinite;
+    z-index: -1;
+  }
+  
+  @keyframes hotspotPulse {
+    0% {
+      transform: scale(0.8);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1.2);
+      opacity: 0;
+    }
+  }
+  
+  .hotspot:hover .hotspot-pin {
+    background: #2c2c2c;
+    color: white;
+    transform: scale(1.1);
+  }
+  
+  .hotspot.active .hotspot-pin {
+    background: #2c2c2c;
+    color: white;
+    transform: scale(1.1);
+  }
+  
+  .hotspot-tooltip {
+    position: absolute;
+    background: rgba(44, 44, 44, 0.95);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    min-width: 280px;
+    max-width: 350px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 10;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+  }
+  
+  .hotspot.active .hotspot-tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .hotspot-tooltip::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+  }
+  
+  /* Tooltip positioning */
+  .hotspot[data-position="top"] .hotspot-tooltip {
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .hotspot[data-position="top"] .hotspot-tooltip::before {
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid rgba(44, 44, 44, 0.95);
+  }
+  
+  .hotspot[data-position="bottom"] .hotspot-tooltip {
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .hotspot[data-position="bottom"] .hotspot-tooltip::before {
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid rgba(44, 44, 44, 0.95);
+  }
+  
+  .hotspot[data-position="left"] .hotspot-tooltip {
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .hotspot[data-position="left"] .hotspot-tooltip::before {
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 8px solid rgba(44, 44, 44, 0.95);
+  }
+  
+  .hotspot[data-position="right"] .hotspot-tooltip {
+    left: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .hotspot[data-position="right"] .hotspot-tooltip::before {
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 8px solid rgba(44, 44, 44, 0.95);
+  }
+  
+  .hotspot-title {
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+    color: white;
+  }
+  
+  .hotspot-description {
+    font-size: 1.3rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 1rem;
+  }
+  
+  .hotspot-specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+  
+  .hotspot-spec {
+    display: flex;
+    justify-content: space-between;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .hotspot-spec strong {
+    color: white;
+  }
+  
+  .hotspot-link {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background: white;
+    color: #2c2c2c;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+  }
+  
+  .hotspot-link:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
+  }
+  
+  /* Mobile responsive */
+  @media (max-width: 768px) {
+    .hotspots-section {
+      padding: 4rem 0;
+    }
+    
+    .hotspots-container {
+      padding: 0 1rem;
+    }
+    
+    .hotspots-title {
+      font-size: 2.4rem;
+    }
+    
+    .hotspots-subtitle {
+      font-size: 1.6rem;
+    }
+    
+    .hotspot {
+      width: 35px;
+      height: 35px;
+    }
+    
+    .hotspot-pin {
+      font-size: 1.2rem;
+    }
+    
+    .hotspot-tooltip {
+      min-width: 250px;
+      max-width: 280px;
+      padding: 1.2rem;
+    }
+    
+    .hotspot-specs {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<section class="hotspots-section">
+  <div class="hotspots-container">
+    
+    <!-- Section Header -->
+    <div class="hotspots-header">
+      <h2 class="hotspots-title">{{ section.settings.title | default: "E-Bike Features" }}</h2>
+      <p class="hotspots-subtitle">{{ section.settings.subtitle | default: "Discover the advanced technology that powers your ride" }}</p>
+    </div>
+    
+    <!-- Interactive Hotspots Image -->
+    <div class="hotspots-wrapper">
+      {% if section.settings.hotspot_image %}
+        <img src="{{ section.settings.hotspot_image | img_url: '800x600' }}" 
+             alt="{{ section.settings.hotspot_image.alt | escape }}"
+             class="hotspots-image">
+      {% else %}
+        <!-- Placeholder image -->
+        <img src="https://via.placeholder.com/800x600/f3f4f6/2c2c2c?text=E-Bike+Features" 
+             alt="E-Bike Features"
+             class="hotspots-image">
+      {% endif %}
+      
+      <!-- Hotspot 1: Battery -->
+      <div class="hotspot" data-position="right" style="top: 45%; left: 25%;" onclick="toggleHotspot(this)">
+        <div class="hotspot-pin">1</div>
+        <div class="hotspot-tooltip">
+          <h3 class="hotspot-title">{{ section.settings.hotspot_1_title | default: "Advanced Battery" }}</h3>
+          <p class="hotspot-description">{{ section.settings.hotspot_1_description | default: "Long-lasting lithium-ion battery with smart charging technology" }}</p>
+          <div class="hotspot-specs">
+            <div class="hotspot-spec">
+              <span>Range:</span>
+              <strong>{{ section.settings.hotspot_1_spec_1 | default: "80+ miles" }}</strong>
+            </div>
+            <div class="hotspot-spec">
+              <span>Charge Time:</span>
+              <strong>{{ section.settings.hotspot_1_spec_2 | default: "4-6 hours" }}</strong>
+            </div>
+            <div class="hotspot-spec">
+              <span>Capacity:</span>
+              <strong>{{ section.settings.hotspot_1_spec_3 | default: "48V 14Ah" }}</strong>
+            </div>
+            <div class="hotspot-spec">
+              <span>Weight:</span>
+              <strong>{{ section.settings.hotspot_1_spec_4 | default: "7.5 lbs" }}</strong>
+            </div>
+          </div>
+          {% if section.settings.hotspot_1_link %}
+            <a href="{{ section.settings.hotspot_1_link }}" class="hotspot-link">Learn More</a>
+          {% endif %}
+        </div>
+      </div>
+      
+      <!-- Hotspot 2: Motor -->
+      <div class="hotspot" data-position="left" style="top: 65%; left: 60%;" onclick="toggleHotspot(this)">
+        <div class="hotspot-pin">2</div>
+        <div class="hotspot-tooltip">
+          <h3 class="hotspot-title">{{ section.settings.hotspot_2_title | default: "Powerful Motor" }}</h3>
+          <p class="hotspot-description">{{ section.settings.hotspot_2_description | default: "High-torque hub motor for smooth acceleration and hill climbing" }}</p>
+          <div class="hotspot-specs">
+            <div class="hotspot-spec">
+              <span>Power:</span>
+              <strong>{{ section.settings.hotspot_2_spec_1 | default: "750W" }}</strong>
+            </div>
+            <div class="hotspot-spec">
+              <span>Torque:</span>
+              <strong>{{ section.settings.hotspot_2_spec_2 | default: "80 Nm" }}</strong>
+            </div>
+            <div class="hotspot-spec">
+              <span>Max Speed:</span>
+              <strong>{{ section.settings.hotspot_2_spec_3 | default: "28 mph" }}</strong>
+            </div>
+            <div class="hotspot-spec">
+              <span>Type:</span>
+              <strong>{{ section.settings.hotspot_2_spec_4 | default: "Hub Motor" }}</strong>
+            </div>
+          </div>
+          {% if section.settings.hotspot_2_link %}
+            <a href="{{ section.settings.hotspot_2_link }}" class="hotspot-link">Learn More</a>
+          {% endif %}
+        </div>
+      </div>
+      
+      <!-- Hotspot 3: Display -->
+      <div class="hotspot" data-position="top" style="top: 25%; left: 45%;" onclick="toggleHotspot(this)">
+        <div class="hotspot-pin">3</div>
+        <div class="hotspot-tooltip">
+          <h3 class="hotspot-title">{{ section.settings.hotspot_3_title | default: "Smart Display" }}</h3>
+          <p class="hotspot-description">{{ section.settings.hotspot_3_description | default: "LCD display with GPS navigation and ride analytics" }}</p>
+          <div class="hotspot-specs">
+            <div class="hotspot-spec">
+              <span>Display:</span>
+              <strong>{{ section.settings.hotspot_3_spec_1 | default: "3.5″ LCD" }}</strong>
+            </div>
+            <div class="hotspot-spec">
+              <span>Features:</span>
+              <strong>{{ section.settings.hotspot_3_spec_2 | default: "GPS, USB" }}</strong>
+            </div>
+            <div class="hotspot-spec">
+              <span>Assist Levels:</span>
+              <strong>{{ section.settings.hotspot_3_spec_3 | default: "5 Modes" }}</strong>
+            </div>
+            <div class="hotspot-spec">
+              <span>Waterproof:</span>
+              <strong>{{ section.settings.hotspot_3_spec_4 | default: "IP65" }}</strong>
+            </div>
+          </div>
+          {% if section.settings.hotspot_3_link %}
+            <a href="{{ section.settings.hotspot_3_link }}" class="hotspot-link">Learn More</a>
+          {% endif %}
+        </div>
+      </div>
+      
+      <!-- Hotspot 4: Brakes -->
+      <div class="hotspot" data-position="bottom" style="top: 70%; left: 15%;" onclick="toggleHotspot(this)">
+        <div class="hotspot-pin">4</div>
+        <div class="hotspot-tooltip">
+          <h3 class="hotspot-title">{{ section.settings.hotspot_4_title | default: "Hydraulic Brakes" }}</h3>
+          <p class="hotspot-description">{{ section.settings.hotspot_4_description | default: "Professional-grade hydraulic disc brakes for maximum stopping power" }}</p>
+          <div class="hotspot-specs">
+            <div class="hotspot-spec">
+              <span>Type:</span>
+              <strong>{{ section.settings.hotspot_4_spec_1 | default: "Hydraulic" }}</strong>
+            </div>
+            <div class="hotspot-spec">
+              <span>Rotor Size:</span>
+              <strong>{{ section.settings.hotspot_4_spec_2 | default: "180mm" }}</strong>
+            </div>
+            <div class="hotspot-spec">
+              <span>Brand:</span>
+              <strong>{{ section.settings.hotspot_4_spec_3 | default: "Shimano" }}</strong>
+            </div>
+            <div class="hotspot-spec">
+              <span>Response:</span>
+              <strong>{{ section.settings.hotspot_4_spec_4 | default: "Instant" }}</strong>
+            </div>
+          </div>
+          {% if section.settings.hotspot_4_link %}
+            <a href="{{ section.settings.hotspot_4_link }}" class="hotspot-link">Learn More</a>
+          {% endif %}
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<script>
+let activeHotspot = null;
+
+function toggleHotspot(hotspot) {
+  // Close currently active hotspot if different
+  if (activeHotspot && activeHotspot !== hotspot) {
+    activeHotspot.classList.remove('active');
+  }
+  
+  // Toggle clicked hotspot
+  hotspot.classList.toggle('active');
+  
+  // Update active hotspot reference
+  if (hotspot.classList.contains('active')) {
+    activeHotspot = hotspot;
+  } else {
+    activeHotspot = null;
+  }
+}
+
+// Close hotspots when clicking outside
+document.addEventListener('click', function(event) {
+  const hotspotsWrapper = document.querySelector('.hotspots-wrapper');
+  
+  if (hotspotsWrapper && !hotspotsWrapper.contains(event.target)) {
+    // Click is outside hotspots area
+    if (activeHotspot) {
+      activeHotspot.classList.remove('active');
+      activeHotspot = null;
+    }
+  }
+});
+
+// Close hotspots on escape key
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape' && activeHotspot) {
+    activeHotspot.classList.remove('active');
+    activeHotspot = null;
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "Image Hotspots Pipeline",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "E-Bike Features"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Section Subtitle",
+      "default": "Discover the advanced technology that powers your ride"
+    },
+    {
+      "type": "image_picker",
+      "id": "hotspot_image",
+      "label": "Hotspot Image",
+      "info": "Recommended: 800x600px or larger"
+    },
+    {
+      "type": "header",
+      "content": "Hotspot 1 - Battery"
+    },
+    {
+      "type": "text",
+      "id": "hotspot_1_title",
+      "label": "Title",
+      "default": "Advanced Battery"
+    },
+    {
+      "type": "textarea",
+      "id": "hotspot_1_description",
+      "label": "Description",
+      "default": "Long-lasting lithium-ion battery with smart charging technology"
+    },
+    {
+      "type": "text",
+      "id": "hotspot_1_spec_1",
+      "label": "Spec 1 (Range)",
+      "default": "80+ miles"
+    },
+    {
+      "type": "text",
+      "id": "hotspot_1_spec_2",
+      "label": "Spec 2 (Charge Time)",
+      "default": "4-6 hours"
+    },
+    {
+      "type": "text",
+      "id": "hotspot_1_spec_3",
+      "label": "Spec 3 (Capacity)",
+      "default": "48V 14Ah"
+    },
+    {
+      "type": "text",
+      "id": "hotspot_1_spec_4",
+      "label": "Spec 4 (Weight)",
+      "default": "7.5 lbs"
+    },
+    {
+      "type": "url",
+      "id": "hotspot_1_link",
+      "label": "Learn More Link"
+    },
+    {
+      "type": "header",
+      "content": "Hotspot 2 - Motor"
+    },
+    {
+      "type": "text",
+      "id": "hotspot_2_title",
+      "label": "Title",
+      "default": "Powerful Motor"
+    },
+    {
+      "type": "textarea",
+      "id": "hotspot_2_description",
+      "label": "Description",
+      "default": "High-torque hub motor for smooth acceleration and hill climbing"
+    },
+    {
+      "type": "text",
+      "id": "hotspot_2_spec_1",
+      "label": "Spec 1 (Power)",
+      "default": "750W"
+    },
+    {
+      "type": "text",
+      "id": "hotspot_2_spec_2",
+      "label": "Spec 2 (Torque)",
+      "default": "80 Nm"
+    },
+    {
+      "type": "text",
+      "id": "hotspot_2_spec_3",
+      "label": "Spec 3 (Max Speed)",
+      "default": "28 mph"
+    },
+    {
+      "type": "text",
+      "id": "hotspot_2_spec_4",
+      "label": "Spec 4 (Type)",
+      "default": "Hub Motor"
+    },
+    {
+      "type": "url",
+      "id": "hotspot_2_link",
+      "label": "Learn More Link"
+    },
+    {
+      "type": "header",
+      "content": "Hotspot 3 - Display"
+    },
+    {
+      "type": "text",
+      "id": "hotspot_3_title",
+      "label": "Title",
+      "default": "Smart Display"
+    },
+    {
+      "type": "textarea",
+      "id": "hotspot_3_description",
+      "label": "Description",
+      "default": "LCD display with GPS navigation and ride analytics"
+    },
+    {
+      "type": "text",
+      "id": "hotspot_3_spec_1",
+      "label": "Spec 1 (Display)",
+      "default": "3.5″ LCD"
+    },
+    {
+      "type": "text",
+      "id": "hotspot_3_spec_2",
+      "label": "Spec 2 (Features)",
+      "default": "GPS, USB"
+    },
+    {
+      "type": "text",
+      "id": "hotspot_3_spec_3",
+      "label": "Spec 3 (Assist Levels)",
+      "default": "5 Modes"
+    },
+    {
+      "type": "text",
+      "id": "hotspot_3_spec_4",
+      "label": "Spec 4 (Waterproof)",
+      "default": "IP65"
+    },
+    {
+      "type": "url",
+      "id": "hotspot_3_link",
+      "label": "Learn More Link"
+    },
+    {
+      "type": "header",
+      "content": "Hotspot 4 - Brakes"
+    },
+    {
+      "type": "text",
+      "id": "hotspot_4_title",
+      "label": "Title",
+      "default": "Hydraulic Brakes"
+    },
+    {
+      "type": "textarea",
+      "id": "hotspot_4_description",
+      "label": "Description",
+      "default": "Professional-grade hydraulic disc brakes for maximum stopping power"
+    },
+    {
+      "type": "text",
+      "id": "hotspot_4_spec_1",
+      "label": "Spec 1 (Type)",
+      "default": "Hydraulic"
+    },
+    {
+      "type": "text",
+      "id": "hotspot_4_spec_2",
+      "label": "Spec 2 (Rotor Size)",
+      "default": "180mm"
+    },
+    {
+      "type": "text",
+      "id": "hotspot_4_spec_3",
+      "label": "Spec 3 (Brand)",
+      "default": "Shimano"
+    },
+    {
+      "type": "text",
+      "id": "hotspot_4_spec_4",
+      "label": "Spec 4 (Response)",
+      "default": "Instant"
+    },
+    {
+      "type": "url",
+      "id": "hotspot_4_link",
+      "label": "Learn More Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image Hotspots Pipeline"
+    }
+  ]
+}
+{% endschema %}

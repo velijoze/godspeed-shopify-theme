@@ -1,0 +1,583 @@
+{% comment %}
+  Pipeline-Style Quick View Modal
+  Essential for e-bike spec comparisons without leaving collection page
+{% endcomment %}
+
+<!-- Quick View Modal -->
+<div class="quick-view-modal" id="quick-view-modal" style="display: none;">
+  <div class="quick-view-backdrop" onclick="closeQuickView()"></div>
+  <div class="quick-view-container">
+    <button class="quick-view-close" onclick="closeQuickView()">&times;</button>
+    
+    <div class="quick-view-content">
+      <div class="quick-view-images">
+        <div class="quick-view-main-image">
+          <img id="quick-view-image" src="" alt="">
+        </div>
+        <div class="quick-view-thumbnails" id="quick-view-thumbnails">
+          <!-- Thumbnails will be populated by JavaScript -->
+        </div>
+      </div>
+      
+      <div class="quick-view-details">
+        <h2 class="quick-view-title" id="quick-view-title"></h2>
+        <div class="quick-view-price" id="quick-view-price"></div>
+        
+        <!-- E-Bike Specifications -->
+        <div class="quick-view-specs">
+          <h3>Key Specifications</h3>
+          <div class="specs-grid">
+            <div class="spec-item">
+              <span class="spec-label">Battery Range:</span>
+              <span class="spec-value" id="spec-range">-</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Motor Power:</span>
+              <span class="spec-value" id="spec-motor">-</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Frame Type:</span>
+              <span class="spec-value" id="spec-frame">-</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Weight:</span>
+              <span class="spec-value" id="spec-weight">-</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Max Speed:</span>
+              <span class="spec-value" id="spec-speed">-</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Charging Time:</span>
+              <span class="spec-value" id="spec-charging">-</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Variant Selection -->
+        <div class="quick-view-variants" id="quick-view-variants">
+          <!-- Variants will be populated by JavaScript -->
+        </div>
+        
+        <!-- Actions -->
+        <div class="quick-view-actions">
+          <div class="quick-view-quantity">
+            <button class="quantity-btn" onclick="changeQuantity(-1)">−</button>
+            <input type="number" id="quick-view-quantity" value="1" min="1" max="10">
+            <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
+          </div>
+          
+          <button class="quick-add-to-cart" id="quick-add-to-cart" onclick="addToCartQuick()">
+            Add to Cart
+          </button>
+          
+          <a class="view-full-details" id="view-full-details" href="">
+            View Full Details
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .quick-view-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .quick-view-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    cursor: pointer;
+  }
+  
+  .quick-view-container {
+    position: relative;
+    background: white;
+    max-width: 1000px;
+    max-height: 90vh;
+    width: 90%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: quickViewSlideIn 0.3s ease;
+  }
+  
+  @keyframes quickViewSlideIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9) translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+  
+  .quick-view-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.3s ease;
+  }
+  
+  .quick-view-close:hover {
+    background: rgba(255, 255, 255, 1);
+  }
+  
+  .quick-view-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  
+  .quick-view-images {
+    padding: 2rem;
+    background: #f9fafb;
+  }
+  
+  .quick-view-main-image img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .quick-view-thumbnails {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    overflow-x: auto;
+  }
+  
+  .thumbnail-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+    border: 2px solid transparent;
+  }
+  
+  .thumbnail-img:hover,
+  .thumbnail-img.active {
+    opacity: 1;
+    border-color: #2c2c2c;
+  }
+  
+  .quick-view-details {
+    padding: 2rem;
+    overflow-y: auto;
+  }
+  
+  .quick-view-title {
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: #2c2c2c;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+  
+  .quick-view-price {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: #2c2c2c;
+    margin-bottom: 2rem;
+  }
+  
+  .quick-view-specs h3 {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #2c2c2c;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .specs-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: #f9fafb;
+    border-radius: 6px;
+  }
+  
+  .spec-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .spec-item:last-child {
+    border-bottom: none;
+  }
+  
+  .spec-label {
+    font-weight: 500;
+    color: #4b5563;
+  }
+  
+  .spec-value {
+    font-weight: 400;
+    color: #2c2c2c;
+  }
+  
+  .quick-view-variants {
+    margin-bottom: 2rem;
+  }
+  
+  .variant-option {
+    display: inline-block;
+    margin: 0.5rem 0.5rem 0.5rem 0;
+    padding: 0.5rem 1rem;
+    border: 1px solid #d1d5db;
+    background: white;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+  
+  .variant-option:hover,
+  .variant-option.selected {
+    border-color: #2c2c2c;
+    background: #2c2c2c;
+    color: white;
+  }
+  
+  .quick-view-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .quick-view-quantity {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .quantity-btn {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #d1d5db;
+    background: white;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+  
+  .quantity-btn:hover {
+    border-color: #2c2c2c;
+    background: #2c2c2c;
+    color: white;
+  }
+  
+  #quick-view-quantity {
+    width: 60px;
+    text-align: center;
+    border: 1px solid #d1d5db;
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-size: 1.1rem;
+  }
+  
+  .quick-add-to-cart {
+    padding: 1rem 2rem;
+    background: #2c2c2c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .quick-add-to-cart:hover {
+    background: #1a1a1a;
+  }
+  
+  .quick-add-to-cart:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+  }
+  
+  .view-full-details {
+    text-align: center;
+    padding: 1rem;
+    border: 1px solid #2c2c2c;
+    color: #2c2c2c;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+  }
+  
+  .view-full-details:hover {
+    background: #2c2c2c;
+    color: white;
+  }
+  
+  /* Mobile responsive */
+  @media (max-width: 768px) {
+    .quick-view-container {
+      width: 95%;
+      max-height: 95vh;
+    }
+    
+    .quick-view-content {
+      grid-template-columns: 1fr;
+    }
+    
+    .quick-view-images,
+    .quick-view-details {
+      padding: 1rem;
+    }
+    
+    .specs-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+let currentProductData = null;
+
+function openQuickView(productHandle) {
+  console.log('Opening quick view for:', productHandle);
+  
+  // Show modal immediately
+  const modal = document.getElementById('quick-view-modal');
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  
+  // Load product data
+  fetch(`/products/${productHandle}.js`)
+    .then(response => response.json())
+    .then(product => {
+      currentProductData = product;
+      populateQuickView(product);
+    })
+    .catch(error => {
+      console.error('Error loading product:', error);
+      closeQuickView();
+    });
+}
+
+function populateQuickView(product) {
+  // Update title
+  document.getElementById('quick-view-title').textContent = product.title;
+  
+  // Update price
+  const priceElement = document.getElementById('quick-view-price');
+  if (product.compare_at_price > product.price) {
+    priceElement.innerHTML = `
+      <span style="color: #dc2626; font-weight: 600;">${formatMoney(product.price)}</span>
+      <span style="text-decoration: line-through; margin-left: 0.5rem; color: #999; font-size: 1.4rem;">${formatMoney(product.compare_at_price)}</span>
+    `;
+  } else {
+    priceElement.textContent = formatMoney(product.price);
+  }
+  
+  // Update main image
+  if (product.images && product.images.length > 0) {
+    document.getElementById('quick-view-image').src = product.images[0];
+    
+    // Update thumbnails
+    const thumbnailsContainer = document.getElementById('quick-view-thumbnails');
+    thumbnailsContainer.innerHTML = '';
+    
+    product.images.forEach((image, index) => {
+      const thumbnail = document.createElement('img');
+      thumbnail.src = image;
+      thumbnail.className = 'thumbnail-img' + (index === 0 ? ' active' : '');
+      thumbnail.onclick = () => switchMainImage(image, thumbnail);
+      thumbnailsContainer.appendChild(thumbnail);
+    });
+  }
+  
+  // Update specifications (from product tags or metafields)
+  updateSpecifications(product);
+  
+  // Update variants
+  updateVariants(product);
+  
+  // Update full details link
+  document.getElementById('view-full-details').href = `/products/${product.handle}`;
+}
+
+function updateSpecifications(product) {
+  // Extract specs from tags or use defaults
+  const specs = extractSpecsFromProduct(product);
+  
+  document.getElementById('spec-range').textContent = specs.range || 'Contact us';
+  document.getElementById('spec-motor').textContent = specs.motor || 'Contact us';
+  document.getElementById('spec-frame').textContent = specs.frame || 'Contact us';
+  document.getElementById('spec-weight').textContent = specs.weight || 'Contact us';
+  document.getElementById('spec-speed').textContent = specs.speed || 'Contact us';
+  document.getElementById('spec-charging').textContent = specs.charging || 'Contact us';
+}
+
+function extractSpecsFromProduct(product) {
+  const specs = {};
+  
+  // Look for specs in product tags
+  if (product.tags) {
+    product.tags.forEach(tag => {
+      if (tag.includes('range-')) specs.range = tag.replace('range-', '') + ' miles';
+      if (tag.includes('motor-')) specs.motor = tag.replace('motor-', '').toUpperCase();
+      if (tag.includes('frame-')) specs.frame = tag.replace('frame-', '').replace('-', ' ');
+      if (tag.includes('weight-')) specs.weight = tag.replace('weight-', '') + ' lbs';
+      if (tag.includes('speed-')) specs.speed = tag.replace('speed-', '') + ' mph';
+      if (tag.includes('charging-')) specs.charging = tag.replace('charging-', '') + ' hours';
+    });
+  }
+  
+  return specs;
+}
+
+function updateVariants(product) {
+  const variantsContainer = document.getElementById('quick-view-variants');
+  
+  if (product.variants && product.variants.length > 1) {
+    let variantsHTML = '<h4>Options:</h4>';
+    
+    product.variants.forEach(variant => {
+      const available = variant.available ? '' : 'style="opacity: 0.5; cursor: not-allowed;"';
+      const label = variant.title !== 'Default Title' ? variant.title : 'Standard';
+      
+      variantsHTML += `
+        <div class="variant-option" data-variant-id="${variant.id}" ${available} onclick="selectVariant(${variant.id})">
+          ${label}
+        </div>
+      `;
+    });
+    
+    variantsContainer.innerHTML = variantsHTML;
+  } else {
+    variantsContainer.innerHTML = '';
+  }
+}
+
+function switchMainImage(imageSrc, thumbnailElement) {
+  document.getElementById('quick-view-image').src = imageSrc;
+  
+  // Update active thumbnail
+  document.querySelectorAll('.thumbnail-img').forEach(thumb => thumb.classList.remove('active'));
+  thumbnailElement.classList.add('active');
+}
+
+function selectVariant(variantId) {
+  // Update selected variant
+  document.querySelectorAll('.variant-option').forEach(option => option.classList.remove('selected'));
+  document.querySelector(`[data-variant-id="${variantId}"]`).classList.add('selected');
+  
+  // Update price and availability for selected variant
+  const variant = currentProductData.variants.find(v => v.id === variantId);
+  if (variant) {
+    const addToCartBtn = document.getElementById('quick-add-to-cart');
+    addToCartBtn.disabled = !variant.available;
+    addToCartBtn.textContent = variant.available ? 'Add to Cart' : 'Out of Stock';
+  }
+}
+
+function changeQuantity(change) {
+  const quantityInput = document.getElementById('quick-view-quantity');
+  let newQuantity = parseInt(quantityInput.value) + change;
+  
+  if (newQuantity < 1) newQuantity = 1;
+  if (newQuantity > 10) newQuantity = 10;
+  
+  quantityInput.value = newQuantity;
+}
+
+function addToCartQuick() {
+  const selectedVariant = document.querySelector('.variant-option.selected');
+  const variantId = selectedVariant ? selectedVariant.dataset.variantId : currentProductData.variants[0].id;
+  const quantity = document.getElementById('quick-view-quantity').value;
+  
+  const formData = {
+    id: variantId,
+    quantity: parseInt(quantity)
+  };
+  
+  // Add to cart via AJAX
+  fetch('/cart/add.js', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(formData)
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Added to cart:', data);
+    // Show success message or update cart
+    alert('Product added to cart!');
+    closeQuickView();
+    
+    // Optionally refresh cart drawer/count
+    if (typeof updateCartCount === 'function') {
+      updateCartCount();
+    }
+  })
+  .catch(error => {
+    console.error('Error adding to cart:', error);
+    alert('Error adding product to cart. Please try again.');
+  });
+}
+
+function closeQuickView() {
+  const modal = document.getElementById('quick-view-modal');
+  modal.style.display = 'none';
+  document.body.style.overflow = 'auto';
+  currentProductData = null;
+}
+
+function formatMoney(cents) {
+  return (cents / 100).toLocaleString('en-US', {
+    style: 'currency',
+    currency: 'USD'
+  });
+}
+
+// Close modal on escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && document.getElementById('quick-view-modal').style.display === 'flex') {
+    closeQuickView();
+  }
+});
+</script>

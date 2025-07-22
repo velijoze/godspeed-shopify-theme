@@ -1,0 +1,849 @@
+{% comment %}
+  Pipeline-Style Product Tabs System
+  Perfect for organizing e-bike specifications, features, warranty, and reviews
+{% endcomment %}
+
+<style>
+  .product-tabs-section {
+    padding: 0;
+    margin: 3rem 0;
+  }
+  
+  .product-tabs-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .product-tabs-nav {
+    display: flex;
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 3rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .product-tabs-nav::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .tab-button {
+    background: none;
+    border: none;
+    padding: 1.5rem 2rem;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #666666;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    position: relative;
+    font-family: inherit;
+  }
+  
+  .tab-button:hover {
+    color: #2c2c2c;
+    background: rgba(44, 44, 44, 0.05);
+  }
+  
+  .tab-button.active {
+    color: #2c2c2c;
+    border-bottom-color: #2c2c2c;
+    font-weight: 500;
+  }
+  
+  .product-tabs-content {
+    min-height: 400px;
+  }
+  
+  .tab-panel {
+    display: none;
+    animation: fadeInUp 0.4s ease;
+  }
+  
+  .tab-panel.active {
+    display: block;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Specifications Tab */
+  .specs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+  }
+  
+  .specs-category {
+    background: #f9fafb;
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+  }
+  
+  .specs-category h3 {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #2c2c2c;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid #2c2c2c;
+    padding-bottom: 0.5rem;
+  }
+  
+  .spec-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .spec-row:last-child {
+    border-bottom: none;
+  }
+  
+  .spec-label {
+    font-size: 1.3rem;
+    color: #4b5563;
+    font-weight: 500;
+  }
+  
+  .spec-value {
+    font-size: 1.3rem;
+    color: #2c2c2c;
+    font-weight: 600;
+    text-align: right;
+  }
+  
+  /* Features Tab */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 2rem;
+    background: #f9fafb;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+  }
+  
+  .feature-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+  
+  .feature-icon {
+    width: 50px;
+    height: 50px;
+    background: #2c2c2c;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.8rem;
+    flex-shrink: 0;
+  }
+  
+  .feature-content h4 {
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #2c2c2c;
+    margin-bottom: 0.8rem;
+  }
+  
+  .feature-content p {
+    font-size: 1.3rem;
+    color: #666666;
+    line-height: 1.6;
+  }
+  
+  /* Warranty Tab */
+  .warranty-content {
+    background: #f9fafb;
+    padding: 3rem;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+  }
+  
+  .warranty-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+  
+  .warranty-item {
+    text-align: center;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .warranty-item h3 {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #2c2c2c;
+    margin-bottom: 1rem;
+  }
+  
+  .warranty-item .warranty-period {
+    font-size: 3rem;
+    font-weight: 300;
+    color: #2c2c2c;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  .warranty-item .warranty-description {
+    font-size: 1.3rem;
+    color: #666666;
+    line-height: 1.5;
+  }
+  
+  .warranty-terms {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+  }
+  
+  .warranty-terms h4 {
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #2c2c2c;
+    margin-bottom: 1.5rem;
+  }
+  
+  .warranty-terms ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .warranty-terms li {
+    font-size: 1.3rem;
+    color: #4b5563;
+    line-height: 1.6;
+    margin-bottom: 0.8rem;
+    padding-left: 2rem;
+    position: relative;
+  }
+  
+  .warranty-terms li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #22c55e;
+    font-weight: 600;
+  }
+  
+  /* Reviews Tab */
+  .reviews-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .reviews-summary {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  
+  .rating-score {
+    font-size: 4rem;
+    font-weight: 300;
+    color: #2c2c2c;
+  }
+  
+  .rating-stars {
+    display: flex;
+    gap: 0.3rem;
+    font-size: 2rem;
+    color: #fbbf24;
+  }
+  
+  .reviews-count {
+    font-size: 1.4rem;
+    color: #666666;
+    margin-top: 0.5rem;
+  }
+  
+  .write-review-btn {
+    padding: 1rem 2rem;
+    background: #2c2c2c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.3rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .write-review-btn:hover {
+    background: #1a1a1a;
+  }
+  
+  .review-item {
+    padding: 2rem;
+    background: #f9fafb;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    border: 1px solid #e5e7eb;
+  }
+  
+  .review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+  
+  .reviewer-info h5 {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #2c2c2c;
+    margin-bottom: 0.3rem;
+  }
+  
+  .review-date {
+    font-size: 1.2rem;
+    color: #666666;
+  }
+  
+  .review-rating {
+    display: flex;
+    color: #fbbf24;
+    font-size: 1.6rem;
+  }
+  
+  .review-content {
+    font-size: 1.3rem;
+    color: #4b5563;
+    line-height: 1.6;
+  }
+  
+  /* Mobile responsive */
+  @media (max-width: 768px) {
+    .product-tabs-wrapper {
+      padding: 0 1rem;
+    }
+    
+    .tab-button {
+      padding: 1rem 1.5rem;
+      font-size: 1.2rem;
+    }
+    
+    .specs-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .warranty-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    .reviews-header {
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+    
+    .reviews-summary {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+  }
+</style>
+
+<section class="product-tabs-section">
+  <div class="product-tabs-wrapper">
+    
+    <!-- Tab Navigation -->
+    <div class="product-tabs-nav">
+      <button class="tab-button active" data-tab="specifications">Specifications</button>
+      <button class="tab-button" data-tab="features">Features</button>
+      <button class="tab-button" data-tab="warranty">Warranty</button>
+      <button class="tab-button" data-tab="reviews">Reviews</button>
+    </div>
+    
+    <!-- Tab Content -->
+    <div class="product-tabs-content">
+      
+      <!-- Specifications Tab -->
+      <div class="tab-panel active" data-panel="specifications">
+        <div class="specs-grid">
+          
+          <!-- Performance Specs -->
+          <div class="specs-category">
+            <h3>Performance</h3>
+            <div class="spec-row">
+              <span class="spec-label">Motor Power</span>
+              <span class="spec-value">{{ section.settings.motor_power | default: "750W Hub Motor" }}</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Max Speed</span>
+              <span class="spec-value">{{ section.settings.max_speed | default: "28 mph" }}</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Battery Range</span>
+              <span class="spec-value">{{ section.settings.battery_range | default: "60-80 miles" }}</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Assist Levels</span>
+              <span class="spec-value">{{ section.settings.assist_levels | default: "5 Levels" }}</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Torque</span>
+              <span class="spec-value">{{ section.settings.torque | default: "80 Nm" }}</span>
+            </div>
+          </div>
+          
+          <!-- Battery & Charging -->
+          <div class="specs-category">
+            <h3>Battery & Charging</h3>
+            <div class="spec-row">
+              <span class="spec-label">Battery Type</span>
+              <span class="spec-value">{{ section.settings.battery_type | default: "Lithium-ion" }}</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Battery Capacity</span>
+              <span class="spec-value">{{ section.settings.battery_capacity | default: "48V 14Ah" }}</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Charging Time</span>
+              <span class="spec-value">{{ section.settings.charging_time | default: "4-6 hours" }}</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Battery Weight</span>
+              <span class="spec-value">{{ section.settings.battery_weight | default: "7.5 lbs" }}</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Removable</span>
+              <span class="spec-value">{{ section.settings.battery_removable | default: "Yes" }}</span>
+            </div>
+          </div>
+          
+          <!-- Frame & Components -->
+          <div class="specs-category">
+            <h3>Frame & Components</h3>
+            <div class="spec-row">
+              <span class="spec-label">Frame Material</span>
+              <span class="spec-value">{{ section.settings.frame_material | default: "Aluminum Alloy" }}</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Frame Style</span>
+              <span class="spec-value">{{ section.settings.frame_style | default: "Step-Through" }}</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Suspension</span>
+              <span class="spec-value">{{ section.settings.suspension | default: "Front Fork" }}</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Brakes</span>
+              <span class="spec-value">{{ section.settings.brakes | default: "Hydraulic Disc" }}</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Gears</span>
+              <span class="spec-value">{{ section.settings.gears | default: "7-Speed Shimano" }}</span>
+            </div>
+          </div>
+          
+          <!-- Dimensions -->
+          <div class="specs-category">
+            <h3>Dimensions</h3>
+            <div class="spec-row">
+              <span class="spec-label">Total Weight</span>
+              <span class="spec-value">{{ section.settings.total_weight | default: "65 lbs" }}</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Wheel Size</span>
+              <span class="spec-value">{{ section.settings.wheel_size | default: "26″ × 4″" }}</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Max Load</span>
+              <span class="spec-value">{{ section.settings.max_load | default: "300 lbs" }}</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Rider Height</span>
+              <span class="spec-value">{{ section.settings.rider_height | default: "5'2″ - 6'2″" }}</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Length</span>
+              <span class="spec-value">{{ section.settings.bike_length | default: "75″" }}</span>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      <!-- Features Tab -->
+      <div class="tab-panel" data-panel="features">
+        <div class="features-grid">
+          
+          <div class="feature-item">
+            <div class="feature-icon">⚡</div>
+            <div class="feature-content">
+              <h4>Smart Pedal Assist</h4>
+              <p>Advanced torque sensor provides natural, responsive power assistance that adapts to your pedaling style.</p>
+            </div>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon">📱</div>
+            <div class="feature-content">
+              <h4>LCD Display & App</h4>
+              <p>3.5" color display shows speed, range, assist level. Connect to smartphone app for GPS tracking and diagnostics.</p>
+            </div>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon">🔒</div>
+            <div class="feature-content">
+              <h4>Integrated Security</h4>
+              <p>Built-in GPS tracking and alarm system. Lock/unlock remotely via smartphone app for maximum theft protection.</p>
+            </div>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon">💡</div>
+            <div class="feature-content">
+              <h4>LED Lighting System</h4>
+              <p>Integrated front headlight and rear taillight powered by main battery. Auto-on in low light conditions.</p>
+            </div>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon">🌧️</div>
+            <div class="feature-content">
+              <h4>Weather Resistant</h4>
+              <p>IP65 rated electronics and sealed components ensure reliable performance in all weather conditions.</p>
+            </div>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon">🔧</div>
+            <div class="feature-content">
+              <h4>Easy Maintenance</h4>
+              <p>Tool-free battery removal, accessible components, and self-diagnostic system make maintenance simple.</p>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      <!-- Warranty Tab -->
+      <div class="tab-panel" data-panel="warranty">
+        <div class="warranty-content">
+          
+          <div class="warranty-grid">
+            
+            <div class="warranty-item">
+              <h3>Frame & Fork</h3>
+              <span class="warranty-period">5</span>
+              <p class="warranty-description">Years comprehensive coverage on frame and fork manufacturing defects</p>
+            </div>
+            
+            <div class="warranty-item">
+              <h3>Battery</h3>
+              <span class="warranty-period">2</span>
+              <p class="warranty-description">Years or 500 charge cycles with 70% capacity guarantee</p>
+            </div>
+            
+            <div class="warranty-item">
+              <h3>Motor & Electronics</h3>
+              <span class="warranty-period">2</span>
+              <p class="warranty-description">Years full coverage on all electrical components and motor systems</p>
+            </div>
+            
+            <div class="warranty-item">
+              <h3>Components</h3>
+              <span class="warranty-period">1</span>
+              <p class="warranty-description">Year coverage on brakes, gears, lights, and other mechanical components</p>
+            </div>
+            
+          </div>
+          
+          <div class="warranty-terms">
+            <h4>What's Covered</h4>
+            <ul>
+              <li>Manufacturing defects in materials and workmanship</li>
+              <li>Battery capacity below 70% within warranty period</li>
+              <li>Motor failure or malfunction under normal use</li>
+              <li>Electronic display and control system issues</li>
+              <li>Frame cracks or structural failures</li>
+              <li>Free labor for warranty repairs at authorized dealers</li>
+              <li>Replacement parts and components as needed</li>
+              <li>24/7 technical support and troubleshooting</li>
+            </ul>
+          </div>
+          
+        </div>
+      </div>
+      
+      <!-- Reviews Tab -->
+      <div class="tab-panel" data-panel="reviews">
+        
+        <div class="reviews-header">
+          <div class="reviews-summary">
+            <div class="rating-score">4.8</div>
+            <div>
+              <div class="rating-stars">
+                <span>★★★★★</span>
+              </div>
+              <div class="reviews-count">Based on 247 reviews</div>
+            </div>
+          </div>
+          <button class="write-review-btn">Write Review</button>
+        </div>
+        
+        <!-- Sample Reviews -->
+        <div class="review-item">
+          <div class="review-header">
+            <div class="reviewer-info">
+              <h5>Sarah Johnson</h5>
+              <div class="review-date">March 15, 2024</div>
+            </div>
+            <div class="review-rating">★★★★★</div>
+          </div>
+          <div class="review-content">
+            "Absolutely love this e-bike! The battery life is incredible - I get 70+ miles on a single charge with moderate assist. Perfect for my daily 15-mile commute. The build quality is excellent and the integrated lights are a great safety feature."
+          </div>
+        </div>
+        
+        <div class="review-item">
+          <div class="review-header">
+            <div class="reviewer-info">
+              <h5>Mike Chen</h5>
+              <div class="review-date">March 8, 2024</div>
+            </div>
+            <div class="review-rating">★★★★★</div>
+          </div>
+          <div class="review-content">
+            "This bike has transformed my mountain trail rides. The motor provides just the right amount of assistance on climbs, and the hydraulic brakes give me confidence on descents. Assembly was straightforward and customer service was excellent."
+          </div>
+        </div>
+        
+        <div class="review-item">
+          <div class="review-header">
+            <div class="reviewer-info">
+              <h5>Lisa Rodriguez</h5>
+              <div class="review-date">February 28, 2024</div>
+            </div>
+            <div class="review-rating">★★★★☆</div>
+          </div>
+          <div class="review-content">
+            "Great e-bike overall! The step-through frame makes it easy to get on and off, and the ride is smooth and comfortable. Only minor complaint is that the seat could be a bit more comfortable for longer rides, but that's easily replaceable."
+          </div>
+        </div>
+        
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const tabButtons = document.querySelectorAll('.tab-button');
+  const tabPanels = document.querySelectorAll('.tab-panel');
+  
+  tabButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const targetTab = this.getAttribute('data-tab');
+      
+      // Remove active class from all buttons and panels
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      tabPanels.forEach(panel => panel.classList.remove('active'));
+      
+      // Add active class to clicked button and corresponding panel
+      this.classList.add('active');
+      document.querySelector(`[data-panel="${targetTab}"]`).classList.add('active');
+    });
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Product Tabs Pipeline",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Performance Specifications"
+    },
+    {
+      "type": "text",
+      "id": "motor_power",
+      "label": "Motor Power",
+      "default": "750W Hub Motor"
+    },
+    {
+      "type": "text",
+      "id": "max_speed",
+      "label": "Max Speed",
+      "default": "28 mph"
+    },
+    {
+      "type": "text",
+      "id": "battery_range",
+      "label": "Battery Range",
+      "default": "60-80 miles"
+    },
+    {
+      "type": "text",
+      "id": "assist_levels",
+      "label": "Assist Levels",
+      "default": "5 Levels"
+    },
+    {
+      "type": "text",
+      "id": "torque",
+      "label": "Torque",
+      "default": "80 Nm"
+    },
+    {
+      "type": "header",
+      "content": "Battery & Charging"
+    },
+    {
+      "type": "text",
+      "id": "battery_type",
+      "label": "Battery Type",
+      "default": "Lithium-ion"
+    },
+    {
+      "type": "text",
+      "id": "battery_capacity",
+      "label": "Battery Capacity",
+      "default": "48V 14Ah"
+    },
+    {
+      "type": "text",
+      "id": "charging_time",
+      "label": "Charging Time",
+      "default": "4-6 hours"
+    },
+    {
+      "type": "text",
+      "id": "battery_weight",
+      "label": "Battery Weight",
+      "default": "7.5 lbs"
+    },
+    {
+      "type": "text",
+      "id": "battery_removable",
+      "label": "Battery Removable",
+      "default": "Yes"
+    },
+    {
+      "type": "header",
+      "content": "Frame & Components"
+    },
+    {
+      "type": "text",
+      "id": "frame_material",
+      "label": "Frame Material",
+      "default": "Aluminum Alloy"
+    },
+    {
+      "type": "text",
+      "id": "frame_style",
+      "label": "Frame Style",
+      "default": "Step-Through"
+    },
+    {
+      "type": "text",
+      "id": "suspension",
+      "label": "Suspension",
+      "default": "Front Fork"
+    },
+    {
+      "type": "text",
+      "id": "brakes",
+      "label": "Brakes",
+      "default": "Hydraulic Disc"
+    },
+    {
+      "type": "text",
+      "id": "gears",
+      "label": "Gears",
+      "default": "7-Speed Shimano"
+    },
+    {
+      "type": "header",
+      "content": "Dimensions"
+    },
+    {
+      "type": "text",
+      "id": "total_weight",
+      "label": "Total Weight",
+      "default": "65 lbs"
+    },
+    {
+      "type": "text",
+      "id": "wheel_size",
+      "label": "Wheel Size",
+      "default": "26″ × 4″"
+    },
+    {
+      "type": "text",
+      "id": "max_load",
+      "label": "Max Load",
+      "default": "300 lbs"
+    },
+    {
+      "type": "text",
+      "id": "rider_height",
+      "label": "Rider Height Range",
+      "default": "5'2″ - 6'2″"
+    },
+    {
+      "type": "text",
+      "id": "bike_length",
+      "label": "Bike Length",
+      "default": "75″"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Tabs Pipeline"
+    }
+  ]
+}
+{% endschema %}
