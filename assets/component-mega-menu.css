@@ -9,11 +9,13 @@
   border-right: 0;
   left: 0;
   overflow-y: auto;
-  padding-bottom: 3rem;
-  padding-top: 3rem;
+  padding-bottom: 4rem;
+  padding-top: 4rem;
   position: absolute;
   right: 0;
   top: 100%;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  border-top: 1px solid #e5e7eb;
 }
 
 .shopify-section-header-sticky .mega-menu__content {

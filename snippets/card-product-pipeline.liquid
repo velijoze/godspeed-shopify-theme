@@ -1,0 +1,189 @@
+{% comment %}
+Pipeline-style Product Card with Quick Buy and Advanced Features
+{% endcomment %}
+
+{%- assign product_form_id = 'quick-add-' | append: section_id | append: product.id -%}
+
+<div class="card-wrapper pipeline-product-card" data-product-id="{{ product.id }}">
+  <div class="card card--{{ settings.card_style }} card--text card--product">
+    
+    {%- comment -%} Product Images with Hover Effect {%- endcomment -%}
+    <div class="card__media">
+      <div class="media media--transparent media--hover-effect">
+        <img
+          srcset="{% if product.featured_media.width >= 165 %}{{ product.featured_media | img_url: '165x' }} 165w,{% endif %}
+                  {% if product.featured_media.width >= 360 %}{{ product.featured_media | img_url: '360x' }} 360w,{% endif %}
+                  {% if product.featured_media.width >= 533 %}{{ product.featured_media | img_url: '533x' }} 533w,{% endif %}
+                  {% if product.featured_media.width >= 720 %}{{ product.featured_media | img_url: '720x' }} 720w,{% endif %}
+                  {% if product.featured_media.width >= 940 %}{{ product.featured_media | img_url: '940x' }} 940w,{% endif %}
+                  {{ product.featured_media | img_url: 'master' }} {{ product.featured_media.width }}w"
+          src="{{ product.featured_media | img_url: '533x' }}"
+          sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+          alt="{{ product.featured_media.alt | escape }}"
+          class="motion-reduce product-card-image"
+          {% unless lazy_load == false %}loading="lazy"{% endunless %}
+          width="{{ product.featured_media.width }}"
+          height="{{ product.featured_media.height }}">
+        
+        {%- comment -%} Hover Image (Second Image) {%- endcomment -%}
+        {% if product.media[1] %}
+          <img
+            srcset="{% if product.media[1].width >= 165 %}{{ product.media[1] | img_url: '165x' }} 165w,{% endif %}
+                    {% if product.media[1].width >= 360 %}{{ product.media[1] | img_url: '360x' }} 360w,{% endif %}
+                    {% if product.media[1].width >= 533 %}{{ product.media[1] | img_url: '533x' }} 533w,{% endif %}
+                    {{ product.media[1] | img_url: 'master' }} {{ product.media[1].width }}w"
+            src="{{ product.media[1] | img_url: '533x' }}"
+            alt="{{ product.media[1].alt | escape }}"
+            class="motion-reduce product-card-image-hover"
+            loading="lazy"
+            width="{{ product.media[1].width }}"
+            height="{{ product.media[1].height }}">
+        {% endif %}
+      </div>
+
+      {%- comment -%} Product Badges {%- endcomment -%}
+      <div class="card__badge">
+        {%- if product.available == false -%}
+          <span class="badge badge--sold-out color-{{ settings.sold_out_badge_color_scheme }}">
+            {{ 'products.product.sold_out' | t }}
+          </span>
+        {%- elsif product.compare_at_price > product.price and product.available -%}
+          <span class="badge badge--on-sale color-{{ settings.sale_badge_color_scheme }}">
+            {{ 'products.product.on_sale' | t }}
+          </span>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%} Quick Buy Button {%- endcomment -%}
+      {% if product.available %}
+        <div class="quick-buy-wrapper">
+          {% if product.variants.size == 1 %}
+            <form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data" class="quick-buy-form">
+              <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+              <button type="submit" class="quick-buy-button button button--pipeline">
+                <span class="btn-text">Quick Buy</span>
+                <span class="btn-loading" style="display: none;">Adding...</span>
+              </button>
+            </form>
+          {% else %}
+            <a href="{{ product.url }}" class="quick-buy-button button button--pipeline">
+              Select Options
+            </a>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+
+    {%- comment -%} Product Information {%- endcomment -%}
+    <div class="card__content">
+      <div class="card__information">
+        <h3 class="card__heading">
+          <a href="{{ product.url }}" class="full-unstyled-link">
+            {{ product.title | escape }}
+          </a>
+        </h3>
+
+        {%- comment -%} Color Swatches {%- endcomment -%}
+        {% assign color_option = product.options_by_name['Color'] %}
+        {% if color_option and color_option.values.size > 1 %}
+          <div class="color-swatches">
+            {% for value in color_option.values limit: 4 %}
+              {% assign variant = product.variants | where: 'option1', value | first %}
+              {% if variant.featured_media %}
+                <div class="color-swatch" 
+                     data-variant-id="{{ variant.id }}" 
+                     data-variant-image="{{ variant.featured_media | img_url: '533x' }}"
+                     style="background-color: {{ value | downcase | replace: ' ', '' }}">
+                  <span class="visually-hidden">{{ value }}</span>
+                </div>
+              {% endif %}
+            {% endfor %}
+            {% if color_option.values.size > 4 %}
+              <span class="color-count">+{{ color_option.values.size | minus: 4 }}</span>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {%- comment -%} Product Rating (if available) {%- endcomment -%}
+        {% if product.metafields.reviews.rating.value %}
+          <div class="product-rating">
+            <div class="rating-stars" data-rating="{{ product.metafields.reviews.rating.value }}">
+              {% for i in (1..5) %}
+                <span class="star {% if i <= product.metafields.reviews.rating.value %}filled{% endif %}">★</span>
+              {% endfor %}
+            </div>
+            <span class="rating-count">({{ product.metafields.reviews.rating_count }})</span>
+          </div>
+        {% endif %}
+
+        {%- comment -%} Price {%- endcomment -%}
+        {% render 'price', product: product, price_class: 'price--pipeline' %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{%- comment -%} Quick Buy JavaScript {%- endcomment -%}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Quick Buy Form Handling
+  const quickBuyForms = document.querySelectorAll('.quick-buy-form');
+  quickBuyForms.forEach(form => {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const button = this.querySelector('.quick-buy-button');
+      const btnText = button.querySelector('.btn-text');
+      const btnLoading = button.querySelector('.btn-loading');
+      
+      button.disabled = true;
+      btnText.style.display = 'none';
+      btnLoading.style.display = 'inline';
+
+      fetch('/cart/add.js', {
+        method: 'POST',
+        body: new FormData(this),
+        credentials: 'same-origin'
+      })
+      .then(response => response.json())
+      .then(data => {
+        // Trigger cart drawer or notification
+        document.dispatchEvent(new CustomEvent('cart:item-added', { detail: data }));
+        
+        // Reset button
+        button.disabled = false;
+        btnText.style.display = 'inline';
+        btnLoading.style.display = 'none';
+        btnText.textContent = 'Added!';
+        
+        setTimeout(() => {
+          btnText.textContent = 'Quick Buy';
+        }, 2000);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        button.disabled = false;
+        btnText.style.display = 'inline';
+        btnLoading.style.display = 'none';
+      });
+    });
+  });
+
+  // Color Swatch Functionality
+  const colorSwatches = document.querySelectorAll('.color-swatch');
+  colorSwatches.forEach(swatch => {
+    swatch.addEventListener('click', function() {
+      const productCard = this.closest('.pipeline-product-card');
+      const productImage = productCard.querySelector('.product-card-image');
+      const newImage = this.dataset.variantImage;
+      
+      if (newImage && productImage) {
+        productImage.src = newImage;
+      }
+      
+      // Update active swatch
+      colorSwatches.forEach(s => s.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+});
+</script>

@@ -1,0 +1,145 @@
+{{ 'section-countdown-timer.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign current_time = 'now' | date: '%s'
+  assign end_time = section.settings.end_date | date: '%s'
+  assign time_diff = end_time | minus: current_time
+-%}
+
+<div class="countdown-timer-section color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width">
+    <div class="countdown-timer-wrapper">
+      {% if section.settings.heading != blank %}
+        <h2 class="countdown-timer__heading">{{ section.settings.heading | escape }}</h2>
+      {% endif %}
+      
+      {% if section.settings.text != blank %}
+        <div class="countdown-timer__text rte">
+          {{ section.settings.text }}
+        </div>
+      {% endif %}
+
+      {% if time_diff > 0 %}
+        <div class="countdown-timer__display" data-countdown="{{ section.settings.end_date | date: '%Y-%m-%dT%H:%M:%S' }}">
+          <div class="countdown-timer__item">
+            <span class="countdown-timer__number" data-days>00</span>
+            <span class="countdown-timer__label">Days</span>
+          </div>
+          <div class="countdown-timer__item">
+            <span class="countdown-timer__number" data-hours>00</span>
+            <span class="countdown-timer__label">Hours</span>
+          </div>
+          <div class="countdown-timer__item">
+            <span class="countdown-timer__number" data-minutes>00</span>
+            <span class="countdown-timer__label">Minutes</span>
+          </div>
+          <div class="countdown-timer__item">
+            <span class="countdown-timer__number" data-seconds>00</span>
+            <span class="countdown-timer__label">Seconds</span>
+          </div>
+        </div>
+      {% else %}
+        <div class="countdown-timer__expired">
+          <h3>{{ section.settings.expired_message | default: 'This offer has expired' }}</h3>
+        </div>
+      {% endif %}
+
+      {% if section.settings.button_label != blank %}
+        <div class="countdown-timer__button">
+          <a href="{{ section.settings.button_link | default: '#' }}" class="button button--primary">
+            {{ section.settings.button_label | escape }}
+          </a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const countdownElement = document.querySelector('[data-countdown]');
+    if (!countdownElement) return;
+
+    const endTime = new Date(countdownElement.getAttribute('data-countdown')).getTime();
+    
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const timeLeft = endTime - now;
+
+      if (timeLeft > 0) {
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        countdownElement.querySelector('[data-days]').textContent = days.toString().padStart(2, '0');
+        countdownElement.querySelector('[data-hours]').textContent = hours.toString().padStart(2, '0');
+        countdownElement.querySelector('[data-minutes]').textContent = minutes.toString().padStart(2, '0');
+        countdownElement.querySelector('[data-seconds]').textContent = seconds.toString().padStart(2, '0');
+      } else {
+        // Timer expired - refresh page to show expired message
+        location.reload();
+      }
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Countdown Timer",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Limited Time Offer",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Description",
+      "default": "<p>Don't miss out on this exclusive deal!</p>"
+    },
+    {
+      "type": "text",
+      "id": "end_date",
+      "label": "End Date",
+      "info": "Format: YYYY-MM-DD HH:MM (e.g., 2025-01-30 23:59)",
+      "default": "2025-02-01 23:59"
+    },
+    {
+      "type": "text",
+      "id": "expired_message",
+      "label": "Expired Message",
+      "default": "This offer has expired"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "background-1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Countdown Timer"
+    }
+  ]
+}
+{% endschema %}

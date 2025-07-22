@@ -1,0 +1,349 @@
+{{ 'section-hero-banner-pipeline.css' | asset_url | stylesheet_tag }}
+
+{%- assign desktop_height = section.settings.desktop_height | default: '700px' -%}
+{%- assign mobile_height = section.settings.mobile_height | default: '500px' -%}
+
+<div class="hero-banner-pipeline color-{{ section.settings.color_scheme }}" 
+     style="--desktop-height: {{ desktop_height }}; --mobile-height: {{ mobile_height }};"
+     data-parallax="{{ section.settings.enable_parallax }}">
+  
+  {%- comment -%} Background Image/Video {%- endcomment -%}
+  <div class="hero-banner__media">
+    {%- if section.settings.video != blank -%}
+      <video class="hero-banner__video" autoplay muted loop playsinline>
+        <source src="{{ section.settings.video }}" type="video/mp4">
+        {%- if section.settings.image != blank -%}
+          <img src="{{ section.settings.image | img_url: '1920x' }}" alt="{{ section.settings.image.alt | escape }}">
+        {%- endif -%}
+      </video>
+    {%- elsif section.settings.image != blank -%}
+      <img
+        srcset="{% if section.settings.image.width >= 375 %}{{ section.settings.image | img_url: '375x' }} 375w,{% endif %}
+                {% if section.settings.image.width >= 750 %}{{ section.settings.image | img_url: '750x' }} 750w,{% endif %}
+                {% if section.settings.image.width >= 1100 %}{{ section.settings.image | img_url: '1100x' }} 1100w,{% endif %}
+                {% if section.settings.image.width >= 1500 %}{{ section.settings.image | img_url: '1500x' }} 1500w,{% endif %}
+                {% if section.settings.image.width >= 1920 %}{{ section.settings.image | img_url: '1920x' }} 1920w,{% endif %}
+                {{ section.settings.image | img_url: 'master' }} {{ section.settings.image.width }}w"
+        sizes="100vw"
+        src="{{ section.settings.image | img_url: '1920x' }}"
+        alt="{{ section.settings.image.alt | escape }}"
+        class="hero-banner__image"
+        loading="eager">
+    {%- else -%}
+      <div class="hero-banner__placeholder">{{ 'lifestyle-2' | placeholder_svg_tag }}</div>
+    {%- endif -%}
+    
+    {%- if section.settings.overlay_opacity > 0 -%}
+      <div class="hero-banner__overlay" style="opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};"></div>
+    {%- endif -%}
+  </div>
+
+  {%- comment -%} Content {%- endcomment -%}
+  <div class="hero-banner__content">
+    <div class="page-width">
+      <div class="hero-banner__text-wrapper text-{{ section.settings.text_alignment }}">
+        
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            
+            {%- when 'heading' -%}
+              <h1 class="hero-banner__heading {{ block.settings.heading_size }}" 
+                  style="animation-delay: {{ forloop.index0 | times: 0.1 }}s;" 
+                  {{ block.shopify_attributes }}>
+                {{ block.settings.heading | escape }}
+              </h1>
+            
+            {%- when 'text' -%}
+              <div class="hero-banner__text rte {{ block.settings.text_style }}" 
+                   style="animation-delay: {{ forloop.index0 | times: 0.1 }}s;" 
+                   {{ block.shopify_attributes }}>
+                {{ block.settings.text }}
+              </div>
+            
+            {%- when 'button' -%}
+              <div class="hero-banner__buttons" 
+                   style="animation-delay: {{ forloop.index0 | times: 0.1 }}s;" 
+                   {{ block.shopify_attributes }}>
+                <a href="{{ block.settings.button_link | default: '#' }}" 
+                   class="button button--{{ block.settings.button_style }}">
+                  {{ block.settings.button_label | escape }}
+                </a>
+              </div>
+
+            {%- when 'countdown' -%}
+              <div class="hero-banner__countdown" 
+                   style="animation-delay: {{ forloop.index0 | times: 0.1 }}s;" 
+                   {{ block.shopify_attributes }}>
+                <div class="countdown-inline" data-countdown="{{ block.settings.end_date | date: '%Y-%m-%dT%H:%M:%S' }}">
+                  <span class="countdown-item">
+                    <span class="countdown-number" data-days>00</span>
+                    <span class="countdown-label">D</span>
+                  </span>
+                  <span class="countdown-separator">:</span>
+                  <span class="countdown-item">
+                    <span class="countdown-number" data-hours>00</span>
+                    <span class="countdown-label">H</span>
+                  </span>
+                  <span class="countdown-separator">:</span>
+                  <span class="countdown-item">
+                    <span class="countdown-number" data-minutes>00</span>
+                    <span class="countdown-label">M</span>
+                  </span>
+                  <span class="countdown-separator">:</span>
+                  <span class="countdown-item">
+                    <span class="countdown-number" data-seconds>00</span>
+                    <span class="countdown-label">S</span>
+                  </span>
+                </div>
+              </div>
+
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{%- comment -%} Parallax and Countdown Scripts {%- endcomment -%}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Parallax Effect
+  const heroBanner = document.querySelector('[data-parallax="true"]');
+  if (heroBanner) {
+    const heroImage = heroBanner.querySelector('.hero-banner__image, .hero-banner__video');
+    
+    function updateParallax() {
+      const scrolled = window.pageYOffset;
+      const parallax = scrolled * 0.5;
+      
+      if (heroImage) {
+        heroImage.style.transform = `translateY(${parallax}px) scale(1.1)`;
+      }
+    }
+    
+    window.addEventListener('scroll', updateParallax);
+  }
+
+  // Countdown Timer
+  const countdownElements = document.querySelectorAll('[data-countdown]');
+  countdownElements.forEach(countdownElement => {
+    const endTime = new Date(countdownElement.getAttribute('data-countdown')).getTime();
+    
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const timeLeft = endTime - now;
+
+      if (timeLeft > 0) {
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        countdownElement.querySelector('[data-days]').textContent = days.toString().padStart(2, '0');
+        countdownElement.querySelector('[data-hours]').textContent = hours.toString().padStart(2, '0');
+        countdownElement.querySelector('[data-minutes]').textContent = minutes.toString().padStart(2, '0');
+        countdownElement.querySelector('[data-seconds]').textContent = seconds.toString().padStart(2, '0');
+      } else {
+        countdownElement.style.display = 'none';
+      }
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Hero Banner (Pipeline Style)",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "video",
+      "label": "Background Video URL",
+      "info": "MP4 video URL for background video"
+    },
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "min": 400,
+      "max": 900,
+      "step": 50,
+      "unit": "px",
+      "label": "Desktop Height",
+      "default": 700
+    },
+    {
+      "type": "range",
+      "id": "mobile_height",
+      "min": 300,
+      "max": 700,
+      "step": 50,
+      "unit": "px",
+      "label": "Mobile Height",
+      "default": 500
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center",
+      "label": "Text Alignment"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 80,
+      "step": 10,
+      "unit": "%",
+      "label": "Overlay Opacity",
+      "default": 30
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_parallax",
+      "label": "Enable Parallax Effect",
+      "default": true
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "background-1"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Hero Banner Heading",
+          "label": "Heading"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "options": [
+            { "value": "h3", "label": "Small" },
+            { "value": "h2", "label": "Medium" },
+            { "value": "h1", "label": "Large" },
+            { "value": "h0", "label": "Extra Large" }
+          ],
+          "default": "h1",
+          "label": "Heading Size"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Give customers details about the banner image(s) or content on the template.</p>",
+          "label": "Description"
+        },
+        {
+          "type": "select",
+          "id": "text_style",
+          "options": [
+            { "value": "body", "label": "Body" },
+            { "value": "subtitle", "label": "Subtitle" },
+            { "value": "caption", "label": "Caption" }
+          ],
+          "default": "body",
+          "label": "Text Style"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_label",
+          "default": "Button label",
+          "label": "Button Label"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "select",
+          "id": "button_style",
+          "options": [
+            { "value": "primary", "label": "Primary" },
+            { "value": "secondary", "label": "Secondary" }
+          ],
+          "default": "primary",
+          "label": "Button Style"
+        }
+      ]
+    },
+    {
+      "type": "countdown",
+      "name": "Countdown Timer",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "end_date",
+          "label": "End Date",
+          "info": "Format: YYYY-MM-DD HH:MM",
+          "default": "2025-02-01 23:59"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner (Pipeline Style)",
+      "blocks": [
+        {
+          "type": "heading",
+          "settings": {
+            "heading": "Discover Your Perfect Ride",
+            "heading_size": "h0"
+          }
+        },
+        {
+          "type": "text",
+          "settings": {
+            "text": "<p>Premium e-bikes designed for the modern rider. Experience the future of cycling.</p>"
+          }
+        },
+        {
+          "type": "button",
+          "settings": {
+            "button_label": "Shop Collection",
+            "button_link": "/collections/all"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

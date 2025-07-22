@@ -1,0 +1,114 @@
+/* PIPELINE-STYLE COUNTDOWN TIMER */
+.countdown-timer-section {
+  padding: 6rem 0;
+  text-align: center;
+}
+
+.countdown-timer-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.countdown-timer__heading {
+  font-size: 3.2rem;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  margin-bottom: 2rem;
+  color: #2c2c2c;
+}
+
+.countdown-timer__text {
+  font-size: 1.8rem;
+  color: #666666;
+  margin-bottom: 4rem;
+  line-height: 1.5;
+}
+
+.countdown-timer__display {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-bottom: 4rem;
+  flex-wrap: wrap;
+}
+
+.countdown-timer__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 8rem;
+}
+
+.countdown-timer__number {
+  font-size: 4.8rem;
+  font-weight: 300;
+  color: #2c2c2c;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.countdown-timer__label {
+  font-size: 1.4rem;
+  color: #666666;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 400;
+}
+
+.countdown-timer__button {
+  margin-top: 3rem;
+}
+
+.countdown-timer__button .button {
+  padding: 1.5rem 4rem;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 400;
+  border: 1px solid #2c2c2c;
+  background: transparent;
+  color: #2c2c2c;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.countdown-timer__button .button:hover {
+  background: #2c2c2c;
+  color: white;
+}
+
+.countdown-timer__expired {
+  padding: 4rem 0;
+}
+
+.countdown-timer__expired h3 {
+  font-size: 2.4rem;
+  font-weight: 300;
+  color: #666666;
+  letter-spacing: 0.02em;
+}
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 750px) {
+  .countdown-timer__display {
+    gap: 2rem;
+  }
+  
+  .countdown-timer__item {
+    min-width: 6rem;
+  }
+  
+  .countdown-timer__number {
+    font-size: 3.6rem;
+  }
+  
+  .countdown-timer__heading {
+    font-size: 2.4rem;
+  }
+  
+  .countdown-timer__text {
+    font-size: 1.6rem;
+  }
+}
