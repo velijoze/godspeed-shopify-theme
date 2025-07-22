@@ -1,0 +1,524 @@
+{% comment %}
+  Pipeline Product Badges
+  Displays custom product badges based on product metafields and conditions
+  
+  Usage:
+  {% render 'pipeline-product-badges', product: product, class: 'additional-classes' %}
+{% endcomment %}
+
+<div class="pipeline-badges {{ class }}">
+  
+  <!-- Sale Badge -->
+  {% if product.compare_at_price > product.price %}
+    <div class="pipeline-badge badge-sale" data-badge-type="sale">
+      {% assign discount_percentage = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price %}
+      <span class="badge-text">-{{ discount_percentage }}%</span>
+    </div>
+  {% endif %}
+
+  <!-- New Arrival Badge -->
+  {% assign days_since_created = 'now' | date: '%s' | minus: product.created_at | date: '%s' | divided_by: 86400 %}
+  {% if days_since_created <= 30 %}
+    <div class="pipeline-badge badge-new" data-badge-type="new">
+      <span class="badge-text">NEW</span>
+    </div>
+  {% endif %}
+
+  <!-- Limited Stock Badge -->
+  {% assign total_inventory = 0 %}
+  {% for variant in product.variants %}
+    {% if variant.inventory_management == 'shopify' %}
+      {% assign total_inventory = total_inventory | plus: variant.inventory_quantity %}
+    {% endif %}
+  {% endfor %}
+  
+  {% if total_inventory > 0 and total_inventory <= 5 %}
+    <div class="pipeline-badge badge-limited" data-badge-type="limited">
+      <span class="badge-text">ONLY {{ total_inventory }} LEFT</span>
+    </div>
+  {% endif %}
+
+  <!-- Sold Out Badge -->
+  {% unless product.available %}
+    <div class="pipeline-badge badge-sold-out" data-badge-type="sold-out">
+      <span class="badge-text">SOLD OUT</span>
+    </div>
+  {% endunless %}
+
+  <!-- Best Seller Badge -->
+  {% if product.tags contains 'bestseller' or product.tags contains 'best-seller' or product.tags contains 'popular' %}
+    <div class="pipeline-badge badge-bestseller" data-badge-type="bestseller">
+      <span class="badge-text">BESTSELLER</span>
+      <span class="badge-icon">🔥</span>
+    </div>
+  {% endif %}
+
+  <!-- Eco-Friendly Badge -->
+  {% if product.tags contains 'eco-friendly' or product.tags contains 'sustainable' or product.tags contains 'green' %}
+    <div class="pipeline-badge badge-eco" data-badge-type="eco">
+      <span class="badge-text">ECO-FRIENDLY</span>
+      <span class="badge-icon">🌱</span>
+    </div>
+  {% endif %}
+
+  <!-- Premium Badge -->
+  {% if product.tags contains 'premium' or product.tags contains 'luxury' or product.price >= 200000 %}
+    <div class="pipeline-badge badge-premium" data-badge-type="premium">
+      <span class="badge-text">PREMIUM</span>
+      <span class="badge-icon">⭐</span>
+    </div>
+  {% endif %}
+
+  <!-- Fast Shipping Badge -->
+  {% if product.tags contains 'fast-shipping' or product.tags contains 'express' or product.tags contains 'quick-delivery' %}
+    <div class="pipeline-badge badge-shipping" data-badge-type="shipping">
+      <span class="badge-text">FAST SHIPPING</span>
+      <span class="badge-icon">⚡</span>
+    </div>
+  {% endif %}
+
+  <!-- Custom Badge from Product Metafield -->
+  {% if product.metafields.custom.badge_text != blank %}
+    <div class="pipeline-badge badge-custom" data-badge-type="custom">
+      <span class="badge-text">{{ product.metafields.custom.badge_text | upcase }}</span>
+      {% if product.metafields.custom.badge_icon != blank %}
+        <span class="badge-icon">{{ product.metafields.custom.badge_icon }}</span>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <!-- E-Bike Specific Badges -->
+  
+  <!-- Long Range Badge -->
+  {% if product.tags contains 'long-range' or product.metafields.specs.range_km >= 80 %}
+    <div class="pipeline-badge badge-range" data-badge-type="range">
+      <span class="badge-text">LONG RANGE</span>
+      <span class="badge-icon">🔋</span>
+    </div>
+  {% endif %}
+
+  <!-- High Power Badge -->
+  {% if product.tags contains 'high-power' or product.metafields.specs.motor_power >= 750 %}
+    <div class="pipeline-badge badge-power" data-badge-type="power">
+      <span class="badge-text">HIGH POWER</span>
+      <span class="badge-icon">⚡</span>
+    </div>
+  {% endif %}
+
+  <!-- Award Winner Badge -->
+  {% if product.tags contains 'award-winner' or product.tags contains 'award' %}
+    <div class="pipeline-badge badge-award" data-badge-type="award">
+      <span class="badge-text">AWARD WINNER</span>
+      <span class="badge-icon">🏆</span>
+    </div>
+  {% endif %}
+
+  <!-- Featured Badge -->
+  {% if product.tags contains 'featured' %}
+    <div class="pipeline-badge badge-featured" data-badge-type="featured">
+      <span class="badge-text">FEATURED</span>
+      <span class="badge-icon">✨</span>
+    </div>
+  {% endif %}
+
+</div>
+
+<style>
+.pipeline-badges {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.pipeline-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  line-height: 1;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: pipelineBadgeSlideIn 0.6s ease-out;
+  max-width: fit-content;
+}
+
+.pipeline-badge:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* Badge Types */
+.badge-sale {
+  background: linear-gradient(135deg, #ff4444, #cc0000);
+  color: white;
+}
+
+.badge-new {
+  background: linear-gradient(135deg, #00b894, #00a085);
+  color: white;
+}
+
+.badge-limited {
+  background: linear-gradient(135deg, #ff7675, #d63031);
+  color: white;
+  animation: pipelinePulse 2s infinite;
+}
+
+.badge-sold-out {
+  background: linear-gradient(135deg, #636e72, #2d3436);
+  color: white;
+  opacity: 0.9;
+}
+
+.badge-bestseller {
+  background: linear-gradient(135deg, #fdcb6e, #e17055);
+  color: #2d3436;
+}
+
+.badge-eco {
+  background: linear-gradient(135deg, #55a3ff, #1e3c72);
+  color: white;
+}
+
+.badge-premium {
+  background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+  color: #2d3436;
+  border: 1px solid #fdcb6e;
+}
+
+.badge-shipping {
+  background: linear-gradient(135deg, #74b9ff, #0984e3);
+  color: white;
+}
+
+.badge-custom {
+  background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+  color: white;
+}
+
+/* E-Bike Specific Badges */
+.badge-range {
+  background: linear-gradient(135deg, #00b894, #00cec9);
+  color: white;
+}
+
+.badge-power {
+  background: linear-gradient(135deg, #fd79a8, #e84393);
+  color: white;
+}
+
+.badge-award {
+  background: linear-gradient(135deg, #fdcb6e, #f39c12);
+  color: #2d3436;
+  border: 1px solid #f39c12;
+}
+
+.badge-featured {
+  background: linear-gradient(135deg, #fd79a8, #fdcb6e);
+  color: #2d3436;
+}
+
+/* Badge Elements */
+.badge-text {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.badge-icon {
+  font-size: 12px;
+  line-height: 1;
+}
+
+/* Animations */
+@keyframes pipelineBadgeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes pipelinePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .pipeline-badges {
+    top: 8px;
+    left: 8px;
+    gap: 6px;
+  }
+  
+  .pipeline-badge {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+  
+  .badge-icon {
+    font-size: 10px;
+  }
+}
+
+/* Badge positioning variants */
+.pipeline-badges.top-right {
+  top: 12px;
+  right: 12px;
+  left: auto;
+}
+
+.pipeline-badges.bottom-left {
+  top: auto;
+  bottom: 12px;
+  left: 12px;
+}
+
+.pipeline-badges.bottom-right {
+  top: auto;
+  right: 12px;
+  bottom: 12px;
+  left: auto;
+}
+
+.pipeline-badges.center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Badge priority stacking */
+.badge-sold-out {
+  order: -10;
+}
+
+.badge-sale {
+  order: -9;
+}
+
+.badge-limited {
+  order: -8;
+}
+
+.badge-new {
+  order: -7;
+}
+
+.badge-bestseller {
+  order: -6;
+}
+
+.badge-featured {
+  order: -5;
+}
+
+.badge-award {
+  order: -4;
+}
+
+.badge-premium {
+  order: -3;
+}
+
+.badge-eco,
+.badge-range,
+.badge-power {
+  order: -2;
+}
+
+.badge-shipping,
+.badge-custom {
+  order: -1;
+}
+
+/* Product card integration */
+.card-product {
+  position: relative;
+}
+
+.card-product .pipeline-badges {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-product:hover .pipeline-badges,
+.card-product.badges-always-show .pipeline-badges {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Accessibility */
+.pipeline-badge {
+  role: img;
+  aria-label: attr(data-badge-type);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .pipeline-badge {
+    animation: none;
+    transition: none;
+  }
+  
+  .badge-limited {
+    animation: none;
+  }
+  
+  .pipeline-badge:hover {
+    transform: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .pipeline-badges {
+    display: none;
+  }
+}
+</style>
+
+<script>
+// Badge management system
+class PipelineBadges {
+  constructor() {
+    this.init();
+  }
+
+  init() {
+    this.setupBadgeVisibility();
+    this.setupBadgeInteractions();
+    this.setupAccessibility();
+  }
+
+  setupBadgeVisibility() {
+    const cards = document.querySelectorAll('.card-product');
+    
+    cards.forEach(card => {
+      const badges = card.querySelector('.pipeline-badges');
+      if (!badges) return;
+
+      // Show badges on hover or if always-show class is present
+      if (!card.classList.contains('badges-always-show')) {
+        card.addEventListener('mouseenter', () => {
+          badges.style.opacity = '1';
+          badges.style.transform = 'translateY(0)';
+        });
+
+        card.addEventListener('mouseleave', () => {
+          badges.style.opacity = '0';
+          badges.style.transform = 'translateY(-10px)';
+        });
+      }
+    });
+  }
+
+  setupBadgeInteractions() {
+    const badges = document.querySelectorAll('.pipeline-badge');
+    
+    badges.forEach(badge => {
+      badge.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.handleBadgeClick(badge);
+      });
+    });
+  }
+
+  handleBadgeClick(badge) {
+    const badgeType = badge.dataset.badgeType;
+    
+    switch(badgeType) {
+      case 'sale':
+        this.showSaleDetails(badge);
+        break;
+      case 'limited':
+        this.showStockAlert(badge);
+        break;
+      case 'new':
+        this.showNewProductInfo(badge);
+        break;
+      default:
+        console.log(`Badge clicked: ${badgeType}`);
+    }
+  }
+
+  showSaleDetails(badge) {
+    const discount = badge.querySelector('.badge-text').textContent;
+    // Could trigger a modal or tooltip with sale details
+    console.log(`Sale details: ${discount} off`);
+  }
+
+  showStockAlert(badge) {
+    const stockText = badge.querySelector('.badge-text').textContent;
+    // Could show urgency message
+    console.log(`Stock alert: ${stockText}`);
+  }
+
+  showNewProductInfo(badge) {
+    // Could highlight new product features
+    console.log('This is a new arrival!');
+  }
+
+  setupAccessibility() {
+    const badges = document.querySelectorAll('.pipeline-badge');
+    
+    badges.forEach(badge => {
+      const badgeType = badge.dataset.badgeType;
+      const text = badge.querySelector('.badge-text').textContent;
+      
+      badge.setAttribute('aria-label', `${badgeType}: ${text}`);
+      badge.setAttribute('role', 'img');
+    });
+  }
+
+  // Static method to add custom badges
+  static addCustomBadge(productElement, badgeConfig) {
+    const badgesContainer = productElement.querySelector('.pipeline-badges');
+    if (!badgesContainer) return;
+
+    const badge = document.createElement('div');
+    badge.className = `pipeline-badge badge-${badgeConfig.type}`;
+    badge.dataset.badgeType = badgeConfig.type;
+    
+    badge.innerHTML = `
+      <span class="badge-text">${badgeConfig.text}</span>
+      ${badgeConfig.icon ? `<span class="badge-icon">${badgeConfig.icon}</span>` : ''}
+    `;
+
+    badgesContainer.appendChild(badge);
+  }
+}
+
+// Initialize badges when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  new PipelineBadges();
+});
+
+// Re-initialize for AJAX content
+document.addEventListener('shopify:section:load', () => {
+  new PipelineBadges();
+});
+</script>

@@ -1,0 +1,177 @@
+{% comment %}
+  Pipeline Features Showcase Section
+  Displays the new Pipeline features for easy access
+{% endcomment %}
+
+<div class="pipeline-features-showcase page-width">
+  <div class="features-grid">
+    
+    <!-- Search Demo -->
+    <div class="feature-card" data-animate="fade-up">
+      <div class="feature-icon">🔍</div>
+      <h3>Enhanced Search</h3>
+      <p>Try clicking the search icon in the header to see the new Pipeline-style search modal with backdrop blur.</p>
+      <button onclick="document.querySelector('.header__search summary').click()" class="feature-demo-btn">
+        Try Search
+      </button>
+    </div>
+
+    <!-- Zoom Demo -->
+    <div class="feature-card" data-animate="fade-up" data-delay="100">
+      <div class="feature-icon">🔍</div>
+      <h3>Image Zoom</h3>
+      <p>Hover over any product image (desktop) or tap (mobile) to see the new zoom functionality.</p>
+      <a href="/collections/all" class="feature-demo-btn">
+        View Products
+      </a>
+    </div>
+
+    <!-- Cart Demo -->
+    <div class="feature-card" data-animate="fade-up" data-delay="200">
+      <div class="feature-icon">🛒</div>
+      <h3>Enhanced Cart</h3>
+      <p>Add any product to cart or click the cart icon to see the new Pipeline-style cart drawer.</p>
+      <button onclick="document.querySelector('.cart-icon-bubble').click()" class="feature-demo-btn">
+        View Cart
+      </button>
+    </div>
+
+    <!-- Animation Demo -->
+    <div class="feature-card" data-animate="fade-up" data-delay="300">
+      <div class="feature-icon">✨</div>
+      <h3>Smooth Animations</h3>
+      <p>All interactions now have Pipeline-style smooth animations and transitions.</p>
+      <div class="animation-demo">
+        <div class="demo-element" onclick="this.classList.toggle('animated')">
+          Click me!
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+.pipeline-features-showcase {
+  padding: 4rem 0;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.feature-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.feature-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #2c2c2c;
+}
+
+.feature-card p {
+  color: #666;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.feature-demo-btn {
+  background: #2c2c2c;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.feature-demo-btn:hover {
+  background: #1a1a1a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.animation-demo {
+  margin-top: 1rem;
+}
+
+.demo-element {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  border-radius: 50%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.demo-element.animated {
+  transform: scale(1.2) rotate(180deg);
+  background: linear-gradient(45deg, #764ba2, #667eea);
+}
+
+@media (max-width: 768px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .feature-card {
+    padding: 1.5rem;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Pipeline Features Showcase",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "New Pipeline Features",
+      "label": "Section heading"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "default": "<p>Explore all the new Pipeline-style features now available on your store.</p>",
+      "label": "Description"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pipeline Features"
+    }
+  ]
+}
+{% endschema %}

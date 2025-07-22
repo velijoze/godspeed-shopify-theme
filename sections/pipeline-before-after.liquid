@@ -1,0 +1,717 @@
+{% comment %}
+  Pipeline Before/After Comparison Section
+  Showcases product transformations or comparisons with interactive slider
+{% endcomment %}
+
+<div class="pipeline-before-after section-{{ section.id }}-padding">
+  <div class="page-width">
+    
+    {% if section.settings.heading != blank %}
+      <div class="section-header center">
+        <h2 class="section-heading" data-animate="fade-up">
+          {{ section.settings.heading }}
+        </h2>
+        {% if section.settings.description != blank %}
+          <p class="section-description" data-animate="fade-up" data-delay="200">
+            {{ section.settings.description }}
+          </p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="before-after-container" data-animate="fade-up" data-delay="400">
+      
+      <div class="comparison-wrapper">
+        <div class="before-after-slider" id="beforeAfterSlider-{{ section.id }}">
+          
+          <!-- Before Image -->
+          <div class="before-image">
+            {% if section.settings.before_image %}
+              <img
+                src="{{ section.settings.before_image | image_url: width: 800 }}"
+                alt="{{ section.settings.before_label | default: 'Before' }}"
+                loading="lazy"
+                width="800"
+                height="600"
+              >
+            {% endif %}
+            <div class="image-label before-label">
+              {{ section.settings.before_label | default: 'Before' }}
+            </div>
+          </div>
+
+          <!-- After Image -->
+          <div class="after-image">
+            {% if section.settings.after_image %}
+              <img
+                src="{{ section.settings.after_image | image_url: width: 800 }}"
+                alt="{{ section.settings.after_label | default: 'After' }}"
+                loading="lazy"
+                width="800"
+                height="600"
+              >
+            {% endif %}
+            <div class="image-label after-label">
+              {{ section.settings.after_label | default: 'After' }}
+            </div>
+          </div>
+
+          <!-- Slider Handle -->
+          <div class="slider-handle" id="sliderHandle-{{ section.id }}">
+            <div class="handle-line"></div>
+            <div class="handle-circle">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M8 5L15 12L8 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M16 5L9 12L16 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Comparison Details -->
+        {% if section.settings.show_details %}
+          <div class="comparison-details">
+            <div class="detail-columns">
+              
+              <div class="detail-column before-details">
+                <h3>{{ section.settings.before_title | default: 'Before' }}</h3>
+                {% if section.settings.before_description %}
+                  <p>{{ section.settings.before_description }}</p>
+                {% endif %}
+                
+                {% if section.blocks.size > 0 %}
+                  <ul class="feature-list">
+                    {% for block in section.blocks %}
+                      {% if block.type == 'before_feature' %}
+                        <li class="feature-item">
+                          {% if block.settings.icon %}
+                            <span class="feature-icon">{{ block.settings.icon }}</span>
+                          {% endif %}
+                          {{ block.settings.text }}
+                        </li>
+                      {% endif %}
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </div>
+
+              <div class="detail-column after-details">
+                <h3>{{ section.settings.after_title | default: 'After' }}</h3>
+                {% if section.settings.after_description %}
+                  <p>{{ section.settings.after_description }}</p>
+                {% endif %}
+                
+                {% if section.blocks.size > 0 %}
+                  <ul class="feature-list">
+                    {% for block in section.blocks %}
+                      {% if block.type == 'after_feature' %}
+                        <li class="feature-item">
+                          {% if block.settings.icon %}
+                            <span class="feature-icon">{{ block.settings.icon }}</span>
+                          {% endif %}
+                          {{ block.settings.text }}
+                        </li>
+                      {% endif %}
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </div>
+
+            </div>
+          </div>
+        {% endif %}
+
+        {% if section.settings.button_label %}
+          <div class="comparison-cta center">
+            <a href="{{ section.settings.button_link }}" class="btn btn-primary">
+              {{ section.settings.button_label }}
+              <span class="btn-arrow">→</span>
+            </a>
+          </div>
+        {% endif %}
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const slider = document.getElementById('beforeAfterSlider-{{ section.id }}');
+  const handle = document.getElementById('sliderHandle-{{ section.id }}');
+  const afterImage = slider.querySelector('.after-image');
+  
+  if (!slider || !handle || !afterImage) return;
+
+  let isDragging = false;
+  let currentPosition = 50; // Start at 50%
+
+  function updateSlider(position) {
+    // Clamp position between 0 and 100
+    position = Math.max(0, Math.min(100, position));
+    currentPosition = position;
+    
+    // Update clip path for after image
+    afterImage.style.clipPath = `inset(0 ${100 - position}% 0 0)`;
+    
+    // Update handle position
+    handle.style.left = position + '%';
+    
+    // Update labels opacity based on position
+    const beforeLabel = slider.querySelector('.before-label');
+    const afterLabel = slider.querySelector('.after-label');
+    
+    if (beforeLabel) beforeLabel.style.opacity = position < 20 ? 0.5 : 1;
+    if (afterLabel) afterLabel.style.opacity = position > 80 ? 0.5 : 1;
+  }
+
+  function getPositionFromEvent(e) {
+    const rect = slider.getBoundingClientRect();
+    const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+    const position = ((clientX - rect.left) / rect.width) * 100;
+    return position;
+  }
+
+  // Mouse events
+  handle.addEventListener('mousedown', function(e) {
+    isDragging = true;
+    e.preventDefault();
+  });
+
+  document.addEventListener('mousemove', function(e) {
+    if (isDragging) {
+      const position = getPositionFromEvent(e);
+      updateSlider(position);
+    }
+  });
+
+  document.addEventListener('mouseup', function() {
+    isDragging = false;
+  });
+
+  // Touch events
+  handle.addEventListener('touchstart', function(e) {
+    isDragging = true;
+    e.preventDefault();
+  });
+
+  document.addEventListener('touchmove', function(e) {
+    if (isDragging) {
+      const position = getPositionFromEvent(e);
+      updateSlider(position);
+    }
+  }, { passive: false });
+
+  document.addEventListener('touchend', function() {
+    isDragging = false;
+  });
+
+  // Click to position
+  slider.addEventListener('click', function(e) {
+    if (e.target !== handle && !handle.contains(e.target)) {
+      const position = getPositionFromEvent(e);
+      updateSlider(position);
+    }
+  });
+
+  // Initialize at 50%
+  updateSlider(50);
+  
+  // Add keyboard support
+  handle.setAttribute('tabindex', '0');
+  handle.setAttribute('role', 'slider');
+  handle.setAttribute('aria-valuemin', '0');
+  handle.setAttribute('aria-valuemax', '100');
+  handle.setAttribute('aria-valuenow', '50');
+
+  handle.addEventListener('keydown', function(e) {
+    let newPosition = currentPosition;
+    
+    switch(e.key) {
+      case 'ArrowLeft':
+        newPosition = Math.max(0, currentPosition - 5);
+        break;
+      case 'ArrowRight':
+        newPosition = Math.min(100, currentPosition + 5);
+        break;
+      case 'Home':
+        newPosition = 0;
+        break;
+      case 'End':
+        newPosition = 100;
+        break;
+    }
+    
+    if (newPosition !== currentPosition) {
+      updateSlider(newPosition);
+      handle.setAttribute('aria-valuenow', Math.round(newPosition));
+      e.preventDefault();
+    }
+  });
+});
+</script>
+
+<style>
+.pipeline-before-after {
+  padding: 6rem 0;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+}
+
+.section-header {
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+.section-heading {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 300;
+  color: #2c2c2c;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.section-description {
+  font-size: 1.25rem;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.comparison-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.before-after-slider {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  margin-bottom: 3rem;
+  cursor: ew-resize;
+}
+
+.before-image,
+.after-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.before-image img,
+.after-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+  pointer-events: none;
+}
+
+.after-image {
+  clip-path: inset(0 50% 0 0);
+  transition: clip-path 0.1s ease-out;
+}
+
+.image-label {
+  position: absolute;
+  top: 20px;
+  padding: 8px 16px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  transition: opacity 0.3s ease;
+}
+
+.before-label {
+  left: 20px;
+}
+
+.after-label {
+  right: 20px;
+}
+
+.slider-handle {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 4px;
+  height: 100%;
+  cursor: ew-resize;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.handle-line {
+  width: 4px;
+  height: 100%;
+  background: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.handle-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 48px;
+  height: 48px;
+  background: white;
+  border: 3px solid #2c2c2c;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.handle-circle:hover,
+.slider-handle:focus .handle-circle {
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.handle-circle svg {
+  color: #2c2c2c;
+  width: 24px;
+  height: 24px;
+}
+
+.comparison-details {
+  margin-bottom: 3rem;
+}
+
+.detail-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+
+.detail-column h3 {
+  font-size: 1.5rem;
+  color: #2c2c2c;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.detail-column p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f1f3f4;
+}
+
+.feature-item:last-child {
+  border-bottom: none;
+}
+
+.feature-icon {
+  font-size: 1.25rem;
+}
+
+.comparison-cta {
+  text-align: center;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 16px 32px;
+  background: #2c2c2c;
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.125rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+  background: #1a1a1a;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+  color: white;
+}
+
+.btn-arrow {
+  transition: transform 0.3s ease;
+}
+
+.btn:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .pipeline-before-after {
+    padding: 4rem 0;
+  }
+  
+  .before-after-slider {
+    height: 400px;
+    border-radius: 12px;
+  }
+  
+  .detail-columns {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .image-label {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+  
+  .handle-circle {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .handle-circle svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .btn {
+    padding: 14px 28px;
+    font-size: 1rem;
+  }
+}
+
+/* Accessibility */
+.slider-handle:focus {
+  outline: 2px solid #2c2c2c;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .after-image {
+    transition: none;
+  }
+  
+  .handle-circle,
+  .btn {
+    transition: none;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Pipeline Before/After",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "See the Difference",
+      "label": "Section heading"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "default": "<p>Experience the transformation with our premium e-bike solutions.</p>",
+      "label": "Description"
+    },
+    {
+      "type": "header",
+      "content": "Before Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "before_image",
+      "label": "Before image"
+    },
+    {
+      "type": "text",
+      "id": "before_label",
+      "default": "Before",
+      "label": "Before label"
+    },
+    {
+      "type": "text",
+      "id": "before_title",
+      "default": "Regular Commute",
+      "label": "Before title"
+    },
+    {
+      "type": "textarea",
+      "id": "before_description",
+      "default": "Traditional cycling with limited range and physical strain.",
+      "label": "Before description"
+    },
+    {
+      "type": "header",
+      "content": "After Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "after_image",
+      "label": "After image"
+    },
+    {
+      "type": "text",
+      "id": "after_label",
+      "default": "After",
+      "label": "After label"
+    },
+    {
+      "type": "text",
+      "id": "after_title",
+      "default": "E-Bike Experience",
+      "label": "After title"
+    },
+    {
+      "type": "textarea",
+      "id": "after_description",
+      "default": "Effortless rides with extended range and smart features.",
+      "label": "After description"
+    },
+    {
+      "type": "header",
+      "content": "Display Options"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_details",
+      "default": true,
+      "label": "Show comparison details"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "default": "Shop E-Bikes",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "default": "/collections/all",
+      "label": "Button link"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Section padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px", 
+      "label": "Section padding bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "before_feature",
+      "name": "Before Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "default": "⚡",
+          "label": "Icon (emoji or symbol)"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "default": "Limited to 20-30 km range",
+          "label": "Feature text"
+        }
+      ]
+    },
+    {
+      "type": "after_feature", 
+      "name": "After Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "default": "🚀",
+          "label": "Icon (emoji or symbol)"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "default": "Up to 100+ km range",
+          "label": "Feature text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pipeline Before/After",
+      "blocks": [
+        {
+          "type": "before_feature",
+          "settings": {
+            "icon": "🚲",
+            "text": "Manual pedaling only"
+          }
+        },
+        {
+          "type": "before_feature",
+          "settings": {
+            "icon": "⚡",
+            "text": "Limited to 20-30 km range"
+          }
+        },
+        {
+          "type": "after_feature",
+          "settings": {
+            "icon": "🔋",
+            "text": "Electric motor assistance"
+          }
+        },
+        {
+          "type": "after_feature",
+          "settings": {
+            "icon": "🚀",
+            "text": "Up to 100+ km range"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
