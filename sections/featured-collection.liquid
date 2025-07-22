@@ -106,9 +106,10 @@
             {% endif %}
           >
             {% render 'card-product-pipeline',
-              product: product,
+              card_product: product,
               section_id: section.id,
               lazy_load: lazy_load,
+              show_secondary_image: section.settings.show_secondary_image,
               show_rating: section.settings.show_rating,
               quick_add: section.settings.quick_add
             %}

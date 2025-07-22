@@ -2,7 +2,10 @@
 Pipeline-style Product Card with Quick Buy and Advanced Features
 {% endcomment %}
 
-{%- assign product_form_id = 'quick-add-' | append: section_id | append: product.id -%}
+{%- liquid
+  assign product = card_product
+  assign product_form_id = 'quick-add-' | append: section_id | append: product.id
+-%}
 
 <div class="card-wrapper pipeline-product-card" data-product-id="{{ product.id }}">
   <div class="card card--{{ settings.card_style }} card--text card--product">
