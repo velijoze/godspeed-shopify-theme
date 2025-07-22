@@ -1,13 +1,21 @@
-/* GODSPEED CLEAN CSS - PROFESSIONAL LAYOUT */
+/* GODSPEED CLEAN CSS - HUGE FONTS VERSION 3.0 */
 
-/* Basic body styling */
+/* Basic body styling - MASSIVE TEXT */
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background-color: #ffffff;
-  color: #333333;
+  background-color: #ff0000 !important;
+  color: #ffffff !important;
   margin: 0;
   padding: 0;
   line-height: 1.6;
+  font-size: 32px !important;
+}
+
+/* FORCE ALL TEXT TO BE HUGE - NUCLEAR OVERRIDE */
+*, *:before, *:after, 
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, 
+.header__nav-link, .nav-link, .button, .title {
+  font-size: 32px !important;
 }
 
 /* Header wrapper and structure - OVERRIDE ALL BASE THEME CSS */
@@ -40,12 +48,12 @@ body {
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
-  max-width: 1200px !important;
+  max-width: 1400px !important;
   margin: 0 auto !important;
-  padding: 0 2rem !important;
-  height: 70px !important;
-  min-height: 70px !important;
-  max-height: 70px !important;
+  padding: 0 3rem !important;
+  height: 80px !important;
+  min-height: 80px !important;
+  max-height: 80px !important;
   box-sizing: border-box !important;
 }
 
@@ -59,7 +67,7 @@ body {
 }
 
 .header__logo-link {
-  font-size: 1.75rem;
+  font-size: 5rem !important;
   font-weight: 700;
   color: #1a1a1a;
   text-decoration: none;
@@ -87,8 +95,8 @@ body {
   color: #4a4a4a;
   text-decoration: none;
   font-weight: 500;
-  font-size: 0.95rem;
-  padding: 0.5rem 0;
+  font-size: 1.8rem;
+  padding: 0.75rem 0;
   transition: color 0.2s ease;
 }
 
@@ -170,9 +178,9 @@ body {
 /* Container for page content */
 .page-width,
 .container-custom {
-  max-width: 1200px !important;
+  max-width: 1400px !important;
   margin: 0 auto !important;
-  padding: 0 2rem !important;
+  padding: 0 3rem !important;
   width: 100% !important;
   box-sizing: border-box !important;
 }
@@ -233,44 +241,59 @@ main {
   }
   
   .header__logo-link {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 }
 
 /* Featured collection section */
 .collection {
-  padding: 3rem 0;
+  padding: 5rem 0;
 }
 
 .collection__title {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
+}
+
+/* Add better section spacing */
+.shopify-section {
+  margin-bottom: 4rem;
+}
+
+/* Improve text readability */
+p, .rte {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #444444;
 }
 
 .title {
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: 600;
   color: #1a1a1a;
-  margin: 0 0 1rem 0;
+  margin: 0 0 1.5rem 0;
+  text-align: center;
 }
 
 /* Product grid */
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-bottom: 3rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 3rem;
+  margin-bottom: 4rem;
+  padding: 2rem 0;
 }
 
 /* Buttons */
 .button {
   display: inline-block;
-  padding: 0.75rem 2rem;
+  padding: 1rem 2.5rem;
   background-color: #1a1a1a;
   color: white;
   text-decoration: none;
   font-weight: 500;
-  border-radius: 4px;
+  font-size: 1.1rem;
+  border-radius: 6px;
   transition: background-color 0.2s ease;
   border: none;
   cursor: pointer;
@@ -289,4 +312,36 @@ main {
 .button--secondary:hover {
   background-color: #1a1a1a;
   color: white;
+}
+
+/* ULTRA AGGRESSIVE HEADER HEIGHT CONTROL - FINAL OVERRIDE */
+.header-wrapper,
+.header-wrapper > div,
+.header-wrapper > header,
+.header-wrapper .header,
+.header-wrapper .header-clean,
+.shopify-section-header,
+.shopify-section-header-sticky,
+sticky-header,
+div[class*="header"] {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* FORCE EXACT HEIGHT ON MAIN HEADER CONTAINER */
+.header__row,
+.header-wrapper .header__row {
+  height: 80px !important;
+  min-height: 80px !important;
+  max-height: 80px !important;
+  line-height: normal !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* DEBUG: Add subtle background to verify CSS is loading */
+.header-wrapper {
+  background-color: #fefefe !important;
 }
