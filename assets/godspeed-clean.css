@@ -221,10 +221,10 @@ h3, .h3 {
   padding: 2rem 0 !important;
 }
 
-/* PRODUCT CARDS - WIDER, LESS CRAMPED */
+/* PRODUCT CARDS - SIMPLIFIED, WORKING LAYOUT */
 .card-wrapper,
 .product-card-wrapper {
-  margin-bottom: 3rem !important;
+  margin-bottom: 2rem !important;
   padding: 0 !important;
 }
 
@@ -233,14 +233,15 @@ h3, .h3 {
 .collection-card,
 .card--standard,
 .card--media {
-  padding: 2rem !important;
-  border-radius: 16px !important;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08) !important;
+  padding: 1rem !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
   background: #ffffff !important;
   margin-bottom: 0 !important;
   border: 1px solid #e5e7eb !important;
   transition: all 0.3s ease !important;
   width: 100% !important;
+  min-height: auto !important;
 }
 
 .card:hover,
@@ -249,39 +250,47 @@ h3, .h3 {
   transform: translateY(-2px) !important;
 }
 
-/* PRODUCT GRID - WIDER CARDS, BETTER SPACING */
+/* PRODUCT GRID - SIMPLER, WORKING LAYOUT */
 .collection__products,
 .product-grid,
 .grid--2-col,
 .grid--3-col,
 .grid--4-col {
   display: grid !important;
-  gap: 3rem !important;
-  padding: 3rem 1rem !important;
+  gap: 2rem !important;
+  padding: 2rem 0 !important;
   max-width: 1200px !important;
   margin: 0 auto !important;
 }
 
 .grid--2-col {
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)) !important;
+  grid-template-columns: repeat(2, 1fr) !important;
 }
 
 .grid--3-col {
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)) !important;
+  grid-template-columns: repeat(3, 1fr) !important;
 }
 
 .grid--4-col {
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+  grid-template-columns: repeat(4, 1fr) !important;
 }
 
-/* PRODUCT IMAGES - BIGGER, BETTER PROPORTIONS */
+@media (max-width: 768px) {
+  .grid--2-col,
+  .grid--3-col,
+  .grid--4-col {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* PRODUCT IMAGES - REMOVE BROKEN CONSTRAINTS */
 .card__media,
 .product-card__media,
 .media {
-  margin-bottom: 2rem !important;
-  border-radius: 12px !important;
+  margin-bottom: 1rem !important;
+  border-radius: 8px !important;
   overflow: hidden !important;
-  background: #ffffff !important;
+  background: transparent !important;
   width: 100% !important;
 }
 
@@ -290,9 +299,10 @@ h3, .h3 {
 .media img {
   width: 100% !important;
   height: auto !important;
-  aspect-ratio: 4/3 !important;
-  object-fit: cover !important;
+  /* Remove aspect-ratio that's breaking images */
+  object-fit: contain !important;
   transition: transform 0.3s ease !important;
+  display: block !important;
 }
 
 .card:hover .media img {
