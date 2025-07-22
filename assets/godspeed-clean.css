@@ -1,21 +1,51 @@
-/* GODSPEED CLEAN CSS - HUGE FONTS VERSION 3.0 */
+/* GODSPEED CLEAN CSS - PROFESSIONAL VERSION 4.0 */
 
-/* Basic body styling - MASSIVE TEXT */
+/* Basic body styling - ENHANCED READABILITY */
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background-color: #ff0000 !important;
-  color: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #2d2d2d !important;
   margin: 0;
   padding: 0;
-  line-height: 1.6;
-  font-size: 32px !important;
+  line-height: 1.7;
+  font-size: 18px !important;
 }
 
-/* FORCE ALL TEXT TO BE HUGE - NUCLEAR OVERRIDE */
-*, *:before, *:after, 
-html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, 
-.header__nav-link, .nav-link, .button, .title {
-  font-size: 32px !important;
+/* IMPROVED TEXT SIZING - PROFESSIONAL HIERARCHY */
+p, div, span, a, li, td, th {
+  font-size: 18px !important;
+  line-height: 1.7 !important;
+}
+
+h1, .h1, .title {
+  font-size: 48px !important;
+  font-weight: 700 !important;
+  line-height: 1.3 !important;
+  margin-bottom: 1.5rem !important;
+}
+
+h2, .h2 {
+  font-size: 36px !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  margin-bottom: 1.25rem !important;
+}
+
+h3, .h3 {
+  font-size: 28px !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  margin-bottom: 1rem !important;
+}
+
+.header__nav-link, .nav-link {
+  font-size: 20px !important;
+  font-weight: 500 !important;
+}
+
+.button {
+  font-size: 18px !important;
+  font-weight: 600 !important;
 }
 
 /* Header wrapper and structure - OVERRIDE ALL BASE THEME CSS */
@@ -67,7 +97,7 @@ html, body, div, span, h1, h2, h3, h4, h5, h6, p, a,
 }
 
 .header__logo-link {
-  font-size: 5rem !important;
+  font-size: 32px !important;
   font-weight: 700;
   color: #1a1a1a;
   text-decoration: none;
@@ -180,9 +210,55 @@ html, body, div, span, h1, h2, h3, h4, h5, h6, p, a,
 .container-custom {
   max-width: 1400px !important;
   margin: 0 auto !important;
-  padding: 0 3rem !important;
+  padding: 0 2rem !important;
   width: 100% !important;
   box-sizing: border-box !important;
+}
+
+/* Enhanced section spacing */
+.shopify-section {
+  margin-bottom: 4rem !important;
+  padding: 2rem 0 !important;
+}
+
+/* Product cards and content areas */
+.card, .product-card, .collection-card {
+  padding: 2rem !important;
+  border-radius: 12px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+  background: #ffffff !important;
+  margin-bottom: 2rem !important;
+}
+
+.card__content,
+.product-card__content {
+  padding: 1.5rem 0 !important;
+}
+
+/* Product titles and descriptions */
+.card__heading,
+.product-title,
+.collection-title {
+  font-size: 24px !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  margin-bottom: 0.75rem !important;
+  color: #1a1a1a !important;
+}
+
+.card__information,
+.product-description {
+  font-size: 16px !important;
+  line-height: 1.6 !important;
+  color: #555555 !important;
+  margin-bottom: 1rem !important;
+}
+
+/* Price styling */
+.price, .price__container {
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  color: #1a1a1a !important;
 }
 
 /* AGGRESSIVE OVERRIDE: Reset any base theme header styles */
