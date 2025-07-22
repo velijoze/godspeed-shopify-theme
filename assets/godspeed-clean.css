@@ -22,25 +22,33 @@ p, div, span, a, li, td, th {
   line-height: 1.7 !important;
 }
 
+/* PIPELINE-STYLE TYPOGRAPHY */
 h1, .h1, .title {
-  font-size: 48px !important;
-  font-weight: 700 !important;
+  font-size: 32px !important;
+  font-weight: 300 !important;
   line-height: 1.3 !important;
-  margin-bottom: 1.5rem !important;
+  margin-bottom: 3rem !important;
+  color: #2c2c2c !important;
+  letter-spacing: 0.02em !important;
+  text-align: center !important;
 }
 
 h2, .h2 {
-  font-size: 36px !important;
-  font-weight: 600 !important;
+  font-size: 24px !important;
+  font-weight: 300 !important;
   line-height: 1.4 !important;
-  margin-bottom: 1.25rem !important;
+  margin-bottom: 2rem !important;
+  color: #2c2c2c !important;
+  letter-spacing: 0.02em !important;
 }
 
 h3, .h3 {
-  font-size: 28px !important;
-  font-weight: 600 !important;
+  font-size: 18px !important;
+  font-weight: 400 !important;
   line-height: 1.4 !important;
   margin-bottom: 1rem !important;
+  color: #2c2c2c !important;
+  letter-spacing: 0.02em !important;
 }
 
 .header__nav-link, .nav-link {
@@ -102,11 +110,12 @@ h3, .h3 {
 }
 
 .header__logo-link {
-  font-size: 32px !important;
-  font-weight: 700;
-  color: #1a1a1a;
-  text-decoration: none;
-  letter-spacing: -0.5px;
+  font-size: 24px !important;
+  font-weight: 300 !important;
+  color: #2c2c2c !important;
+  text-decoration: none !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
 }
 
 .header__logo-link:hover {
@@ -127,12 +136,14 @@ h3, .h3 {
 }
 
 .header__nav-link {
-  color: #4a4a4a;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 1.8rem;
-  padding: 0.75rem 0;
-  transition: color 0.2s ease;
+  color: #666666 !important;
+  text-decoration: none !important;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+  padding: 0.75rem 0 !important;
+  transition: color 0.3s ease !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
 }
 
 .header__nav-link:hover,
@@ -226,7 +237,7 @@ h3, .h3 {
   padding: 2rem 0 !important;
 }
 
-/* PRODUCT CARDS - FIXED BOX SIZING */
+/* PIPELINE-STYLE PRODUCT CARDS - CLEAN LUXURY MINIMAL */
 .card-wrapper,
 .product-card-wrapper {
   margin-bottom: 0 !important;
@@ -239,36 +250,37 @@ h3, .h3 {
 .collection-card,
 .card--standard,
 .card--media {
-  padding: 2rem !important;
-  border-radius: 12px !important;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12) !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
   background: #ffffff !important;
   margin-bottom: 0 !important;
   border: none !important;
   transition: all 0.3s ease !important;
   width: 100% !important;
-  min-height: 400px !important;
+  min-height: auto !important;
   display: flex !important;
   flex-direction: column !important;
   box-sizing: border-box !important;
 }
 
+/* PIPELINE-STYLE HOVER - SUBTLE AND ELEGANT */
 .card:hover,
 .product-card:hover {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
-  transform: translateY(-2px) !important;
+  opacity: 0.8 !important;
+  transform: none !important;
 }
 
-/* PRODUCT GRID - PROPER SPACING AND PROPORTIONS */
+/* PIPELINE-STYLE GRID - CLEAN MINIMAL SPACING */
 .collection__products,
 .product-grid,
 .grid--2-col,
 .grid--3-col,
 .grid--4-col {
   display: grid !important;
-  gap: 4rem !important;
-  padding: 4rem 2rem !important;
-  max-width: 1400px !important;
+  gap: 3rem 2rem !important;
+  padding: 6rem 3rem !important;
+  max-width: 1200px !important;
   margin: 0 auto !important;
   box-sizing: border-box !important;
 }
@@ -282,10 +294,22 @@ h3, .h3 {
 }
 
 .grid--4-col {
-  grid-template-columns: repeat(2, 1fr) !important;
+  grid-template-columns: repeat(3, 1fr) !important;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 990px) {
+  .collection__products,
+  .product-grid,
+  .grid--2-col,
+  .grid--3-col,
+  .grid--4-col {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 2rem 1.5rem !important;
+    padding: 3rem 2rem !important;
+  }
+}
+
+@media (max-width: 750px) {
   .collection__products,
   .product-grid,
   .grid--2-col,
@@ -293,30 +317,30 @@ h3, .h3 {
   .grid--4-col {
     grid-template-columns: 1fr !important;
     gap: 3rem !important;
-    padding: 2rem 1rem !important;
+    padding: 3rem 1.5rem !important;
   }
 }
 
-/* PRODUCT IMAGES - FIXED BOX SIZING */
+/* PIPELINE-STYLE IMAGES - CLEAN AND MINIMAL */
 .card__media,
 .product-card__media,
 .media {
-  margin-bottom: 1rem !important;
-  border-radius: 8px !important;
+  margin-bottom: 1.5rem !important;
+  border-radius: 0 !important;
   overflow: hidden !important;
   background: transparent !important;
   width: 100% !important;
   box-sizing: border-box !important;
+  aspect-ratio: 1 !important;
 }
 
 .card__media img,
 .product-card__media img,
 .media img {
   width: 100% !important;
-  height: auto !important;
-  /* Remove aspect-ratio that's breaking images */
-  object-fit: contain !important;
-  transition: transform 0.3s ease !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  transition: transform 0.5s ease !important;
   display: block !important;
   box-sizing: border-box !important;
 }
@@ -325,45 +349,43 @@ h3, .h3 {
   transform: scale(1.05) !important;
 }
 
-/* PRODUCT CONTENT - PROPER TEXT LAYOUT */
+/* PIPELINE-STYLE CONTENT - MINIMAL AND ELEGANT */
 .card__content,
 .product-card__content,
 .card__information {
   padding: 0 !important;
-  margin-top: 2rem !important;
-  flex-grow: 1 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: space-between !important;
+  margin-top: 0 !important;
   box-sizing: border-box !important;
 }
 
-/* PRODUCT TITLES - BETTER SPACING */
+/* PIPELINE-STYLE TITLES - CLEAN TYPOGRAPHY */
 .card__heading,
 .product-title,
 .card__heading a {
-  font-size: 22px !important;
-  font-weight: 600 !important;
-  line-height: 1.3 !important;
-  margin-bottom: 1.5rem !important;
-  color: #1a1a1a !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 1.4 !important;
+  margin-bottom: 0.5rem !important;
+  color: #2c2c2c !important;
   text-decoration: none !important;
   display: block !important;
+  letter-spacing: 0.02em !important;
 }
 
 .card__heading a:hover {
-  color: #4f46e5 !important;
+  color: #000000 !important;
 }
 
-/* PRICE STYLING - CLEANER */
+/* PIPELINE-STYLE PRICING - SUBTLE */
 .price,
 .price__container,
 .card__price {
-  font-size: 24px !important;
-  font-weight: 700 !important;
-  color: #1a1a1a !important;
-  margin-top: auto !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  color: #666666 !important;
+  margin-top: 0.25rem !important;
   margin-bottom: 0 !important;
+  letter-spacing: 0.02em !important;
 }
 
 .price--on-sale .price__sale {
