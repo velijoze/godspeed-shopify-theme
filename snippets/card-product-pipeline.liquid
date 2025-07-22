@@ -57,24 +57,32 @@ Pipeline-style Product Card with Quick Buy and Advanced Features
         {%- endif -%}
       </div>
 
-      {%- comment -%} Quick Buy Button {%- endcomment -%}
-      {% if product.available %}
-        <div class="quick-buy-wrapper">
-          {% if product.variants.size == 1 %}
-            <form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data" class="quick-buy-form">
-              <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-              <button type="submit" class="quick-buy-button button button--pipeline">
-                <span class="btn-text">Quick Buy</span>
-                <span class="btn-loading" style="display: none;">Adding...</span>
-              </button>
-            </form>
-          {% else %}
-            <a href="{{ product.url }}" class="quick-buy-button button button--pipeline">
-              Select Options
-            </a>
-          {% endif %}
-        </div>
-      {% endif %}
+      {%- comment -%} Quick Actions: Quick View + Quick Buy {%- endcomment -%}
+      <div class="quick-actions-wrapper">
+        {%- comment -%} Quick View Button - Always Available {%- endcomment -%}
+        <button class="quick-view-button button button--pipeline" onclick="openQuickView('{{ product.handle }}')">
+          <span class="btn-text">Quick View</span>
+        </button>
+        
+        {%- comment -%} Quick Buy Button - Only if Available {%- endcomment -%}
+        {% if product.available %}
+          <div class="quick-buy-wrapper">
+            {% if product.variants.size == 1 %}
+              <form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data" class="quick-buy-form">
+                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                <button type="submit" class="quick-buy-button button button--pipeline">
+                  <span class="btn-text">Quick Buy</span>
+                  <span class="btn-loading" style="display: none;">Adding...</span>
+                </button>
+              </form>
+            {% else %}
+              <a href="{{ product.url }}" class="quick-buy-button button button--pipeline">
+                Select Options
+              </a>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
     </div>
 
     {%- comment -%} Product Information {%- endcomment -%}

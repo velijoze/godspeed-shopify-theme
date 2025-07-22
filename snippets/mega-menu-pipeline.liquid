@@ -1,0 +1,294 @@
+{% comment %}
+  Pipeline-Style Mega Menu Snippet
+  Used in header navigation
+{% endcomment %}
+
+<div class="mega-menu" data-mega-menu>
+  <button class="mega-menu-trigger" data-mega-menu-trigger>
+    E-Bikes
+  </button>
+  
+  <div class="mega-menu-dropdown" data-mega-menu-dropdown>
+    <div class="mega-menu-grid">
+      
+      <!-- Commuter E-Bikes Category -->
+      <div class="mega-menu-category">
+        <h3>Commuter</h3>
+        
+        {% assign commuter_collection = collections['all'] %}
+        {% if commuter_collection.products.size > 0 %}
+          {% assign featured_product = commuter_collection.products.first %}
+          <div class="mega-menu-product">
+            <a href="{{ featured_product.url }}">
+              {% if featured_product.featured_image %}
+                <img src="{{ featured_product.featured_image | img_url: '300x300' }}" 
+                     alt="{{ featured_product.title | escape }}"
+                     class="mega-menu-product-image">
+              {% endif %}
+              <div class="mega-menu-product-title">{{ featured_product.title | truncate: 40 }}</div>
+              <div class="mega-menu-product-price">
+                {{ featured_product.price | money }}
+                {% if featured_product.compare_at_price > featured_product.price %}
+                  <span style="text-decoration: line-through; margin-left: 0.5rem; color: #999;">
+                    {{ featured_product.compare_at_price | money }}
+                  </span>
+                {% endif %}
+              </div>
+            </a>
+          </div>
+        {% endif %}
+        
+        <a href="/collections/all" class="mega-menu-category-link">
+          View All Commuter
+        </a>
+      </div>
+      
+      <!-- Mountain E-Bikes Category -->
+      <div class="mega-menu-category">
+        <h3>Mountain</h3>
+        
+        {% assign mountain_collection = collections['all'] %}
+        {% if mountain_collection.products.size > 1 %}
+          {% assign featured_product = mountain_collection.products[1] %}
+          <div class="mega-menu-product">
+            <a href="{{ featured_product.url }}">
+              {% if featured_product.featured_image %}
+                <img src="{{ featured_product.featured_image | img_url: '300x300' }}" 
+                     alt="{{ featured_product.title | escape }}"
+                     class="mega-menu-product-image">
+              {% endif %}
+              <div class="mega-menu-product-title">{{ featured_product.title | truncate: 40 }}</div>
+              <div class="mega-menu-product-price">
+                {{ featured_product.price | money }}
+                {% if featured_product.compare_at_price > featured_product.price %}
+                  <span style="text-decoration: line-through; margin-left: 0.5rem; color: #999;">
+                    {{ featured_product.compare_at_price | money }}
+                  </span>
+                {% endif %}
+              </div>
+            </a>
+          </div>
+        {% endif %}
+        
+        <a href="/collections/all" class="mega-menu-category-link">
+          View All Mountain
+        </a>
+      </div>
+      
+      <!-- Cargo E-Bikes Category -->
+      <div class="mega-menu-category">
+        <h3>Cargo</h3>
+        
+        {% assign cargo_collection = collections['all'] %}
+        {% if cargo_collection.products.size > 2 %}
+          {% assign featured_product = cargo_collection.products[2] %}
+          <div class="mega-menu-product">
+            <a href="{{ featured_product.url }}">
+              {% if featured_product.featured_image %}
+                <img src="{{ featured_product.featured_image | img_url: '300x300' }}" 
+                     alt="{{ featured_product.title | escape }}"
+                     class="mega-menu-product-image">
+              {% endif %}
+              <div class="mega-menu-product-title">{{ featured_product.title | truncate: 40 }}</div>
+              <div class="mega-menu-product-price">
+                {{ featured_product.price | money }}
+                {% if featured_product.compare_at_price > featured_product.price %}
+                  <span style="text-decoration: line-through; margin-left: 0.5rem; color: #999;">
+                    {{ featured_product.compare_at_price | money }}
+                  </span>
+                {% endif %}
+              </div>
+            </a>
+          </div>
+        {% endif %}
+        
+        <a href="/collections/all" class="mega-menu-category-link">
+          View All Cargo
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<style>
+  .mega-menu {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .mega-menu-trigger {
+    background: none;
+    border: none;
+    color: #666666;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: color 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: inherit;
+  }
+  
+  .mega-menu-trigger:hover {
+    color: #1a1a1a;
+  }
+  
+  .mega-menu-trigger::after {
+    content: '▾';
+    font-size: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  .mega-menu.active .mega-menu-trigger::after {
+    transform: rotate(180deg);
+  }
+  
+  .mega-menu-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    min-width: 800px;
+    max-width: 1000px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    padding: 3rem;
+    margin-top: 1rem;
+    border-radius: 8px;
+  }
+  
+  .mega-menu.active .mega-menu-dropdown {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .mega-menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
+  
+  .mega-menu-category {
+    text-align: center;
+  }
+  
+  .mega-menu-category h3 {
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: #2c2c2c;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  
+  .mega-menu-product {
+    margin-bottom: 2rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .mega-menu-product:hover {
+    transform: translateY(-3px);
+  }
+  
+  .mega-menu-product a {
+    text-decoration: none;
+    display: block;
+  }
+  
+  .mega-menu-product-image {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+  
+  .mega-menu-product-title {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #2c2c2c;
+    margin-bottom: 0.5rem;
+    text-decoration: none;
+    display: block;
+    line-height: 1.3;
+  }
+  
+  .mega-menu-product-title:hover {
+    color: #666666;
+  }
+  
+  .mega-menu-product-price {
+    font-size: 1.1rem;
+    color: #666666;
+    font-weight: 400;
+  }
+  
+  .mega-menu-category-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.8rem 2rem;
+    background: transparent;
+    color: #2c2c2c;
+    text-decoration: none;
+    border: 1px solid #2c2c2c;
+    font-size: 1.1rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+  }
+  
+  .mega-menu-category-link:hover {
+    background: #2c2c2c;
+    color: white;
+  }
+  
+  /* Mobile responsive */
+  @media (max-width: 990px) {
+    .mega-menu-dropdown {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const megaMenus = document.querySelectorAll('[data-mega-menu]');
+  
+  megaMenus.forEach(menu => {
+    const trigger = menu.querySelector('[data-mega-menu-trigger]');
+    const dropdown = menu.querySelector('[data-mega-menu-dropdown]');
+    let timeoutId;
+    
+    // Show dropdown on hover
+    menu.addEventListener('mouseenter', () => {
+      clearTimeout(timeoutId);
+      menu.classList.add('active');
+    });
+    
+    // Hide dropdown with delay on mouse leave
+    menu.addEventListener('mouseleave', () => {
+      timeoutId = setTimeout(() => {
+        menu.classList.remove('active');
+      }, 150);
+    });
+    
+    // Keep dropdown open when hovering over it
+    dropdown.addEventListener('mouseenter', () => {
+      clearTimeout(timeoutId);
+    });
+  });
+});
+</script>

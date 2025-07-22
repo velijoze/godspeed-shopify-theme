@@ -380,5 +380,8 @@
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+    
+    {%- comment -%} Pipeline Quick View Modal {%- endcomment -%}
+    {% render 'quick-view-modal-pipeline' %}
   </body>
 </html>

@@ -145,6 +145,9 @@
 
         <!-- Desktop Navigation -->
         <nav class="header__nav-menu">
+          <!-- Pipeline Mega Menu -->
+          {% render 'mega-menu-pipeline' %}
+          
           {%- if section.settings.menu != blank -%}
             {%- for link in linklists[section.settings.menu].links -%}
               <a href="{{ link.url }}" class="header__nav-link nav-link">

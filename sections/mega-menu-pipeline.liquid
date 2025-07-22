@@ -1,0 +1,373 @@
+{% comment %}
+  Pipeline-Style Mega Menu with Product Showcase
+  Shows featured products directly in navigation dropdowns
+{% endcomment %}
+
+<style>
+  .mega-menu {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .mega-menu-trigger {
+    background: none;
+    border: none;
+    color: #666666;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: color 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .mega-menu-trigger:hover {
+    color: #1a1a1a;
+  }
+  
+  .mega-menu-trigger::after {
+    content: '▾';
+    font-size: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  .mega-menu.active .mega-menu-trigger::after {
+    transform: rotate(180deg);
+  }
+  
+  .mega-menu-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    min-width: 800px;
+    max-width: 1000px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    padding: 3rem;
+    margin-top: 1rem;
+  }
+  
+  .mega-menu.active .mega-menu-dropdown {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .mega-menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
+  
+  .mega-menu-category {
+    text-align: center;
+  }
+  
+  .mega-menu-category h3 {
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: #2c2c2c;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  
+  .mega-menu-product {
+    margin-bottom: 2rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .mega-menu-product:hover {
+    transform: translateY(-3px);
+  }
+  
+  .mega-menu-product-image {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+  
+  .mega-menu-product-title {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #2c2c2c;
+    margin-bottom: 0.5rem;
+    text-decoration: none;
+    display: block;
+    line-height: 1.3;
+  }
+  
+  .mega-menu-product-title:hover {
+    color: #666666;
+  }
+  
+  .mega-menu-product-price {
+    font-size: 1.1rem;
+    color: #666666;
+    font-weight: 400;
+  }
+  
+  .mega-menu-category-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.8rem 2rem;
+    background: transparent;
+    color: #2c2c2c;
+    text-decoration: none;
+    border: 1px solid #2c2c2c;
+    font-size: 1.1rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+  }
+  
+  .mega-menu-category-link:hover {
+    background: #2c2c2c;
+    color: white;
+  }
+  
+  /* Mobile responsive */
+  @media (max-width: 990px) {
+    .mega-menu-dropdown {
+      display: none;
+    }
+  }
+</style>
+
+<div class="mega-menu" data-mega-menu>
+  <button class="mega-menu-trigger" data-mega-menu-trigger>
+    {{ section.settings.menu_title | default: "E-Bikes" }}
+  </button>
+  
+  <div class="mega-menu-dropdown" data-mega-menu-dropdown>
+    <div class="mega-menu-grid">
+      
+      <!-- Commuter E-Bikes Category -->
+      <div class="mega-menu-category">
+        <h3>{{ section.settings.category_1_title | default: "Commuter" }}</h3>
+        
+        {% if section.settings.category_1_collection != blank %}
+          {% assign commuter_products = section.settings.category_1_collection.products | limit: 1 %}
+          {% for product in commuter_products %}
+            <div class="mega-menu-product">
+              <a href="{{ product.url }}">
+                {% if product.featured_image %}
+                  <img src="{{ product.featured_image | img_url: '300x300' }}" 
+                       alt="{{ product.title | escape }}"
+                       class="mega-menu-product-image">
+                {% endif %}
+                <div class="mega-menu-product-title">{{ product.title | truncate: 40 }}</div>
+                <div class="mega-menu-product-price">
+                  {{ product.price | money }}
+                  {% if product.compare_at_price > product.price %}
+                    <span style="text-decoration: line-through; margin-left: 0.5rem; color: #999;">
+                      {{ product.compare_at_price | money }}
+                    </span>
+                  {% endif %}
+                </div>
+              </a>
+            </div>
+          {% endfor %}
+        {% endif %}
+        
+        <a href="{{ section.settings.category_1_link | default: '/collections/commuter' }}" 
+           class="mega-menu-category-link">
+          View All Commuter
+        </a>
+      </div>
+      
+      <!-- Mountain E-Bikes Category -->
+      <div class="mega-menu-category">
+        <h3>{{ section.settings.category_2_title | default: "Mountain" }}</h3>
+        
+        {% if section.settings.category_2_collection != blank %}
+          {% assign mountain_products = section.settings.category_2_collection.products | limit: 1 %}
+          {% for product in mountain_products %}
+            <div class="mega-menu-product">
+              <a href="{{ product.url }}">
+                {% if product.featured_image %}
+                  <img src="{{ product.featured_image | img_url: '300x300' }}" 
+                       alt="{{ product.title | escape }}"
+                       class="mega-menu-product-image">
+                {% endif %}
+                <div class="mega-menu-product-title">{{ product.title | truncate: 40 }}</div>
+                <div class="mega-menu-product-price">
+                  {{ product.price | money }}
+                  {% if product.compare_at_price > product.price %}
+                    <span style="text-decoration: line-through; margin-left: 0.5rem; color: #999;">
+                      {{ product.compare_at_price | money }}
+                    </span>
+                  {% endif %}
+                </div>
+              </a>
+            </div>
+          {% endfor %}
+        {% endif %}
+        
+        <a href="{{ section.settings.category_2_link | default: '/collections/mountain' }}" 
+           class="mega-menu-category-link">
+          View All Mountain
+        </a>
+      </div>
+      
+      <!-- Cargo E-Bikes Category -->
+      <div class="mega-menu-category">
+        <h3>{{ section.settings.category_3_title | default: "Cargo" }}</h3>
+        
+        {% if section.settings.category_3_collection != blank %}
+          {% assign cargo_products = section.settings.category_3_collection.products | limit: 1 %}
+          {% for product in cargo_products %}
+            <div class="mega-menu-product">
+              <a href="{{ product.url }}">
+                {% if product.featured_image %}
+                  <img src="{{ product.featured_image | img_url: '300x300' }}" 
+                       alt="{{ product.title | escape }}"
+                       class="mega-menu-product-image">
+                {% endif %}
+                <div class="mega-menu-product-title">{{ product.title | truncate: 40 }}</div>
+                <div class="mega-menu-product-price">
+                  {{ product.price | money }}
+                  {% if product.compare_at_price > product.price %}
+                    <span style="text-decoration: line-through; margin-left: 0.5rem; color: #999;">
+                      {{ product.compare_at_price | money }}
+                    </span>
+                  {% endif %}
+                </div>
+              </a>
+            </div>
+          {% endfor %}
+        {% endif %}
+        
+        <a href="{{ section.settings.category_3_link | default: '/collections/cargo' }}" 
+           class="mega-menu-category-link">
+          View All Cargo
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const megaMenus = document.querySelectorAll('[data-mega-menu]');
+  
+  megaMenus.forEach(menu => {
+    const trigger = menu.querySelector('[data-mega-menu-trigger]');
+    const dropdown = menu.querySelector('[data-mega-menu-dropdown]');
+    let timeoutId;
+    
+    // Show dropdown on hover
+    menu.addEventListener('mouseenter', () => {
+      clearTimeout(timeoutId);
+      menu.classList.add('active');
+    });
+    
+    // Hide dropdown with delay on mouse leave
+    menu.addEventListener('mouseleave', () => {
+      timeoutId = setTimeout(() => {
+        menu.classList.remove('active');
+      }, 150);
+    });
+    
+    // Keep dropdown open when hovering over it
+    dropdown.addEventListener('mouseenter', () => {
+      clearTimeout(timeoutId);
+    });
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Mega Menu Pipeline",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "menu_title",
+      "label": "Menu Title",
+      "default": "E-Bikes"
+    },
+    {
+      "type": "header",
+      "content": "Category 1 - Commuter"
+    },
+    {
+      "type": "text",
+      "id": "category_1_title",
+      "label": "Category 1 Title",
+      "default": "Commuter"
+    },
+    {
+      "type": "collection",
+      "id": "category_1_collection",
+      "label": "Category 1 Collection"
+    },
+    {
+      "type": "url",
+      "id": "category_1_link",
+      "label": "Category 1 Link"
+    },
+    {
+      "type": "header",
+      "content": "Category 2 - Mountain"
+    },
+    {
+      "type": "text",
+      "id": "category_2_title",
+      "label": "Category 2 Title",
+      "default": "Mountain"
+    },
+    {
+      "type": "collection",
+      "id": "category_2_collection",
+      "label": "Category 2 Collection"
+    },
+    {
+      "type": "url",
+      "id": "category_2_link",
+      "label": "Category 2 Link"
+    },
+    {
+      "type": "header",
+      "content": "Category 3 - Cargo"
+    },
+    {
+      "type": "text",
+      "id": "category_3_title",
+      "label": "Category 3 Title",
+      "default": "Cargo"
+    },
+    {
+      "type": "collection",
+      "id": "category_3_collection",
+      "label": "Category 3 Collection"
+    },
+    {
+      "type": "url",
+      "id": "category_3_link",
+      "label": "Category 3 Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mega Menu Pipeline"
+    }
+  ]
+}
+{% endschema %}

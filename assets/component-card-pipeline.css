@@ -77,8 +77,8 @@
   color: white;
 }
 
-/* Quick Buy Button */
-.quick-buy-wrapper {
+/* Quick Actions - View & Buy */
+.quick-actions-wrapper {
   position: absolute;
   bottom: 1rem;
   left: 50%;
@@ -86,18 +86,23 @@
   opacity: 0;
   transition: all 0.3s ease;
   z-index: 3;
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+  align-items: center;
 }
 
-.pipeline-product-card:hover .quick-buy-wrapper {
+.pipeline-product-card:hover .quick-actions-wrapper {
   opacity: 1;
 }
 
+.quick-view-button,
 .quick-buy-button {
   background: rgba(44, 44, 44, 0.95);
   color: white;
   border: none;
-  padding: 1rem 2rem;
-  font-size: 1.2rem;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.1rem;
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -105,7 +110,21 @@
   text-decoration: none;
   display: inline-block;
   transition: all 0.3s ease;
-  min-width: 120px;
+  min-width: 110px;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.quick-view-button {
+  background: rgba(255, 255, 255, 0.95);
+  color: #2c2c2c;
+  border: 1px solid rgba(44, 44, 44, 0.3);
+}
+
+.quick-view-button:hover {
+  background: rgba(255, 255, 255, 1);
+  border-color: #2c2c2c;
+  transform: translateY(-2px);
 }
 
 .quick-buy-button:hover {
@@ -116,6 +135,14 @@
 .quick-buy-button:disabled {
   opacity: 0.7;
   cursor: not-allowed;
+}
+
+.quick-buy-wrapper {
+  width: 100%;
+}
+
+.quick-buy-wrapper .quick-buy-button {
+  width: 100%;
 }
 
 /* Product Information */
