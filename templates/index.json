@@ -1,7 +1,7 @@
 {
   "sections": {
-    "hero_banner_pipeline": {
-      "type": "hero-banner-pipeline",
+    "hero_pipeline": {
+      "type": "hero-pipeline",
       "blocks": {
         "heading": {
           "type": "heading",
@@ -77,5 +77,5 @@
       }
     }
   },
-  "order": ["hero_banner_pipeline", "countdown_timer", "featured_collection"]
+  "order": ["hero_pipeline", "countdown_timer", "featured_collection"]
 }

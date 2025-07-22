@@ -1,4 +1,4 @@
-{{ 'section-hero-banner-pipeline.css' | asset_url | stylesheet_tag }}
+{{ 'section-hero-pipeline.css' | asset_url | stylesheet_tag }}
 
 {%- assign desktop_height = section.settings.desktop_height | default: '700px' -%}
 {%- assign mobile_height = section.settings.mobile_height | default: '500px' -%}
@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 {% schema %}
 {
-  "name": "Hero Banner (Pipeline Style)",
+  "name": "Hero Banner",
   "tag": "section",
   "class": "section",
   "settings": [
@@ -320,7 +320,7 @@ document.addEventListener('DOMContentLoaded', function() {
   ],
   "presets": [
     {
-      "name": "Hero Banner (Pipeline Style)",
+      "name": "Hero Banner",
       "blocks": [
         {
           "type": "heading",
