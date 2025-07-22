@@ -221,44 +221,144 @@ h3, .h3 {
   padding: 2rem 0 !important;
 }
 
-/* Product cards and content areas */
-.card, .product-card, .collection-card {
-  padding: 2rem !important;
+/* PRODUCT CARDS - FIX CRAMPED LAYOUT */
+.card-wrapper,
+.product-card-wrapper {
+  margin-bottom: 2rem !important;
+  padding: 0 1rem !important;
+}
+
+.card, 
+.product-card, 
+.collection-card,
+.card--standard,
+.card--media {
+  padding: 1.5rem !important;
   border-radius: 12px !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1) !important;
   background: #ffffff !important;
   margin-bottom: 2rem !important;
+  border: 1px solid #f3f4f6 !important;
+  transition: all 0.3s ease !important;
 }
 
+.card:hover,
+.product-card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* PRODUCT GRID - PROPER SPACING */
+.collection__products,
+.product-grid,
+.grid--2-col,
+.grid--3-col,
+.grid--4-col {
+  display: grid !important;
+  gap: 2rem !important;
+  padding: 2rem 0 !important;
+}
+
+.grid--2-col {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+}
+
+.grid--3-col {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+}
+
+.grid--4-col {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+}
+
+/* PRODUCT IMAGES - FIX SIZING */
+.card__media,
+.product-card__media,
+.media {
+  margin-bottom: 1.5rem !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  background: #f9fafb !important;
+}
+
+.card__media img,
+.product-card__media img,
+.media img {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 1 !important;
+  object-fit: cover !important;
+  transition: transform 0.3s ease !important;
+}
+
+.card:hover .media img {
+  transform: scale(1.05) !important;
+}
+
+/* PRODUCT CONTENT - BETTER SPACING */
 .card__content,
-.product-card__content {
-  padding: 1.5rem 0 !important;
+.product-card__content,
+.card__information {
+  padding: 1.5rem !important;
+  padding-top: 0 !important;
 }
 
-/* Product titles and descriptions */
+/* PRODUCT TITLES - ENHANCED */
 .card__heading,
 .product-title,
-.collection-title {
-  font-size: 24px !important;
+.card__heading a {
+  font-size: 18px !important;
   font-weight: 600 !important;
   line-height: 1.4 !important;
-  margin-bottom: 0.75rem !important;
-  color: #1a1a1a !important;
-}
-
-.card__information,
-.product-description {
-  font-size: 16px !important;
-  line-height: 1.6 !important;
-  color: #555555 !important;
   margin-bottom: 1rem !important;
+  color: #1a1a1a !important;
+  text-decoration: none !important;
+  display: block !important;
 }
 
-/* Price styling */
-.price, .price__container {
+.card__heading a:hover {
+  color: #4f46e5 !important;
+}
+
+/* PRICE STYLING - PROMINENT */
+.price,
+.price__container,
+.card__price {
   font-size: 20px !important;
-  font-weight: 600 !important;
+  font-weight: 700 !important;
   color: #1a1a1a !important;
+  margin-top: 1rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.price--on-sale .price__sale {
+  color: #dc2626 !important;
+  font-weight: 700 !important;
+}
+
+.price__regular {
+  text-decoration: line-through !important;
+  color: #6b7280 !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  margin-left: 0.5rem !important;
+}
+
+/* SOLD OUT STYLING */
+.card--sold-out {
+  opacity: 0.7 !important;
+}
+
+.badge--sold-out,
+.sold-out-message {
+  background: #fee2e2 !important;
+  color: #dc2626 !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 6px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  margin-top: 1rem !important;
+  text-align: center !important;
 }
 
 /* AGGRESSIVE OVERRIDE: Reset any base theme header styles */
