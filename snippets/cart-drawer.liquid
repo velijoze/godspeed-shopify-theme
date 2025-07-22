@@ -17,11 +17,11 @@
   }
 </style>
 
-<cart-drawer class="drawer{% if cart == empty %} is-empty{% endif %}">
+<cart-drawer class="drawer pipeline-cart-drawer{% if cart == empty %} is-empty{% endif %}">
   <div id="CartDrawer" class="cart-drawer">
-    <div id="CartDrawer-Overlay" class="cart-drawer__overlay"></div>
+    <div id="CartDrawer-Overlay" class="cart-drawer__overlay pipeline-cart-overlay"></div>
     <div
-      class="drawer__inner gradient color-{{ settings.cart_color_scheme }}"
+      class="drawer__inner gradient pipeline-cart-inner color-{{ settings.cart_color_scheme }}"
       role="dialog"
       aria-modal="true"
       aria-label="{{ 'sections.cart.title' | t }}"
@@ -61,10 +61,11 @@
           {%- endif -%}
         </div>
       {%- endif -%}
-      <div class="drawer__header">
-        <h2 class="drawer__heading">{{ 'sections.cart.title' | t }}</h2>
+      <div class="drawer__header pipeline-cart-header">
+        <h2 class="drawer__heading pipeline-cart-title">{{ 'sections.cart.title' | t }}</h2>
+        <div class="pipeline-cart-count">({{ cart.item_count }})</div>
         <button
-          class="drawer__close"
+          class="drawer__close pipeline-cart-close"
           type="button"
           onclick="this.closest('cart-drawer').close()"
           aria-label="{{ 'accessibility.close' | t }}"
@@ -118,7 +119,7 @@
 
                   <tbody role="rowgroup">
                     {%- for item in cart.items -%}
-                      <tr id="CartDrawer-Item-{{ item.index | plus: 1 }}" class="cart-item" role="row">
+                      <tr id="CartDrawer-Item-{{ item.index | plus: 1 }}" class="cart-item pipeline-cart-item" role="row">
                         <td class="cart-item__media" role="cell" headers="CartDrawer-ColumnProductImage">
                           {% if item.image %}
                             {% comment %} Leave empty space due to a:empty CSS display: none rule {% endcomment %}
