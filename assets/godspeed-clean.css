@@ -221,11 +221,11 @@ h3, .h3 {
   padding: 2rem 0 !important;
 }
 
-/* PRODUCT CARDS - FIX CRAMPED LAYOUT */
+/* PRODUCT CARDS - WIDER, LESS CRAMPED */
 .card-wrapper,
 .product-card-wrapper {
-  margin-bottom: 2rem !important;
-  padding: 0 1rem !important;
+  margin-bottom: 3rem !important;
+  padding: 0 !important;
 }
 
 .card, 
@@ -233,13 +233,14 @@ h3, .h3 {
 .collection-card,
 .card--standard,
 .card--media {
-  padding: 1.5rem !important;
-  border-radius: 12px !important;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1) !important;
+  padding: 2rem !important;
+  border-radius: 16px !important;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08) !important;
   background: #ffffff !important;
-  margin-bottom: 2rem !important;
-  border: 1px solid #f3f4f6 !important;
+  margin-bottom: 0 !important;
+  border: 1px solid #e5e7eb !important;
   transition: all 0.3s ease !important;
+  width: 100% !important;
 }
 
 .card:hover,
@@ -248,37 +249,40 @@ h3, .h3 {
   transform: translateY(-2px) !important;
 }
 
-/* PRODUCT GRID - PROPER SPACING */
+/* PRODUCT GRID - WIDER CARDS, BETTER SPACING */
 .collection__products,
 .product-grid,
 .grid--2-col,
 .grid--3-col,
 .grid--4-col {
   display: grid !important;
-  gap: 2rem !important;
-  padding: 2rem 0 !important;
+  gap: 3rem !important;
+  padding: 3rem 1rem !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
 }
 
 .grid--2-col {
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)) !important;
 }
 
 .grid--3-col {
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)) !important;
 }
 
 .grid--4-col {
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
 }
 
-/* PRODUCT IMAGES - FIX SIZING */
+/* PRODUCT IMAGES - BIGGER, BETTER PROPORTIONS */
 .card__media,
 .product-card__media,
 .media {
-  margin-bottom: 1.5rem !important;
-  border-radius: 8px !important;
+  margin-bottom: 2rem !important;
+  border-radius: 12px !important;
   overflow: hidden !important;
-  background: #f9fafb !important;
+  background: #ffffff !important;
+  width: 100% !important;
 }
 
 .card__media img,
@@ -286,7 +290,7 @@ h3, .h3 {
 .media img {
   width: 100% !important;
   height: auto !important;
-  aspect-ratio: 1 !important;
+  aspect-ratio: 4/3 !important;
   object-fit: cover !important;
   transition: transform 0.3s ease !important;
 }
@@ -295,12 +299,12 @@ h3, .h3 {
   transform: scale(1.05) !important;
 }
 
-/* PRODUCT CONTENT - BETTER SPACING */
+/* PRODUCT CONTENT - MORE GENEROUS SPACING */
 .card__content,
 .product-card__content,
 .card__information {
-  padding: 1.5rem !important;
-  padding-top: 0 !important;
+  padding: 0 !important;
+  margin-top: 1rem !important;
 }
 
 /* PRODUCT TITLES - ENHANCED */
