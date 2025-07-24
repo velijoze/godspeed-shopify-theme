@@ -35,9 +35,14 @@
           }
         }
       },
-      "block_order": ["heading", "text", "button"],
+      "block_order": [
+        "heading",
+        "text",
+        "button"
+      ],
       "settings": {
         "image": "shopify://shop_images/maxresdefault.jpg",
+        "video": "",
         "desktop_height": 700,
         "mobile_height": 500,
         "text_alignment": "center",
@@ -52,6 +57,7 @@
         "heading": "Limited Time Launch Offer",
         "text": "<p>Get 20% off all e-bikes during our grand opening. Don't miss out!</p>",
         "end_date": "2025-02-15 23:59",
+        "expired_message": "This offer has expired",
         "button_label": "Shop Now",
         "button_link": "shopify://collections/all",
         "color_scheme": "background-1"
@@ -61,16 +67,16 @@
       "type": "featured-collection",
       "settings": {
         "title": "Featured Products",
-        "heading_size": "h2",
+        "heading_size": "h1",
         "description": "",
         "show_description": false,
         "description_style": "body",
         "collection": "all",
         "products_to_show": 8,
-        "columns_desktop": 3,
+        "columns_desktop": 4,
         "full_width": false,
         "show_view_all": true,
-        "view_all_style": "solid",
+        "view_all_style": "outline",
         "enable_desktop_slider": false,
         "color_scheme": "scheme-1",
         "image_ratio": "adapt",
@@ -86,5 +92,9 @@
       }
     }
   },
-  "order": ["hero_pipeline", "countdown_timer", "featured_collection"]
+  "order": [
+    "hero_pipeline",
+    "countdown_timer",
+    "featured_collection"
+  ]
 }
