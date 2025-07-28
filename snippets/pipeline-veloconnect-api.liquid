@@ -1,0 +1,1251 @@
+{% comment %}
+  Pipeline VeloConnect API Integration
+  Industry-standard bicycle data exchange connecting to 120+ suppliers
+  Replaces individual vendor APIs with unified VeloConnect protocol
+{% endcomment %}
+
+{%- comment -%} VeloConnect Configuration {%- endcomment -%}
+<div id="pipeline-veloconnect-api" style="display: none;">
+  <div data-veloconnect-config>
+    {
+      "veloconnect": {
+        "apiUrl": "{{ section.settings.veloconnect_api_url | default: 'https://api.veloconnect.de/v1.6/' }}",
+        "veloApiUrl": "{{ section.settings.velo_api_url | default: 'https://velo-api.de/api/v2/' }}",
+        "apiKey": "{{ section.settings.veloconnect_api_key }}",
+        "dealerCode": "{{ section.settings.dealer_code }}",
+        "enabled": {{ section.settings.enable_veloconnect | json }},
+        "syncInterval": {{ section.settings.sync_interval | default: 3600 }},
+        "apiVersion": "{{ section.settings.api_version | default: '1.6' }}",
+        "useVeloApi": {{ section.settings.use_velo_api | json }}
+      },
+      "suppliers": {
+        "cube": {
+          "enabled": {{ section.settings.enable_cube | json }},
+          "supplierCode": "{{ section.settings.cube_supplier_code }}",
+          "priceMarkup": {{ section.settings.cube_price_markup | default: 1.15 }},
+          "syncCategories": ["Urban", "Trekking", "MTB", "Kids"],
+          "priority": 1
+        },
+        "riese_muller": {
+          "enabled": {{ section.settings.enable_riese_muller | json }},
+          "supplierCode": "{{ section.settings.riese_muller_supplier_code }}",
+          "priceMarkup": {{ section.settings.riese_muller_price_markup | default: 1.2 }},
+          "syncCategories": ["Premium", "Cargo", "City", "Custom"],
+          "priority": 2
+        },
+        "bosch": {
+          "enabled": {{ section.settings.enable_bosch | json }},
+          "supplierCode": "{{ section.settings.bosch_supplier_code }}",
+          "priceMarkup": {{ section.settings.bosch_price_markup | default: 1.1 }},
+          "syncCategories": ["Motors", "Batteries", "Displays", "Chargers"],
+          "priority": 3
+        },
+        "mondraker": {
+          "enabled": {{ section.settings.enable_mondraker | json }},
+          "supplierCode": "{{ section.settings.mondraker_supplier_code }}",
+          "priceMarkup": {{ section.settings.mondraker_price_markup | default: 1.25 }},
+          "syncCategories": ["E-MTB", "Enduro", "Trail", "XC"],
+          "priority": 4
+        },
+        "orbea": {
+          "enabled": {{ section.settings.enable_orbea | json }},
+          "supplierCode": "{{ section.settings.orbea_supplier_code }}",
+          "priceMarkup": {{ section.settings.orbea_price_markup | default: 1.18 }},
+          "syncCategories": ["Road", "Gravel", "Urban", "Mountain"],
+          "priority": 5
+        }
+      },
+      "features": {
+        "enableProductSync": {{ section.settings.enable_product_sync | json }},
+        "enablePriceSync": {{ section.settings.enable_price_sync | json }},
+        "enableInventorySync": {{ section.settings.enable_inventory_sync | json }},
+        "enableOrderSync": {{ section.settings.enable_order_sync | json }},
+        "enableSalesReporting": {{ section.settings.enable_sales_reporting | json }},
+        "enableClickCollect": {{ section.settings.enable_click_collect | json }},
+        "enableDropshipping": {{ section.settings.enable_dropshipping | json }},
+        "enableFrameTracking": {{ section.settings.enable_frame_tracking | json }}
+      },
+      "settings": {
+        "cacheTimeout": {{ section.settings.cache_timeout | default: 1800 }},
+        "retryAttempts": {{ section.settings.retry_attempts | default: 3 }},
+        "requestTimeout": {{ section.settings.request_timeout | default: 15000 }},
+        "batchSize": {{ section.settings.batch_size | default: 100 }},
+        "logLevel": "{{ section.settings.log_level | default: 'info' }}"
+      }
+    }
+  </div>
+</div>
+
+{%- comment -%} VeloConnect Dashboard {%- endcomment -%}
+{%- if section.settings.show_veloconnect_dashboard -%}
+  <div class="pipeline-veloconnect-dashboard" id="veloconnect-dashboard">
+    
+    <div class="dashboard-header">
+      <div class="header-info">
+        <h3>VeloConnect Integration Dashboard</h3>
+        <p class="header-description">Industry-standard bicycle data exchange connecting to 120+ suppliers</p>
+      </div>
+      <div class="dashboard-actions">
+        <button class="btn-sync-all" data-veloconnect-sync-all>Sync All Suppliers</button>
+        <button class="btn-test-connection" data-veloconnect-test>Test Connection</button>
+        <button class="btn-toggle-api" data-toggle-api>
+          <span data-api-mode="veloconnect">Switch to velo.API</span>
+          <span data-api-mode="velo" style="display: none;">Switch to VeloConnect</span>
+        </button>
+      </div>
+    </div>
+
+    {%- comment -%} Connection Status {%- endcomment -%}
+    <div class="connection-status-card">
+      <div class="status-header">
+        <div class="status-info">
+          <h4>VeloConnect Status</h4>
+          <div class="api-mode-indicator">
+            <span class="mode-label">API Mode:</span>
+            <span class="mode-value" data-current-mode>VeloConnect v1.6</span>
+          </div>
+        </div>
+        <div class="connection-indicator" data-connection-status="disconnected">
+          <span class="status-dot"></span>
+          <span class="status-text">Disconnected</span>
+        </div>
+      </div>
+      
+      <div class="connection-details">
+        <div class="detail-grid">
+          <div class="detail-item">
+            <span class="detail-label">Endpoint:</span>
+            <span class="detail-value" data-endpoint-url>{{ section.settings.veloconnect_api_url | default: 'https://api.veloconnect.de/v1.6/' }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Dealer Code:</span>
+            <span class="detail-value">{{ section.settings.dealer_code | default: 'Not configured' }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Last Sync:</span>
+            <span class="detail-value" data-last-sync>Never</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Active Suppliers:</span>
+            <span class="detail-value" data-active-suppliers>0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {%- comment -%} Supplier Management {%- endcomment -%}
+    <div class="suppliers-section">
+      <h4>Connected Suppliers</h4>
+      
+      <div class="suppliers-grid">
+        <div class="supplier-card" data-supplier="cube">
+          <div class="supplier-header">
+            <div class="supplier-info">
+              <img src="https://cdn.shopify.com/s/files/1/0533/2089/files/cube-logo.svg?v=1642515494" 
+                   alt="Cube" class="supplier-logo"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+              <span class="supplier-name-fallback" style="display: none;">Cube</span>
+              <div class="supplier-details">
+                <h5>Cube</h5>
+                <span class="supplier-code">{{ section.settings.cube_supplier_code | default: 'CUBE_DE' }}</span>
+              </div>
+            </div>
+            <div class="supplier-status" data-status="unknown">
+              <span class="status-dot"></span>
+              <span class="status-text">Unknown</span>
+            </div>
+          </div>
+          
+          <div class="supplier-stats">
+            <div class="stat-row">
+              <span class="stat-label">Products:</span>
+              <span class="stat-value" data-product-count>--</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Categories:</span>
+              <span class="stat-value">Urban, Trekking, MTB, Kids</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Markup:</span>
+              <span class="stat-value">{{ section.settings.cube_price_markup | default: 1.15 | minus: 1 | times: 100 }}%</span>
+            </div>
+          </div>
+          
+          <div class="supplier-actions">
+            <button class="btn-sync-supplier" data-sync-supplier="cube">Sync</button>
+            <button class="btn-view-catalog" data-view-catalog="cube">Catalog</button>
+          </div>
+        </div>
+        
+        <div class="supplier-card" data-supplier="riese_muller">
+          <div class="supplier-header">
+            <div class="supplier-info">
+              <img src="https://cdn.shopify.com/s/files/1/0533/2089/files/riese-muller-logo.svg?v=1642515494" 
+                   alt="Riese & Müller" class="supplier-logo"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+              <span class="supplier-name-fallback" style="display: none;">R&M</span>
+              <div class="supplier-details">
+                <h5>Riese & Müller</h5>
+                <span class="supplier-code">{{ section.settings.riese_muller_supplier_code | default: 'RM_DE' }}</span>
+              </div>
+            </div>
+            <div class="supplier-status" data-status="unknown">
+              <span class="status-dot"></span>
+              <span class="status-text">Unknown</span>
+            </div>
+          </div>
+          
+          <div class="supplier-stats">
+            <div class="stat-row">
+              <span class="stat-label">Products:</span>
+              <span class="stat-value" data-product-count>--</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Categories:</span>
+              <span class="stat-value">Premium, Cargo, City, Custom</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Markup:</span>
+              <span class="stat-value">{{ section.settings.riese_muller_price_markup | default: 1.2 | minus: 1 | times: 100 }}%</span>
+            </div>
+          </div>
+          
+          <div class="supplier-actions">
+            <button class="btn-sync-supplier" data-sync-supplier="riese_muller">Sync</button>
+            <button class="btn-view-catalog" data-view-catalog="riese_muller">Catalog</button>
+          </div>
+        </div>
+        
+        <div class="supplier-card" data-supplier="bosch">
+          <div class="supplier-header">
+            <div class="supplier-info">
+              <img src="https://cdn.shopify.com/s/files/1/0533/2089/files/bosch-logo.svg?v=1642515494" 
+                   alt="Bosch" class="supplier-logo"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+              <span class="supplier-name-fallback" style="display: none;">Bosch</span>
+              <div class="supplier-details">
+                <h5>Bosch</h5>
+                <span class="supplier-code">{{ section.settings.bosch_supplier_code | default: 'BOSCH_DE' }}</span>
+              </div>
+            </div>
+            <div class="supplier-status" data-status="unknown">
+              <span class="status-dot"></span>
+              <span class="status-text">Unknown</span>
+            </div>
+          </div>
+          
+          <div class="supplier-stats">
+            <div class="stat-row">
+              <span class="stat-label">Products:</span>
+              <span class="stat-value" data-product-count>--</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Categories:</span>
+              <span class="stat-value">Motors, Batteries, Displays, Chargers</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Markup:</span>
+              <span class="stat-value">{{ section.settings.bosch_price_markup | default: 1.1 | minus: 1 | times: 100 }}%</span>
+            </div>
+          </div>
+          
+          <div class="supplier-actions">
+            <button class="btn-sync-supplier" data-sync-supplier="bosch">Sync</button>
+            <button class="btn-view-catalog" data-view-catalog="bosch">Catalog</button>
+          </div>
+        </div>
+        
+        <div class="supplier-card" data-supplier="mondraker">
+          <div class="supplier-header">
+            <div class="supplier-info">
+              <img src="https://cdn.shopify.com/s/files/1/0533/2089/files/mondraker-logo.svg?v=1642515494" 
+                   alt="Mondraker" class="supplier-logo"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+              <span class="supplier-name-fallback" style="display: none;">Mondraker</span>
+              <div class="supplier-details">
+                <h5>Mondraker</h5>
+                <span class="supplier-code">{{ section.settings.mondraker_supplier_code | default: 'MNDK_ES' }}</span>
+              </div>
+            </div>
+            <div class="supplier-status" data-status="unknown">
+              <span class="status-dot"></span>
+              <span class="status-text">Unknown</span>
+            </div>
+          </div>
+          
+          <div class="supplier-stats">
+            <div class="stat-row">
+              <span class="stat-label">Products:</span>
+              <span class="stat-value" data-product-count>--</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Categories:</span>
+              <span class="stat-value">E-MTB, Enduro, Trail, XC</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Markup:</span>
+              <span class="stat-value">{{ section.settings.mondraker_price_markup | default: 1.25 | minus: 1 | times: 100 }}%</span>
+            </div>
+          </div>
+          
+          <div class="supplier-actions">
+            <button class="btn-sync-supplier" data-sync-supplier="mondraker">Sync</button>
+            <button class="btn-view-catalog" data-view-catalog="mondraker">Catalog</button>
+          </div>
+        </div>
+        
+        <div class="supplier-card" data-supplier="orbea">
+          <div class="supplier-header">
+            <div class="supplier-info">
+              <img src="https://cdn.shopify.com/s/files/1/0533/2089/files/orbea-logo.svg?v=1642515494" 
+                   alt="Orbea" class="supplier-logo"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+              <span class="supplier-name-fallback" style="display: none;">Orbea</span>
+              <div class="supplier-details">
+                <h5>Orbea</h5>
+                <span class="supplier-code">{{ section.settings.orbea_supplier_code | default: 'ORBEA_ES' }}</span>
+              </div>
+            </div>
+            <div class="supplier-status" data-status="unknown">
+              <span class="status-dot"></span>
+              <span class="status-text">Unknown</span>
+            </div>
+          </div>
+          
+          <div class="supplier-stats">
+            <div class="stat-row">
+              <span class="stat-label">Products:</span>
+              <span class="stat-value" data-product-count>--</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Categories:</span>
+              <span class="stat-value">Road, Gravel, Urban, Mountain</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Markup:</span>
+              <span class="stat-value">{{ section.settings.orbea_price_markup | default: 1.18 | minus: 1 | times: 100 }}%</span>
+            </div>
+          </div>
+          
+          <div class="supplier-actions">
+            <button class="btn-sync-supplier" data-sync-supplier="orbea">Sync</button>
+            <button class="btn-view-catalog" data-view-catalog="orbea">Catalog</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {%- comment -%} Feature Status {%- endcomment -%}
+    <div class="features-section">
+      <h4>VeloConnect Features</h4>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📦</div>
+          <div class="feature-content">
+            <h5>Product Sync</h5>
+            <div class="feature-status {{ section.settings.enable_product_sync }}">
+              {% if section.settings.enable_product_sync %}Enabled{% else %}Disabled{% endif %}
+            </div>
+            <p>Automatic product catalog synchronization</p>
+          </div>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">💰</div>
+          <div class="feature-content">
+            <h5>Price Sync</h5>
+            <div class="feature-status {{ section.settings.enable_price_sync }}">
+              {% if section.settings.enable_price_sync %}Enabled{% else %}Disabled{% endif %}
+            </div>
+            <p>Real-time pricing updates</p>
+          </div>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <div class="feature-content">
+            <h5>Inventory Sync</h5>
+            <div class="feature-status {{ section.settings.enable_inventory_sync }}">
+              {% if section.settings.enable_inventory_sync %}Enabled{% else %}Disabled{% endif %}
+            </div>
+            <p>Stock level monitoring</p>
+          </div>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">🛒</div>
+          <div class="feature-content">
+            <h5>Order Sync</h5>
+            <div class="feature-status {{ section.settings.enable_order_sync }}">
+              {% if section.settings.enable_order_sync %}Enabled{% else %}Disabled{% endif %}
+            </div>
+            <p>Automated order processing</p>
+          </div>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">🏪</div>
+          <div class="feature-content">
+            <h5>Click & Collect</h5>
+            <div class="feature-status {{ section.settings.enable_click_collect }}">
+              {% if section.settings.enable_click_collect %}Enabled{% else %}Disabled{% endif %}
+            </div>
+            <p>Online order, local pickup</p>
+          </div>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">🚚</div>
+          <div class="feature-content">
+            <h5>Dropshipping</h5>
+            <div class="feature-status {{ section.settings.enable_dropshipping }}">
+              {% if section.settings.enable_dropshipping %}Enabled{% else %}Disabled{% endif %}
+            </div>
+            <p>Direct supplier delivery</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {%- comment -%} Activity Log {%- endcomment -%}
+    <div class="activity-log">
+      <h4>VeloConnect Activity Log</h4>
+      <div class="log-container" data-veloconnect-logs>
+        <div class="log-entry">
+          <span class="log-time">--:--:--</span>
+          <span class="log-level info">INFO</span>
+          <span class="log-message">VeloConnect system ready</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+{%- endif -%}
+
+<style>
+  .pipeline-veloconnect-dashboard {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    margin: 2rem 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid #e5e7eb;
+  }
+
+  .header-info h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .header-description {
+    color: #6b7280;
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  .dashboard-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-sync-all,
+  .btn-test-connection,
+  .btn-toggle-api,
+  .btn-sync-supplier,
+  .btn-view-catalog {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.875rem;
+  }
+
+  .btn-sync-all {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+  }
+
+  .btn-sync-all:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  }
+
+  .btn-test-connection,
+  .btn-toggle-api {
+    background: #f3f4f6;
+    color: #374151;
+    border: 1px solid #d1d5db;
+  }
+
+  .btn-test-connection:hover,
+  .btn-toggle-api:hover {
+    background: #e5e7eb;
+  }
+
+  .connection-status-card {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid #e5e7eb;
+  }
+
+  .status-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .status-info h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .api-mode-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .mode-label {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+
+  .mode-value {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #111827;
+    padding: 0.25rem 0.75rem;
+    background: white;
+    border-radius: 16px;
+    border: 1px solid #d1d5db;
+  }
+
+  .connection-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .status-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ef4444;
+  }
+
+  .connection-indicator[data-connection-status="connected"] .status-dot {
+    background: #22c55e;
+  }
+
+  .connection-indicator[data-connection-status="syncing"] .status-dot {
+    background: #f59e0b;
+    animation: pulse 2s infinite;
+  }
+
+  .status-text {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #6b7280;
+  }
+
+  .detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+
+  .detail-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .detail-label {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+
+  .detail-value {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #111827;
+  }
+
+  .suppliers-section {
+    margin-bottom: 2rem;
+  }
+
+  .suppliers-section h4 {
+    font-size: 1.375rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 0 0 1.5rem 0;
+  }
+
+  .suppliers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .supplier-card {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid #e5e7eb;
+  }
+
+  .supplier-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .supplier-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .supplier-logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+
+  .supplier-name-fallback {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #111827;
+  }
+
+  .supplier-details h5 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 0 0 0.25rem 0;
+  }
+
+  .supplier-code {
+    font-size: 0.75rem;
+    color: #6b7280;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    background: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  .supplier-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .supplier-status .status-dot {
+    width: 10px;
+    height: 10px;
+    background: #9ca3af;
+  }
+
+  .supplier-status[data-status="connected"] .status-dot {
+    background: #22c55e;
+  }
+
+  .supplier-status[data-status="error"] .status-dot {
+    background: #ef4444;
+  }
+
+  .supplier-status[data-status="syncing"] .status-dot {
+    background: #f59e0b;
+    animation: pulse 2s infinite;
+  }
+
+  .supplier-stats {
+    margin-bottom: 1rem;
+  }
+
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .stat-label {
+    color: #6b7280;
+  }
+
+  .stat-value {
+    font-weight: 500;
+    color: #111827;
+  }
+
+  .supplier-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .supplier-actions button {
+    flex: 1;
+    font-size: 0.8125rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .btn-sync-supplier {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+  }
+
+  .btn-sync-supplier:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  }
+
+  .btn-view-catalog {
+    background: white;
+    color: #374151;
+    border: 1px solid #d1d5db;
+  }
+
+  .btn-view-catalog:hover {
+    background: #f3f4f6;
+  }
+
+  .features-section {
+    margin-bottom: 2rem;
+  }
+
+  .features-section h4 {
+    font-size: 1.375rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 0 0 1.5rem 0;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .feature-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+  }
+
+  .feature-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+  }
+
+  .feature-content h5 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .feature-status {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+  }
+
+  .feature-status.true {
+    background: #dcfce7;
+    color: #166534;
+  }
+
+  .feature-status.false {
+    background: #fef2f2;
+    color: #991b1b;
+  }
+
+  .feature-content p {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin: 0;
+  }
+
+  .activity-log {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+
+  .activity-log h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 0 0 1rem 0;
+  }
+
+  .log-container {
+    max-height: 250px;
+    overflow-y: auto;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.8125rem;
+  }
+
+  .log-entry {
+    display: flex;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .log-time {
+    color: #6b7280;
+    min-width: 70px;
+  }
+
+  .log-level {
+    min-width: 50px;
+    font-weight: 600;
+  }
+
+  .log-level.info {
+    color: #2563eb;
+  }
+
+  .log-level.success {
+    color: #16a34a;
+  }
+
+  .log-level.warning {
+    color: #d97706;
+  }
+
+  .log-level.error {
+    color: #dc2626;
+  }
+
+  .log-message {
+    color: #111827;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .dashboard-header {
+      flex-direction: column;
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .dashboard-actions {
+      justify-content: stretch;
+    }
+
+    .dashboard-actions button {
+      flex: 1;
+    }
+
+    .status-header {
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .suppliers-grid,
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .supplier-actions {
+      flex-direction: column;
+    }
+
+    .detail-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const veloconnectAPI = {
+    config: null,
+    currentMode: 'veloconnect',
+    
+    init() {
+      const configElement = document.querySelector('[data-veloconnect-config]');
+      if (configElement) {
+        try {
+          this.config = JSON.parse(configElement.textContent);
+          this.setupEventListeners();
+          this.initializeStatus();
+          this.startPeriodicSync();
+        } catch (error) {
+          this.log('Failed to parse VeloConnect configuration', 'error');
+          console.error('VeloConnect config error:', error);
+        }
+      }
+    },
+    
+    setupEventListeners() {
+      // Sync all suppliers
+      const syncAllBtn = document.querySelector('[data-veloconnect-sync-all]');
+      if (syncAllBtn) {
+        syncAllBtn.addEventListener('click', () => this.syncAllSuppliers());
+      }
+      
+      // Test connection
+      const testBtn = document.querySelector('[data-veloconnect-test]');
+      if (testBtn) {
+        testBtn.addEventListener('click', () => this.testConnection());
+      }
+      
+      // Toggle API mode
+      const toggleBtn = document.querySelector('[data-toggle-api]');
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => this.toggleApiMode());
+      }
+      
+      // Individual supplier sync
+      document.querySelectorAll('[data-sync-supplier]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const supplier = e.target.dataset.syncSupplier;
+          this.syncSupplier(supplier);
+        });
+      });
+      
+      // View catalog
+      document.querySelectorAll('[data-view-catalog]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const supplier = e.target.dataset.viewCatalog;
+          this.viewSupplierCatalog(supplier);
+        });
+      });
+    },
+    
+    initializeStatus() {
+      this.updateConnectionStatus('disconnected');
+      this.updateActiveSuppliers();
+      this.log('VeloConnect system initialized');
+    },
+    
+    async testConnection() {
+      this.updateConnectionStatus('syncing');
+      this.log('Testing VeloConnect connection...');
+      
+      try {
+        const endpoint = this.currentMode === 'velo' 
+          ? this.config.veloconnect.veloApiUrl 
+          : this.config.veloconnect.apiUrl;
+          
+        // Simulate connection test
+        const response = await this.makeApiCall(endpoint + 'health', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${this.config.veloconnect.apiKey}`,
+            'X-Dealer-Code': this.config.veloconnect.dealerCode
+          }
+        });
+        
+        if (response.ok) {
+          this.updateConnectionStatus('connected');
+          this.log('Connection to VeloConnect successful', 'success');
+          this.updateLastSync();
+        } else {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+      } catch (error) {
+        this.updateConnectionStatus('disconnected');
+        this.log(`Connection test failed: ${error.message}`, 'error');
+      }
+    },
+    
+    async syncAllSuppliers() {
+      this.log('Starting sync for all enabled suppliers...');
+      const enabledSuppliers = Object.keys(this.config.suppliers).filter(
+        supplier => this.config.suppliers[supplier].enabled
+      );
+      
+      let successCount = 0;
+      for (const supplier of enabledSuppliers) {
+        try {
+          await this.syncSupplier(supplier);
+          successCount++;
+        } catch (error) {
+          this.log(`Failed to sync ${supplier}: ${error.message}`, 'error');
+        }
+      }
+      
+      this.log(`Sync completed: ${successCount}/${enabledSuppliers.length} suppliers successful`, 'success');
+    },
+    
+    async syncSupplier(supplierName) {
+      const supplier = this.config.suppliers[supplierName];
+      if (!supplier || !supplier.enabled) {
+        this.log(`Supplier ${supplierName} is disabled, skipping sync`, 'warning');
+        return;
+      }
+      
+      this.updateSupplierStatus(supplierName, 'syncing');
+      this.log(`Starting sync for ${supplierName}...`);
+      
+      try {
+        const endpoint = this.currentMode === 'velo' 
+          ? this.config.veloconnect.veloApiUrl 
+          : this.config.veloconnect.apiUrl;
+          
+        // Simulate VeloConnect API call
+        const response = await this.makeApiCall(endpoint + 'suppliers/' + supplier.supplierCode + '/products', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${this.config.veloconnect.apiKey}`,
+            'X-Dealer-Code': this.config.veloconnect.dealerCode,
+            'Accept': 'application/xml'
+          }
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          this.updateSupplierData(supplierName, data);
+          this.updateSupplierStatus(supplierName, 'connected');
+          this.log(`Sync completed for ${supplierName}: ${data.products?.length || 0} products`, 'success');
+          
+          // Update pricing if enabled
+          if (this.config.features.enablePriceSync) {
+            await this.updatePricing(supplierName, data.products);
+          }
+          
+          // Update inventory if enabled
+          if (this.config.features.enableInventorySync) {
+            await this.updateInventory(supplierName, data.products);
+          }
+          
+        } else {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+      } catch (error) {
+        this.updateSupplierStatus(supplierName, 'error');
+        this.log(`Sync failed for ${supplierName}: ${error.message}`, 'error');
+      }
+    },
+    
+    async updatePricing(supplierName, products) {
+      const supplier = this.config.suppliers[supplierName];
+      let updatedCount = 0;
+      
+      for (const product of products) {
+        try {
+          const finalPrice = product.price * supplier.priceMarkup;
+          // Here you would update the Shopify product price
+          updatedCount++;
+        } catch (error) {
+          this.log(`Failed to update price for product ${product.id}`, 'warning');
+        }
+      }
+      
+      this.log(`Updated pricing for ${updatedCount} products from ${supplierName}`, 'success');
+    },
+    
+    async updateInventory(supplierName, products) {
+      let updatedCount = 0;
+      
+      for (const product of products) {
+        try {
+          // Here you would update the Shopify product inventory
+          updatedCount++;
+        } catch (error) {
+          this.log(`Failed to update inventory for product ${product.id}`, 'warning');
+        }
+      }
+      
+      this.log(`Updated inventory for ${updatedCount} products from ${supplierName}`, 'success');
+    },
+    
+    toggleApiMode() {
+      this.currentMode = this.currentMode === 'veloconnect' ? 'velo' : 'veloconnect';
+      
+      const modeElement = document.querySelector('[data-current-mode]');
+      const toggleElements = document.querySelectorAll('[data-api-mode]');
+      const endpointElement = document.querySelector('[data-endpoint-url]');
+      
+      if (modeElement) {
+        modeElement.textContent = this.currentMode === 'velo' ? 'velo.API v2' : 'VeloConnect v1.6';
+      }
+      
+      toggleElements.forEach(element => {
+        if (element.dataset.apiMode === this.currentMode) {
+          element.style.display = 'none';
+        } else {
+          element.style.display = 'inline';
+        }
+      });
+      
+      if (endpointElement) {
+        endpointElement.textContent = this.currentMode === 'velo' 
+          ? this.config.veloconnect.veloApiUrl 
+          : this.config.veloconnect.apiUrl;
+      }
+      
+      this.log(`Switched to ${this.currentMode === 'velo' ? 'velo.API' : 'VeloConnect'} mode`);
+    },
+    
+    viewSupplierCatalog(supplierName) {
+      this.log(`Opening catalog for ${supplierName}...`);
+      // Here you would implement catalog viewing functionality
+      alert(`Catalog view for ${supplierName} - Feature coming soon!`);
+    },
+    
+    async makeApiCall(url, options) {
+      // Simulate API call with realistic delays and responses
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          const success = Math.random() > 0.2; // 80% success rate
+          resolve({
+            ok: success,
+            status: success ? 200 : (Math.random() > 0.5 ? 401 : 500),
+            statusText: success ? 'OK' : 'Error',
+            json: () => Promise.resolve({
+              products: success ? Array.from({length: Math.floor(Math.random() * 100) + 20}, (_, i) => ({
+                id: `vc_${Date.now()}_${i}`,
+                name: `Product ${i + 1}`,
+                price: Math.random() * 2000 + 200,
+                inventory: Math.floor(Math.random() * 50),
+                category: ['Urban', 'Trekking', 'MTB', 'Road'][Math.floor(Math.random() * 4)]
+              })) : []
+            })
+          });
+        }, Math.random() * 2000 + 1000); // 1-3 second delay
+      });
+    },
+    
+    updateConnectionStatus(status) {
+      const indicator = document.querySelector('[data-connection-status]');
+      const statusText = document.querySelector('.connection-indicator .status-text');
+      
+      if (indicator) {
+        indicator.setAttribute('data-connection-status', status);
+      }
+      
+      if (statusText) {
+        statusText.textContent = status.charAt(0).toUpperCase() + status.slice(1);
+      }
+    },
+    
+    updateSupplierStatus(supplierName, status) {
+      const supplierCard = document.querySelector(`[data-supplier="${supplierName}"]`);
+      if (!supplierCard) return;
+      
+      const statusElement = supplierCard.querySelector('.supplier-status');
+      const statusText = supplierCard.querySelector('.supplier-status .status-text');
+      
+      if (statusElement) {
+        statusElement.setAttribute('data-status', status);
+      }
+      
+      if (statusText) {
+        statusText.textContent = status.charAt(0).toUpperCase() + status.slice(1);
+      }
+    },
+    
+    updateSupplierData(supplierName, data) {
+      const supplierCard = document.querySelector(`[data-supplier="${supplierName}"]`);
+      if (!supplierCard) return;
+      
+      const productCountElement = supplierCard.querySelector('[data-product-count]');
+      if (productCountElement && data.products) {
+        productCountElement.textContent = data.products.length;
+      }
+    },
+    
+    updateLastSync() {
+      const lastSyncElement = document.querySelector('[data-last-sync]');
+      if (lastSyncElement) {
+        lastSyncElement.textContent = new Date().toLocaleString();
+      }
+    },
+    
+    updateActiveSuppliers() {
+      const enabledCount = Object.values(this.config.suppliers)
+        .filter(supplier => supplier.enabled).length;
+      
+      const activeElement = document.querySelector('[data-active-suppliers]');
+      if (activeElement) {
+        activeElement.textContent = enabledCount;
+      }
+    },
+    
+    startPeriodicSync() {
+      if (this.config.veloconnect.enabled && this.config.veloconnect.syncInterval) {
+        setInterval(() => {
+          this.syncAllSuppliers();
+        }, this.config.veloconnect.syncInterval * 1000);
+        
+        this.log(`Periodic sync enabled: every ${this.config.veloconnect.syncInterval} seconds`);
+      }
+    },
+    
+    log(message, level = 'info') {
+      const logsContainer = document.querySelector('[data-veloconnect-logs]');
+      if (!logsContainer) return;
+      
+      const logEntry = document.createElement('div');
+      logEntry.className = 'log-entry';
+      logEntry.innerHTML = `
+        <span class="log-time">${new Date().toLocaleTimeString()}</span>
+        <span class="log-level ${level}">${level.toUpperCase()}</span>
+        <span class="log-message">${message}</span>
+      `;
+      
+      logsContainer.appendChild(logEntry);
+      
+      // Keep only last 100 entries
+      const entries = logsContainer.querySelectorAll('.log-entry');
+      if (entries.length > 100) {
+        entries[0].remove();
+      }
+      
+      // Scroll to bottom
+      logsContainer.scrollTop = logsContainer.scrollHeight;
+      
+      // Also log to console
+      console.log(`[VeloConnect ${level.toUpperCase()}] ${message}`);
+    }
+  };
+  
+  // Initialize VeloConnect API system
+  veloconnectAPI.init();
+  
+  // Export for external use
+  window.pipelineVeloConnectAPI = veloconnectAPI;
+});
+</script>

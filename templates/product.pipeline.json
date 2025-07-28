@@ -1,7 +1,7 @@
 {
   "sections": {
     "main": {
-      "type": "main-product",
+      "type": "pipeline-main-product",
       "blocks": {
         "vendor": {
           "type": "text",
@@ -71,18 +71,6 @@
         "padding_bottom": 12
       }
     },
-    "product-tabs": {
-      "type": "product-tabs-pipeline",
-      "settings": {
-        "show_specifications": true,
-        "show_features": true,
-        "show_shipping": true,
-        "show_reviews": true,
-        "show_custom_tab": true,
-        "custom_tab_title": "E-Bike Care",
-        "custom_tab_content": "<h4>🔋 Battery Care</h4><ul><li>Charge battery after each ride</li><li>Store in cool, dry place</li><li>Avoid extreme temperatures</li><li>Monthly full discharge recommended</li></ul><h4>🛠️ Maintenance</h4><ul><li>Regular tire pressure checks</li><li>Chain lubrication every 100 miles</li><li>Annual professional service recommended</li><li>Keep electrical connections clean and dry</li></ul>"
-      }
-    },
     "related-products": {
       "type": "related-products",
       "settings": {
@@ -104,7 +92,6 @@
   },
   "order": [
     "main",
-    "product-tabs",
     "related-products"
   ]
 }

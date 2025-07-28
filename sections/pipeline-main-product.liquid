@@ -1,0 +1,1587 @@
+{% comment %}
+  Pipeline-Style Main Product Section
+  Enhanced product page matching Pipeline theme features
+{% endcomment %}
+
+<product-info
+  id="PipelineProduct-{{ section.id }}"
+  class="pipeline-main-product section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}"
+  data-section="{{ section.id }}"
+  data-product-id="{{ product.id }}"
+  data-update-url="true"
+  data-url="{{ product.url }}"
+>
+  {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
+  {{ 'component-accordion.css' | asset_url | stylesheet_tag }}
+  {{ 'component-price.css' | asset_url | stylesheet_tag }}
+  {{ 'component-slider.css' | asset_url | stylesheet_tag }}
+  {{ 'component-rating.css' | asset_url | stylesheet_tag }}
+  {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+
+  {% unless product.has_only_default_variant %}
+    {{ 'component-product-variant-picker.css' | asset_url | stylesheet_tag }}
+    {{ 'component-swatch-input.css' | asset_url | stylesheet_tag }}
+    {{ 'component-swatch.css' | asset_url | stylesheet_tag }}
+  {% endunless %}
+
+  {%- if product.quantity_price_breaks_configured? -%}
+    {{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}
+  {%- endif -%}
+
+  <div class="page-width">
+    <div class="pipeline-product-container">
+      
+      <!-- Product Media Gallery -->
+      <div class="pipeline-product-media">
+        {% render 'product-media-gallery', 
+          product: product, 
+          variant_images: variant_images, 
+          class: 'pipeline-enhanced-gallery' %}
+        
+        <!-- Pipeline Product Badges -->
+        {% render 'pipeline-product-badges', product: product, class: 'product-page-badges' %}
+        
+        <!-- Wishlist Button -->
+        {% render 'pipeline-wishlist', product: product, class: 'product-page-wishlist' %}
+      </div>
+
+      <!-- Product Information -->
+      <div class="pipeline-product-info{% if section.settings.enable_sticky_info %} pipeline-sticky-info{% endif %}">
+        
+        <!-- Breadcrumb Navigation -->
+        {% if section.settings.show_breadcrumb %}
+          <nav class="pipeline-breadcrumb">
+            <ol class="breadcrumb-list">
+              <li><a href="/">Home</a></li>
+              <li><a href="{{ collections.all.url }}">Products</a></li>
+              {% if collection %}
+                <li><a href="{{ collection.url }}">{{ collection.title }}</a></li>
+              {% endif %}
+              <li>{{ product.title }}</li>
+            </ol>
+          </nav>
+        {% endif %}
+
+        <!-- Product Header -->
+        <div class="pipeline-product-header">
+          
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+              
+              {%- when 'text' -%}
+                <div class="product-block product-block--text" {{ block.shopify_attributes }}>
+                  <p class="product-text {{ block.settings.text_style }}">
+                    {{ block.settings.text }}
+                  </p>
+                </div>
+              
+              {%- when 'title' -%}
+                <div class="product-block product-block--title" {{ block.shopify_attributes }}>
+                  <h1 class="pipeline-product-title">{{ product.title }}</h1>
+                </div>
+              
+              {%- when 'price' -%}
+                <div class="product-block product-block--price no-js-hidden" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
+                  <div class="pipeline-price-container">
+                    {%- render 'price', product: product, use_variant: true, show_badges: true -%}
+                    
+                    <!-- Pipeline Price Features -->
+                    {% if product.compare_at_price > product.price %}
+                      {% assign savings = product.compare_at_price | minus: product.price %}
+                      {% assign savings_percent = savings | times: 100 | divided_by: product.compare_at_price %}
+                      <div class="pipeline-savings">
+                        <span class="savings-badge">Save {{ savings | money }} ({{ savings_percent }}%)</span>
+                      </div>
+                    {% endif %}
+                    
+                    <!-- Payment Methods -->
+                    {% if section.settings.show_payment_methods %}
+                      <div class="pipeline-payment-methods">
+                        <div class="payment-icons">
+                          <span class="payment-text">We accept:</span>
+                          <img src="{{ 'payment-visa.svg' | asset_url }}" alt="Visa" class="payment-icon">
+                          <img src="{{ 'payment-mastercard.svg' | asset_url }}" alt="Mastercard" class="payment-icon">
+                          <img src="{{ 'payment-paypal.svg' | asset_url }}" alt="PayPal" class="payment-icon">
+                        </div>
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+              
+              {%- when 'variant_picker' -%}
+                <div class="product-block product-block--variant-picker" {{ block.shopify_attributes }}>
+                  <variant-selects 
+                    id="variant-selects-{{ section.id }}" 
+                    class="pipeline-variant-selects no-js-hidden" 
+                    data-section="{{ section.id }}" 
+                    data-url="{{ product.url }}" 
+                    {{ block.shopify_attributes }}
+                  >
+                    {%- for option in product.options_with_values -%}
+                      <div class="pipeline-product-option">
+                        <label class="option-label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
+                          {{ option.name }}
+                          <span class="required-indicator">*</span>
+                        </label>
+                        
+                        <div class="option-values">
+                          {%- if block.settings.picker_type == 'button' -%}
+                            <fieldset class="js product-form__input pipeline-option-buttons">
+                              <legend class="visually-hidden">{{ option.name }}</legend>
+                              {%- for value in option.values -%}
+                                <input 
+                                  type="radio" 
+                                  id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}" 
+                                  name="{{ option.name }}" 
+                                  value="{{ value | escape }}" 
+                                  form="{{ product_form_id }}"
+                                  {% if option.selected_value == value %}checked{% endif %}
+                                >
+                                <label class="pipeline-option-button" for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
+                                  {{ value }}
+                                </label>
+                              {%- endfor -%}
+                            </fieldset>
+                          {%- else -%}
+                            <select 
+                              id="Option-{{ section.id }}-{{ forloop.index0 }}" 
+                              class="pipeline-select" 
+                              name="options[{{ option.name | escape }}]" 
+                              form="{{ product_form_id }}"
+                            >
+                              {%- for value in option.values -%}
+                                <option 
+                                  value="{{ value | escape }}" 
+                                  {% if option.selected_value == value %}selected="selected"{% endif %}
+                                >
+                                  {{ value }}
+                                </option>
+                              {%- endfor -%}
+                            </select>
+                          {%- endif -%}
+                        </div>
+                      </div>
+                    {%- endfor -%}
+                    
+                    <script type="application/json">
+                      {{ product.variants | json }}
+                    </script>
+                  </variant-selects>
+                </div>
+              
+              {%- when 'quantity_selector' -%}
+                <div class="product-block product-block--quantity" {{ block.shopify_attributes }}>
+                  <div class="pipeline-quantity-container">
+                    <label class="quantity-label" for="Quantity-{{ section.id }}">
+                      Quantity
+                    </label>
+                    <div class="pipeline-quantity-selector">
+                      <button class="quantity-button quantity-minus" type="button">
+                        <span class="visually-hidden">Decrease quantity</span>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                          <path d="M3 8H13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                      </button>
+                      <input 
+                        class="quantity-input" 
+                        type="number" 
+                        name="quantity" 
+                        id="Quantity-{{ section.id }}" 
+                        min="1" 
+                        value="1" 
+                        form="{{ product_form_id }}"
+                      >
+                      <button class="quantity-button quantity-plus" type="button">
+                        <span class="visually-hidden">Increase quantity</span>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                          <path d="M8 3V13M3 8H13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              
+              {%- when 'buy_buttons' -%}
+                <div class="product-block product-block--buy-buttons" {{ block.shopify_attributes }}>
+                  <div class="pipeline-buy-buttons">
+                    
+                    <form action="/cart/add" method="post" enctype="multipart/form-data" id="{{ product_form_id }}" class="form" novalidate="novalidate" data-type="add-to-cart-form">
+                      
+                      <!-- Main Add to Cart Button -->
+                      <div class="product-form__buttons">
+                        <button 
+                          type="submit" 
+                          name="add" 
+                          class="pipeline-add-to-cart-button btn product-form__cart-submit"
+                          {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}
+                        >
+                          <span class="btn-text">
+                            {%- if product.selected_or_first_available_variant.available -%}
+                              Add to Cart
+                            {%- else -%}
+                              Sold Out
+                            {%- endif -%}
+                          </span>
+                          <span class="btn-icon">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                              <path d="M5 7H15L14 12H6L5 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                              <path d="M5 7L3 3H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                              <circle cx="6" cy="17" r="1" stroke="currentColor" stroke-width="2"/>
+                              <circle cx="14" cy="17" r="1" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                          </span>
+                        </button>
+                        
+                        <!-- Buy Now Button -->
+                        {% if section.settings.show_buy_now %}
+                          <button 
+                            type="button" 
+                            class="pipeline-buy-now-button btn btn-secondary"
+                            onclick="buyNow()"
+                          >
+                            <span class="btn-text">Buy Now</span>
+                            <span class="btn-icon">⚡</span>
+                          </button>
+                        {% endif %}
+                      </div>
+                      
+                      <!-- Dynamic Checkout Buttons -->
+                      {%- if block.settings.show_dynamic_checkout -%}
+                        {{ form | payment_button }}
+                      {%- endif -%}
+                      
+                      <input type="hidden" name="product-id" value="{{ product.id }}">
+                      <input type="hidden" name="section-id" value="{{ section.id }}">
+                    </form>
+                    
+                    <!-- Additional Action Buttons -->
+                    <div class="pipeline-action-buttons">
+                      
+                      <!-- Size Guide Button -->
+                      {% if section.settings.show_size_guide %}
+                        <button class="action-button size-guide-btn">
+                          <span class="btn-icon">📏</span>
+                          <span class="btn-text">Size Guide</span>
+                        </button>
+                      {% endif %}
+                      
+                      <!-- Ask a Question Button -->
+                      {% if section.settings.show_ask_question %}
+                        <button class="action-button ask-question-btn">
+                          <span class="btn-icon">❓</span>
+                          <span class="btn-text">Ask a Question</span>
+                        </button>
+                      {% endif %}
+                      
+                      <!-- Share Button -->
+                      <button class="action-button share-btn" onclick="shareProduct()">
+                        <span class="btn-icon">📤</span>
+                        <span class="btn-text">Share</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              
+              {%- when 'description' -%}
+                <!-- Description handled in tabs below -->
+              
+              {%- when 'custom_liquid' -%}
+                <div class="product-block product-block--custom-liquid" {{ block.shopify_attributes }}>
+                  {{ block.settings.custom_liquid }}
+                </div>
+              
+            {%- endcase -%}
+          {%- endfor -%}
+
+        </div>
+
+        <!-- Pipeline Product Features -->
+        {% if section.settings.show_features %}
+          <div class="pipeline-product-features">
+            <div class="features-grid">
+              
+              <div class="feature-item">
+                <div class="feature-icon">🚚</div>
+                <div class="feature-content">
+                  <h4>Free Shipping</h4>
+                  <p>On orders over $100</p>
+                </div>
+              </div>
+              
+              <div class="feature-item">
+                <div class="feature-icon">↩️</div>
+                <div class="feature-content">
+                  <h4>Easy Returns</h4>
+                  <p>30-day return policy</p>
+                </div>
+              </div>
+              
+              <div class="feature-item">
+                <div class="feature-icon">🔒</div>
+                <div class="feature-content">
+                  <h4>Secure Payment</h4>
+                  <p>SSL encrypted checkout</p>
+                </div>
+              </div>
+              
+              <div class="feature-item">
+                <div class="feature-icon">🛠️</div>
+                <div class="feature-content">
+                  <h4>Warranty</h4>
+                  <p>2-year manufacturer warranty</p>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        {% endif %}
+
+        <!-- Trust Badges -->
+        {% if section.settings.show_trust_badges %}
+          <div class="pipeline-trust-badges">
+            <div class="trust-badge">
+              <img src="{{ 'trust-secure.svg' | asset_url }}" alt="Secure Shopping">
+              <span>Secure Shopping</span>
+            </div>
+            <div class="trust-badge">
+              <img src="{{ 'trust-warranty.svg' | asset_url }}" alt="Warranty">
+              <span>2-Year Warranty</span>
+            </div>
+            <div class="trust-badge">
+              <img src="{{ 'trust-shipping.svg' | asset_url }}" alt="Fast Shipping">
+              <span>Fast Shipping</span>
+            </div>
+          </div>
+        {% endif %}
+
+      </div>
+
+    </div>
+
+    <!-- Pipeline Product Tabs -->
+    {% if section.settings.enable_tabs %}
+      <div class="pipeline-product-tabs">
+        <div class="tab-navigation">
+          <button class="tab-btn active" data-tab="description">Description</button>
+          <button class="tab-btn" data-tab="specifications">Specifications</button>
+          <button class="tab-btn" data-tab="shipping">Shipping & Returns</button>
+          {% if section.settings.show_reviews_tab %}
+            <button class="tab-btn" data-tab="reviews">Reviews</button>
+          {% endif %}
+          {% if section.settings.custom_tab_title != blank %}
+            <button class="tab-btn" data-tab="custom">{{ section.settings.custom_tab_title }}</button>
+          {% endif %}
+        </div>
+
+        <div class="tab-content-container">
+          
+          <!-- Description Tab -->
+          <div class="tab-content active" id="description-tab">
+            <div class="tab-content-inner">
+              {% if product.description != blank %}
+                {{ product.description }}
+              {% else %}
+                <p>No description available for this product.</p>
+              {% endif %}
+            </div>
+          </div>
+
+          <!-- Specifications Tab -->
+          <div class="tab-content" id="specifications-tab">
+            <div class="tab-content-inner">
+              {% if product.metafields.specifications %}
+                {{ product.metafields.specifications }}
+              {% else %}
+                <div class="specs-grid">
+                  {% if product.metafields.specs.motor_power %}
+                    <div class="spec-item">
+                      <span class="spec-label">Motor Power:</span>
+                      <span class="spec-value">{{ product.metafields.specs.motor_power }}W</span>
+                    </div>
+                  {% endif %}
+                  
+                  {% if product.metafields.specs.battery_capacity %}
+                    <div class="spec-item">
+                      <span class="spec-label">Battery:</span>
+                      <span class="spec-value">{{ product.metafields.specs.battery_capacity }}Wh</span>
+                    </div>
+                  {% endif %}
+                  
+                  {% if product.metafields.specs.range_km %}
+                    <div class="spec-item">
+                      <span class="spec-label">Range:</span>
+                      <span class="spec-value">{{ product.metafields.specs.range_km }}km</span>
+                    </div>
+                  {% endif %}
+                  
+                  {% if product.metafields.specs.weight %}
+                    <div class="spec-item">
+                      <span class="spec-label">Weight:</span>
+                      <span class="spec-value">{{ product.metafields.specs.weight }}kg</span>
+                    </div>
+                  {% endif %}
+                  
+                  {% if product.weight %}
+                    <div class="spec-item">
+                      <span class="spec-label">Product Weight:</span>
+                      <span class="spec-value">{{ product.weight | weight_with_unit }}</span>
+                    </div>
+                  {% endif %}
+                  
+                  {% if product.vendor %}
+                    <div class="spec-item">
+                      <span class="spec-label">Brand:</span>
+                      <span class="spec-value">{{ product.vendor }}</span>
+                    </div>
+                  {% endif %}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+
+          <!-- Shipping Tab -->
+          <div class="tab-content" id="shipping-tab">
+            <div class="tab-content-inner">
+              {% if section.settings.shipping_content != blank %}
+                {{ section.settings.shipping_content }}
+              {% else %}
+                <div class="shipping-info">
+                  <h4>🚚 Shipping Information</h4>
+                  <ul>
+                    <li>Free shipping on orders over $100</li>
+                    <li>Standard delivery: 3-7 business days</li>
+                    <li>Express delivery: 1-3 business days</li>
+                    <li>International shipping available</li>
+                  </ul>
+                  
+                  <h4>↩️ Returns & Exchanges</h4>
+                  <ul>
+                    <li>30-day return policy</li>
+                    <li>Items must be unused and in original packaging</li>
+                    <li>Free returns for defective items</li>
+                    <li>Customer pays return shipping for exchanges</li>
+                  </ul>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+
+          <!-- Reviews Tab -->
+          {% if section.settings.show_reviews_tab %}
+            <div class="tab-content" id="reviews-tab">
+              <div class="tab-content-inner">
+                {% if section.settings.reviews_app == 'shopify' %}
+                  <div id="shopify-product-reviews" data-id="{{ product.id }}">{{ product.metafields.spr.reviews }}</div>
+                {% else %}
+                  <div class="reviews-placeholder">
+                    <h4>Customer Reviews</h4>
+                    <p>Reviews will appear here when a review app is connected.</p>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
+
+          <!-- Custom Tab -->
+          {% if section.settings.custom_tab_title != blank %}
+            <div class="tab-content" id="custom-tab">
+              <div class="tab-content-inner">
+                {{ section.settings.custom_tab_content }}
+              </div>
+            </div>
+          {% endif %}
+
+        </div>
+      </div>
+    {% endif %}
+
+  </div>
+
+  <!-- Sticky Add to Cart Bar (Mobile) -->
+  {% if section.settings.enable_sticky_cart %}
+    <div class="pipeline-sticky-cart">
+      <div class="sticky-cart-content">
+        <div class="sticky-cart-product">
+          <img src="{{ product.featured_image | image_url: width: 60 }}" alt="{{ product.title }}" class="sticky-product-image">
+          <div class="sticky-product-info">
+            <h4 class="sticky-product-title">{{ product.title | truncate: 30 }}</h4>
+            <div class="sticky-product-price">{{ product.price | money }}</div>
+          </div>
+        </div>
+        <button class="sticky-add-to-cart-btn btn" onclick="addToCartSticky()">
+          Add to Cart
+        </button>
+      </div>
+    </div>
+  {% endif %}
+
+</product-info>
+
+<script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+
+<script>
+// Pipeline Product Page JavaScript
+class PipelineProductPage {
+  constructor() {
+    this.init();
+  }
+
+  init() {
+    this.setupTabs();
+    this.setupQuantitySelector();
+    this.setupStickyCart();
+    this.setupProductForm();
+  }
+
+  setupTabs() {
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const tabId = button.dataset.tab;
+        
+        // Remove active classes
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+        
+        // Add active classes
+        button.classList.add('active');
+        document.getElementById(tabId + '-tab').classList.add('active');
+      });
+    });
+  }
+
+  setupQuantitySelector() {
+    const minusBtn = document.querySelector('.quantity-minus');
+    const plusBtn = document.querySelector('.quantity-plus');
+    const quantityInput = document.querySelector('.quantity-input');
+
+    if (minusBtn && plusBtn && quantityInput) {
+      minusBtn.addEventListener('click', () => {
+        const currentValue = parseInt(quantityInput.value);
+        if (currentValue > 1) {
+          quantityInput.value = currentValue - 1;
+        }
+      });
+
+      plusBtn.addEventListener('click', () => {
+        const currentValue = parseInt(quantityInput.value);
+        quantityInput.value = currentValue + 1;
+      });
+    }
+  }
+
+  setupStickyCart() {
+    const stickyCart = document.querySelector('.pipeline-sticky-cart');
+    if (!stickyCart) return;
+
+    const productInfo = document.querySelector('.pipeline-product-info');
+    if (!productInfo) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          stickyCart.classList.remove('show');
+        } else {
+          stickyCart.classList.add('show');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    observer.observe(productInfo);
+  }
+
+  setupProductForm() {
+    const form = document.querySelector('[data-type="add-to-cart-form"]');
+    if (!form) return;
+
+    form.addEventListener('submit', (e) => {
+      const submitButton = form.querySelector('[type="submit"]');
+      this.addToCartAnimation(submitButton);
+    });
+  }
+
+  addToCartAnimation(button) {
+    button.classList.add('loading');
+    
+    setTimeout(() => {
+      button.classList.remove('loading');
+      button.classList.add('success');
+      
+      setTimeout(() => {
+        button.classList.remove('success');
+      }, 2000);
+    }, 1000);
+  }
+}
+
+// Global functions
+function buyNow() {
+  // Add to cart and redirect to checkout
+  const form = document.querySelector('[data-type="add-to-cart-form"]');
+  if (form) {
+    const formData = new FormData(form);
+    
+    fetch('/cart/add.js', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      window.location.href = '/checkout';
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  }
+}
+
+function shareProduct() {
+  if (navigator.share) {
+    navigator.share({
+      title: document.title,
+      url: window.location.href
+    });
+  } else {
+    // Fallback: copy URL to clipboard
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      alert('Product URL copied to clipboard!');
+    });
+  }
+}
+
+function addToCartSticky() {
+  const mainAddToCartBtn = document.querySelector('.pipeline-add-to-cart-button');
+  if (mainAddToCartBtn) {
+    mainAddToCartBtn.click();
+  }
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  new PipelineProductPage();
+});
+</script>
+
+<style>
+/* Pipeline Main Product Styles */
+.pipeline-main-product {
+  padding: 2rem 0;
+}
+
+.pipeline-product-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-bottom: 3rem;
+}
+
+/* Product Media */
+.pipeline-product-media {
+  position: relative;
+}
+
+.product-page-badges {
+  top: 20px;
+  left: 20px;
+}
+
+.product-page-wishlist {
+  top: 20px;
+  right: 20px;
+}
+
+/* Product Info */
+.pipeline-product-info {
+  padding: 1rem 0;
+}
+
+.pipeline-sticky-info {
+  position: sticky;
+  top: 2rem;
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
+}
+
+/* Breadcrumb */
+.pipeline-breadcrumb {
+  margin-bottom: 2rem;
+}
+
+.breadcrumb-list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.breadcrumb-list li:not(:last-child)::after {
+  content: '>';
+  margin-left: 0.5rem;
+  color: #999;
+}
+
+.breadcrumb-list a {
+  color: #666;
+  text-decoration: none;
+}
+
+.breadcrumb-list a:hover {
+  color: #2c2c2c;
+}
+
+/* Product Header */
+.pipeline-product-title {
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: #2c2c2c;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+/* Price Container */
+.pipeline-price-container {
+  margin-bottom: 2rem;
+}
+
+.pipeline-savings {
+  margin-top: 0.5rem;
+}
+
+.savings-badge {
+  background: linear-gradient(135deg, #00b894, #00a085);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.pipeline-payment-methods {
+  margin-top: 1rem;
+}
+
+.payment-icons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.payment-text {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.payment-icon {
+  height: 24px;
+  width: auto;
+}
+
+/* Variant Picker */
+.pipeline-product-option {
+  margin-bottom: 1.5rem;
+}
+
+.option-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #2c2c2c;
+}
+
+.required-indicator {
+  color: #e74c3c;
+}
+
+.pipeline-option-buttons {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.pipeline-option-button {
+  padding: 12px 20px;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  background: white;
+  color: #2c2c2c;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pipeline-option-buttons input:checked + .pipeline-option-button {
+  border-color: #2c2c2c;
+  background: #2c2c2c;
+  color: white;
+}
+
+.pipeline-option-button:hover {
+  border-color: #2c2c2c;
+  transform: translateY(-2px);
+}
+
+.pipeline-select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  background: white;
+  font-size: 1rem;
+}
+
+/* Quantity Selector */
+.pipeline-quantity-container {
+  margin-bottom: 1.5rem;
+}
+
+.quantity-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #2c2c2c;
+}
+
+.pipeline-quantity-selector {
+  display: flex;
+  align-items: center;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  overflow: hidden;
+  width: fit-content;
+}
+
+.quantity-button {
+  padding: 12px;
+  border: none;
+  background: #f8f9fa;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.quantity-button:hover {
+  background: #e9ecef;
+}
+
+.quantity-input {
+  width: 60px;
+  padding: 12px 8px;
+  border: none;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* Buy Buttons */
+.pipeline-buy-buttons {
+  margin-bottom: 2rem;
+}
+
+.product-form__buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.pipeline-add-to-cart-button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 16px 24px;
+  background: #2c2c2c;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-height: 56px;
+}
+
+.pipeline-add-to-cart-button:hover:not(:disabled) {
+  background: #1a1a1a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.pipeline-add-to-cart-button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.pipeline-add-to-cart-button.loading .btn-text {
+  opacity: 0;
+}
+
+.pipeline-add-to-cart-button.loading::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid transparent;
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.pipeline-buy-now-button {
+  padding: 16px 24px;
+  background: transparent;
+  color: #2c2c2c;
+  border: 2px solid #2c2c2c;
+  border-radius: 50px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 56px;
+}
+
+.pipeline-buy-now-button:hover {
+  background: #2c2c2c;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Action Buttons */
+.pipeline-action-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.action-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid #e1e5e9;
+  border-radius: 20px;
+  color: #666;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.action-button:hover {
+  border-color: #2c2c2c;
+  color: #2c2c2c;
+  transform: translateY(-2px);
+}
+
+/* Product Features */
+.pipeline-product-features {
+  margin: 2rem 0;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.feature-icon {
+  font-size: 1.5rem;
+}
+
+.feature-content h4 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: #2c2c2c;
+}
+
+.feature-content p {
+  font-size: 0.75rem;
+  color: #666;
+  margin: 0;
+}
+
+/* Trust Badges */
+.pipeline-trust-badges {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 2rem 0;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.trust-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: #666;
+  text-align: center;
+}
+
+.trust-badge img {
+  width: 32px;
+  height: 32px;
+}
+
+/* Product Tabs */
+.pipeline-product-tabs {
+  margin-top: 4rem;
+}
+
+.tab-navigation {
+  display: flex;
+  border-bottom: 2px solid #f1f3f4;
+  margin-bottom: 2rem;
+  gap: 0.5rem;
+}
+
+.tab-btn {
+  padding: 1rem 1.5rem;
+  background: transparent;
+  border: none;
+  color: #666;
+  font-weight: 600;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.tab-btn.active,
+.tab-btn:hover {
+  color: #2c2c2c;
+  border-bottom-color: #2c2c2c;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.tab-content-inner {
+  max-width: 800px;
+  line-height: 1.6;
+}
+
+/* Specifications */
+.specs-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.spec-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.spec-label {
+  font-weight: 600;
+  color: #2c2c2c;
+}
+
+.spec-value {
+  color: #666;
+}
+
+/* Shipping Info */
+.shipping-info h4 {
+  margin: 2rem 0 1rem 0;
+  color: #2c2c2c;
+}
+
+.shipping-info ul {
+  margin-bottom: 2rem;
+  padding-left: 1.5rem;
+}
+
+.shipping-info li {
+  margin-bottom: 0.5rem;
+  color: #666;
+}
+
+/* Sticky Cart */
+.pipeline-sticky-cart {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-top: 1px solid #e1e5e9;
+  padding: 1rem;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.pipeline-sticky-cart.show {
+  transform: translateY(0);
+}
+
+.sticky-cart-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sticky-cart-product {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.sticky-product-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.sticky-product-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  color: #2c2c2c;
+}
+
+.sticky-product-price {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #2c2c2c;
+}
+
+.sticky-add-to-cart-btn {
+  padding: 12px 24px;
+  background: #2c2c2c;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sticky-add-to-cart-btn:hover {
+  background: #1a1a1a;
+  transform: scale(1.05);
+}
+
+/* Animations */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .pipeline-product-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .pipeline-sticky-info {
+    position: static;
+    max-height: none;
+  }
+  
+  .pipeline-product-title {
+    font-size: 2rem;
+  }
+  
+  .product-form__buttons {
+    flex-direction: column;
+  }
+  
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .pipeline-trust-badges {
+    gap: 1rem;
+  }
+  
+  .tab-navigation {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .tab-navigation::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .tab-btn {
+    white-space: nowrap;
+    padding: 1rem;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .pipeline-sticky-cart,
+  .pipeline-action-buttons,
+  .pipeline-buy-buttons {
+    display: none;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Pipeline Main Product",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Product Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sticky_info",
+      "default": true,
+      "label": "Enable sticky product information"
+    },
+    {
+      "type": "select",
+      "id": "media_size",
+      "options": [
+        { "value": "small", "label": "Small" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "large", "label": "Large" }
+      ],
+      "default": "large",
+      "label": "Product media size"
+    },
+    {
+      "type": "select",
+      "id": "gallery_layout",
+      "options": [
+        { "value": "stacked", "label": "Stacked" },
+        { "value": "thumbnail", "label": "Thumbnail" },
+        { "value": "columns", "label": "Columns" }
+      ],
+      "default": "stacked",
+      "label": "Gallery layout"
+    },
+    {
+      "type": "header",
+      "content": "Product Information"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_breadcrumb",
+      "default": true,
+      "label": "Show breadcrumb navigation"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "default": true,
+      "label": "Show product vendor"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sku",
+      "default": false,
+      "label": "Show SKU"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_methods",
+      "default": true,
+      "label": "Show accepted payment methods"
+    },
+    {
+      "type": "header",
+      "content": "Purchase Options"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_buy_now",
+      "default": true,
+      "label": "Show Buy Now button"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sticky_cart",
+      "default": true,
+      "label": "Enable sticky add to cart (mobile)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dynamic_checkout",
+      "default": true,
+      "label": "Show dynamic checkout buttons"
+    },
+    {
+      "type": "header",
+      "content": "Additional Features"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_features",
+      "default": true,
+      "label": "Show product features (shipping, returns, etc.)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_trust_badges",
+      "default": true,
+      "label": "Show trust badges"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_size_guide",
+      "default": false,
+      "label": "Show size guide button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_ask_question",
+      "default": true,
+      "label": "Show ask question button"
+    },
+    {
+      "type": "header",
+      "content": "Product Tabs"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_tabs",
+      "default": true,
+      "label": "Enable product tabs"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_reviews_tab",
+      "default": true,
+      "label": "Show reviews tab"
+    },
+    {
+      "type": "select",
+      "id": "reviews_app",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "shopify", "label": "Shopify Product Reviews" },
+        { "value": "judgeme", "label": "Judge.me" },
+        { "value": "yotpo", "label": "Yotpo" }
+      ],
+      "default": "shopify",
+      "label": "Reviews app"
+    },
+    {
+      "type": "richtext",
+      "id": "shipping_content",
+      "label": "Shipping & returns content"
+    },
+    {
+      "type": "text",
+      "id": "custom_tab_title",
+      "label": "Custom tab title"
+    },
+    {
+      "type": "richtext",
+      "id": "custom_tab_content",
+      "label": "Custom tab content"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Section padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Section padding bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Text block</p>",
+          "label": "Text"
+        },
+        {
+          "type": "select",
+          "id": "text_style",
+          "options": [
+            { "value": "body", "label": "Body" },
+            { "value": "subtitle", "label": "Subtitle" },
+            { "value": "caption-with-letter-spacing", "label": "Caption with letter spacing" },
+            { "value": "caption-large", "label": "Caption large" }
+          ],
+          "default": "body",
+          "label": "Text style"
+        }
+      ]
+    },
+    {
+      "type": "title",
+      "name": "Title",
+      "limit": 1
+    },
+    {
+      "type": "price",
+      "name": "Price",
+      "limit": 1
+    },
+    {
+      "type": "variant_picker",
+      "name": "Variant picker",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "picker_type",
+          "options": [
+            { "value": "dropdown", "label": "Dropdown" },
+            { "value": "button", "label": "Buttons" }
+          ],
+          "default": "button",
+          "label": "Picker type"
+        },
+        {
+          "type": "select",
+          "id": "swatch_shape",
+          "options": [
+            { "value": "circle", "label": "Circle" },
+            { "value": "square", "label": "Square" }
+          ],
+          "default": "circle",
+          "label": "Swatch shape"
+        }
+      ]
+    },
+    {
+      "type": "quantity_selector",
+      "name": "Quantity selector",
+      "limit": 1
+    },
+    {
+      "type": "buy_buttons",
+      "name": "Buy buttons",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_dynamic_checkout",
+          "default": true,
+          "label": "Show dynamic checkout buttons"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_gift_card_recipient",
+          "default": true,
+          "label": "Show recipient information form for gift cards"
+        }
+      ]
+    },
+    {
+      "type": "description",
+      "name": "Description",
+      "limit": 1
+    },
+    {
+      "type": "custom_liquid",
+      "name": "Custom liquid",
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "custom_liquid",
+          "label": "Custom liquid"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pipeline Main Product",
+      "blocks": [
+        {
+          "type": "text",
+          "settings": {
+            "text": "<p>{{ product.vendor }}</p>",
+            "text_style": "caption-with-letter-spacing"
+          }
+        },
+        {
+          "type": "title"
+        },
+        {
+          "type": "price"
+        },
+        {
+          "type": "variant_picker"
+        },
+        {
+          "type": "quantity_selector"
+        },
+        {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        {
+          "type": "description"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

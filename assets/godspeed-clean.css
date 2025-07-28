@@ -947,6 +947,285 @@ h3, .h3 {
     padding: 6px 12px !important;
     font-size: 12px !important;
   }
+}
+
+/* PIPELINE PRODUCT PAGE ENHANCEMENTS */
+
+/* Product page layout improvements */
+.product {
+  gap: 3rem !important;
+}
+
+.product__info-container {
+  padding: 2rem !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-radius: 16px !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Enhanced product title */
+.product__title h1 {
+  font-size: 2.5rem !important;
+  font-weight: 700 !important;
+  color: #2c2c2c !important;
+  line-height: 1.2 !important;
+  margin-bottom: 1.5rem !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Pipeline vendor styling */
+.product__text.caption-with-letter-spacing {
+  background: linear-gradient(135deg, #667eea, #764ba2) !important;
+  color: white !important;
+  padding: 8px 16px !important;
+  border-radius: 20px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  display: inline-block !important;
+  margin-bottom: 1rem !important;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3) !important;
+}
+
+/* Enhanced price display */
+.price {
+  font-size: 2rem !important;
+  font-weight: 700 !important;
+  color: #2c2c2c !important;
+  margin: 1.5rem 0 !important;
+}
+
+.price__sale {
+  color: #e74c3c !important;
+}
+
+.price__regular {
+  color: #7f8c8d !important;
+  text-decoration: line-through !important;
+  margin-left: 1rem !important;
+  font-size: 1.5rem !important;
+}
+
+/* Pipeline variant picker styling */
+.product-form__input {
+  margin-bottom: 2rem !important;
+}
+
+.product-form__input label {
+  font-weight: 600 !important;
+  color: #2c2c2c !important;
+  margin-bottom: 1rem !important;
+  display: block !important;
+  font-size: 1.1rem !important;
+}
+
+fieldset.product-form__input input[type="radio"] + label {
+  background: white !important;
+  border: 2px solid #e1e5e9 !important;
+  border-radius: 12px !important;
+  padding: 12px 24px !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+  margin-right: 1rem !important;
+  margin-bottom: 1rem !important;
+  display: inline-block !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+}
+
+fieldset.product-form__input input[type="radio"]:checked + label {
+  background: linear-gradient(135deg, #667eea, #764ba2) !important;
+  color: white !important;
+  border-color: #667eea !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4) !important;
+}
+
+fieldset.product-form__input input[type="radio"] + label:hover {
+  border-color: #667eea !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2) !important;
+}
+
+/* Quantity selector styling */
+.quantity__input {
+  border: 2px solid #e1e5e9 !important;
+  border-radius: 12px !important;
+  padding: 12px !important;
+  text-align: center !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+  background: white !important;
+}
+
+.quantity__input:focus {
+  border-color: #667eea !important;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1) !important;
+  outline: none !important;
+}
+
+.quantity__button {
+  background: #f8f9fa !important;
+  border: 2px solid #e1e5e9 !important;
+  border-radius: 12px !important;
+  width: 44px !important;
+  height: 44px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+}
+
+.quantity__button:hover {
+  background: #667eea !important;
+  border-color: #667eea !important;
+  color: white !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3) !important;
+}
+
+/* Enhanced buy buttons */
+.product-form__buttons {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1rem !important;
+  margin: 2rem 0 !important;
+}
+
+.btn.product-form__cart-submit {
+  background: linear-gradient(135deg, #667eea, #764ba2) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 16px !important;
+  padding: 18px 32px !important;
+  font-size: 1.125rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px !important;
+  text-transform: uppercase !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.btn.product-form__cart-submit:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 12px 32px rgba(102, 126, 234, 0.4) !important;
+}
+
+.btn.product-form__cart-submit:active {
+  transform: translateY(-1px) !important;
+}
+
+.shopify-payment-button .shopify-payment-button__button--unbranded {
+  border-radius: 16px !important;
+  border: 2px solid #e1e5e9 !important;
+  background: white !important;
+  color: #2c2c2c !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+}
+
+.shopify-payment-button .shopify-payment-button__button--unbranded:hover {
+  border-color: #667eea !important;
+  background: #f8f9ff !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Product description styling */
+.product__description {
+  font-size: 1.1rem !important;
+  line-height: 1.7 !important;
+  color: #4a5568 !important;
+  margin: 2rem 0 !important;
+  padding: 1.5rem !important;
+  background: #f8f9fa !important;
+  border-radius: 12px !important;
+  border-left: 4px solid #667eea !important;
+}
+
+.product__description h4 {
+  color: #2c2c2c !important;
+  margin-bottom: 1rem !important;
+  font-weight: 600 !important;
+}
+
+.product__description ul {
+  margin: 1rem 0 !important;
+  padding-left: 1.5rem !important;
+}
+
+.product__description li {
+  margin-bottom: 0.5rem !important;
+  color: #4a5568 !important;
+}
+
+/* Pipeline gallery hover effects */
+.product__media img {
+  transition: all 0.5s ease !important;
+  border-radius: 16px !important;
+}
+
+.product__media:hover img {
+  transform: scale(1.02) !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15) !important;
+}
+
+.product__media-item {
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  background: white !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+  transition: all 0.3s ease !important;
+}
+
+.product__media-item:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Mobile responsiveness for product page */
+@media (max-width: 768px) {
+  .product {
+    gap: 2rem !important;
+  }
+  
+  .product__info-container {
+    padding: 1.5rem !important;
+    margin: 1rem !important;
+    border-radius: 12px !important;
+  }
+  
+  .product__title h1 {
+    font-size: 2rem !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  .price {
+    font-size: 1.75rem !important;
+    margin: 1rem 0 !important;
+  }
+  
+  .product-form__buttons {
+    gap: 0.75rem !important;
+    margin: 1.5rem 0 !important;
+  }
+  
+  .btn.product-form__cart-submit {
+    padding: 16px 24px !important;
+    font-size: 1rem !important;
+  }
+  
+  fieldset.product-form__input input[type="radio"] + label {
+    padding: 10px 16px !important;
+    margin-right: 0.5rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+}
   
   .product__media-list[data-desktop-layout="columns"] {
     grid-template-columns: 1fr !important;

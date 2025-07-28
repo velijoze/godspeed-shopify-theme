@@ -1,0 +1,862 @@
+{% comment %}
+  Pipeline Vendor API Integration Framework
+  Connects to multiple vendor APIs for pricing, inventory, and product data
+{% endcomment %}
+
+{%- comment -%} API Configuration {%- endcomment -%}
+<div id="pipeline-vendor-api" style="display: none;">
+  <div data-api-config>
+    {
+      "vendors": {
+        "cube": {
+          "apiUrl": "{{ section.settings.cube_api_url }}",
+          "apiKey": "{{ section.settings.cube_api_key }}",
+          "enabled": {{ section.settings.enable_cube | json }},
+          "syncInterval": {{ section.settings.cube_sync_interval | default: 3600 }},
+          "priceMarkup": {{ section.settings.cube_price_markup | default: 1.15 }}
+        },
+        "riese_muller": {
+          "apiUrl": "{{ section.settings.riese_muller_api_url }}",
+          "apiKey": "{{ section.settings.riese_muller_api_key }}",
+          "enabled": {{ section.settings.enable_riese_muller | json }},
+          "syncInterval": {{ section.settings.riese_muller_sync_interval | default: 3600 }},
+          "priceMarkup": {{ section.settings.riese_muller_price_markup | default: 1.2 }}
+        },
+        "bosch": {
+          "apiUrl": "{{ section.settings.bosch_api_url }}",
+          "apiKey": "{{ section.settings.bosch_api_key }}",
+          "enabled": {{ section.settings.enable_bosch | json }},
+          "syncInterval": {{ section.settings.bosch_sync_interval | default: 3600 }},
+          "priceMarkup": {{ section.settings.bosch_price_markup | default: 1.1 }}
+        },
+        "mondraker": {
+          "apiUrl": "{{ section.settings.mondraker_api_url }}",
+          "apiKey": "{{ section.settings.mondraker_api_key }}",
+          "enabled": {{ section.settings.enable_mondraker | json }},
+          "syncInterval": {{ section.settings.mondraker_sync_interval | default: 7200 }},
+          "priceMarkup": {{ section.settings.mondraker_price_markup | default: 1.25 }}
+        },
+        "orbea": {
+          "apiUrl": "{{ section.settings.orbea_api_url }}",
+          "apiKey": "{{ section.settings.orbea_api_key }}",
+          "enabled": {{ section.settings.enable_orbea | json }},
+          "syncInterval": {{ section.settings.orbea_sync_interval | default: 3600 }},
+          "priceMarkup": {{ section.settings.orbea_price_markup | default: 1.18 }}
+        }
+      },
+      "settings": {
+        "enableRealTimePricing": {{ section.settings.enable_realtime_pricing | json }},
+        "enableInventorySync": {{ section.settings.enable_inventory_sync | json }},
+        "enableProductSync": {{ section.settings.enable_product_sync | json }},
+        "cacheTimeout": {{ section.settings.cache_timeout | default: 1800 }},
+        "retryAttempts": {{ section.settings.retry_attempts | default: 3 }},
+        "requestTimeout": {{ section.settings.request_timeout | default: 10000 }}
+      }
+    }
+  </div>
+</div>
+
+{%- comment -%} API Status Dashboard {%- endcomment -%}
+{%- if section.settings.show_api_dashboard -%}
+  <div class="pipeline-api-dashboard" id="api-dashboard">
+    <div class="dashboard-header">
+      <h3>Vendor API Status</h3>
+      <div class="dashboard-actions">
+        <button class="btn-sync-all" data-sync-all>Sync All</button>
+        <button class="btn-test-connections" data-test-connections>Test Connections</button>
+      </div>
+    </div>
+    
+    <div class="api-status-grid">
+      <div class="api-vendor-card" data-vendor="cube">
+        <div class="vendor-header">
+          <h4>Cube</h4>
+          <div class="status-indicator" data-status="unknown">
+            <span class="status-dot"></span>
+            <span class="status-text">Unknown</span>
+          </div>
+        </div>
+        <div class="vendor-stats">
+          <div class="stat-item">
+            <span class="stat-label">Last Sync:</span>
+            <span class="stat-value" data-last-sync>--</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Products:</span>
+            <span class="stat-value" data-product-count>--</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Status:</span>
+            <span class="stat-value" data-connection-status>Checking...</span>
+          </div>
+        </div>
+        <div class="vendor-actions">
+          <button class="btn-sync" data-sync-vendor="cube">Sync Now</button>
+          <button class="btn-test" data-test-vendor="cube">Test</button>
+        </div>
+      </div>
+      
+      <div class="api-vendor-card" data-vendor="riese_muller">
+        <div class="vendor-header">
+          <h4>Riese & Müller</h4>
+          <div class="status-indicator" data-status="unknown">
+            <span class="status-dot"></span>
+            <span class="status-text">Unknown</span>
+          </div>
+        </div>
+        <div class="vendor-stats">
+          <div class="stat-item">
+            <span class="stat-label">Last Sync:</span>
+            <span class="stat-value" data-last-sync>--</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Products:</span>
+            <span class="stat-value" data-product-count>--</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Status:</span>
+            <span class="stat-value" data-connection-status>Checking...</span>
+          </div>
+        </div>
+        <div class="vendor-actions">
+          <button class="btn-sync" data-sync-vendor="riese_muller">Sync Now</button>
+          <button class="btn-test" data-test-vendor="riese_muller">Test</button>
+        </div>
+      </div>
+      
+      <div class="api-vendor-card" data-vendor="bosch">
+        <div class="vendor-header">
+          <h4>Bosch</h4>
+          <div class="status-indicator" data-status="unknown">
+            <span class="status-dot"></span>
+            <span class="status-text">Unknown</span>
+          </div>
+        </div>
+        <div class="vendor-stats">
+          <div class="stat-item">
+            <span class="stat-label">Last Sync:</span>
+            <span class="stat-value" data-last-sync>--</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Products:</span>
+            <span class="stat-value" data-product-count>--</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Status:</span>
+            <span class="stat-value" data-connection-status>Checking...</span>
+          </div>
+        </div>
+        <div class="vendor-actions">
+          <button class="btn-sync" data-sync-vendor="bosch">Sync Now</button>
+          <button class="btn-test" data-test-vendor="bosch">Test</button>
+        </div>
+      </div>
+      
+      <div class="api-vendor-card" data-vendor="mondraker">
+        <div class="vendor-header">
+          <h4>Mondraker</h4>
+          <div class="status-indicator" data-status="unknown">
+            <span class="status-dot"></span>
+            <span class="status-text">Unknown</span>
+          </div>
+        </div>
+        <div class="vendor-stats">
+          <div class="stat-item">
+            <span class="stat-label">Last Sync:</span>
+            <span class="stat-value" data-last-sync>--</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Products:</span>
+            <span class="stat-value" data-product-count>--</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Status:</span>
+            <span class="stat-value" data-connection-status>Checking...</span>
+          </div>
+        </div>
+        <div class="vendor-actions">
+          <button class="btn-sync" data-sync-vendor="mondraker">Sync Now</button>
+          <button class="btn-test" data-test-vendor="mondraker">Test</button>
+        </div>
+      </div>
+      
+      <div class="api-vendor-card" data-vendor="orbea">
+        <div class="vendor-header">
+          <h4>Orbea</h4>
+          <div class="status-indicator" data-status="unknown">
+            <span class="status-dot"></span>
+            <span class="status-text">Unknown</span>
+          </div>
+        </div>
+        <div class="vendor-stats">
+          <div class="stat-item">
+            <span class="stat-label">Last Sync:</span>
+            <span class="stat-value" data-last-sync>--</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Products:</span>
+            <span class="stat-value" data-product-count>--</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Status:</span>
+            <span class="stat-value" data-connection-status>Checking...</span>
+          </div>
+        </div>
+        <div class="vendor-actions">
+          <button class="btn-sync" data-sync-vendor="orbea">Sync Now</button>
+          <button class="btn-test" data-test-vendor="orbea">Test</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="api-logs">
+      <h4>API Activity Log</h4>
+      <div class="logs-container" data-logs-container>
+        <div class="log-entry">
+          <span class="log-time">--:--:--</span>
+          <span class="log-message">API system ready</span>
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{%- comment -%} Real-time Price Updates {%- endcomment -%}
+{%- if section.settings.enable_realtime_pricing and product -%}
+  <div class="pipeline-price-sync" data-product-sku="{{ product.selected_or_first_available_variant.sku }}">
+    <div class="price-status">
+      <span class="price-label">Price Status:</span>
+      <span class="price-status-indicator" data-price-status="checking">
+        <span class="status-dot"></span>
+        <span class="status-text">Checking vendor prices...</span>
+      </span>
+    </div>
+    
+    <div class="vendor-prices" data-vendor-prices style="display: none;">
+      <h4>Vendor Price Comparison</h4>
+      <div class="price-comparison-table">
+        <div class="price-row header">
+          <span>Vendor</span>
+          <span>Cost</span>
+          <span>Markup</span>
+          <span>Final Price</span>
+          <span>Status</span>
+        </div>
+        <div class="price-row" data-vendor-price="cube">
+          <span class="vendor-name">Cube</span>
+          <span class="vendor-cost" data-cost>--</span>
+          <span class="vendor-markup" data-markup>--</span>
+          <span class="vendor-final" data-final>--</span>
+          <span class="vendor-status" data-status>--</span>
+        </div>
+        <div class="price-row" data-vendor-price="riese_muller">
+          <span class="vendor-name">Riese & Müller</span>
+          <span class="vendor-cost" data-cost>--</span>
+          <span class="vendor-markup" data-markup>--</span>
+          <span class="vendor-final" data-final>--</span>
+          <span class="vendor-status" data-status>--</span>
+        </div>
+        <div class="price-row" data-vendor-price="bosch">
+          <span class="vendor-name">Bosch</span>
+          <span class="vendor-cost" data-cost>--</span>
+          <span class="vendor-markup" data-markup>--</span>
+          <span class="vendor-final" data-final>--</span>
+          <span class="vendor-status" data-status>--</span>
+        </div>
+        <div class="price-row" data-vendor-price="mondraker">
+          <span class="vendor-name">Mondraker</span>
+          <span class="vendor-cost" data-cost>--</span>
+          <span class="vendor-markup" data-markup>--</span>
+          <span class="vendor-final" data-final>--</span>
+          <span class="vendor-status" data-status>--</span>
+        </div>
+        <div class="price-row" data-vendor-price="orbea">
+          <span class="vendor-name">Orbea</span>
+          <span class="vendor-cost" data-cost>--</span>
+          <span class="vendor-markup" data-markup>--</span>
+          <span class="vendor-final" data-final>--</span>
+          <span class="vendor-status" data-status>--</span>
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{%- comment -%} Inventory Sync Status {%- endcomment -%}
+{%- if section.settings.enable_inventory_sync and product -%}
+  <div class="pipeline-inventory-sync" data-product-sku="{{ product.selected_or_first_available_variant.sku }}">
+    <div class="inventory-status">
+      <span class="inventory-label">Inventory Status:</span>
+      <span class="inventory-status-indicator" data-inventory-status="checking">
+        <span class="status-dot"></span>
+        <span class="status-text">Syncing inventory...</span>
+      </span>
+    </div>
+    
+    <div class="vendor-inventory" data-vendor-inventory style="display: none;">
+      <h4>Vendor Inventory Levels</h4>
+      <div class="inventory-grid">
+        <div class="inventory-item" data-vendor-inventory="cube">
+          <span class="vendor-name">Cube</span>
+          <span class="inventory-count" data-count>--</span>
+          <span class="inventory-status" data-status>--</span>
+        </div>
+        <div class="inventory-item" data-vendor-inventory="riese_muller">
+          <span class="vendor-name">Riese & Müller</span>
+          <span class="inventory-count" data-count>--</span>
+          <span class="inventory-status" data-status>--</span>
+        </div>
+        <div class="inventory-item" data-vendor-inventory="bosch">
+          <span class="vendor-name">Bosch</span>
+          <span class="inventory-count" data-count>--</span>
+          <span class="inventory-status" data-status>--</span>
+        </div>
+        <div class="inventory-item" data-vendor-inventory="mondraker">
+          <span class="vendor-name">Mondraker</span>
+          <span class="inventory-count" data-count>--</span>
+          <span class="inventory-status" data-status>--</span>
+        </div>
+        <div class="inventory-item" data-vendor-inventory="orbea">
+          <span class="vendor-name">Orbea</span>
+          <span class="inventory-count" data-count>--</span>
+          <span class="inventory-status" data-status>--</span>
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+<style>
+  .pipeline-api-dashboard {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e5e7eb;
+  }
+
+  .dashboard-header h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 0;
+  }
+
+  .dashboard-actions {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .btn-sync-all,
+  .btn-test-connections,
+  .btn-sync,
+  .btn-test {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .btn-sync-all,
+  .btn-sync {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+  }
+
+  .btn-sync-all:hover,
+  .btn-sync:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  }
+
+  .btn-test-connections,
+  .btn-test {
+    background: #f3f4f6;
+    color: #374151;
+    border: 1px solid #d1d5db;
+  }
+
+  .btn-test-connections:hover,
+  .btn-test:hover {
+    background: #e5e7eb;
+  }
+
+  .api-status-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .api-vendor-card {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid #e5e7eb;
+  }
+
+  .vendor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .vendor-header h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 0;
+  }
+
+  .status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #9ca3af;
+  }
+
+  .status-indicator[data-status="connected"] .status-dot {
+    background: #22c55e;
+  }
+
+  .status-indicator[data-status="error"] .status-dot {
+    background: #ef4444;
+  }
+
+  .status-indicator[data-status="syncing"] .status-dot {
+    background: #f59e0b;
+    animation: pulse 2s infinite;
+  }
+
+  .status-text {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+
+  .vendor-stats {
+    margin-bottom: 1rem;
+  }
+
+  .stat-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+
+  .stat-value {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #111827;
+  }
+
+  .vendor-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .vendor-actions button {
+    flex: 1;
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .api-logs {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+
+  .api-logs h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 0 0 1rem 0;
+  }
+
+  .logs-container {
+    max-height: 200px;
+    overflow-y: auto;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.875rem;
+  }
+
+  .log-entry {
+    display: flex;
+    gap: 1rem;
+    padding: 0.25rem 0;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .log-time {
+    color: #6b7280;
+    min-width: 80px;
+  }
+
+  .log-message {
+    color: #111827;
+  }
+
+  .pipeline-price-sync,
+  .pipeline-inventory-sync {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border: 1px solid #e5e7eb;
+  }
+
+  .price-status,
+  .inventory-status {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .price-label,
+  .inventory-label {
+    font-weight: 500;
+    color: #111827;
+  }
+
+  .price-comparison-table {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 1rem;
+  }
+
+  .price-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 1rem;
+    padding: 0.75rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .price-row.header {
+    font-weight: 600;
+    color: #111827;
+    background: #e5e7eb;
+    border-radius: 4px;
+  }
+
+  .inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .inventory-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .dashboard-header {
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .api-status-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .vendor-actions {
+      flex-direction: column;
+    }
+
+    .price-row {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+
+    .price-row span {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .inventory-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const apiSystem = {
+    config: null,
+    cache: new Map(),
+    
+    init() {
+      const configElement = document.querySelector('[data-api-config]');
+      if (configElement) {
+        try {
+          this.config = JSON.parse(configElement.textContent);
+          this.setupEventListeners();
+          this.startPeriodicSync();
+          this.checkAllConnections();
+        } catch (error) {
+          console.error('Failed to parse API configuration:', error);
+        }
+      }
+    },
+    
+    setupEventListeners() {
+      // Sync all vendors
+      const syncAllBtn = document.querySelector('[data-sync-all]');
+      if (syncAllBtn) {
+        syncAllBtn.addEventListener('click', () => this.syncAllVendors());
+      }
+      
+      // Test all connections
+      const testAllBtn = document.querySelector('[data-test-connections]');
+      if (testAllBtn) {
+        testAllBtn.addEventListener('click', () => this.testAllConnections());
+      }
+      
+      // Individual vendor actions
+      document.querySelectorAll('[data-sync-vendor]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const vendor = e.target.dataset.syncVendor;
+          this.syncVendor(vendor);
+        });
+      });
+      
+      document.querySelectorAll('[data-test-vendor]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const vendor = e.target.dataset.testVendor;
+          this.testVendorConnection(vendor);
+        });
+      });
+    },
+    
+    async syncAllVendors() {
+      this.log('Starting sync for all vendors...');
+      const vendors = Object.keys(this.config.vendors).filter(
+        vendor => this.config.vendors[vendor].enabled
+      );
+      
+      for (const vendor of vendors) {
+        await this.syncVendor(vendor);
+      }
+      
+      this.log(`Completed sync for ${vendors.length} vendors`);
+    },
+    
+    async syncVendor(vendorName) {
+      const vendor = this.config.vendors[vendorName];
+      if (!vendor || !vendor.enabled) {
+        this.log(`Vendor ${vendorName} is disabled, skipping sync`);
+        return;
+      }
+      
+      this.updateVendorStatus(vendorName, 'syncing', 'Syncing...');
+      this.log(`Starting sync for ${vendorName}...`);
+      
+      try {
+        // Simulate API call (replace with actual implementation)
+        const response = await this.makeApiCall(vendor.apiUrl, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${vendor.apiKey}`,
+            'Content-Type': 'application/json'
+          }
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          this.updateVendorData(vendorName, data);
+          this.updateVendorStatus(vendorName, 'connected', 'Connected');
+          this.log(`Sync completed for ${vendorName}: ${data.products?.length || 0} products`);
+        } else {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+      } catch (error) {
+        this.updateVendorStatus(vendorName, 'error', 'Error');
+        this.log(`Sync failed for ${vendorName}: ${error.message}`);
+      }
+    },
+    
+    async testAllConnections() {
+      this.log('Testing all vendor connections...');
+      const vendors = Object.keys(this.config.vendors);
+      
+      for (const vendor of vendors) {
+        await this.testVendorConnection(vendor);
+      }
+    },
+    
+    async testVendorConnection(vendorName) {
+      const vendor = this.config.vendors[vendorName];
+      if (!vendor) return;
+      
+      this.updateVendorConnectionStatus(vendorName, 'Testing...');
+      
+      try {
+        // Simulate connection test
+        const response = await this.makeApiCall(vendor.apiUrl + '/health', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${vendor.apiKey}`
+          }
+        });
+        
+        if (response.ok) {
+          this.updateVendorConnectionStatus(vendorName, 'Connected');
+          this.log(`Connection test passed for ${vendorName}`);
+        } else {
+          throw new Error(`HTTP ${response.status}`);
+        }
+      } catch (error) {
+        this.updateVendorConnectionStatus(vendorName, 'Failed');
+        this.log(`Connection test failed for ${vendorName}: ${error.message}`);
+      }
+    },
+    
+    async checkAllConnections() {
+      const vendors = Object.keys(this.config.vendors);
+      for (const vendor of vendors) {
+        await this.testVendorConnection(vendor);
+      }
+    },
+    
+    async makeApiCall(url, options) {
+      // Simulate API call with timeout
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          // Simulate successful response
+          resolve({
+            ok: Math.random() > 0.3, // 70% success rate
+            status: Math.random() > 0.3 ? 200 : 500,
+            statusText: 'OK',
+            json: () => Promise.resolve({
+              products: Array.from({length: Math.floor(Math.random() * 50) + 10}, (_, i) => ({
+                id: `prod_${i}`,
+                name: `Product ${i}`,
+                price: Math.random() * 1000 + 100,
+                inventory: Math.floor(Math.random() * 100)
+              }))
+            })
+          });
+        }, Math.random() * 2000 + 500); // Random delay 0.5-2.5s
+      });
+    },
+    
+    updateVendorStatus(vendorName, status, statusText) {
+      const card = document.querySelector(`[data-vendor="${vendorName}"]`);
+      if (!card) return;
+      
+      const statusIndicator = card.querySelector('[data-status]');
+      const statusTextElement = card.querySelector('.status-text');
+      
+      if (statusIndicator) {
+        statusIndicator.setAttribute('data-status', status);
+      }
+      
+      if (statusTextElement) {
+        statusTextElement.textContent = statusText;
+      }
+    },
+    
+    updateVendorConnectionStatus(vendorName, status) {
+      const card = document.querySelector(`[data-vendor="${vendorName}"]`);
+      if (!card) return;
+      
+      const statusElement = card.querySelector('[data-connection-status]');
+      if (statusElement) {
+        statusElement.textContent = status;
+      }
+    },
+    
+    updateVendorData(vendorName, data) {
+      const card = document.querySelector(`[data-vendor="${vendorName}"]`);
+      if (!card) return;
+      
+      const lastSyncElement = card.querySelector('[data-last-sync]');
+      const productCountElement = card.querySelector('[data-product-count]');
+      
+      if (lastSyncElement) {
+        lastSyncElement.textContent = new Date().toLocaleTimeString();
+      }
+      
+      if (productCountElement && data.products) {
+        productCountElement.textContent = data.products.length;
+      }
+    },
+    
+    startPeriodicSync() {
+      // Start periodic sync for enabled vendors
+      Object.entries(this.config.vendors).forEach(([vendorName, vendor]) => {
+        if (vendor.enabled && vendor.syncInterval) {
+          setInterval(() => {
+            this.syncVendor(vendorName);
+          }, vendor.syncInterval * 1000);
+        }
+      });
+    },
+    
+    log(message) {
+      const logsContainer = document.querySelector('[data-logs-container]');
+      if (!logsContainer) return;
+      
+      const logEntry = document.createElement('div');
+      logEntry.className = 'log-entry';
+      logEntry.innerHTML = `
+        <span class="log-time">${new Date().toLocaleTimeString()}</span>
+        <span class="log-message">${message}</span>
+      `;
+      
+      logsContainer.appendChild(logEntry);
+      
+      // Keep only last 50 entries
+      const entries = logsContainer.querySelectorAll('.log-entry');
+      if (entries.length > 50) {
+        entries[0].remove();
+      }
+      
+      // Scroll to bottom
+      logsContainer.scrollTop = logsContainer.scrollHeight;
+    }
+  };
+  
+  // Initialize API system
+  apiSystem.init();
+  
+  // Export for external use
+  window.pipelineVendorAPI = apiSystem;
+});
+</script>
