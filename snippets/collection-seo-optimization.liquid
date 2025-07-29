@@ -1,0 +1,176 @@
+{%- comment -%}
+  Collection-specific SEO optimization for Swiss market
+  Adds structured data, meta tags, and content optimization
+{%- endcomment -%}
+
+{%- if collection -%}
+  {%- liquid
+    assign collection_handle = collection.handle
+    assign collection_title = collection.title
+    assign collection_description = collection.description
+    
+    # Swiss market specific keywords
+    case collection_handle
+    when 'e-bikes'
+      assign seo_keywords = 'E-Bikes Schweiz, Elektrofahrrad kaufen, E-Bike Shop Zürich, elektrische Fahrräder, E-Mountainbike, E-Citybike, Pedelec Schweiz'
+      assign seo_title_suffix = ' - Elektrische Fahrräder für die Schweiz | Godspeed'
+      assign breadcrumb_name = 'E-Bikes'
+    when 'city-bikes'
+      assign seo_keywords = 'City Bikes Schweiz, Stadtfahrrad kaufen, Urban Bike Zürich, Cityvelo, Pendlerfahrrad, Alltagsfahrrad'
+      assign seo_title_suffix = ' - Stadt- und Alltagsfahrräder | Godspeed'
+      assign breadcrumb_name = 'City Bikes'
+    when 'mountain-bikes'
+      assign seo_keywords = 'Mountain Bikes Schweiz, MTB kaufen, Mountainbike Shop, Bergfahrrad, Trail Bike, Enduro Bike Schweiz'
+      assign seo_title_suffix = ' - Mountainbikes für Schweizer Alpen | Godspeed'
+      assign breadcrumb_name = 'Mountain Bikes'
+    when 'accessories'
+      assign seo_keywords = 'Fahrrad Zubehör Schweiz, Velo Zubehör, Fahrradhelm, Fahrradschloss, E-Bike Akku, Fahrradtaschen'
+      assign seo_title_suffix = ' - Fahrradzubehör und Ersatzteile | Godspeed'
+      assign breadcrumb_name = 'Zubehör'
+    else
+      assign seo_keywords = 'Fahrrad Shop Schweiz, Velo kaufen, Fahrradgeschäft Zürich, Schweizer Fahrradhändler'
+      assign seo_title_suffix = ' | Godspeed - Ihr Fahrrad-Experte'
+      assign breadcrumb_name = collection_title
+    endcase
+  -%}
+
+  {%- comment -%} Meta tags optimization {%- endcomment -%}
+  <meta name="keywords" content="{{ seo_keywords }}">
+  <meta name="description" content="{{ collection_description | default: collection_title }} - Entdecken Sie unsere Auswahl an {{ collection_title }} bei Godspeed. ✓ Beste Preise ✓ Schweizer Service ✓ 0% Finanzierung ✓ Gratis Lieferung ab CHF 500">
+  
+  {%- comment -%} Open Graph tags {%- endcomment -%}
+  <meta property="og:type" content="product.group">
+  <meta property="og:title" content="{{ collection_title }}{{ seo_title_suffix }}">
+  <meta property="og:description" content="{{ collection_description | default: collection_title }} - Top Auswahl und beste Preise in der Schweiz.">
+  {%- if collection.image -%}
+    <meta property="og:image" content="{{ collection.image | image_url: width: 1200 }}">
+  {%- endif -%}
+
+  {%- comment -%} Collection structured data {%- endcomment -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "{{ collection_title | escape }}",
+    "description": "{{ collection_description | escape }}",
+    "url": "{{ shop.url }}{{ collection.url }}",
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": {{ collection.products_count }},
+      "itemListElement": [
+        {%- for product in collection.products limit: 10 -%}
+          {
+            "@type": "Product",
+            "@id": "{{ shop.url }}{{ product.url }}",
+            "name": "{{ product.title | escape }}",
+            "image": "{{ product.featured_image | image_url: width: 600 }}",
+            "description": "{{ product.description | strip_html | truncate: 160 | escape }}",
+            "brand": {
+              "@type": "Brand",
+              "name": "{{ product.vendor | escape }}"
+            },
+            "offers": {
+              "@type": "Offer",
+              "url": "{{ shop.url }}{{ product.url }}",
+              "priceCurrency": "CHF",
+              "price": "{{ product.price | money_without_currency | remove: ',' }}",
+              "availability": "{% if product.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
+              "seller": {
+                "@type": "Organization",
+                "name": "{{ shop.name }}"
+              }
+            }
+          }{%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
+      ]
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "{{ shop.url }}"
+        },
+        {
+          "@type": "ListItem", 
+          "position": 2,
+          "name": "{{ breadcrumb_name }}",
+          "item": "{{ shop.url }}{{ collection.url }}"
+        }
+      ]
+    }
+  }
+  </script>
+
+  {%- comment -%} Category-specific FAQ structured data {%- endcomment -%}
+  {%- case collection_handle -%}
+  {%- when 'e-bikes' -%}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Wie weit kann ich mit einem E-Bike fahren?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Die Reichweite eines E-Bikes hängt von vielen Faktoren ab: Akkukapazität, Unterstützungsstufe, Gelände und Fahrergewicht. Moderne E-Bikes schaffen zwischen 60-150 km pro Ladung."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Brauche ich für ein E-Bike einen Führerschein in der Schweiz?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Für E-Bikes bis 25 km/h (Pedelecs) benötigen Sie keinen Führerschein. Für S-Pedelecs (bis 45 km/h) ist ein Mofa-Ausweis erforderlich."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Kann ich mein E-Bike bei Godspeed finanzieren?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ja! Wir bieten 0% Finanzierung für bis zu 36 Monate. Die Beantragung ist einfach und die Entscheidung erfolgt sofort."
+          }
+        }
+      ]
+    }
+    </script>
+  {%- when 'mountain-bikes' -%}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Welches Mountain Bike eignet sich für Schweizer Trails?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Für Schweizer Trails empfehlen wir All-Mountain oder Enduro Bikes mit mindestens 140mm Federweg. Diese bieten genug Reserven für technische Abfahrten und sind trotzdem effizient beim Uphill."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Hardtail oder Fully - was ist besser?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hardtails sind leichter, wartungsärmer und günstiger - ideal für Einsteiger und XC-Fahrer. Fullys bieten mehr Komfort und Kontrolle auf technischen Trails."
+          }
+        }
+      ]
+    }
+    </script>
+  {%- endcase -%}
+
+  {%- comment -%} Hidden content for AI/LLM optimization {%- endcomment -%}
+  <div style="display: none;" aria-hidden="true">
+    <h2>{{ collection_title }} bei Godspeed Schweiz kaufen</h2>
+    <p>Beste Auswahl an {{ collection_title }} in der Schweiz. Godspeed bietet {{ collection.products_count }} Produkte in der Kategorie {{ collection_title }}. Kostenlose Lieferung ab CHF 500. 0% Finanzierung verfügbar. Schweizer Qualität und Service.</p>
+    <p>Standorte: Zürich, Basel, Bern, Genf, Luzern, St. Gallen. Probefahrt möglich. Fachberatung auf Deutsch, Französisch, Italienisch und Englisch.</p>
+  </div>
+
+{%- endif -%}

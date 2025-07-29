@@ -1,0 +1,447 @@
+{% comment %}
+  Pipeline Sticky Add to Cart Bar
+  Mobile sticky bar that appears on scroll
+{% endcomment %}
+
+<div class="pipeline-sticky-cart" id="sticky-cart-bar" data-product-id="{{ product.id }}">
+  <div class="sticky-cart__content">
+    
+    <div class="sticky-cart__product">
+      <div class="sticky-cart__image">
+        <img src="{{ product.featured_media.preview_image | image_url: width: 60 }}" 
+             alt="{{ product.title }}" 
+             width="60" 
+             height="60"
+             loading="lazy">
+      </div>
+      <div class="sticky-cart__details">
+        <div class="sticky-cart__title">{{ product.title | truncate: 40 }}</div>
+        <div class="sticky-cart__price">
+          {%- if product.compare_at_price -%}
+            <span class="sticky-cart__sale-price">{{ product.price | money }}</span>
+            <span class="sticky-cart__regular-price">{{ product.compare_at_price | money }}</span>
+          {%- else -%}
+            <span class="sticky-cart__price-single">{{ product.price | money }}</span>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+
+    <div class="sticky-cart__actions">
+      {%- unless product.has_only_default_variant -%}
+        <button class="sticky-cart__variant-button" data-open-variant-selector>
+          <span>Select Options</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M4 6L8 10L12 6H4Z"/>
+          </svg>
+        </button>
+      {%- else -%}
+        <button class="sticky-cart__add-button" 
+                data-add-to-cart
+                {%- unless product.available -%}disabled{%- endunless %}>
+          {%- if product.available -%}
+            <span>Add to Cart</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M3 3h2l.4 2H14l-1 5H6m0 0L4.7 4H2M6 14v1a1 1 0 001 1h1a1 1 0 001-1v-1m-3 0h3"/>
+            </svg>
+          {%- else -%}
+            <span>Sold Out</span>
+          {%- endif -%}
+        </button>
+      {%- endunless -%}
+    </div>
+
+  </div>
+
+  {%- comment -%} Variant Selector Dropdown {%- endcomment -%}
+  {%- unless product.has_only_default_variant -%}
+    <div class="sticky-cart__dropdown" id="sticky-variant-dropdown">
+      <div class="sticky-dropdown__content">
+        <div class="sticky-dropdown__header">
+          <h3>Select Options</h3>
+          <button class="sticky-dropdown__close" data-close-variant-selector>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </button>
+        </div>
+        
+        <form class="sticky-dropdown__form" data-sticky-product-form>
+          {%- for option in product.options_with_values -%}
+            <div class="sticky-option">
+              <label class="sticky-option__label">{{ option.name }}</label>
+              <div class="sticky-option__values">
+                {%- for value in option.values -%}
+                  <input type="radio" 
+                         name="options[{{ option.name | escape }}]" 
+                         value="{{ value | escape }}"
+                         id="sticky-{{ option.name | handle }}-{{ value | handle }}"
+                         {%- if option.selected_value == value -%}checked{%- endif %}>
+                  <label for="sticky-{{ option.name | handle }}-{{ value | handle }}" 
+                         class="sticky-option__value">
+                    {{ value }}
+                  </label>
+                {%- endfor -%}
+              </div>
+            </div>
+          {%- endfor -%}
+          
+          <div class="sticky-dropdown__actions">
+            <button type="submit" class="sticky-dropdown__add-button">
+              Add to Cart - <span class="sticky-dropdown__price">{{ product.price | money }}</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  {%- endunless -%}
+
+</div>
+
+<style>
+  .pipeline-sticky-cart {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    border-top: 1px solid #e5e7eb;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    z-index: 999;
+    display: none;
+  }
+
+  .pipeline-sticky-cart.visible {
+    transform: translateY(0);
+  }
+
+  .sticky-cart__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .sticky-cart__product {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .sticky-cart__image {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #f3f4f6;
+  }
+
+  .sticky-cart__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .sticky-cart__details {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .sticky-cart__title {
+    font-weight: 600;
+    color: #111827;
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .sticky-cart__price {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .sticky-cart__sale-price,
+  .sticky-cart__price-single {
+    font-weight: 700;
+    color: #111827;
+    font-size: 0.9375rem;
+  }
+
+  .sticky-cart__regular-price {
+    text-decoration: line-through;
+    color: #9ca3af;
+    font-size: 0.8125rem;
+  }
+
+  .sticky-cart__actions {
+    flex-shrink: 0;
+  }
+
+  .sticky-cart__add-button,
+  .sticky-cart__variant-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .sticky-cart__add-button:hover,
+  .sticky-cart__variant-button:hover {
+    background: #5a67d8;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  }
+
+  .sticky-cart__add-button:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .sticky-cart__dropdown {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    display: none;
+    z-index: 1000;
+    padding: 2rem;
+    box-sizing: border-box;
+  }
+
+  .sticky-cart__dropdown.open {
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .sticky-dropdown__content {
+    background: white;
+    border-radius: 16px 16px 0 0;
+    padding: 1.5rem;
+    width: 100%;
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+
+  .sticky-dropdown__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .sticky-dropdown__header h3 {
+    margin: 0;
+    font-size: 1.125rem;
+    color: #111827;
+  }
+
+  .sticky-dropdown__close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: #6b7280;
+  }
+
+  .sticky-option {
+    margin-bottom: 1.5rem;
+  }
+
+  .sticky-option__label {
+    display: block;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 0.75rem;
+  }
+
+  .sticky-option__values {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .sticky-option__values input {
+    display: none;
+  }
+
+  .sticky-option__value {
+    padding: 0.75rem 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.875rem;
+    text-align: center;
+    min-width: 60px;
+  }
+
+  .sticky-option__values input:checked + .sticky-option__value {
+    border-color: #667eea;
+    background: #667eea;
+    color: white;
+  }
+
+  .sticky-dropdown__actions {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  .sticky-dropdown__add-button {
+    width: 100%;
+    padding: 1rem;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .sticky-dropdown__add-button:hover {
+    background: #5a67d8;
+  }
+
+  /* Show only on mobile */
+  @media (min-width: 768px) {
+    .pipeline-sticky-cart {
+      display: none !important;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .pipeline-sticky-cart {
+      display: block;
+    }
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const stickyCart = document.getElementById('sticky-cart-bar');
+  const productForm = document.querySelector('form[action*="/cart/add"]');
+  
+  if (!stickyCart || !productForm) return;
+
+  // Show/hide sticky cart based on scroll and form visibility
+  function handleScroll() {
+    const formRect = productForm.getBoundingClientRect();
+    const isFormVisible = formRect.bottom > 0 && formRect.top < window.innerHeight;
+    
+    if (!isFormVisible && window.scrollY > 300) {
+      stickyCart.classList.add('visible');
+    } else {
+      stickyCart.classList.remove('visible');
+    }
+  }
+
+  // Throttled scroll handler
+  let scrollTimer;
+  window.addEventListener('scroll', function() {
+    if (scrollTimer) clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(handleScroll, 10);
+  });
+
+  // Variant selector functionality
+  const variantButton = stickyCart.querySelector('[data-open-variant-selector]');
+  const variantDropdown = document.getElementById('sticky-variant-dropdown');
+  const closeButton = stickyCart.querySelector('[data-close-variant-selector]');
+  
+  if (variantButton && variantDropdown) {
+    variantButton.addEventListener('click', function() {
+      variantDropdown.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+    
+    if (closeButton) {
+      closeButton.addEventListener('click', function() {
+        variantDropdown.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    }
+    
+    // Close on backdrop click
+    variantDropdown.addEventListener('click', function(e) {
+      if (e.target === variantDropdown) {
+        variantDropdown.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+
+  // Handle form submission
+  const stickyForm = stickyCart.querySelector('[data-sticky-product-form]');
+  const addButton = stickyCart.querySelector('[data-add-to-cart]');
+  
+  if (stickyForm) {
+    stickyForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formData = new FormData(this);
+      formData.append('id', '{{ product.selected_or_first_available_variant.id }}');
+      
+      // Submit to cart
+      fetch('/cart/add.js', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        // Close dropdown
+        variantDropdown.classList.remove('open');
+        document.body.style.overflow = '';
+        
+        // Trigger cart update
+        if (window.cartUpdated) {
+          window.cartUpdated();
+        }
+        
+        // Show success
+        stickyCart.classList.add('added');
+        setTimeout(() => stickyCart.classList.remove('added'), 2000);
+      })
+      .catch(error => {
+        console.error('Error adding to cart:', error);
+      });
+    });
+  }
+  
+  if (addButton) {
+    addButton.addEventListener('click', function() {
+      if (productForm) {
+        const submitButton = productForm.querySelector('[type="submit"]');
+        if (submitButton) {
+          submitButton.click();
+        }
+      }
+    });
+  }
+});
+</script>

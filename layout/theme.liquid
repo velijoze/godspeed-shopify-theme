@@ -28,6 +28,13 @@
     {% endif %}
 
     {% render 'meta-tags' %}
+    
+    <!-- Enhanced SEO Optimization -->
+    {% render 'site-specific-seo' %}
+    {% if template.name == 'collection' %}
+      {% render 'seo-category-optimization' %}
+      {% render 'collection-seo-optimization' %}
+    {% endif %}
 
     <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
@@ -386,5 +393,13 @@
     
     {%- comment -%} Pipeline Quick View Modal {%- endcomment -%}
     {% render 'quick-view-modal-pipeline' %}
+    
+    {%- comment -%} Pipeline Sticky Cart (product pages only) {%- endcomment -%}
+    {%- if template contains 'product' -%}
+      {% render 'pipeline-sticky-cart' %}
+    {%- endif -%}
+    
+    {%- comment -%} Pipeline AI Optimization {%- endcomment -%}
+    {% render 'pipeline-ai-optimization' %}
   </body>
 </html>

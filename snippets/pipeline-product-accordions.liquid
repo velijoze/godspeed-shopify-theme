@@ -1,0 +1,372 @@
+{% comment %}
+  Pipeline Product Info Accordions
+  Collapsible accordions for product information in sidebar
+{% endcomment %}
+
+<div class="pipeline-accordions" data-product-accordions>
+  
+  {%- comment -%} Description Accordion {%- endcomment -%}
+  {%- if product.description != blank -%}
+    <details class="accordion" open>
+      <summary class="accordion__title">
+        <span>{{ 'products.product.description' | t | default: 'Description' }}</span>
+        <span class="accordion__icon">
+          <svg width="12" height="7" viewBox="0 0 12 7" fill="currentColor">
+            <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" fill="none"/>
+          </svg>
+        </span>
+      </summary>
+      <div class="accordion__content">
+        <div class="rte">
+          {{ product.description }}
+        </div>
+      </div>
+    </details>
+  {%- endif -%}
+
+  {%- comment -%} Specifications Accordion {%- endcomment -%}
+  {%- if section.settings.show_specifications -%}
+    <details class="accordion">
+      <summary class="accordion__title">
+        <span>{{ section.settings.specifications_title | default: 'Specifications' }}</span>
+        <span class="accordion__icon">
+          <svg width="12" height="7" viewBox="0 0 12 7" fill="currentColor">
+            <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" fill="none"/>
+          </svg>
+        </span>
+      </summary>
+      <div class="accordion__content">
+        {%- if product.metafields.custom.specifications != blank -%}
+          <div class="specifications-table">
+            {{ product.metafields.custom.specifications }}
+          </div>
+        {%- else -%}
+          <table class="specifications-table">
+            <tbody>
+              {%- if product.vendor != blank -%}
+                <tr>
+                  <td>Brand</td>
+                  <td>{{ product.vendor }}</td>
+                </tr>
+              {%- endif -%}
+              {%- if product.type != blank -%}
+                <tr>
+                  <td>Type</td>
+                  <td>{{ product.type }}</td>
+                </tr>
+              {%- endif -%}
+              {%- for tag in product.tags -%}
+                {%- if tag contains 'spec:' -%}
+                  {%- assign spec_parts = tag | split: ':' -%}
+                  <tr>
+                    <td>{{ spec_parts[1] | replace: '_', ' ' | capitalize }}</td>
+                    <td>{{ spec_parts[2] }}</td>
+                  </tr>
+                {%- endif -%}
+              {%- endfor -%}
+            </tbody>
+          </table>
+        {%- endif -%}
+      </div>
+    </details>
+  {%- endif -%}
+
+  {%- comment -%} Shipping & Returns Accordion {%- endcomment -%}
+  {%- if section.settings.show_shipping -%}
+    <details class="accordion">
+      <summary class="accordion__title">
+        <span>{{ section.settings.shipping_title | default: 'Shipping & Returns' }}</span>
+        <span class="accordion__icon">
+          <svg width="12" height="7" viewBox="0 0 12 7" fill="currentColor">
+            <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" fill="none"/>
+          </svg>
+        </span>
+      </summary>
+      <div class="accordion__content">
+        {%- if section.settings.shipping_content != blank -%}
+          <div class="rte">
+            {{ section.settings.shipping_content }}
+          </div>
+        {%- else -%}
+          <div class="shipping-info">
+            <div class="shipping-block">
+              <h4>🚚 Shipping</h4>
+              <ul>
+                <li>Free shipping on orders over ${{ settings.free_shipping_threshold | default: 100 }}</li>
+                <li>Standard delivery: 3-7 business days</li>
+                <li>Express delivery: 1-3 business days</li>
+                <li>International shipping available</li>
+              </ul>
+            </div>
+            <div class="shipping-block">
+              <h4>↩️ Returns</h4>
+              <ul>
+                <li>30-day return policy</li>
+                <li>Items must be unused and in original packaging</li>
+                <li>Free returns for defective items</li>
+                <li>Return shipping fees may apply</li>
+              </ul>
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    </details>
+  {%- endif -%}
+
+  {%- comment -%} Care Instructions Accordion {%- endcomment -%}
+  {%- if section.settings.show_care or product.metafields.custom.care_instructions -%}
+    <details class="accordion">
+      <summary class="accordion__title">
+        <span>{{ section.settings.care_title | default: 'Care Instructions' }}</span>
+        <span class="accordion__icon">
+          <svg width="12" height="7" viewBox="0 0 12 7" fill="currentColor">
+            <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" fill="none"/>
+          </svg>
+        </span>
+      </summary>
+      <div class="accordion__content">
+        {%- if product.metafields.custom.care_instructions != blank -%}
+          <div class="rte">
+            {{ product.metafields.custom.care_instructions }}
+          </div>
+        {%- elsif section.settings.care_content != blank -%}
+          <div class="rte">
+            {{ section.settings.care_content }}
+          </div>
+        {%- else -%}
+          <div class="care-info">
+            <h4>🛠️ E-Bike Maintenance</h4>
+            <ul>
+              <li>Keep battery charged between 20-80% for optimal life</li>
+              <li>Store in a cool, dry place</li>
+              <li>Clean with damp cloth, avoid pressure washing</li>
+              <li>Annual professional service recommended</li>
+            </ul>
+          </div>
+        {%- endif -%}
+      </div>
+    </details>
+  {%- endif -%}
+
+  {%- comment -%} Size Guide Accordion (if applicable) {%- endcomment -%}
+  {%- if section.settings.show_size_guide and product.options contains 'Size' -%}
+    <details class="accordion">
+      <summary class="accordion__title">
+        <span>{{ section.settings.size_guide_title | default: 'Size Guide' }}</span>
+        <span class="accordion__icon">
+          <svg width="12" height="7" viewBox="0 0 12 7" fill="currentColor">
+            <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" fill="none"/>
+          </svg>
+        </span>
+      </summary>
+      <div class="accordion__content">
+        <button class="size-guide-button" data-open-size-guide>
+          📏 View Size Chart
+        </button>
+      </div>
+    </details>
+  {%- endif -%}
+
+</div>
+
+<style>
+  .pipeline-accordions {
+    margin: 2rem 0;
+  }
+
+  .accordion {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+    background: white;
+    transition: all 0.2s ease;
+  }
+
+  .accordion:hover {
+    border-color: #d1d5db;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .accordion[open] {
+    border-color: #667eea;
+  }
+
+  .accordion__title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    color: #111827;
+    font-size: 0.9375rem;
+    list-style: none;
+    background: white;
+    transition: all 0.2s ease;
+  }
+
+  .accordion__title::-webkit-details-marker {
+    display: none;
+  }
+
+  .accordion__title:hover {
+    background: #f9fafb;
+  }
+
+  .accordion[open] .accordion__title {
+    background: #f9fafb;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .accordion__icon {
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+
+  .accordion[open] .accordion__icon {
+    transform: rotate(180deg);
+  }
+
+  .accordion__content {
+    padding: 1.5rem;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: #4b5563;
+  }
+
+  .specifications-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .specifications-table td {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f3f4f6;
+  }
+
+  .specifications-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .specifications-table td:first-child {
+    font-weight: 500;
+    color: #6b7280;
+    width: 40%;
+  }
+
+  .specifications-table td:last-child {
+    color: #111827;
+  }
+
+  .shipping-block {
+    margin-bottom: 1.5rem;
+  }
+
+  .shipping-block:last-child {
+    margin-bottom: 0;
+  }
+
+  .shipping-block h4 {
+    font-size: 0.9375rem;
+    margin-bottom: 0.75rem;
+    color: #111827;
+  }
+
+  .shipping-block ul,
+  .care-info ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .shipping-block li,
+  .care-info li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .shipping-block li:before,
+  .care-info li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #22c55e;
+    font-weight: bold;
+  }
+
+  .size-guide-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .size-guide-button:hover {
+    background: #5a67d8;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  }
+
+  .care-info h4 {
+    font-size: 0.9375rem;
+    margin-bottom: 0.75rem;
+    color: #111827;
+  }
+
+  @media (max-width: 768px) {
+    .pipeline-accordions {
+      margin: 1.5rem 0;
+    }
+    
+    .accordion {
+      margin-bottom: 0.5rem;
+    }
+    
+    .accordion__title {
+      padding: 1rem 1.25rem;
+      font-size: 0.875rem;
+    }
+    
+    .accordion__content {
+      padding: 1.25rem;
+    }
+  }
+</style>
+
+<script>
+  // Optional: Close other accordions when one opens
+  if ({{ section.settings.single_accordion | default: false }}) {
+    document.querySelectorAll('.pipeline-accordions .accordion').forEach(accordion => {
+      accordion.addEventListener('toggle', function() {
+        if (this.open) {
+          document.querySelectorAll('.pipeline-accordions .accordion').forEach(other => {
+            if (other !== this && other.open) {
+              other.open = false;
+            }
+          });
+        }
+      });
+    });
+  }
+
+  // Size guide modal trigger
+  document.querySelectorAll('[data-open-size-guide]').forEach(button => {
+    button.addEventListener('click', function() {
+      // Trigger size guide modal (if implemented)
+      if (window.openSizeGuide) {
+        window.openSizeGuide();
+      } else {
+        alert('Size guide modal would open here');
+      }
+    });
+  });
+</script>

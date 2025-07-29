@@ -1,0 +1,382 @@
+{{ 'section-multicolumn.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .services-grid {
+    text-align: {{ section.settings.text_alignment }};
+  }
+
+  .services-grid__heading {
+    margin-bottom: 3rem;
+  }
+
+  .services-grid__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .services-grid__grid--2-columns {
+      grid-template-columns: 1fr 1fr;
+    }
+    
+    .services-grid__grid--3-columns {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  .service-card {
+    padding: 2rem;
+    border: 1px solid rgba(var(--color-foreground), 0.1);
+    border-radius: {{ section.settings.card_border_radius }}px;
+    text-align: {{ section.settings.card_text_alignment }};
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(var(--color-foreground), 0.1);
+  }
+
+  .service-card__icon {
+    width: {{ section.settings.icon_size }}px;
+    height: {{ section.settings.icon_size }}px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(var(--color-button), 1);
+    border-radius: 50%;
+    color: rgba(var(--color-button-text), 1);
+  }
+
+  .service-card__icon svg {
+    width: 50%;
+    height: 50%;
+  }
+
+  .service-card__title {
+    margin-bottom: 1rem;
+  }
+
+  .service-card__text {
+    margin-bottom: 1.5rem;
+  }
+
+  .service-card__button {
+    margin-top: auto;
+  }
+{%- endstyle -%}
+
+<div class="services-grid section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <div class="services-grid__heading">
+        <h2 class="{{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+          {{ section.settings.heading | escape }}
+        </h2>
+        {%- if section.settings.description != blank -%}
+          <div class="rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+            {{ section.settings.description }}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="services-grid__grid services-grid__grid--{{ section.blocks.size }}-columns">
+      {%- for block in section.blocks -%}
+        <div class="service-card{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" {{ block.shopify_attributes }}>
+          {%- if block.settings.icon != blank -%}
+            <div class="service-card__icon">
+              {{ block.settings.icon | inline_asset_content }}
+            </div>
+          {%- endif -%}
+
+          {%- if block.settings.title != blank -%}
+            <h3 class="service-card__title h4">{{ block.settings.title | escape }}</h3>
+          {%- endif -%}
+
+          {%- if block.settings.text != blank -%}
+            <div class="service-card__text rte">
+              {{ block.settings.text }}
+            </div>
+          {%- endif -%}
+
+          {%- if block.settings.button_label != blank -%}
+            <div class="service-card__button">
+              <a
+                {% if block.settings.button_link == blank %}
+                  role="link" aria-disabled="true"
+                {% else %}
+                  href="{{ block.settings.button_link }}"
+                {% endif %}
+                class="button {% if block.settings.button_style_secondary %}button--secondary{% else %}button--primary{% endif %}"
+              >
+                {{ block.settings.button_label | escape }}
+              </a>
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Services Grid",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Unsere Services",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Small"
+        },
+        {
+          "value": "h1",
+          "label": "Medium"
+        },
+        {
+          "value": "h0",
+          "label": "Large"
+        }
+      ],
+      "default": "h1",
+      "label": "Heading Size"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ],
+      "default": "center",
+      "label": "Text Alignment"
+    },
+    {
+      "type": "select",
+      "id": "card_text_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ],
+      "default": "center",
+      "label": "Card Text Alignment"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 60,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "label": "Icon Size",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Card Border Radius",
+      "default": 8
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        {
+          "value": "background-1",
+          "label": "Background 1"
+        },
+        {
+          "value": "background-2",
+          "label": "Background 2"
+        },
+        {
+          "value": "inverse",
+          "label": "Inverse"
+        },
+        {
+          "value": "accent-1",
+          "label": "Accent 1"
+        },
+        {
+          "value": "accent-2",
+          "label": "Accent 2"
+        }
+      ],
+      "default": "background-1",
+      "label": "Color Scheme"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "service",
+      "name": "Service",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "options": [
+            {
+              "value": "icon-heart.svg",
+              "label": "Heart"
+            },
+            {
+              "value": "icon-truck.svg",
+              "label": "Delivery"
+            },
+            {
+              "value": "icon-return.svg",
+              "label": "Return"
+            },
+            {
+              "value": "icon-leaf.svg",
+              "label": "Eco"
+            },
+            {
+              "value": "icon-lock.svg",
+              "label": "Security"
+            },
+            {
+              "value": "icon-price-tag.svg",
+              "label": "Price"
+            }
+          ],
+          "default": "icon-heart.svg",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "default": "Service Title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Describe your service here with all the important details customers need to know.</p>",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_style_secondary",
+          "default": false,
+          "label": "Use Secondary Button Style"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Services Grid",
+      "blocks": [
+        {
+          "type": "service",
+          "settings": {
+            "icon": "icon-price-tag.svg",
+            "title": "0% Finanzierung",
+            "text": "<p>Bis zu 36 Monate zinsfrei finanzieren. Faire Konditionen ohne versteckte Kosten.</p>",
+            "button_label": "Mehr erfahren"
+          }
+        },
+        {
+          "type": "service",
+          "settings": {
+            "icon": "icon-heart.svg",
+            "title": "Persönliche Beratung",
+            "text": "<p>Unsere Experten helfen Ihnen, das perfekte Fahrrad für Ihre Bedürfnisse zu finden.</p>",
+            "button_label": "Beratung buchen"
+          }
+        },
+        {
+          "type": "service",
+          "settings": {
+            "icon": "icon-return.svg",
+            "title": "Professioneller Service",
+            "text": "<p>Wartung, Reparatur und lebenslange Unterstützung von unserem Fachteam.</p>",
+            "button_label": "Service buchen"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,165 @@
+{% comment %}
+  Pipeline-style Breadcrumb Navigation
+  Shows navigation path with structured data
+{% endcomment %}
+
+{%- unless template == 'index' or template == 'cart' or template == 'list-collections' or template == '404' -%}
+  <nav class="pipeline-breadcrumbs" aria-label="Breadcrumb">
+    <div class="page-width">
+      <ol class="breadcrumbs__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+        
+        {%- comment -%} Home Link {%- endcomment -%}
+        <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="{{ routes.root_url }}" class="breadcrumbs__link" itemprop="item">
+            <span itemprop="name">{{ 'general.breadcrumbs.home' | t | default: 'Home' }}</span>
+          </a>
+          <meta itemprop="position" content="1">
+          <span class="breadcrumbs__separator" aria-hidden="true">
+            <svg width="8" height="12" viewBox="0 0 8 12" fill="currentColor">
+              <path d="M1.5 0L0 1.5L4.5 6L0 10.5L1.5 12L7.5 6L1.5 0Z"/>
+            </svg>
+          </span>
+        </li>
+
+        {%- case template.name -%}
+          
+          {%- when 'product' -%}
+            {%- if collection -%}
+              <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a href="{{ collection.url }}" class="breadcrumbs__link" itemprop="item">
+                  <span itemprop="name">{{ collection.title }}</span>
+                </a>
+                <meta itemprop="position" content="2">
+                <span class="breadcrumbs__separator" aria-hidden="true">
+                  <svg width="8" height="12" viewBox="0 0 8 12" fill="currentColor">
+                    <path d="M1.5 0L0 1.5L4.5 6L0 10.5L1.5 12L7.5 6L1.5 0Z"/>
+                  </svg>
+                </span>
+              </li>
+            {%- else -%}
+              <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a href="{{ routes.all_products_collection_url }}" class="breadcrumbs__link" itemprop="item">
+                  <span itemprop="name">{{ 'general.breadcrumbs.products' | t | default: 'Products' }}</span>
+                </a>
+                <meta itemprop="position" content="2">
+                <span class="breadcrumbs__separator" aria-hidden="true">
+                  <svg width="8" height="12" viewBox="0 0 8 12" fill="currentColor">
+                    <path d="M1.5 0L0 1.5L4.5 6L0 10.5L1.5 12L7.5 6L1.5 0Z"/>
+                  </svg>
+                </span>
+              </li>
+            {%- endif -%}
+            
+            <li class="breadcrumbs__item breadcrumbs__item--current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <span class="breadcrumbs__text" itemprop="name">{{ product.title }}</span>
+              <meta itemprop="position" content="3">
+            </li>
+
+          {%- when 'collection' -%}
+            <li class="breadcrumbs__item breadcrumbs__item--current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <span class="breadcrumbs__text" itemprop="name">{{ collection.title }}</span>
+              <meta itemprop="position" content="2">
+            </li>
+
+          {%- when 'page' -%}
+            <li class="breadcrumbs__item breadcrumbs__item--current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <span class="breadcrumbs__text" itemprop="name">{{ page.title }}</span>
+              <meta itemprop="position" content="2">
+            </li>
+
+          {%- when 'blog' -%}
+            <li class="breadcrumbs__item breadcrumbs__item--current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <span class="breadcrumbs__text" itemprop="name">{{ blog.title }}</span>
+              <meta itemprop="position" content="2">
+            </li>
+
+          {%- when 'article' -%}
+            <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <a href="{{ blog.url }}" class="breadcrumbs__link" itemprop="item">
+                <span itemprop="name">{{ blog.title }}</span>
+              </a>
+              <meta itemprop="position" content="2">
+              <span class="breadcrumbs__separator" aria-hidden="true">
+                <svg width="8" height="12" viewBox="0 0 8 12" fill="currentColor">
+                  <path d="M1.5 0L0 1.5L4.5 6L0 10.5L1.5 12L7.5 6L1.5 0Z"/>
+                </svg>
+              </span>
+            </li>
+            <li class="breadcrumbs__item breadcrumbs__item--current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <span class="breadcrumbs__text" itemprop="name">{{ article.title }}</span>
+              <meta itemprop="position" content="3">
+            </li>
+
+        {%- endcase -%}
+      </ol>
+    </div>
+  </nav>
+{%- endunless -%}
+
+<style>
+  .pipeline-breadcrumbs {
+    background: #f8f9fa;
+    padding: 1rem 0;
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 2rem;
+  }
+
+  .breadcrumbs__list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 0.5rem;
+  }
+
+  .breadcrumbs__item {
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+  }
+
+  .breadcrumbs__link {
+    color: #6b7280;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .breadcrumbs__link:hover {
+    color: #667eea;
+    text-decoration: underline;
+  }
+
+  .breadcrumbs__text {
+    color: #111827;
+    font-weight: 500;
+  }
+
+  .breadcrumbs__separator {
+    display: flex;
+    align-items: center;
+    margin: 0 0.75rem;
+    color: #9ca3af;
+  }
+
+  .breadcrumbs__separator svg {
+    width: 8px;
+    height: 12px;
+  }
+
+  @media (max-width: 768px) {
+    .pipeline-breadcrumbs {
+      padding: 0.75rem 0;
+      margin-bottom: 1rem;
+    }
+    
+    .breadcrumbs__list {
+      font-size: 0.8125rem;
+    }
+    
+    .breadcrumbs__separator {
+      margin: 0 0.5rem;
+    }
+  }
+</style>

@@ -1,0 +1,353 @@
+{{ 'section-buy-it-with.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign current_product = product
+  assign recommended_products = section.settings.collection.products
+  assign max_products = section.settings.products_to_show | default: 3
+-%}
+
+<section class="buy-it-with color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="buy-it-with__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    <div class="buy-it-with__container">
+      {%- comment -%} Current Product {%- endcomment -%}
+      <div class="buy-it-with__current-product">
+        <div class="buy-it-with__product-card">
+          <div class="buy-it-with__product-image">
+            <img
+              src="{{ current_product.featured_media | img_url: '300x300' }}"
+              alt="{{ current_product.featured_media.alt | escape }}"
+              width="150"
+              height="150"
+              loading="lazy">
+          </div>
+          <div class="buy-it-with__product-info">
+            <h3 class="buy-it-with__product-title">{{ current_product.title }}</h3>
+            <div class="buy-it-with__product-price">
+              {%- if current_product.compare_at_price > current_product.price -%}
+                <span class="buy-it-with__price-sale">{{ current_product.price | money }}</span>
+                <span class="buy-it-with__price-compare">{{ current_product.compare_at_price | money }}</span>
+              {%- else -%}
+                <span class="buy-it-with__price-regular">{{ current_product.price | money }}</span>
+              {%- endif -%}
+            </div>
+            <div class="buy-it-with__product-selected">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13.5 4.5L6 12L2.5 8.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              This item
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {%- comment -%} Plus Sign {%- endcomment -%}
+      <div class="buy-it-with__plus">
+        <span>+</span>
+      </div>
+
+      {%- comment -%} Recommended Products {%- endcomment -%}
+      <div class="buy-it-with__recommended">
+        {%- assign product_count = 0 -%}
+        {%- for recommended_product in recommended_products limit: max_products -%}
+          {%- unless recommended_product.id == current_product.id -%}
+            {%- assign product_count = product_count | plus: 1 -%}
+            <div class="buy-it-with__product-card buy-it-with__recommended-item" data-product-id="{{ recommended_product.id }}">
+              <label class="buy-it-with__checkbox-wrapper">
+                <input 
+                  type="checkbox" 
+                  class="buy-it-with__checkbox" 
+                  data-product-id="{{ recommended_product.id }}"
+                  data-variant-id="{{ recommended_product.selected_or_first_available_variant.id }}"
+                  data-price="{{ recommended_product.price }}"
+                  data-title="{{ recommended_product.title | escape }}"
+                  value="{{ recommended_product.selected_or_first_available_variant.id }}">
+                <span class="buy-it-with__checkmark"></span>
+              </label>
+              
+              <div class="buy-it-with__product-image">
+                <img
+                  src="{{ recommended_product.featured_media | img_url: '300x300' }}"
+                  alt="{{ recommended_product.featured_media.alt | escape }}"
+                  width="150"
+                  height="150"
+                  loading="lazy">
+              </div>
+              
+              <div class="buy-it-with__product-info">
+                <h3 class="buy-it-with__product-title">{{ recommended_product.title }}</h3>
+                <div class="buy-it-with__product-price">
+                  {%- if recommended_product.compare_at_price > recommended_product.price -%}
+                    <span class="buy-it-with__price-sale">{{ recommended_product.price | money }}</span>
+                    <span class="buy-it-with__price-compare">{{ recommended_product.compare_at_price | money }}</span>
+                  {%- else -%}
+                    <span class="buy-it-with__price-regular">{{ recommended_product.price | money }}</span>
+                  {%- endif -%}
+                </div>
+                {%- if recommended_product.available == false -%}
+                  <div class="buy-it-with__product-availability buy-it-with__product-availability--unavailable">
+                    Sold out
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+            {%- if product_count >= max_products -%}
+              {%- break -%}
+            {%- endif -%}
+          {%- endunless -%}
+        {%- endfor -%}
+      </div>
+
+      {%- comment -%} Equals Sign {%- endcomment -%}
+      <div class="buy-it-with__equals">
+        <span>=</span>
+      </div>
+
+      {%- comment -%} Total and Add to Cart {%- endcomment -%}
+      <div class="buy-it-with__total">
+        <div class="buy-it-with__total-content">
+          <div class="buy-it-with__total-price">
+            <span class="buy-it-with__total-label">Total:</span>
+            <span class="buy-it-with__total-amount" data-total-price="{{ current_product.price }}">
+              {{ current_product.price | money }}
+            </span>
+          </div>
+          
+          <form class="buy-it-with__form" action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="{{ current_product.selected_or_first_available_variant.id }}">
+            <input type="hidden" name="quantity" value="1">
+            <div class="buy-it-with__additional-items"></div>
+            
+            <button 
+              type="submit" 
+              class="buy-it-with__add-button button button--primary"
+              {% unless current_product.available %}disabled{% endunless %}>
+              <span class="buy-it-with__button-text">
+                Add selected to cart
+              </span>
+            </button>
+          </form>
+          
+          {%- if section.settings.show_savings -%}
+            <div class="buy-it-with__savings" style="display: none;">
+              <span class="buy-it-with__savings-text">You save: <span class="buy-it-with__savings-amount"></span></span>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const checkboxes = document.querySelectorAll('.buy-it-with__checkbox');
+  const totalAmountEl = document.querySelector('.buy-it-with__total-amount');
+  const totalPriceData = document.querySelector('[data-total-price]');
+  const additionalItemsEl = document.querySelector('.buy-it-with__additional-items');
+  const savingsEl = document.querySelector('.buy-it-with__savings');
+  const savingsAmountEl = document.querySelector('.buy-it-with__savings-amount');
+  const buttonTextEl = document.querySelector('.buy-it-with__button-text');
+  
+  const currentProductPrice = parseInt(totalPriceData.dataset.totalPrice);
+  let selectedProducts = [];
+  
+  function updateTotal() {
+    let totalPrice = currentProductPrice;
+    let selectedCount = 0;
+    selectedProducts = [];
+    
+    checkboxes.forEach(checkbox => {
+      if (checkbox.checked && checkbox.closest('.buy-it-with__recommended-item')) {
+        const price = parseInt(checkbox.dataset.price);
+        totalPrice += price;
+        selectedCount++;
+        selectedProducts.push({
+          id: checkbox.dataset.variantId,
+          quantity: 1,
+          title: checkbox.dataset.title
+        });
+      }
+    });
+    
+    // Update total display
+    totalAmountEl.textContent = Shopify.formatMoney(totalPrice, window.theme.moneyFormat || '{{ amount }}');
+    
+    // Update additional items inputs
+    additionalItemsEl.innerHTML = '';
+    selectedProducts.forEach(product => {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = 'items[][id]';
+      input.value = product.id;
+      additionalItemsEl.appendChild(input);
+      
+      const qtyInput = document.createElement('input');
+      qtyInput.type = 'hidden';
+      qtyInput.name = 'items[][quantity]';
+      qtyInput.value = product.quantity;
+      additionalItemsEl.appendChild(qtyInput);
+    });
+    
+    // Update button text
+    if (selectedCount > 0) {
+      buttonTextEl.textContent = `Add ${selectedCount + 1} items to cart`;
+    } else {
+      buttonTextEl.textContent = 'Add selected to cart';
+    }
+    
+    // Show/hide savings (placeholder logic)
+    if (selectedCount > 0 && savingsEl) {
+      const potentialSavings = selectedCount * 500; // Example: $5 savings per additional product
+      savingsAmountEl.textContent = Shopify.formatMoney(potentialSavings, window.theme.moneyFormat || '{{ amount }}');
+      savingsEl.style.display = 'block';
+    } else if (savingsEl) {
+      savingsEl.style.display = 'none';
+    }
+  }
+  
+  // Add event listeners to checkboxes
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', updateTotal);
+  });
+  
+  // Handle form submission
+  const form = document.querySelector('.buy-it-with__form');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      if (selectedProducts.length === 0) {
+        // Only current product, use standard add to cart
+        return;
+      }
+      
+      e.preventDefault();
+      
+      // Create items array for cart API
+      const items = [{
+        id: parseInt(form.querySelector('input[name="id"]').value),
+        quantity: 1
+      }];
+      
+      selectedProducts.forEach(product => {
+        items.push({
+          id: parseInt(product.id),
+          quantity: product.quantity
+        });
+      });
+      
+      // Add to cart via fetch API
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ items: items })
+      })
+      .then(response => response.json())
+      .then(result => {
+        // Trigger cart drawer or redirect
+        if (window.theme && window.theme.cartDrawer) {
+          window.theme.cartDrawer.open();
+        } else {
+          window.location.href = '/cart';
+        }
+      })
+      .catch(error => {
+        console.error('Error adding to cart:', error);
+      });
+    });
+  }
+  
+  // Initialize
+  updateTotal();
+});
+</script>
+
+{% schema %}
+{
+  "name": "Buy It With",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Buy it with"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection",
+      "info": "Products to recommend with the current product"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "label": "Products to show",
+      "default": 2
+    },
+    {
+      "type": "checkbox",
+      "id": "show_savings",
+      "label": "Show savings amount",
+      "default": true
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Buy It With"
+    }
+  ]
+}
+{% endschema %}

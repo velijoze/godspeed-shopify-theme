@@ -47,12 +47,13 @@ Pipeline-style Product Card with Quick Buy and Advanced Features
       {%- comment -%} Product Badges {%- endcomment -%}
       <div class="card__badge">
         {%- if product.available == false -%}
-          <span class="badge badge--sold-out color-{{ settings.sold_out_badge_color_scheme }}">
-            {{ 'products.product.sold_out' | t }}
+          <span class="badge badge--sold-out">
+            SOLD OUT
           </span>
         {%- elsif product.compare_at_price > product.price and product.available -%}
-          <span class="badge badge--on-sale color-{{ settings.sale_badge_color_scheme }}">
-            {{ 'products.product.on_sale' | t }}
+          {%- assign savings = product.compare_at_price | minus: product.price -%}
+          <span class="badge badge--save">
+            SAVE {{ savings | money }}
           </span>
         {%- endif -%}
       </div>

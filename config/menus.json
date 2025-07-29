@@ -1,0 +1,445 @@
+{
+  "main-menu": {
+    "id": "main-menu", 
+    "handle": "main-menu",
+    "title": "Main menu",
+    "updated_at": "2025-01-28T15:00:00+01:00",
+    "menu_items": [
+      {
+        "id": "main-menu-home",
+        "title": "Home",
+        "url": "/",
+        "type": "frontpage_link",
+        "position": 1,
+        "object_id": null,
+        "menu_items": []
+      },
+      {
+        "id": "main-menu-e-bikes",
+        "title": "E-Bikes",
+        "url": "/collections/e-bikes",
+        "type": "collection_link",
+        "position": 2,
+        "object_id": "e-bikes",
+        "menu_items": [
+          {
+            "id": "main-menu-e-bikes-city",
+            "title": "City E-Bikes",
+            "url": "/collections/e-bikes?filter.v.option.category=City",
+            "type": "collection_link",
+            "position": 1,
+            "object_id": null,
+            "menu_items": []
+          },
+          {
+            "id": "main-menu-e-bikes-trekking",
+            "title": "Trekking E-Bikes",
+            "url": "/collections/e-bikes?filter.v.option.category=Trekking",
+            "type": "collection_link",
+            "position": 2,
+            "object_id": null,
+            "menu_items": []
+          },
+          {
+            "id": "main-menu-e-bikes-mountain",
+            "title": "E-Mountainbikes",
+            "url": "/collections/e-bikes?filter.v.option.category=Mountain",
+            "type": "collection_link",
+            "position": 3,
+            "object_id": null,
+            "menu_items": []
+          },
+          {
+            "id": "main-menu-e-bikes-cargo",
+            "title": "Cargo E-Bikes",
+            "url": "/collections/e-bikes?filter.v.option.category=Cargo",
+            "type": "collection_link",
+            "position": 4,
+            "object_id": null,
+            "menu_items": []
+          }
+        ]
+      },
+      {
+        "id": "main-menu-city-bikes",
+        "title": "City Bikes",
+        "url": "/collections/city-bikes",
+        "type": "collection_link",
+        "position": 3,
+        "object_id": "city-bikes",
+        "menu_items": [
+          {
+            "id": "main-menu-city-urban",
+            "title": "Urban Bikes",
+            "url": "/collections/city-bikes?filter.v.option.style=Urban",
+            "type": "collection_link",
+            "position": 1,
+            "object_id": null,
+            "menu_items": []
+          },
+          {
+            "id": "main-menu-city-classic",
+            "title": "Klassische Stadträder",
+            "url": "/collections/city-bikes?filter.v.option.style=Classic",
+            "type": "collection_link",
+            "position": 2,
+            "object_id": null,
+            "menu_items": []
+          },
+          {
+            "id": "main-menu-city-folding",
+            "title": "Klappräder",
+            "url": "/collections/city-bikes?filter.v.option.style=Folding",
+            "type": "collection_link",
+            "position": 3,
+            "object_id": null,
+            "menu_items": []
+          }
+        ]
+      },
+      {
+        "id": "main-menu-mountain-bikes",
+        "title": "Mountain Bikes",
+        "url": "/collections/mountain-bikes",
+        "type": "collection_link",
+        "position": 4,
+        "object_id": "mountain-bikes",
+        "menu_items": [
+          {
+            "id": "main-menu-mtb-hardtail",
+            "title": "Hardtail MTB",
+            "url": "/collections/mountain-bikes?filter.v.option.suspension=Hardtail",
+            "type": "collection_link",
+            "position": 1,
+            "object_id": null,
+            "menu_items": []
+          },
+          {
+            "id": "main-menu-mtb-fully",
+            "title": "Fully MTB",
+            "url": "/collections/mountain-bikes?filter.v.option.suspension=Fully",
+            "type": "collection_link",
+            "position": 2,
+            "object_id": null,
+            "menu_items": []
+          },
+          {
+            "id": "main-menu-mtb-downhill",
+            "title": "Downhill",
+            "url": "/collections/mountain-bikes?filter.v.option.category=Downhill",
+            "type": "collection_link",
+            "position": 3,
+            "object_id": null,
+            "menu_items": []
+          },
+          {
+            "id": "main-menu-mtb-cross-country",
+            "title": "Cross Country",
+            "url": "/collections/mountain-bikes?filter.v.option.category=XC",
+            "type": "collection_link",
+            "position": 4,
+            "object_id": null,
+            "menu_items": []
+          }
+        ]
+      },
+      {
+        "id": "main-menu-accessories",
+        "title": "Zubehör",
+        "url": "/collections/accessories",
+        "type": "collection_link",
+        "position": 5,
+        "object_id": "accessories",
+        "menu_items": [
+          {
+            "id": "main-menu-acc-helmets",
+            "title": "Helme",
+            "url": "/collections/accessories?filter.v.option.category=Helmets",
+            "type": "collection_link",
+            "position": 1,
+            "object_id": null,
+            "menu_items": []
+          },
+          {
+            "id": "main-menu-acc-locks",
+            "title": "Schlösser",
+            "url": "/collections/accessories?filter.v.option.category=Locks",
+            "type": "collection_link",
+            "position": 2,
+            "object_id": null,
+            "menu_items": []
+          },
+          {
+            "id": "main-menu-acc-bags",
+            "title": "Taschen",
+            "url": "/collections/accessories?filter.v.option.category=Bags",
+            "type": "collection_link",
+            "position": 3,
+            "object_id": null,
+            "menu_items": []
+          },
+          {
+            "id": "main-menu-acc-lights",
+            "title": "Beleuchtung",
+            "url": "/collections/accessories?filter.v.option.category=Lights",
+            "type": "collection_link",
+            "position": 4,
+            "object_id": null,
+            "menu_items": []
+          },
+          {
+            "id": "main-menu-acc-maintenance",
+            "title": "Wartung & Pflege",
+            "url": "/collections/accessories?filter.v.option.category=Maintenance",
+            "type": "collection_link",
+            "position": 5,
+            "object_id": null,
+            "menu_items": []
+          }
+        ]
+      },
+      {
+        "id": "main-menu-services",
+        "title": "Services",
+        "url": "/pages/services",
+        "type": "page_link",
+        "position": 6,
+        "object_id": "services",
+        "menu_items": [
+          {
+            "id": "main-menu-services-financing",
+            "title": "0% Finanzierung",
+            "url": "/pages/financing",
+            "type": "page_link",
+            "position": 1,
+            "object_id": "financing",
+            "menu_items": []
+          },
+          {
+            "id": "main-menu-services-consultation",
+            "title": "Beratung",
+            "url": "/pages/consultation",
+            "type": "page_link",
+            "position": 2,
+            "object_id": "consultation",
+            "menu_items": []
+          },
+          {
+            "id": "main-menu-services-repair",
+            "title": "Reparatur & Service",
+            "url": "/pages/service",
+            "type": "page_link",
+            "position": 3,
+            "object_id": "service",
+            "menu_items": []
+          },
+          {
+            "id": "main-menu-services-test-ride",
+            "title": "Probefahrt",
+            "url": "/pages/test-ride",
+            "type": "page_link",
+            "position": 4,
+            "object_id": "test-ride",
+            "menu_items": []
+          }
+        ]
+      },
+      {
+        "id": "main-menu-about",
+        "title": "Über uns",
+        "url": "/pages/about",
+        "type": "page_link",
+        "position": 7,
+        "object_id": "about",
+        "menu_items": [
+          {
+            "id": "main-menu-about-story",
+            "title": "Unsere Geschichte",
+            "url": "/pages/about#company-story",
+            "type": "page_link",
+            "position": 1,
+            "object_id": null,
+            "menu_items": []
+          },
+          {
+            "id": "main-menu-about-sustainability",
+            "title": "Nachhaltigkeit",
+            "url": "/pages/sustainability",
+            "type": "page_link",
+            "position": 2,
+            "object_id": "sustainability",
+            "menu_items": []
+          },
+          {
+            "id": "main-menu-about-locations",
+            "title": "Standorte",
+            "url": "/pages/locations",
+            "type": "page_link",
+            "position": 3,
+            "object_id": "locations",
+            "menu_items": []
+          }
+        ]
+      },
+      {
+        "id": "main-menu-contact",
+        "title": "Kontakt",
+        "url": "/pages/contact",
+        "type": "page_link",
+        "position": 8,
+        "object_id": "contact",
+        "menu_items": []
+      }
+    ]
+  },
+  "footer": {
+    "id": "footer",
+    "handle": "footer", 
+    "title": "Footer",
+    "updated_at": "2025-01-28T15:00:00+01:00",
+    "menu_items": [
+      {
+        "id": "footer-home",
+        "title": "Home",
+        "url": "/",
+        "type": "frontpage_link",
+        "position": 1,
+        "object_id": null,
+        "menu_items": []
+      },
+      {
+        "id": "footer-about",
+        "title": "Über uns",
+        "url": "/pages/about",
+        "type": "page_link",
+        "position": 2,
+        "object_id": "about",
+        "menu_items": []
+      },
+      {
+        "id": "footer-services",
+        "title": "Services",
+        "url": "/pages/services",
+        "type": "page_link",
+        "position": 3,
+        "object_id": "services",
+        "menu_items": []
+      },
+      {
+        "id": "footer-locations",
+        "title": "Standorte",
+        "url": "/pages/locations",
+        "type": "page_link",
+        "position": 4,
+        "object_id": "locations",
+        "menu_items": []
+      },
+      {
+        "id": "footer-contact",
+        "title": "Kontakt",
+        "url": "/pages/contact",
+        "type": "page_link",
+        "position": 5,
+        "object_id": "contact",
+        "menu_items": []
+      }
+    ]
+  },
+  "footer-categories": {
+    "id": "footer-categories",
+    "handle": "footer-categories",
+    "title": "Footer Categories",
+    "updated_at": "2025-01-28T15:00:00+01:00",
+    "menu_items": [
+      {
+        "id": "footer-cat-e-bikes",
+        "title": "E-Bikes",
+        "url": "/collections/e-bikes",
+        "type": "collection_link",
+        "position": 1,
+        "object_id": "e-bikes",
+        "menu_items": []
+      },
+      {
+        "id": "footer-cat-city",
+        "title": "City Bikes",
+        "url": "/collections/city-bikes",
+        "type": "collection_link",
+        "position": 2,
+        "object_id": "city-bikes",
+        "menu_items": []
+      },
+      {
+        "id": "footer-cat-mountain",
+        "title": "Mountain Bikes",
+        "url": "/collections/mountain-bikes",
+        "type": "collection_link",
+        "position": 3,
+        "object_id": "mountain-bikes",
+        "menu_items": []
+      },
+      {
+        "id": "footer-cat-accessories",
+        "title": "Zubehör",
+        "url": "/collections/accessories",
+        "type": "collection_link",
+        "position": 4,
+        "object_id": "accessories",
+        "menu_items": []
+      }
+    ]
+  },
+  "footer-service": {
+    "id": "footer-service",
+    "handle": "footer-service",
+    "title": "Footer Service",
+    "updated_at": "2025-01-28T15:00:00+01:00",
+    "menu_items": [
+      {
+        "id": "footer-service-financing",
+        "title": "0% Finanzierung",
+        "url": "/pages/financing",
+        "type": "page_link",
+        "position": 1,
+        "object_id": "financing",
+        "menu_items": []
+      },
+      {
+        "id": "footer-service-shipping",
+        "title": "Versand & Lieferung",
+        "url": "/pages/shipping",
+        "type": "page_link",
+        "position": 2,
+        "object_id": "shipping",
+        "menu_items": []
+      },
+      {
+        "id": "footer-service-returns",
+        "title": "Rückgabe & Umtausch",
+        "url": "/pages/returns",
+        "type": "page_link",
+        "position": 3,
+        "object_id": "returns",
+        "menu_items": []
+      },
+      {
+        "id": "footer-service-warranty",
+        "title": "Garantie",
+        "url": "/pages/warranty",
+        "type": "page_link",
+        "position": 4,
+        "object_id": "warranty",
+        "menu_items": []
+      },
+      {
+        "id": "footer-service-faq",
+        "title": "FAQ",
+        "url": "/pages/faq",
+        "type": "page_link",
+        "position": 5,
+        "object_id": "faq",
+        "menu_items": []
+      }
+    ]
+  }
+}

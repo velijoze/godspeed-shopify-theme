@@ -1,0 +1,105 @@
+{
+  "sections": {
+    "services_hero": {
+      "type": "about-hero",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Unsere Services",
+            "heading_size": "h0"
+          }
+        },
+        "subheading": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Persönliche Beratung, professioneller Service und lebenslange Unterstützung"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Von der ersten Beratung bis zur lebenslangen Wartung - wir sind für Sie da.</p>",
+            "text_style": "subtitle"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "subheading",
+        "text"
+      ],
+      "settings": {
+        "overlay_opacity": 40,
+        "text_alignment": "center",
+        "color_scheme": "background-1",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "services_grid": {
+      "type": "services-grid",
+      "blocks": {
+        "financing": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-price-tag.svg",
+            "title": "0% Finanzierung",
+            "text": "<p><strong>Bis zu 36 Monate zinsfrei finanzieren</strong></p><p>✓ Keine versteckten Kosten<br>✓ Flexible Laufzeiten<br>✓ Schnelle Bearbeitung<br>✓ Faire Konditionen</p><p>Machen Sie Ihr Traum-E-Bike sofort zugänglich mit unseren attraktiven Finanzierungsoptionen.</p>",
+            "button_label": "Finanzierung anfragen",
+            "button_link": "/pages/financing"
+          }
+        },
+        "consultation": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-heart.svg",
+            "title": "Persönliche Beratung",
+            "text": "<p><strong>Finden Sie Ihr perfektes Fahrrad</strong></p><p>✓ Individuelle Bedarfsanalyse<br>✓ Probefahrt möglich<br>✓ Experten-Empfehlungen<br>✓ Zubehör-Beratung</p><p>Unsere Fahrrad-Experten nehmen sich Zeit für Sie und finden gemeinsam die ideale Lösung.</p>",
+            "button_label": "Beratung buchen",
+            "button_link": "/pages/consultation"
+          }
+        },
+        "service": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-return.svg",
+            "title": "Service & Wartung",
+            "text": "<p><strong>Professionelle Fahrradwartung</strong></p><p>✓ Inspektion & Wartung<br>✓ Reparatur aller Marken<br>✓ Original-Ersatzteile<br>✓ Garantie-Service</p><p>Halten Sie Ihr Fahrrad in Top-Zustand mit unserem professionellen Service-Team.</p>",
+            "button_label": "Service buchen",
+            "button_link": "/pages/service"
+          }
+        }
+      },
+      "block_order": [
+        "financing",
+        "consultation",
+        "service"
+      ],
+      "settings": {
+        "heading": "Unsere Services im Detail",
+        "heading_size": "h1",
+        "description": "<p>Wir bieten Ihnen umfassende Unterstützung - von der ersten Beratung bis zur lebenslangen Betreuung Ihres Fahrrads.</p>",
+        "text_alignment": "center",
+        "card_text_alignment": "left",
+        "icon_size": 80,
+        "card_border_radius": 8,
+        "color_scheme": "background-1",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    }
+  },
+  "order": [
+    "services_hero",
+    "services_grid",
+    "main"
+  ]
+}

@@ -1,0 +1,159 @@
+{
+  "sections": {
+    "hero": {
+      "type": "about-hero",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "E-Bike Größenberater",
+            "heading_size": "h0"
+          }
+        },
+        "subheading": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Finden Sie die perfekte Rahmengröße für Ihr E-Bike"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Die richtige Rahmengröße ist entscheidend für Komfort, Sicherheit und Fahrspaß. Nutzen Sie unseren Größenberater für die perfekte Passform.</p>",
+            "text_style": "subtitle"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "subheading",
+        "text"
+      ],
+      "settings": {
+        "overlay_opacity": 30,
+        "text_alignment": "center",
+        "color_scheme": "background-1",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "size_calculator": {
+      "type": "company-story",
+      "blocks": {
+        "calculator_text": {
+          "type": "text",
+          "settings": {
+            "text": "<div id='size-calculator'><h3>Schnell-Rechner</h3><div style='background: #f5f5f5; padding: 2rem; border-radius: 8px; margin: 2rem 0;'><label><strong>Ihre Körpergröße (cm):</strong></label><br><input type='number' id='height' placeholder='z.B. 175' style='width: 100%; padding: 0.5rem; margin: 0.5rem 0; border: 1px solid #ddd; border-radius: 4px;'><br><label><strong>Schrittlänge (cm):</strong></label><br><input type='number' id='inseam' placeholder='z.B. 82' style='width: 100%; padding: 0.5rem; margin: 0.5rem 0; border: 1px solid #ddd; border-radius: 4px;'><br><label><strong>E-Bike Typ:</strong></label><br><select id='bike-type' style='width: 100%; padding: 0.5rem; margin: 0.5rem 0; border: 1px solid #ddd; border-radius: 4px;'><option value='city'>City E-Bike</option><option value='trekking'>Trekking E-Bike</option><option value='mountain'>E-Mountainbike</option><option value='cargo'>Cargo E-Bike</option></select><br><button onclick='calculateSize()' style='background: #333; color: white; padding: 1rem 2rem; border: none; border-radius: 4px; margin-top: 1rem; cursor: pointer;'>Größe berechnen</button></div><div id='result' style='background: #e8f5e8; padding: 1.5rem; border-radius: 8px; margin-top: 1rem; display: none;'><h4>Empfohlene Rahmengröße:</h4><p id='size-result'></p><p id='size-advice'></p></div></div><script>function calculateSize() { const height = document.getElementById('height').value; const inseam = document.getElementById('inseam').value; const bikeType = document.getElementById('bike-type').value; let frameSize = ''; let advice = ''; if (!height || !inseam) { alert('Bitte geben Sie Körpergröße und Schrittlänge ein.'); return; } const h = parseInt(height); const i = parseInt(inseam); if (bikeType === 'city' || bikeType === 'trekking') { if (h < 160) frameSize = 'XS (44-46 cm)'; else if (h < 170) frameSize = 'S (48-50 cm)'; else if (h < 180) frameSize = 'M (52-54 cm)'; else if (h < 190) frameSize = 'L (56-58 cm)'; else frameSize = 'XL (60-62 cm)'; } else if (bikeType === 'mountain') { if (h < 160) frameSize = 'XS (38-40 cm)'; else if (h < 170) frameSize = 'S (42-44 cm)'; else if (h < 180) frameSize = 'M (46-48 cm)'; else if (h < 190) frameSize = 'L (50-52 cm)'; else frameSize = 'XL (54-56 cm)'; } else if (bikeType === 'cargo') { if (h < 165) frameSize = 'S (46-48 cm)'; else if (h < 180) frameSize = 'M (50-52 cm)'; else frameSize = 'L (54-56 cm)'; } advice = 'Diese Empfehlung basiert auf Standardwerten. Für die optimale Passform empfehlen wir eine persönliche Beratung in unserem Geschäft.'; document.getElementById('size-result').textContent = frameSize; document.getElementById('size-advice').textContent = advice; document.getElementById('result').style.display = 'block'; }</script>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "calculator_text"
+      ],
+      "settings": {
+        "heading": "Interaktiver Größenrechner",
+        "heading_size": "h1",
+        "image_position": "right",
+        "text_alignment": "left",
+        "max_width": 1000,
+        "color_scheme": "background-1",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "size_charts": {
+      "type": "services-grid",
+      "blocks": {
+        "city_chart": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-heart.svg",
+            "title": "City & Trekking E-Bikes",
+            "text": "<p><strong>Größentabelle:</strong></p><ul><li><strong>XS (44-46 cm):</strong> 150-160 cm</li><li><strong>S (48-50 cm):</strong> 160-170 cm</li><li><strong>M (52-54 cm):</strong> 170-180 cm</li><li><strong>L (56-58 cm):</strong> 180-190 cm</li><li><strong>XL (60-62 cm):</strong> 190-200 cm</li></ul><p>Aufrechte Sitzposition, komfortabler Einstieg</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "mountain_chart": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-return.svg",
+            "title": "E-Mountainbikes",
+            "text": "<p><strong>Größentabelle:</strong></p><ul><li><strong>XS (38-40 cm):</strong> 150-160 cm</li><li><strong>S (42-44 cm):</strong> 160-170 cm</li><li><strong>M (46-48 cm):</strong> 170-180 cm</li><li><strong>L (50-52 cm):</strong> 180-190 cm</li><li><strong>XL (54-56 cm):</strong> 190-200 cm</li></ul><p>Sportliche Sitzposition, agile Fahrweise</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "cargo_chart": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-truck.svg",
+            "title": "Cargo E-Bikes",
+            "text": "<p><strong>Größentabelle:</strong></p><ul><li><strong>S (46-48 cm):</strong> 155-165 cm</li><li><strong>M (50-52 cm):</strong> 165-180 cm</li><li><strong>L (54-56 cm):</strong> 180-195 cm</li></ul><p>Stabile Fahrposition, optimiert für Transport</p><p><strong>Hinweis:</strong> Cargo-Bikes haben spezielle Geometrien - persönliche Beratung empfohlen</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "city_chart",
+        "mountain_chart",
+        "cargo_chart"
+      ],
+      "settings": {
+        "heading": "Größentabellen nach E-Bike Typ",
+        "heading_size": "h1",
+        "description": "<p>Jeder E-Bike Typ hat eine andere Geometrie. Hier finden Sie die spezifischen Größentabellen für jeden Fahrradtyp.</p>",
+        "text_alignment": "center",
+        "card_text_alignment": "left",
+        "icon_size": 80,
+        "card_border_radius": 8,
+        "color_scheme": "background-2",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "fitting_tips": {
+      "type": "company-story",
+      "blocks": {
+        "tips_text": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>So messen Sie richtig:</strong></p><h4>Körpergröße messen:</h4><ul><li>Stellen Sie sich ohne Schuhe mit dem Rücken zur Wand</li><li>Messen Sie vom Boden bis zum Scheitel</li><li>Am besten lassen Sie sich dabei helfen</li></ul><h4>Schrittlänge messen:</h4><ul><li>Stellen Sie sich ohne Schuhe mit dem Rücken zur Wand</li><li>Klemmen Sie ein Buch zwischen die Beine (so hoch wie möglich)</li><li>Messen Sie vom Boden bis zur Oberkante des Buchs</li><li>Diese Methode simuliert den Sattel</li></ul><p><strong>Wichtiger Hinweis:</strong> Diese Werte sind Richtwerte. Die optimale Passform hängt von vielen Faktoren ab wie Armreichweite, Flexibilität und persönlichen Vorlieben.</p>",
+            "text_style": "body"
+          }
+        },
+        "expert_highlight": {
+          "type": "highlight",
+          "settings": {
+            "highlight_heading": "Professionelle Anpassung",
+            "highlight_text": "In unseren Geschäften führen wir eine professionelle Bike-Fitting durch. Dabei berücksichtigen wir Ihre individuelle Anatomie und Fahrstil."
+          }
+        }
+      },
+      "block_order": [
+        "tips_text",
+        "expert_highlight"
+      ],
+      "settings": {
+        "heading": "Richtig messen - so geht's",
+        "heading_size": "h1",
+        "image_position": "left",
+        "text_alignment": "left",
+        "max_width": 1000,
+        "button_label": "Persönliche Beratung buchen",
+        "button_link": "/pages/contact",
+        "color_scheme": "background-1",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "size_calculator",
+    "size_charts",
+    "fitting_tips"
+  ]
+}

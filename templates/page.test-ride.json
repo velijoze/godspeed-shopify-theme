@@ -1,0 +1,144 @@
+{
+  "sections": {
+    "hero": {
+      "type": "about-hero",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Probefahrt buchen",
+            "heading_size": "h0"
+          }
+        },
+        "subheading": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Testen Sie Ihr Wunsch-E-Bike kostenlos"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Buchen Sie eine kostenlose Probefahrt an einem unserer Standorte. Unsere Experten stellen das E-Bike optimal für Sie ein und begleiten Sie bei der Testfahrt.</p>",
+            "text_style": "subtitle"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "subheading",
+        "text"
+      ],
+      "settings": {
+        "overlay_opacity": 40,
+        "text_alignment": "center",
+        "color_scheme": "background-1",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "booking_form": {
+      "type": "contact-form",
+      "settings": {
+        "heading": "Probefahrt-Anfrage",
+        "heading_size": "h1",
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "benefits": {
+      "type": "services-grid",
+      "blocks": {
+        "free": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-heart.svg",
+            "title": "Kostenlos & unverbindlich",
+            "text": "<p>Die Probefahrt ist völlig kostenlos und ohne Kaufverpflichtung. Nehmen Sie sich die Zeit, die Sie brauchen.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "expert": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-price-tag.svg",
+            "title": "Expertenberatung inklusive",
+            "text": "<p>Unsere E-Bike Spezialisten erklären Ihnen alle Funktionen und stellen das Bike optimal für Sie ein.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "routes": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-truck.svg",
+            "title": "Verschiedene Strecken",
+            "text": "<p>Testen Sie das E-Bike auf verschiedenen Strecken - Stadt, Berg, Trail - je nach Bike-Typ und Ihren Bedürfnissen.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "free",
+        "expert",
+        "routes"
+      ],
+      "settings": {
+        "heading": "Ihre Vorteile bei der Probefahrt",
+        "heading_size": "h1",
+        "description": "<p>Wir möchten, dass Sie das perfekte E-Bike für sich finden. Deshalb bieten wir Ihnen eine umfassende Probefahrt-Erfahrung.</p>",
+        "text_alignment": "center",
+        "card_text_alignment": "center",
+        "icon_size": 80,
+        "card_border_radius": 8,
+        "color_scheme": "background-2",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "process": {
+      "type": "company-story",
+      "blocks": {
+        "process_text": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>So läuft Ihre Probefahrt ab:</strong></p><ol><li><strong>Terminbuchung:</strong> Füllen Sie das Formular aus oder rufen Sie uns an</li><li><strong>Beratung:</strong> Wir besprechen Ihre Bedürfnisse und wählen passende E-Bikes aus</li><li><strong>Anpassung:</strong> Wir stellen Sattelhöhe, Lenker und Bremsen optimal ein</li><li><strong>Testfahrt:</strong> 30-60 Minuten Probefahrt auf verschiedenen Strecken</li><li><strong>Nachbesprechung:</strong> Wir klären alle Fragen und geben Ihnen Bedenkzeit</li></ol><p>Bringen Sie bitte einen gültigen Ausweis und festes Schuhwerk mit. Helme stellen wir kostenlos zur Verfügung.</p>",
+            "text_style": "body"
+          }
+        },
+        "safety_highlight": {
+          "type": "highlight",
+          "settings": {
+            "highlight_heading": "Sicherheit steht an erster Stelle",
+            "highlight_text": "Alle Probefahrten werden von unseren Experten begleitet. Sie erhalten eine Sicherheitseinweisung und hochwertige Schutzausrüstung."
+          }
+        }
+      },
+      "block_order": [
+        "process_text",
+        "safety_highlight"
+      ],
+      "settings": {
+        "heading": "Der Probefahrt-Ablauf",
+        "heading_size": "h1",
+        "image_position": "right",
+        "text_alignment": "left",
+        "max_width": 1000,
+        "button_label": "Jetzt Termin buchen",
+        "button_link": "#booking_form",
+        "color_scheme": "background-1",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "booking_form",
+    "benefits",
+    "process"
+  ]
+}

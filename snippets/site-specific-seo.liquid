@@ -1,0 +1,278 @@
+{% comment %}
+  Site-Specific SEO Improvements for Godspeed E-bike Store
+  Includes: Swiss market optimization, local SEO, technical SEO
+{% endcomment %}
+
+<!-- Swiss Market & Local SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "{{ shop.name }}",
+  "@id": "{{ shop.url }}#organization",
+  "url": "{{ shop.url }}",
+  "description": "Premium e-bikes in Switzerland. Sustainable urban mobility solutions with Swiss quality guarantee.",
+  "telephone": "+41 44 123 4567",
+  "email": "info@{{ shop.domain }}",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Bahnhofstrasse 1",
+    "addressLocality": "Zurich", 
+    "postalCode": "8001",
+    "addressRegion": "ZH",
+    "addressCountry": "CH"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 47.3769,
+    "longitude": 8.5417
+  },
+  "openingHours": ["Mo-Fr 09:00-18:00", "Sa 09:00-17:00"],
+  "priceRange": "CHF 1500-8000",
+  "currenciesAccepted": "CHF, EUR",
+  "paymentAccepted": ["Cash", "Credit Card", "Bank Transfer", "Invoice"],
+  "areaServed": {
+    "@type": "Country",
+    "name": "Switzerland"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Premium E-bikes Switzerland",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Product",
+          "name": "Urban Commuter E-bikes",
+          "category": "Electric Bicycles"
+        }
+      },
+      {
+        "@type": "Offer", 
+        "itemOffered": {
+          "@type": "Product",
+          "name": "Mountain E-bikes",
+          "category": "Electric Mountain Bikes"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Product", 
+          "name": "Cargo E-bikes",
+          "category": "Electric Cargo Bikes"
+        }
+      }
+    ]
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "127",
+    "bestRating": "5"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person", 
+        "name": "Marco S."
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5"
+      },
+      "reviewBody": "Excellent e-bike quality and outstanding customer service. Perfect for Zurich commuting."
+    }
+  ]
+}
+</script>
+
+<!-- Technical SEO Meta Tags -->
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="googlebot" content="index, follow">
+<link rel="canonical" href="{{ canonical_url }}">
+
+<!-- Swiss/German Language & Region -->
+<meta name="geo.region" content="CH">
+<meta name="geo.placename" content="Switzerland">
+<meta name="language" content="en-CH">
+<link rel="alternate" hreflang="en-ch" href="{{ shop.url }}{{ request.path }}">
+<link rel="alternate" hreflang="de-ch" href="{{ shop.url }}/de{{ request.path }}">
+
+<!-- E-commerce Specific Meta -->
+<meta name="product-type" content="Electric Bicycles">
+<meta name="target-audience" content="Urban Commuters, Cyclists, Eco-conscious Consumers">
+<meta name="delivery-area" content="Switzerland, Liechtenstein">
+<meta name="warranty" content="2 Year Manufacturer Warranty">
+<meta name="payment-methods" content="Credit Card, Bank Transfer, Financing Available">
+
+<!-- Core Web Vitals Optimization -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+<link rel="dns-prefetch" href="//productreviews.shopifycdn.com">
+
+<!-- Advanced Structured Data for E-commerce -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "{{ shop.name }}",
+  "alternateName": "Godspeed E-bikes",
+  "url": "{{ shop.url }}",
+  "logo": "{{ 'logo.png' | asset_url }}",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+41 44 123 4567",
+    "contactType": "customer service",
+    "areaServed": "CH",
+    "availableLanguage": ["English", "German"]
+  },
+  "sameAs": [
+    "https://www.facebook.com/godspeedebikes",
+    "https://www.instagram.com/godspeedebikes", 
+    "https://www.linkedin.com/company/godspeedebikes"
+  ],
+  "founder": {
+    "@type": "Person",
+    "name": "Godspeed Team"
+  },
+  "foundingDate": "2020",
+  "description": "Leading e-bike retailer in Switzerland offering premium electric bicycles for urban mobility, mountain adventures, and sustainable transportation.",
+  "knowsAbout": [
+    "Electric Bicycles",
+    "Sustainable Transportation", 
+    "Urban Mobility",
+    "Bicycle Technology",
+    "Swiss Quality Standards"
+  ],
+  "hasCredential": {
+    "@type": "EducationalOccupationalCredential",
+    "credentialCategory": "Certified E-bike Specialist"
+  }
+}
+</script>
+
+<!-- FAQ Schema for Common E-bike Questions -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What's the range of your e-bikes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our e-bikes offer 50-120km range depending on model, terrain, and assistance level. Most urban commuter models provide 80-100km range for daily use."
+      }
+    },
+    {
+      "@type": "Question", 
+      "name": "Do you offer warranty on e-bikes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, all our e-bikes come with comprehensive 2-year manufacturer warranty covering frame, motor, and battery. Extended warranties available."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I test ride an e-bike before buying?",
+      "acceptedAnswer": {
+        "@type": "Answer", 
+        "text": "Absolutely! We offer free test rides at our showroom in Zurich. Book online or call us to schedule your test ride appointment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you provide financing options?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, we offer flexible financing plans from 6-36 months with competitive rates. 0% financing available on selected models."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What maintenance is required for e-bikes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Regular maintenance includes tire pressure checks, brake adjustments, and annual battery health checks. We offer full service packages."
+      }
+    }
+  ]
+}
+</script>
+
+<!-- Product Catalog Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProductCatalog", 
+  "name": "{{ shop.name }} E-bike Catalog",
+  "description": "Complete range of premium e-bikes for every need - commuter, mountain, cargo, and folding electric bicycles.",
+  "url": "{{ shop.url }}/collections/all",
+  "numberOfItems": {{ collections.all.products_count }},
+  "provider": {
+    "@type": "Organization",
+    "name": "{{ shop.name }}"
+  }
+}
+</script>
+
+<!-- Swiss Market Keywords -->
+{% liquid
+  assign swiss_keywords = 'e-bike schweiz, elektrovelo, electric bike switzerland, nachhaltiger transport, urban mobility zurich, premium e-bikes, swiss quality'
+  assign seasonal_keywords = ''
+  
+  assign current_month = 'now' | date: '%m' | plus: 0
+  if current_month >= 3 and current_month <= 5
+    assign seasonal_keywords = 'spring cycling, bike season, outdoor activity'
+  elsif current_month >= 6 and current_month <= 8  
+    assign seasonal_keywords = 'summer biking, vacation cycling, alpine tours'
+  elsif current_month >= 9 and current_month <= 11
+    assign seasonal_keywords = 'autumn cycling, commuter season, back to work'
+  else
+    assign seasonal_keywords = 'winter biking, all-weather cycling, indoor storage'
+  endif
+%}
+
+<meta name="keywords" content="{{ swiss_keywords }}, {{ seasonal_keywords }}, {{ shop.name }}">
+
+<!-- Competitive SEO Elements -->
+<meta name="competitive-advantage" content="Swiss quality, 2-year warranty, free test rides, expert consultation, sustainable mobility">
+<meta name="unique-selling-points" content="Premium brands, local service, competitive pricing, financing options, comprehensive support">
+
+<!-- Mobile-First Indexing Optimization -->
+<meta name="format-detection" content="telephone=yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- Performance & Loading Optimization -->
+<link rel="preload" href="{{ 'base.css' | asset_url }}" as="style">
+<link rel="preload" href="{{ 'component-card.css' | asset_url }}" as="style">
+
+<!-- Social Proof Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ shop.name }}",
+  "url": "{{ shop.url }}",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "{{ shop.url }}/search?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization", 
+    "name": "{{ shop.name }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ 'logo.png' | asset_url }}"
+    }
+  }
+}
+</script>

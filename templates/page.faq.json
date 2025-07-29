@@ -1,0 +1,123 @@
+{
+  "sections": {
+    "hero": {
+      "type": "about-hero",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Häufig gestellte Fragen",
+            "heading_size": "h0"
+          }
+        },
+        "subheading": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Antworten auf die wichtigsten E-Bike Fragen"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Hier finden Sie schnelle Antworten auf die häufigsten Fragen zu E-Bikes, Kauf, Service und rechtlichen Aspekten.</p>",
+            "text_style": "subtitle"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "subheading",
+        "text"
+      ],
+      "settings": {
+        "overlay_opacity": 30,
+        "text_alignment": "center",
+        "color_scheme": "background-1",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "faq_content": {
+      "type": "company-story",
+      "blocks": {
+        "faq_text": {
+          "type": "text",
+          "settings": {
+            "text": "<div style='max-width: 1000px; margin: 0 auto;'><div class='faq-section'><h3>🛒 Kauf & Auswahl</h3><details style='background: #f8f9fa; margin-bottom: 1rem; padding: 1rem; border-radius: 8px; cursor: pointer;'><summary style='font-weight: bold; padding: 0.5rem 0; cursor: pointer;'>Welches E-Bike ist das richtige für mich?</summary><p>Das hängt von Ihrem Einsatzzweck ab:</p><ul><li><strong>City E-Bike:</strong> Für Stadtfahrten, Einkaufen, kurze Pendelstrecken</li><li><strong>Trekking E-Bike:</strong> Für längere Strecken, Touren, tägliches Pendeln</li><li><strong>E-Mountainbike:</strong> Für Trails, Offroad-Fahrten, sportliche Nutzung</li><li><strong>Cargo E-Bike:</strong> Für Kindertransport, schwere Lasten, Familiennutzung</li></ul><p>Nutzen Sie unseren <a href='/pages/size-guide'>Größenberater</a> und <a href='/pages/compare'>Vergleichstool</a> für die optimale Auswahl.</p></details><details style='background: #f8f9fa; margin-bottom: 1rem; padding: 1rem; border-radius: 8px; cursor: pointer;'><summary style='font-weight: bold; padding: 0.5rem 0; cursor: pointer;'>Wie weit kann ich mit einem E-Bike fahren?</summary><p>Die Reichweite hängt von vielen Faktoren ab:</p><ul><li><strong>Akku-Kapazität:</strong> 400 Wh = ca. 60-80 km, 500 Wh = ca. 80-100 km, 625 Wh = ca. 100-130 km</li><li><strong>Gelände:</strong> Flach = maximale Reichweite, bergig = 30-50% weniger</li><li><strong>Unterstützung:</strong> Eco-Modus = maximale Reichweite, Turbo = minimale Reichweite</li><li><strong>Fahrergewicht:</strong> Schwere Fahrer verbrauchen mehr Energie</li><li><strong>Wetter:</strong> Kälte und Gegenwind reduzieren die Reichweite</li></ul><p>Nutzen Sie unseren <a href='/pages/range-calculator'>Reichweiten-Rechner</a> für eine genaue Schätzung.</p></details><details style='background: #f8f9fa; margin-bottom: 1rem; padding: 1rem; border-radius: 8px; cursor: pointer;'><summary style='font-weight: bold; padding: 0.5rem 0; cursor: pointer;'>Was kostet ein gutes E-Bike?</summary><p><strong>Preiskategorien:</strong></p><ul><li><strong>Einsteiger:</strong> CHF 1'500 - 2'500 (City E-Bikes, Basis-Ausstattung)</li><li><strong>Mittelklasse:</strong> CHF 2'500 - 4'000 (Trekking, bessere Komponenten)</li><li><strong>Premium:</strong> CHF 4'000 - 6'000 (E-MTB, hochwertige Ausstattung)</li><li><strong>High-End:</strong> CHF 6'000+ (Carbon, Vollausstattung, neueste Technik)</li></ul><p>Mit unserer <a href='/pages/financing-calculator'>0% Finanzierung</a> können Sie bereits ab CHF 125/Monat ein hochwertiges E-Bike fahren.</p></details><details style='background: #f8f9fa; margin-bottom: 1rem; padding: 1rem; border-radius: 8px; cursor: pointer;'><summary style='font-weight: bold; padding: 0.5rem 0; cursor: pointer;'>Kann ich das E-Bike vor dem Kauf testen?</summary><p>Ja, unbedingt! Wir empfehlen eine ausgiebige Probefahrt:</p><ul><li>✓ <strong>Kostenlose Probefahrt</strong> in allen unseren Filialen</li><li>✓ <strong>30-60 Minuten</strong> Testzeit je nach Modell</li><li>✓ <strong>Verschiedene Strecken:</strong> Stadt, Berg, Trail (je nach E-Bike Typ)</li><li>✓ <strong>Expertenbegleitung</strong> und Einweisung inklusive</li><li>✓ <strong>Kostenlose Größenanpassung</strong> für die Probefahrt</li></ul><p><a href='/pages/test-ride'>Hier können Sie eine Probefahrt buchen</a>.</p></details></div><div class='faq-section'><h3>⚡ Technik & Motor</h3><details style='background: #f8f9fa; margin-bottom: 1rem; padding: 1rem; border-radius: 8px; cursor: pointer;'><summary style='font-weight: bold; padding: 0.5rem 0; cursor: pointer;'>Welcher Motor ist der beste?</summary><p><strong>Die bekanntesten Motor-Systeme:</strong></p><ul><li><strong>Bosch Active Line:</strong> Sanfte Unterstützung, leise, ideal für City-Bikes</li><li><strong>Bosch Performance CX:</strong> Kraftvoll, für Trekking und E-MTB, sehr natürliches Fahrgefühl</li><li><strong>Shimano Steps:</strong> Sehr leise, gleichmäßige Unterstützung, zuverlässig</li><li><strong>Brose/Specialized:</strong> Sehr leise, direktes Ansprechverhalten</li></ul><p>Alle Motoren in unserem Sortiment sind hochwertig und zuverlässig. Die Wahl hängt von Ihren Präferenzen ab.</p></details><details style='background: #f8f9fa; margin-bottom: 1rem; padding: 1rem; border-radius: 8px; cursor: pointer;'><summary style='font-weight: bold; padding: 0.5rem 0; cursor: pointer;'>Wie lange hält ein E-Bike Akku?</summary><p><strong>Lebensdauer:</strong></p><ul><li><strong>Zeit:</strong> 3-5 Jahre bei normaler Nutzung</li><li><strong>Ladezyklen:</strong> 500-1000 vollständige Lade-/Entladezyklen</li><li><strong>Kapazität:</strong> Nach 500 Zyklen noch ca. 70-80% der ursprünglichen Kapazität</li></ul><p><strong>Tipps für längere Lebensdauer:</strong></p><ul><li>Nie komplett entleeren (20-80% Ladung ideal)</li><li>Bei Raumtemperatur laden und lagern</li><li>Im Winter warm halten</li><li>Original-Ladegerät verwenden</li></ul></details><details style='background: #f8f9fa; margin-bottom: 1rem; padding: 1rem; border-radius: 8px; cursor: pointer;'><summary style='font-weight: bold; padding: 0.5rem 0; cursor: pointer;'>Kann ich auch ohne Motor fahren?</summary><p>Ja, das ist möglich, aber:</p><ul><li>E-Bikes sind <strong>3-8 kg schwerer</strong> als normale Fahrräder</li><li>Der <strong>Motor kann etwas Widerstand</strong> erzeugen (je nach System)</li><li>Die <strong>Übersetzung</strong> ist oft für Motorunterstützung optimiert</li><li><strong>Kurze Strecken</strong> sind problemlos machbar</li><li>Bei <strong>leerem Akku</strong> können Sie trotzdem nach Hause fahren</li></ul><p>Moderne E-Bikes lassen sich auch ohne Motor gut fahren, besonders auf ebenen Strecken.</p></details></div><div class='faq-section'><h3>🔧 Wartung & Service</h3><details style='background: #f8f9fa; margin-bottom: 1rem; padding: 1rem; border-radius: 8px; cursor: pointer;'><summary style='font-weight: bold; padding: 0.5rem 0; cursor: pointer;'>Wie oft muss ich mein E-Bike warten lassen?</summary><p><strong>Wartungsintervalle:</strong></p><ul><li><strong>Jährlich:</strong> Professioneller Service (Basis-Service CHF 89)</li><li><strong>Alle 2000 km:</strong> Große Inspektion (Vollservice CHF 149)</li><li><strong>Monatlich:</strong> Eigenkontrolle (Reifendruck, Kette ölen, Bremsen prüfen)</li><li><strong>Nach Winter:</strong> Frühjahrs-Check empfohlen</li></ul><p>Bei intensiver Nutzung (>3000 km/Jahr) empfehlen wir halbjährliche Services.</p><p><a href='/pages/service-booking'>Hier können Sie einen Service-Termin buchen</a>.</p></details><details style='background: #f8f9fa; margin-bottom: 1rem; padding: 1rem; border-radius: 8px; cursor: pointer;'><summary style='font-weight: bold; padding: 0.5rem 0; cursor: pointer;'>Kann ich bei Regen fahren?</summary><p><strong>Ja, E-Bikes sind wetterfest!</strong></p><ul><li>✓ Alle Komponenten sind nach <strong>IP54-IP65 Standard</strong> wasserdicht</li><li>✓ <strong>Regen, Spritzwasser, Pfützen</strong> sind kein Problem</li><li>✓ <strong>Akku und Motor</strong> sind vollständig geschützt</li><li>✓ <strong>Display</strong> funktioniert auch bei Regen</li></ul><p><strong>Aber vermeiden Sie:</strong></p><ul><li>• Hochdruckreiniger direkt auf Elektronik</li><li>• Vollständiges Untertauchen</li><li>• Starker Salzwasser-Kontakt (Strand)</li></ul><p>Nach Regenfahrten: E-Bike trocken wischen und Kette nachölen.</p></details><details style='background: #f8f9fa; margin-bottom: 1rem; padding: 1rem; border-radius: 8px; cursor: pointer;'><summary style='font-weight: bold; padding: 0.5rem 0; cursor: pointer;'>Was mache ich bei einem Defekt unterwegs?</summary><p><strong>Häufige Probleme und Lösungen:</strong></p><ul><li><strong>Platter Reifen:</strong> Wie beim normalen Fahrrad reparieren oder Pannenhilfe rufen</li><li><strong>Kette gerissen:</strong> Kettenschloss oder Fahrradwerkstatt</li><li><strong>Motor geht nicht:</strong> Display aus- und einschalten, Akku-Kontakte prüfen</li><li><strong>Akku leer:</strong> Wie normales Fahrrad weiterfahren (schwerer, aber möglich)</li></ul><p><strong>Unser Service:</strong></p><ul><li>📞 <strong>24h Notfall-Hotline:</strong> +41 44 123 45 99</li><li>🚗 <strong>Pannendienst:</strong> In Zürich, Basel, Bern (CHF 75)</li><li>🔋 <strong>Akku-Tausch-Service:</strong> Ersatz-Akku in 30 Minuten</li></ul></details></div><div class='faq-section'><h3>⚖️ Recht & Versicherung</h3><details style='background: #f8f9fa; margin-bottom: 1rem; padding: 1rem; border-radius: 8px; cursor: pointer;'><summary style='font-weight: bold; padding: 0.5rem 0; cursor: pointer;'>Brauche ich einen Führerschein für ein E-Bike?</summary><p><strong>Pedelec (bis 25 km/h):</strong></p><ul><li>✓ <strong>Kein Führerschein</strong> erforderlich</li><li>✓ <strong>Ab 14 Jahren</strong> erlaubt</li><li>✓ <strong>Keine Helmpflicht</strong> (aber empfohlen)</li><li>✓ <strong>Radwege erlaubt</strong></li></ul><p><strong>S-Pedelec (bis 45 km/h):</strong></p><ul><li>⚠️ <strong>Mofa-Ausweis</strong> ab 14 Jahren erforderlich</li><li>⚠️ <strong>Helmpflicht</strong></li><li>⚠️ <strong>Gelbes Nummernschild</strong> und Versicherung</li><li>⚠️ <strong>Nur auf der Straße</strong>, keine Radwege</li></ul></details><details style='background: #f8f9fa; margin-bottom: 1rem; padding: 1rem; border-radius: 8px; cursor: pointer;'><summary style='font-weight: bold; padding: 0.5rem 0; cursor: pointer;'>Brauche ich eine Versicherung?</summary><p><strong>Pedelec (25 km/h):</strong></p><ul><li>✓ <strong>Privathaftpflicht</strong> reicht aus</li><li>✓ <strong>Hausratversicherung</strong> für Diebstahlschutz</li><li>✓ <strong>E-Bike Versicherung</strong> optional (CHF 100-300/Jahr)</li></ul><p><strong>S-Pedelec (45 km/h):</strong></p><ul><li>⚠️ <strong>Haftpflichtversicherung</strong> obligatorisch (ca. CHF 200/Jahr)</li><li>✓ <strong>Kasko-Versicherung</strong> empfohlen</li></ul><p><strong>Zusatzversicherung empfehlenswert bei:</strong></p><ul><li>Hochwertigen E-Bikes (>CHF 3000)</li><li>Häufigem Abstellen in der Öffentlichkeit</li><li>Gewerblicher Nutzung</li></ul></details><details style='background: #f8f9fa; margin-bottom: 1rem; padding: 1rem; border-radius: 8px; cursor: pointer;'><summary style='font-weight: bold; padding: 0.5rem 0; cursor: pointer;'>Darf ich auf Radwegen fahren?</summary><p><strong>Pedelec (25 km/h):</strong></p><ul><li>✓ <strong>Alle Radwege</strong> erlaubt</li><li>✓ <strong>Fahrradstreifen</strong> auf der Straße</li><li>✓ <strong>Gemischte Fuß-/Radwege</strong> (auf Radfahrer achten)</li><li>✓ <strong>Waldwege</strong> wo Radfahren erlaubt ist</li></ul><p><strong>S-Pedelec (45 km/h):</strong></p><ul><li>❌ <strong>Keine Radwege</strong></li><li>✓ <strong>Nur auf der Straße</strong></li><li>✓ <strong>Auch Tempo-30-Zonen</strong></li><li>❌ <strong>Keine Einbahnstraßen</strong> gegen die Fahrtrichtung</li></ul></details></div><div class='faq-section'><h3>💰 Finanzierung & Preise</h3><details style='background: #f8f9fa; margin-bottom: 1rem; padding: 1rem; border-radius: 8px; cursor: pointer;'><summary style='font-weight: bold; padding: 0.5rem 0; cursor: pointer;'>Wie funktioniert die 0% Finanzierung?</summary><p><strong>Unsere 0% Finanzierung:</strong></p><ul><li>✓ <strong>Echte 0%</strong> - keine versteckten Kosten</li><li>✓ <strong>6-36 Monate</strong> Laufzeit</li><li>✓ <strong>Ab CHF 500</strong> Warenwert</li><li>✓ <strong>Sofortentscheidung</strong> bei positiver Bonität</li><li>✓ <strong>Vorzeitige Rückzahlung</strong> jederzeit möglich</li></ul><p><strong>Beispiel:</strong> E-Bike für CHF 3000, 24 Monate = CHF 125/Monat</p><p><a href='/pages/financing-calculator'>Berechnen Sie Ihre Rate hier</a>.</p></details><details style='background: #f8f9fa; margin-bottom: 1rem; padding: 1rem; border-radius: 8px; cursor: pointer;'><summary style='font-weight: bold; padding: 0.5rem 0; cursor: pointer;'>Gibt es Rabatte oder Aktionen?</summary><p><strong>Regelmäßige Aktionen:</strong></p><ul><li>🎉 <strong>Saisonende:</strong> Bis 30% auf Vorjahresmodelle (Sept-Nov)</li><li>🚀 <strong>Frühjahr:</strong> 0% Finanzierung-Aktionen (März-Mai)</li><li>🎁 <strong>Black Friday:</strong> Zubehör-Pakete geschenkt</li><li>💼 <strong>Business-Kunden:</strong> Spezielle Konditionen für Firmenkäufe</li><li>👥 <strong>Familien-Rabatt:</strong> Bei Kauf von 2+ E-Bikes</li></ul><p><strong>Newsletter-Abonnenten</strong> erfahren als erste von neuen Aktionen!</p></details></div></div><script>document.querySelectorAll('details').forEach((detail) => { detail.addEventListener('toggle', function() { if (this.open) { document.querySelectorAll('details').forEach((other) => { if (other !== this) other.open = false; }); } }); });</script>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "faq_text"
+      ],
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "image_position": "right",
+        "text_alignment": "left",
+        "max_width": 1200,
+        "color_scheme": "background-1",
+        "padding_top": 20,
+        "padding_bottom": 40
+      }
+    },
+    "contact_support": {
+      "type": "services-grid",
+      "blocks": {
+        "phone_support": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-heart.svg",
+            "title": "Telefonische Beratung",
+            "text": "<p><strong>+41 44 123 45 67</strong></p><p>Mo-Fr: 9:00-18:30 Uhr<br>Sa: 9:00-17:00 Uhr</p><p>Unsere E-Bike Experten beantworten alle Ihre Fragen - kostenlos und unverbindlich.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "email_support": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-return.svg",
+            "title": "E-Mail Support",
+            "text": "<p><strong>info@godspeed.ch</strong></p><p>Antwort innerhalb von 24h</p><p>Für detaillierte Fragen oder wenn Sie Bilder/Dokumente senden möchten.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "live_chat": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-truck.svg",
+            "title": "Live Chat",
+            "text": "<p><strong>Sofort verfügbar</strong></p><p>Täglich 9:00-22:00 Uhr</p><p>Schnelle Antworten auf einfache Fragen über den Chat-Button rechts unten.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "phone_support",
+        "email_support",
+        "live_chat"
+      ],
+      "settings": {
+        "heading": "Frage nicht dabei? Wir helfen gerne!",
+        "heading_size": "h1",
+        "description": "<p>Haben Sie eine spezielle Frage, die hier nicht beantwortet wird? Unser Expertenteam ist für Sie da.</p>",
+        "text_alignment": "center",
+        "card_text_alignment": "center",
+        "icon_size": 80,
+        "card_border_radius": 8,
+        "color_scheme": "background-2",
+        "padding_top": 60,
+        "padding_bottom": 80
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "faq_content",
+    "contact_support"
+  ]
+}

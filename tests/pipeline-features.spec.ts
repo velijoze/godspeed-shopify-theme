@@ -130,33 +130,43 @@ test.describe('Pipeline Features Testing', () => {
     
     console.log('Testing mega menu features...');
     
-    // Look for navigation
-    const navigation = await page.locator('nav, .header__nav-menu').first();
+    // Wait for page to load
+    await page.waitForLoadState('networkidle');
     
-    if (await navigation.isVisible()) {
-      // Look for menu items that might have mega menus
-      const menuItems = await navigation.locator('a').count();
-      console.log(`Navigation items found: ${menuItems}`);
+    // Look for mega menu trigger specifically
+    const megaMenuTrigger = page.locator('[data-mega-menu-trigger]');
+    const triggerCount = await megaMenuTrigger.count();
+    console.log(`Mega menu triggers found: ${triggerCount}`);
+    
+    if (triggerCount > 0) {
+      const isVisible = await megaMenuTrigger.first().isVisible();
+      console.log('Mega menu trigger visible:', isVisible);
       
-      // Try to hover over first menu item to trigger mega menu
-      if (menuItems > 0) {
-        const firstMenuItem = navigation.locator('a').first();
-        await firstMenuItem.hover();
+      if (isVisible) {
+        // Hover over the trigger to show dropdown
+        await megaMenuTrigger.first().hover();
         
-        // Wait for potential mega menu to appear
+        // Wait for dropdown to appear
         await page.waitForTimeout(500);
         
-        // Check for mega menu
-        const megaMenu = await page.locator('.mega-menu__content').count();
-        console.log(`Mega menus found: ${megaMenu}`);
+        // Check for dropdown
+        const dropdown = page.locator('[data-mega-menu-dropdown]');
+        const dropdownVisible = await dropdown.isVisible();
+        console.log('Mega menu dropdown visible on hover:', dropdownVisible);
         
-        if (megaMenu > 0) {
-          const menuContent = page.locator('.mega-menu__content').first();
-          const isVisible = await menuContent.isVisible();
-          console.log('Mega menu visible on hover:', isVisible);
+        // Check for product content in dropdown
+        if (dropdownVisible) {
+          const categories = await dropdown.locator('.mega-menu-category').count();
+          const products = await dropdown.locator('.mega-menu-product').count();
+          console.log(`Mega menu categories: ${categories}, products: ${products}`);
         }
       }
     }
+    
+    // Check if navigation menu exists at all
+    const navigation = await page.locator('.header__nav-menu').first();
+    const navVisible = await navigation.isVisible();
+    console.log('Navigation menu visible:', navVisible);
   });
 
   test('should test overall Pipeline design improvements', async ({ page }) => {

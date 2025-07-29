@@ -1,0 +1,224 @@
+{
+  "sections": {
+    "locations_hero": {
+      "type": "locations-hero",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Unsere Standorte",
+            "heading_size": "h0"
+          }
+        },
+        "subheading": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Besuchen Sie uns in der ganzen Schweiz"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Finden Sie Ihren nächsten Godspeed Standort für persönliche Beratung, Probefahrten und professionellen Service. Unsere Experten freuen sich darauf, Sie bei der Auswahl Ihres perfekten E-Bikes zu unterstützen.</p>",
+            "text_style": "subtitle"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "button_label": "Termin vereinbaren",
+            "button_link": "/pages/contact"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "subheading",
+        "text",
+        "button"
+      ],
+      "settings": {
+        "show_icon": true,
+        "icon": "icon-truck.svg",
+        "icon_size": 80,
+        "overlay_opacity": 40,
+        "text_alignment": "center",
+        "color_scheme": "background-1",
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
+    },
+    "locations_grid": {
+      "type": "locations-grid",
+      "blocks": {
+        "zurich": {
+          "type": "location",
+          "settings": {
+            "city": "Zürich",
+            "name": "Godspeed Zürich Hauptbahnhof",
+            "address": "Bahnhofstrasse 123\n8001 Zürich",
+            "description": "<p><strong>Unser Flagship Store</strong></p><p>Im Herzen von Zürich gelegen, bietet unser größter Standort die komplette Palette an E-Bikes, City-Bikes und Mountainbikes. Mit der größten Ausstellung, modernster Werkstatt und direkter Nähe zum Hauptbahnhof.</p>",
+            "hours": "Montag-Freitag: 9:00-18:30\nSamstag: 9:00-17:00\nSonntag: 11:00-16:00",
+            "phone": "+41 44 123 45 67",
+            "email": "zuerich@godspeed.ch",
+            "services": "Verkauf, Service, Reparatur, Probefahrt, Leasing",
+            "directions_link": "https://goo.gl/maps/example1",
+            "booking_link": "/pages/contact"
+          }
+        },
+        "basel": {
+          "type": "location",
+          "settings": {
+            "city": "Basel",
+            "name": "Godspeed Basel City",
+            "address": "Freie Strasse 45\n4001 Basel",
+            "description": "<p><strong>Urban Mobility Hub</strong></p><p>Spezialisiert auf urbane Mobilität mit Fokus auf City E-Bikes, Lastenräder und Pendler-Lösungen. Perfekt gelegen in der Basler Innenstadt mit direkter Anbindung an öffentliche Verkehrsmittel.</p>",
+            "hours": "Montag-Freitag: 9:30-18:00\nSamstag: 9:00-17:00\nSonntag: geschlossen",
+            "phone": "+41 61 234 56 78",
+            "email": "basel@godspeed.ch",
+            "services": "Verkauf, Service, Urban Bikes, Lastenräder",
+            "directions_link": "https://goo.gl/maps/example2",
+            "booking_link": "/pages/contact"
+          }
+        },
+        "bern": {
+          "type": "location",
+          "settings": {
+            "city": "Bern",
+            "name": "Godspeed Bern Altstadt",
+            "address": "Kramgasse 78\n3011 Bern",
+            "description": "<p><strong>Service & Beratung</strong></p><p>In der UNESCO-Welterbe Altstadt von Bern bieten wir kompetente Beratung und schnellen Service. Ideal für alle, die das perfekte E-Bike für die hügelige Bundesstadt suchen.</p>",
+            "hours": "Montag-Freitag: 10:00-18:00\nSamstag: 9:00-16:00\nSonntag: geschlossen",
+            "phone": "+41 31 345 67 89",
+            "email": "bern@godspeed.ch",
+            "services": "Verkauf, Service, Beratung, Reparatur",
+            "directions_link": "https://goo.gl/maps/example3",
+            "booking_link": "/pages/contact"
+          }
+        },
+        "geneva": {
+          "type": "location",
+          "settings": {
+            "city": "Genf",
+            "name": "Godspeed Genève",
+            "address": "Rue du Rhône 92\n1204 Genève",
+            "description": "<p><strong>International Gateway</strong></p><p>Notre magasin à Genève propose une sélection premium de vélos électriques avec service multilingue. Idéalement situé près du lac Léman avec expertise en mobilité internationale.</p>",
+            "hours": "Lundi-Vendredi: 9:00-18:30\nSamedi: 9:00-17:00\nDimanche: 12:00-17:00",
+            "phone": "+41 22 456 78 90",
+            "email": "geneve@godspeed.ch",
+            "services": "Vente, Service, Conseil multilingue, Location",
+            "directions_link": "https://goo.gl/maps/example4",
+            "booking_link": "/pages/contact"
+          }
+        },
+        "lucerne": {
+          "type": "location",
+          "settings": {
+            "city": "Luzern",
+            "name": "Godspeed Luzern Zentrum",
+            "address": "Hertensteinstrasse 34\n6004 Luzern",
+            "description": "<p><strong>Alpine Adventure Base</strong></p><p>Am Fuße der Alpen gelegen, spezialisiert auf Mountain E-Bikes und Touren-Ausrüstung. Mit direktem Zugang zu den schönsten Radwegen der Zentralschweiz.</p>",
+            "hours": "Montag-Freitag: 9:00-18:00\nSamstag: 8:30-17:00\nSonntag: 10:00-16:00",
+            "phone": "+41 41 567 89 01",
+            "email": "luzern@godspeed.ch",
+            "services": "Verkauf, Service, Mountain Bikes, Touren-Beratung",
+            "directions_link": "https://goo.gl/maps/example5",
+            "booking_link": "/pages/contact"
+          }
+        },
+        "st_gallen": {
+          "type": "location",
+          "settings": {
+            "city": "St. Gallen",
+            "name": "Godspeed St. Gallen",
+            "address": "Multergasse 12\n9000 St. Gallen",
+            "description": "<p><strong>Ostschweiz Kompetenz-Zentrum</strong></p><p>Unser Service-Center für die Ostschweiz mit Fokus auf Pendler-Lösungen und Business-E-Bikes. Spezialisiert auf Lösungen für die hügelige Topografie der Region.</p>",
+            "hours": "Montag-Freitag: 9:30-18:00\nSamstag: 9:00-16:00\nSonntag: geschlossen",
+            "phone": "+41 71 678 90 12",
+            "email": "stgallen@godspeed.ch",
+            "services": "Verkauf, Service, Business E-Bikes, Pendler-Beratung",
+            "directions_link": "https://goo.gl/maps/example6",
+            "booking_link": "/pages/contact"
+          }
+        }
+      },
+      "block_order": [
+        "zurich",
+        "basel", 
+        "bern",
+        "geneva",
+        "lucerne",
+        "st_gallen"
+      ],
+      "settings": {
+        "heading": "Besuchen Sie uns vor Ort",
+        "heading_size": "h1",
+        "description": "<p>6 Standorte in der ganzen Schweiz - jeder mit eigenem Charakter und spezialisiertem Service für Ihre Bedürfnisse.</p>",
+        "text_alignment": "center",
+        "card_text_alignment": "center",
+        "icon_size": 80,
+        "card_border_radius": 12,
+        "image_border_radius": 8,
+        "color_scheme": "background-1",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "contact_info": {
+      "type": "company-story",
+      "blocks": {
+        "contact_text": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Haben Sie Fragen oder benötigen Sie Unterstützung?</strong></p><p>Unser Kundenservice ist von Montag bis Samstag für Sie da. Für dringende Fragen außerhalb der Öffnungszeiten nutzen Sie unseren 24/7 Chat-Service oder schreiben Sie uns eine E-Mail.</p><p>Alle unsere Standorte bieten kostenlosen Parkplätze und sind mit öffentlichen Verkehrsmitteln gut erreichbar. Probefahrten sind nach Terminvereinbarung jederzeit möglich.</p>",
+            "text_style": "body"
+          }
+        },
+        "service_highlight": {
+          "type": "highlight",
+          "settings": {
+            "highlight_heading": "Unser Service-Versprechen",
+            "highlight_text": "Kostenlose Erstberatung, 30 Tage Rückgaberecht und lebenslanger Support für alle Godspeed Kunden."
+          }
+        },
+        "response_stats": {
+          "type": "stats",
+          "settings": {
+            "stat_number": "< 24h",
+            "stat_label": "Antwortzeit bei Anfragen"
+          }
+        }
+      },
+      "block_order": [
+        "contact_text",
+        "service_highlight",
+        "response_stats"
+      ],
+      "settings": {
+        "heading": "Kontakt & Service",
+        "heading_size": "h1",
+        "image_position": "right",
+        "text_alignment": "left",
+        "max_width": 1000,
+        "button_label": "Jetzt Kontakt aufnehmen",
+        "button_link": "/pages/contact",
+        "color_scheme": "background-2",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    }
+  },
+  "order": [
+    "locations_hero",
+    "locations_grid",
+    "contact_info",
+    "main"
+  ]
+}

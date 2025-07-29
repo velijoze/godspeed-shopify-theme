@@ -1,0 +1,159 @@
+{
+  "sections": {
+    "hero": {
+      "type": "about-hero",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Finanzierungsrechner",
+            "heading_size": "h0"
+          }
+        },
+        "subheading": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Berechnen Sie Ihre monatliche Rate für Ihr Traum-E-Bike"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Mit unserem 0% Finanzierungsrechner können Sie sofort sehen, wie viel Ihr Wunsch-E-Bike monatlich kostet. Faire Konditionen, keine versteckten Kosten.</p>",
+            "text_style": "subtitle"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "subheading",
+        "text"
+      ],
+      "settings": {
+        "overlay_opacity": 30,
+        "text_alignment": "center",
+        "color_scheme": "background-1",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "calculator": {
+      "type": "company-story",
+      "blocks": {
+        "calculator_text": {
+          "type": "text",
+          "settings": {
+            "text": "<div id='financing-calculator' style='max-width: 600px; margin: 0 auto;'><div style='background: #f8f9fa; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);'><h3 style='color: #333; margin-bottom: 1.5rem;'>Finanzierungsrechner</h3><div style='margin-bottom: 1.5rem;'><label style='display: block; font-weight: bold; margin-bottom: 0.5rem;'>E-Bike Preis (CHF):</label><input type='number' id='bike-price' placeholder='z.B. 3500' style='width: 100%; padding: 0.75rem; border: 2px solid #e1e5e9; border-radius: 6px; font-size: 1rem;' oninput='calculateFinancing()'></div><div style='margin-bottom: 1.5rem;'><label style='display: block; font-weight: bold; margin-bottom: 0.5rem;'>Anzahlung (CHF):</label><input type='number' id='down-payment' placeholder='z.B. 500' style='width: 100%; padding: 0.75rem; border: 2px solid #e1e5e9; border-radius: 6px; font-size: 1rem;' oninput='calculateFinancing()'></div><div style='margin-bottom: 1.5rem;'><label style='display: block; font-weight: bold; margin-bottom: 0.5rem;'>Laufzeit:</label><select id='term' style='width: 100%; padding: 0.75rem; border: 2px solid #e1e5e9; border-radius: 6px; font-size: 1rem;' onchange='calculateFinancing()'><option value='6'>6 Monate</option><option value='12' selected>12 Monate</option><option value='18'>18 Monate</option><option value='24'>24 Monate</option><option value='36'>36 Monate</option></select></div><div id='financing-result' style='background: white; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #28a745; display: none;'><h4 style='color: #28a745; margin-bottom: 1rem;'>Ihre Finanzierung:</h4><div style='display: flex; justify-content: space-between; margin-bottom: 0.5rem;'><span>Monatliche Rate:</span><strong id='monthly-rate' style='color: #28a745; font-size: 1.2rem;'>CHF 0</strong></div><div style='display: flex; justify-content: space-between; margin-bottom: 0.5rem;'><span>Finanzierungssumme:</span><strong id='finance-amount'>CHF 0</strong></div><div style='display: flex; justify-content: space-between; margin-bottom: 0.5rem;'><span>Gesamtkosten:</span><strong id='total-cost'>CHF 0</strong></div><div style='display: flex; justify-content: space-between; margin-bottom: 1rem;'><span>Zinssatz:</span><strong style='color: #28a745;'>0% effektiv</strong></div><p style='font-size: 0.9rem; color: #666; margin-top: 1rem;'>✓ Keine Bearbeitungsgebühren<br>✓ Keine versteckten Kosten<br>✓ Vorzeitige Rückzahlung jederzeit möglich</p></div></div><div style='text-align: center; margin-top: 2rem;'><a href='/pages/contact' style='background: #007bff; color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block;'>Finanzierung beantragen</a></div></div><script>function calculateFinancing() { const price = parseFloat(document.getElementById('bike-price').value) || 0; const downPayment = parseFloat(document.getElementById('down-payment').value) || 0; const term = parseInt(document.getElementById('term').value) || 12; const financeAmount = Math.max(0, price - downPayment); const monthlyRate = financeAmount / term; const totalCost = financeAmount + downPayment; document.getElementById('monthly-rate').textContent = 'CHF ' + monthlyRate.toFixed(2); document.getElementById('finance-amount').textContent = 'CHF ' + financeAmount.toFixed(2); document.getElementById('total-cost').textContent = 'CHF ' + totalCost.toFixed(2); if (price > 0) { document.getElementById('financing-result').style.display = 'block'; } else { document.getElementById('financing-result').style.display = 'none'; } }</script>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "calculator_text"
+      ],
+      "settings": {
+        "heading": "0% Finanzierung berechnen",
+        "heading_size": "h1",
+        "image_position": "right",
+        "text_alignment": "center",
+        "max_width": 800,
+        "color_scheme": "background-1",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "financing_options": {
+      "type": "services-grid",
+      "blocks": {
+        "zero_percent": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-price-tag.svg",
+            "title": "0% Finanzierung",
+            "text": "<p><strong>Echte 0% Zinsen</strong></p><ul><li>✓ 6 bis 36 Monate Laufzeit</li><li>✓ Keine Bearbeitungsgebühren</li><li>✓ Keine versteckten Kosten</li><li>✓ Vorzeitige Rückzahlung möglich</li></ul><p>Ab CHF 500 Warenwert verfügbar</p>",
+            "button_label": "Jetzt beantragen",
+            "button_link": "/pages/contact"
+          }
+        },
+        "leasing": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-return.svg",
+            "title": "Business Leasing",
+            "text": "<p><strong>Für Unternehmen</strong></p><ul><li>✓ Steuerliche Vorteile</li><li>✓ Keine Anzahlung nötig</li><li>✓ Service-Paket inkludiert</li><li>✓ Kaufoption am Ende</li></ul><p>Ideal für Firmenfahrzeuge und Flotten</p>",
+            "button_label": "Leasing-Anfrage",
+            "button_link": "/pages/contact"
+          }
+        },
+        "instant": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-heart.svg",
+            "title": "Sofortentscheidung",
+            "text": "<p><strong>Schnell & unkompliziert</strong></p><ul><li>✓ Online-Antrag in 3 Minuten</li><li>✓ Sofortige Zusage-Entscheidung</li><li>✓ Digitale Vertragsabwicklung</li><li>✓ E-Bike sofort mitnehmen</li></ul><p>Bei positiver Bonität direkt im Shop</p>",
+            "button_label": "Antrag stellen",
+            "button_link": "/pages/contact"
+          }
+        }
+      },
+      "block_order": [
+        "zero_percent",
+        "leasing",
+        "instant"
+      ],
+      "settings": {
+        "heading": "Unsere Finanzierungsoptionen",
+        "heading_size": "h1",
+        "description": "<p>Wählen Sie die Finanzierungsoption, die am besten zu Ihnen passt. Alle Optionen sind fair, transparent und ohne versteckte Kosten.</p>",
+        "text_alignment": "center",
+        "card_text_alignment": "left",
+        "icon_size": 80,
+        "card_border_radius": 8,
+        "color_scheme": "background-2",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "requirements": {
+      "type": "company-story",
+      "blocks": {
+        "requirements_text": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Voraussetzungen für die Finanzierung:</strong></p><ul><li>✓ Mindestalter 18 Jahre</li><li>✓ Wohnsitz in der Schweiz</li><li>✓ Regelmäßiges Einkommen nachweisbar</li><li>✓ Positive Bonität (wird geprüft)</li><li>✓ Schweizer Bankkonto</li></ul><p><strong>Benötigte Unterlagen:</strong></p><ul><li>• Gültiger Ausweis oder Pass</li><li>• Lohnausweis der letzten 3 Monate</li><li>• Kontoauszüge der letzten 3 Monate</li><li>• Bei Selbständigen: Steuererklärung</li></ul><p><strong>Bearbeitungszeit:</strong> In der Regel erhalten Sie innerhalb von 24 Stunden eine verbindliche Zusage oder Absage.</p>",
+            "text_style": "body"
+          }
+        },
+        "guarantee_highlight": {
+          "type": "highlight",
+          "settings": {
+            "highlight_heading": "Unser Versprechen",
+            "highlight_text": "Faire Konditionen, transparente Abwicklung und persönliche Beratung. Ihre Daten werden streng vertraulich behandelt."
+          }
+        }
+      },
+      "block_order": [
+        "requirements_text",
+        "guarantee_highlight"
+      ],
+      "settings": {
+        "heading": "Voraussetzungen & Ablauf",
+        "heading_size": "h1",
+        "image_position": "left",
+        "text_alignment": "left",
+        "max_width": 1000,
+        "button_label": "Finanzierung beantragen",
+        "button_link": "/pages/contact",
+        "color_scheme": "background-1",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "calculator",
+    "financing_options",
+    "requirements"
+  ]
+}

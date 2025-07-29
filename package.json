@@ -1,0 +1,82 @@
+{
+  "name": "godspeed-shopify-theme-comprehensive",
+  "version": "2.0.0",
+  "description": "Godspeed e-bike store with comprehensive testing suite including SWE, SIT, UAT, and performance testing",
+  "scripts": {
+    "test": "playwright test --config=playwright.config.simple.js",
+    "test:comprehensive": "node run-comprehensive-tests.js",
+    "test:uat": "playwright test tests/uat/ --config=playwright.config.comprehensive.ts",
+    "test:sit": "playwright test tests/sit/ --config=playwright.config.comprehensive.ts",
+    "test:performance": "playwright test tests/performance/ --config=playwright.config.comprehensive.ts",
+    "test:mobile": "playwright test --project=mobile-chrome --project=mobile-safari",
+    "test:cross-browser": "playwright test --project=chromium-desktop --project=firefox-desktop --project=webkit-desktop",
+    "test:report": "playwright show-report",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "test:headed": "playwright test --headed",
+    "test:codegen": "playwright codegen https://t0uds3-a2.myshopify.com",
+    "test:plan": "node run-comprehensive-tests.js --plan-only",
+    "test:analysis": "node run-comprehensive-tests.js --analysis",
+    "test:simulate": "node run-comprehensive-tests.js --simulate",
+    "install:browsers": "npx playwright install",
+    "install:deps": "npx playwright install-deps",
+    "setup:test": "npm run install:browsers && npm run install:deps"
+  },
+  "keywords": [
+    "shopify",
+    "theme", 
+    "e-commerce",
+    "e-bike",
+    "testing",
+    "playwright",
+    "uat",
+    "sit",
+    "performance",
+    "swe",
+    "pipeline",
+    "veloconnect",
+    "ai-optimization"
+  ],
+  "author": "Godspeed E-bike Store",
+  "license": "MIT",
+  "testEnvironments": {
+    "development": "http://localhost:9292",
+    "staging": "https://t0uds3-a2.myshopify.com",
+    "production": "https://godspeed.ch"
+  },
+  "testSuites": {
+    "swe": {
+      "description": "Software Engineering Tests - Unit tests, code quality, security",
+      "files": 4,
+      "tests": 31
+    },
+    "sit": {
+      "description": "System Integration Testing - API integrations, data flow",
+      "files": 1,
+      "tests": 12
+    },
+    "uat": {
+      "description": "User Acceptance Testing - Business scenarios, user journeys",
+      "files": 1,
+      "tests": 6
+    },
+    "performance": {
+      "description": "Performance Testing - Load testing, Core Web Vitals",
+      "files": 1,
+      "tests": 7
+    }
+  },
+  "browsers": [
+    "Chrome Desktop",
+    "Firefox Desktop", 
+    "Safari Desktop",
+    "Chrome Mobile",
+    "Safari Mobile"
+  ],
+  "testFrameworks": {
+    "e2e": "@playwright/test",
+    "api": "native playwright request",
+    "performance": "playwright + browser APIs",
+    "accessibility": "playwright + axe-core integration"
+  }
+}

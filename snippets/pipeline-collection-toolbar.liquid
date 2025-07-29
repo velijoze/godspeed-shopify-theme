@@ -1,0 +1,396 @@
+{% comment %}
+  Pipeline Collection Toolbar
+  Grid/List toggle, sort dropdown, and results count
+{% endcomment %}
+
+<div class="pipeline-collection-toolbar">
+  <div class="toolbar-left">
+    <div class="results-count">
+      <span class="count-number">{{ collection.products_count }}</span>
+      <span class="count-text">
+        {%- if collection.products_count == 1 -%}
+          product
+        {%- else -%}
+          products
+        {%- endif -%}
+      </span>
+    </div>
+    
+    {%- if section.settings.enable_filtering -%}
+      <button class="mobile-filter-toggle" data-open-filters>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M1 4h14M1 8h10M1 12h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span>Filter</span>
+      </button>
+    {%- endif -%}
+  </div>
+
+  <div class="toolbar-right">
+    {%- comment -%} Sort Dropdown {%- endcomment -%}
+    <div class="sort-dropdown">
+      <label for="SortBy" class="sort-label">{{ 'collections.sorting.title' | t | default: 'Sort by' }}</label>
+      <select id="SortBy" class="sort-select" data-sort-select>
+        <option value="manual" {% if collection.default_sort_by == 'manual' %}selected{% endif %}>
+          {{ 'collections.sorting.featured' | t | default: 'Featured' }}
+        </option>
+        <option value="best-selling" {% if collection.default_sort_by == 'best-selling' %}selected{% endif %}>
+          {{ 'collections.sorting.best_selling' | t | default: 'Best selling' }}
+        </option>
+        <option value="title-ascending" {% if collection.default_sort_by == 'title-ascending' %}selected{% endif %}>
+          {{ 'collections.sorting.az' | t | default: 'Alphabetically, A-Z' }}
+        </option>
+        <option value="title-descending" {% if collection.default_sort_by == 'title-descending' %}selected{% endif %}>
+          {{ 'collections.sorting.za' | t | default: 'Alphabetically, Z-A' }}
+        </option>
+        <option value="price-ascending" {% if collection.default_sort_by == 'price-ascending' %}selected{% endif %}>
+          {{ 'collections.sorting.price_ascending' | t | default: 'Price, low to high' }}
+        </option>
+        <option value="price-descending" {% if collection.default_sort_by == 'price-descending' %}selected{% endif %}>
+          {{ 'collections.sorting.price_descending' | t | default: 'Price, high to low' }}
+        </option>
+        <option value="created-ascending" {% if collection.default_sort_by == 'created-ascending' %}selected{% endif %}>
+          {{ 'collections.sorting.date_ascending' | t | default: 'Date, old to new' }}
+        </option>
+        <option value="created-descending" {% if collection.default_sort_by == 'created-descending' %}selected{% endif %}>
+          {{ 'collections.sorting.date_descending' | t | default: 'Date, new to old' }}
+        </option>
+      </select>
+      <svg class="sort-icon" width="12" height="8" viewBox="0 0 12 8" fill="currentColor">
+        <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" fill="none"/>
+      </svg>
+    </div>
+
+    {%- comment -%} Grid/List Toggle {%- endcomment -%}
+    <div class="view-toggle" data-view-toggle>
+      <button class="view-btn grid-view active" data-view="grid" aria-label="Grid view">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+          <rect x="1" y="1" width="5" height="5"/>
+          <rect x="10" y="1" width="5" height="5"/>
+          <rect x="1" y="10" width="5" height="5"/>
+          <rect x="10" y="10" width="5" height="5"/>
+        </svg>
+      </button>
+      <button class="view-btn list-view" data-view="list" aria-label="List view">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+          <rect x="1" y="2" width="14" height="3"/>
+          <rect x="1" y="7" width="14" height="3"/>
+          <rect x="1" y="12" width="14" height="3"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .pipeline-collection-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 2rem;
+  }
+
+  .toolbar-left,
+  .toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .results-count {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+
+  .count-number {
+    font-weight: 600;
+    color: #111827;
+  }
+
+  .mobile-filter-toggle {
+    display: none;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    color: #374151;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .mobile-filter-toggle:hover {
+    border-color: #667eea;
+    color: #667eea;
+    background: #f8f9ff;
+  }
+
+  .sort-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .sort-label {
+    font-size: 0.875rem;
+    color: #6b7280;
+    font-weight: 500;
+  }
+
+  .sort-select {
+    appearance: none;
+    padding: 0.5rem 2rem 0.5rem 0.75rem;
+    padding-right: 2rem;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    color: #111827;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .sort-select:hover {
+    border-color: #9ca3af;
+  }
+
+  .sort-select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  }
+
+  .sort-icon {
+    position: absolute;
+    right: 0.75rem;
+    pointer-events: none;
+    color: #9ca3af;
+  }
+
+  .view-toggle {
+    display: flex;
+    background: #f3f4f6;
+    border-radius: 6px;
+    padding: 2px;
+  }
+
+  .view-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: none;
+    border-radius: 4px;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .view-btn:hover {
+    color: #374151;
+  }
+
+  .view-btn.active {
+    background: white;
+    color: #111827;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Mobile Styles */
+  @media (max-width: 768px) {
+    .pipeline-collection-toolbar {
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    
+    .mobile-filter-toggle {
+      display: flex;
+    }
+    
+    .sort-label {
+      display: none;
+    }
+    
+    .toolbar-right {
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+
+  /* List View Styles */
+  .collection-grid.list-view {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .collection-grid.list-view .card-wrapper {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  .collection-grid.list-view .pipeline-product-card {
+    display: grid;
+    grid-template-columns: 200px 1fr auto;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1.5rem;
+  }
+
+  .collection-grid.list-view .card__media {
+    margin: 0 !important;
+    height: 150px !important;
+  }
+
+  .collection-grid.list-view .card__content {
+    text-align: left !important;
+  }
+
+  .collection-grid.list-view .quick-actions {
+    position: static !important;
+    opacity: 1 !important;
+    transform: none !important;
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+  }
+
+  .collection-grid.list-view .card__heading {
+    font-size: 1.125rem !important;
+  }
+
+  @media (max-width: 768px) {
+    .collection-grid.list-view .pipeline-product-card {
+      grid-template-columns: 120px 1fr;
+      padding: 1rem;
+    }
+    
+    .collection-grid.list-view .quick-actions {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Sort functionality
+  const sortSelect = document.querySelector('[data-sort-select]');
+  if (sortSelect) {
+    sortSelect.addEventListener('change', function() {
+      const params = new URLSearchParams(window.location.search);
+      params.set('sort_by', this.value);
+      window.location.search = params.toString();
+    });
+  }
+
+  // View toggle functionality
+  const viewToggle = document.querySelector('[data-view-toggle]');
+  if (viewToggle) {
+    const viewButtons = viewToggle.querySelectorAll('[data-view]');
+    const productGrid = document.querySelector('.collection-grid, .product-grid, #product-grid');
+    
+    // Get saved view preference
+    const savedView = localStorage.getItem('collection-view') || 'grid';
+    
+    // Apply saved view
+    if (productGrid && savedView === 'list') {
+      productGrid.classList.add('list-view');
+      viewButtons.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.view === savedView);
+      });
+    }
+    
+    // Handle view changes
+    viewButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const view = this.dataset.view;
+        
+        // Update buttons
+        viewButtons.forEach(btn => {
+          btn.classList.toggle('active', btn === this);
+        });
+        
+        // Update grid
+        if (productGrid) {
+          productGrid.classList.toggle('list-view', view === 'list');
+        }
+        
+        // Save preference
+        localStorage.setItem('collection-view', view);
+        
+        // Trigger layout recalculation
+        window.dispatchEvent(new Event('resize'));
+      });
+    });
+  }
+
+  // Mobile filter toggle
+  const filterToggle = document.querySelector('[data-open-filters]');
+  const filtersContainer = document.querySelector('.pipeline-filters-sidebar');
+  
+  if (filterToggle && filtersContainer) {
+    filterToggle.addEventListener('click', function() {
+      filtersContainer.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      
+      // Add overlay
+      const overlay = document.createElement('div');
+      overlay.className = 'filters-overlay';
+      overlay.addEventListener('click', closeFilters);
+      document.body.appendChild(overlay);
+    });
+    
+    function closeFilters() {
+      filtersContainer.classList.remove('open');
+      document.body.style.overflow = '';
+      const overlay = document.querySelector('.filters-overlay');
+      if (overlay) overlay.remove();
+    }
+    
+    // Add close button to filters on mobile
+    if (window.innerWidth <= 768) {
+      const closeBtn = document.createElement('button');
+      closeBtn.className = 'filters-close-mobile';
+      closeBtn.innerHTML = '×';
+      closeBtn.addEventListener('click', closeFilters);
+      filtersContainer.insertBefore(closeBtn, filtersContainer.firstChild);
+    }
+  }
+});
+</script>
+
+<style>
+  .filters-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+  
+  .filters-close-mobile {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #6b7280;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+  }
+</style>

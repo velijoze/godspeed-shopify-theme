@@ -1,0 +1,264 @@
+{
+  "sections": {
+    "hero": {
+      "type": "about-hero",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "E-Bike Ratgeber",
+            "heading_size": "h0"
+          }
+        },
+        "subheading": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Alles was Sie über E-Bikes wissen müssen"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Von der Auswahl des richtigen E-Bikes bis zur optimalen Pflege - unser umfassender Ratgeber beantwortet alle wichtigen Fragen.</p>",
+            "text_style": "subtitle"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "subheading",
+        "text"
+      ],
+      "settings": {
+        "overlay_opacity": 30,
+        "text_alignment": "center",
+        "color_scheme": "background-1",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "guide_categories": {
+      "type": "services-grid",
+      "blocks": {
+        "buying_guide": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-heart.svg",
+            "title": "E-Bike Kaufberatung",
+            "text": "<p><strong>Das richtige E-Bike finden</strong></p><ul><li>• Welcher E-Bike Typ für welchen Zweck?</li><li>• Motor-Systeme im Vergleich</li><li>• Akku-Kapazität richtig wählen</li><li>• Ausstattung und Komponenten</li><li>• Budget-Planung und Finanzierung</li></ul>",
+            "button_label": "Kaufberatung lesen",
+            "button_link": "#buying-guide"
+          }
+        },
+        "technical_guide": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-return.svg",
+            "title": "Technik & Wartung",
+            "text": "<p><strong>E-Bike verstehen und pflegen</strong></p><ul><li>• Wie funktioniert ein E-Bike?</li><li>• Akku-Pflege und Lagerung</li><li>• Wartung und Inspektion</li><li>• Häufige Probleme lösen</li><li>• Software-Updates durchführen</li></ul>",
+            "button_label": "Technik-Guide lesen",
+            "button_link": "#technical-guide"
+          }
+        },
+        "legal_guide": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-truck.svg",
+            "title": "Recht & Sicherheit",
+            "text": "<p><strong>Rechtliches und Sicherheit</strong></p><ul><li>• E-Bike Gesetze in der Schweiz</li><li>• Versicherung und Haftung</li><li>• Helmpflicht und Ausrüstung</li><li>• Verkehrsregeln für E-Bikes</li><li>• Diebstahlschutz und Sicherheit</li></ul>",
+            "button_label": "Rechts-Guide lesen",
+            "button_link": "#legal-guide"
+          }
+        }
+      },
+      "block_order": [
+        "buying_guide",
+        "technical_guide",
+        "legal_guide"
+      ],
+      "settings": {
+        "heading": "Ratgeber Kategorien",
+        "heading_size": "h1",
+        "description": "<p>Wählen Sie den Bereich, der Sie interessiert. Alle Guides sind praxisnah und leicht verständlich geschrieben.</p>",
+        "text_alignment": "center",
+        "card_text_alignment": "left",
+        "icon_size": 80,
+        "card_border_radius": 8,
+        "color_scheme": "background-2",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "buying_guide": {
+      "type": "company-story",
+      "blocks": {
+        "buying_text": {
+          "type": "text",
+          "settings": {
+            "text": "<h3 id='buying-guide'>🛒 E-Bike Kaufberatung</h3><h4>1. Bestimmen Sie Ihren Einsatzzweck</h4><p><strong>City E-Bike:</strong> Für Stadtfahrten, Pendeln, Einkaufen<br>• Komfortable, aufrechte Sitzposition<br>• Niedrigerer Einstieg<br>• Gepäckträger und Schutzbleche<br>• 400-500 Wh Akku meist ausreichend</p><p><strong>Trekking E-Bike:</strong> Für längere Strecken, Touren<br>• Sportlichere Sitzposition<br>• Robuste Ausstattung<br>• 500-625 Wh Akku empfohlen<br>• Gute Schaltung (min. 9 Gänge)</p><p><strong>E-Mountainbike:</strong> Für Trails, Offroad<br>• Federung (Hardtail oder Fully)<br>• Kraftvoller Motor (Performance CX)<br>• Breite, griffige Reifen<br>• 625+ Wh Akku für längere Reichweite</p><h4>2. Motor-Position wählen</h4><p><strong>Mittelmotor (empfohlen):</strong><br>• Optimaler Schwerpunkt<br>• Natürliches Fahrgefühl<br>• Gute Gewichtsverteilung<br>• Alle Schaltungen nutzbar</p><p><strong>Heckmotor:</strong><br>• Günstiger<br>• Einfacher zu warten<br>• Kraftvoller Schub<br>• Hecklastig</p><h4>3. Akku-Kapazität bestimmen</h4><p>• <strong>Bis 25 km täglich:</strong> 400 Wh<br>• <strong>25-50 km täglich:</strong> 500 Wh<br>• <strong>50+ km täglich:</strong> 625+ Wh<br>• <strong>Bergiges Gelände:</strong> +125 Wh<br>• <strong>Schwerer Fahrer (>90kg):</strong> +125 Wh</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "buying_text"
+      ],
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "image_position": "right",
+        "text_alignment": "left",
+        "max_width": 1000,
+        "color_scheme": "background-1",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "technical_guide": {
+      "type": "company-story",
+      "blocks": {
+        "technical_text": {
+          "type": "text",
+          "settings": {
+            "text": "<h3 id='technical-guide'>🔧 Technik & Wartung</h3><h4>Wie funktioniert ein E-Bike?</h4><p>Ein E-Bike unterstützt Ihre Pedalkraft mit einem Elektromotor. Sensoren messen Ihre Tretleistung und steuern den Motor entsprechend. In der Schweiz darf der Motor bis 25 km/h (Pedelec) oder 45 km/h (S-Pedelec) unterstützen.</p><h4>Akku-Pflege für maximale Lebensdauer</h4><p><strong>Laden:</strong><br>• Akku nie komplett entleeren<br>• Idealbereich: 20-80% Ladung<br>• Bei Kälte vor der Fahrt aufladen<br>• Original-Ladegerät verwenden</p><p><strong>Lagerung:</strong><br>• Bei 15-20°C lagern<br>• Nicht in direkter Sonne<br>• Bei längerer Pause: 60% Ladung<br>• Alle 3 Monate nachladen</p><p><strong>Winter:</strong><br>• Akku warm halten (Neopren-Hülle)<br>• Nach Fahrt sofort ins Warme<br>• Reichweite reduziert sich um 20-30%</p><h4>Wartungsplan</h4><p><strong>Nach jeder Fahrt:</strong><br>• Groben Schmutz entfernen<br>• Akku trocken wischen<br>• Display reinigen</p><p><strong>Monatlich:</strong><br>• Reifendruck prüfen<br>• Bremsen testen<br>• Kette ölen<br>• Schrauben kontrollieren</p><p><strong>Jährlich (Profi-Service):</strong><br>• Vollständige Inspektion<br>• Software-Update<br>• Verschleißteile prüfen<br>• Bremsen und Schaltung einstellen</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "technical_text"
+      ],
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "image_position": "left",
+        "text_alignment": "left",
+        "max_width": 1000,
+        "color_scheme": "background-2",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "legal_guide": {
+      "type": "company-story",
+      "blocks": {
+        "legal_text": {
+          "type": "text",
+          "settings": {
+            "text": "<h3 id='legal-guide'>⚖️ Recht & Sicherheit</h3><h4>E-Bike Kategorien in der Schweiz</h4><p><strong>Pedelec (bis 25 km/h):</strong><br>• Kein Führerschein erforderlich<br>• Keine Helmpflicht (aber empfohlen)<br>• Keine Versicherung/Nummernschild<br>• Radwege erlaubt<br>• Ab 14 Jahren</p><p><strong>S-Pedelec (bis 45 km/h):</strong><br>• Mofa-Ausweis erforderlich (ab 14 Jahren)<br>• Helmpflicht<br>• Versicherung + gelbes Nummernschild<br>• Keine Radwege (nur Straße)<br>• Führerschein Kat. M ab 16 Jahren</p><h4>Versicherung und Haftung</h4><p><strong>Pedelec (25 km/h):</strong><br>• Über Privathaftpflicht versichert<br>• Diebstahlschutz über Hausrat<br>• Zusätzliche E-Bike Versicherung möglich</p><p><strong>S-Pedelec (45 km/h):</strong><br>• Obligatorische Haftpflichtversicherung<br>• Kasko-Versicherung empfohlen<br>• Kosten: ca. 200-400 CHF/Jahr</p><h4>Verkehrsregeln</h4><p>• Alkoholgrenze: 0,5 Promille (wie Auto)<br>• Handy-Verbot während der Fahrt<br>• Beleuchtung bei Dämmerung/Dunkelheit<br>• Reflektoren obligatorisch<br>• Klingel vorgeschrieben</p><h4>Diebstahlschutz</h4><p><strong>Präventive Maßnahmen:</strong><br>• Hochwertiges Schloss (min. CHF 100)<br>• Rahmen + Laufrad anschließen<br>• Gut beleuchtete, belebte Orte<br>• Akku abnehmen und mitnehmen<br>• GPS-Tracker installieren</p><p><strong>Nach Diebstahl:</strong><br>• Sofort Polizei informieren<br>• Versicherung melden<br>• Rahmennummer bereithalten<br>• Kaufbeleg aufbewahren</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "legal_text"
+      ],
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "image_position": "right",
+        "text_alignment": "left",
+        "max_width": 1000,
+        "color_scheme": "background-1",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "faq_section": {
+      "type": "services-grid",
+      "blocks": {
+        "faq_general": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-heart.svg",
+            "title": "Häufige Fragen - Allgemein",
+            "text": "<p><strong>Q: Wie weit kann ich mit einem E-Bike fahren?</strong><br>A: 60-150 km je nach Akku, Gelände und Fahrstil.</p><p><strong>Q: Wie lange hält ein E-Bike Akku?</strong><br>A: 3-5 Jahre oder 500-1000 Ladezyklen bei guter Pflege.</p><p><strong>Q: Kann ich auch ohne Motor fahren?</strong><br>A: Ja, aber das E-Bike ist schwerer als normale Räder.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "faq_maintenance": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-return.svg",
+            "title": "Häufige Fragen - Wartung",
+            "text": "<p><strong>Q: Wie oft muss ich mein E-Bike warten?</strong><br>A: Jährlich Profi-Service, monatlich Grundpflege.</p><p><strong>Q: Kann ich bei Regen fahren?</strong><br>A: Ja, E-Bikes sind wasserdicht (IP54-65 Standard).</p><p><strong>Q: Was kostet ein Service?</strong><br>A: Basis-Service ab CHF 89, Vollservice ab CHF 149.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "faq_legal": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-truck.svg",
+            "title": "Häufige Fragen - Recht",
+            "text": "<p><strong>Q: Brauche ich einen Helm?</strong><br>A: Bei Pedelecs (25 km/h) empfohlen, bei S-Pedelecs (45 km/h) Pflicht.</p><p><strong>Q: Darf ich auf Radwegen fahren?</strong><br>A: Pedelecs ja, S-Pedelecs nein (nur Straße).</p><p><strong>Q: Ab welchem Alter darf ich E-Bike fahren?</strong><br>A: Pedelec ab 14, S-Pedelec ab 14 mit Mofa-Ausweis.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "faq_general",
+        "faq_maintenance",
+        "faq_legal"
+      ],
+      "settings": {
+        "heading": "Häufig gestellte Fragen (FAQ)",
+        "heading_size": "h1",
+        "description": "<p>Die wichtigsten Fragen und Antworten rund um E-Bikes, kompakt und verständlich beantwortet.</p>",
+        "text_alignment": "center",
+        "card_text_alignment": "left",
+        "icon_size": 80,
+        "card_border_radius": 8,
+        "color_scheme": "background-2",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "expert_contact": {
+      "type": "company-story",
+      "blocks": {
+        "contact_text": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Haben Sie weitere Fragen?</strong></p><p>Unser Expertenteam steht Ihnen gerne zur Verfügung. Mit über 10 Jahren Erfahrung im E-Bike Bereich beantworten wir alle Ihre Fragen - von der Auswahl des richtigen E-Bikes bis zur optimalen Pflege.</p><p><strong>Kontaktmöglichkeiten:</strong></p><ul><li>📞 <strong>Telefonberatung:</strong> +41 44 123 45 67 (Mo-Fr 9-18 Uhr)</li><li>✉️ <strong>E-Mail:</strong> beratung@godspeed.ch</li><li>💬 <strong>Live Chat:</strong> Über unsere Website</li><li>🏪 <strong>Vor Ort:</strong> In allen unseren Filialen</li></ul><p>Zusätzlich bieten wir kostenlose E-Bike Workshops in unseren Stores an, wo Sie alles Wichtige über E-Bikes lernen können.</p>",
+            "text_style": "body"
+          }
+        },
+        "expert_highlight": {
+          "type": "highlight",
+          "settings": {
+            "highlight_heading": "Kostenlose Beratung",
+            "highlight_text": "Alle unsere Beratungsleistungen sind kostenlos und unverbindlich. Wir helfen Ihnen dabei, das perfekte E-Bike zu finden."
+          }
+        }
+      },
+      "block_order": [
+        "contact_text",
+        "expert_highlight"
+      ],
+      "settings": {
+        "heading": "Persönliche Beratung gewünscht?",
+        "heading_size": "h1",
+        "image_position": "left",
+        "text_alignment": "left",
+        "max_width": 1000,
+        "button_label": "Jetzt beraten lassen",
+        "button_link": "/pages/contact",
+        "color_scheme": "background-1",
+        "padding_top": 60,
+        "padding_bottom": 80
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "guide_categories",
+    "buying_guide",
+    "technical_guide",
+    "legal_guide",
+    "faq_section",
+    "expert_contact"
+  ]
+}

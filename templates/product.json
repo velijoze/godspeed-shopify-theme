@@ -1,5 +1,9 @@
 {
   "sections": {
+    "breadcrumbs": {
+      "type": "pipeline-breadcrumbs",
+      "settings": {}
+    },
     "main": {
       "type": "main-product",
       "blocks": {
@@ -33,8 +37,17 @@
             "show_gift_card_recipient": true
           }
         },
-        "description": {
-          "type": "description"
+        "trust_badges": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'pipeline-trust-badges', section: section %}"
+          }
+        },
+        "product_accordions": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'pipeline-product-accordions', section: section %}"
+          }
         }
       },
       "block_order": [
@@ -44,7 +57,8 @@
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
-        "description"
+        "trust_badges",
+        "product_accordions"
       ],
       "settings": {
         "enable_sticky_info": true,
@@ -64,23 +78,45 @@
         "enable_tabs": true,
         "show_reviews_tab": true,
         "reviews_app": "shopify",
+        "show_specifications": true,
+        "show_shipping": true,
+        "show_care": true,
+        "specifications_title": "Specifications",
+        "shipping_title": "Shipping & Returns",
         "shipping_content": "<h4>🚚 Shipping Information</h4><ul><li>Free shipping on orders over $100</li><li>Standard delivery: 3-7 business days</li><li>Express delivery: 1-3 business days</li><li>International shipping available</li></ul><h4>↩️ Returns & Exchanges</h4><ul><li>30-day return policy</li><li>Items must be unused and in original packaging</li><li>Free returns for defective items</li><li>Customer pays return shipping for exchanges</li></ul>",
-        "custom_tab_title": "E-Bike Care",
-        "custom_tab_content": "<h4>🔋 Battery Care</h4><ul><li>Charge battery after each ride</li><li>Store in cool, dry place</li><li>Avoid extreme temperatures</li><li>Monthly full discharge recommended</li></ul><h4>🛠️ Maintenance</h4><ul><li>Regular tire pressure checks</li><li>Chain lubrication every 100 miles</li><li>Annual professional service recommended</li><li>Keep electrical connections clean and dry</li></ul>",
+        "care_title": "E-Bike Care",
+        "care_content": "<h4>🔋 Battery Care</h4><ul><li>Charge battery after each ride</li><li>Store in cool, dry place</li><li>Avoid extreme temperatures</li><li>Monthly full discharge recommended</li></ul><h4>🛠️ Maintenance</h4><ul><li>Regular tire pressure checks</li><li>Chain lubrication every 100 miles</li><li>Annual professional service recommended</li><li>Keep electrical connections clean and dry</li></ul>",
+        "security_title": "Secure Checkout",
+        "security_text": "256-bit SSL Encryption",
+        "shipping_title_badge": "Free Shipping",
+        "shipping_text_badge": "On orders over $100",
+        "guarantee_title": "30-Day Guarantee",
+        "guarantee_text": "Risk-free returns",
+        "payment_title": "Guaranteed Safe Checkout",
+        "questions_title": "Questions?",
+        "questions_text": "Ask an expert",
+        "questions_link": "/pages/contact",
+        "phone_title": "Call Us",
+        "phone_number": "",
+        "show_info_blocks": true,
         "padding_top": 36,
         "padding_bottom": 12
       }
     },
-    "product-tabs": {
-      "type": "product-tabs-pipeline",
+    "frequently-bought": {
+      "type": "pipeline-frequently-bought-together",
       "settings": {
-        "show_specifications": true,
-        "show_features": true,
-        "show_shipping": true,
-        "show_reviews": true,
-        "show_custom_tab": true,
-        "custom_tab_title": "E-Bike Care",
-        "custom_tab_content": "<h4>🔋 Battery Care</h4><ul><li>Charge battery after each ride</li><li>Store in cool, dry place</li><li>Avoid extreme temperatures</li><li>Monthly full discharge recommended</li></ul><h4>🛠️ Maintenance</h4><ul><li>Regular tire pressure checks</li><li>Chain lubrication every 100 miles</li><li>Annual professional service recommended</li><li>Keep electrical connections clean and dry</li></ul>"
+        "heading": "Frequently Bought Together",
+        "subtitle": "Complete your e-bike setup",
+        "bundle_products": "",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "sticky-cart": {
+      "type": "custom_liquid",
+      "settings": {
+        "custom_liquid": "{% render 'pipeline-sticky-cart' %}"
       }
     },
     "related-products": {
@@ -103,8 +139,10 @@
     }
   },
   "order": [
+    "breadcrumbs",
     "main",
-    "product-tabs",
+    "frequently-bought",
+    "sticky-cart",
     "related-products"
   ]
 }

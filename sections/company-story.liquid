@@ -1,0 +1,359 @@
+{{ 'section-rich-text.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .company-story {
+    text-align: {{ section.settings.text_alignment }};
+  }
+
+  .company-story__content {
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+  }
+
+  .company-story__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  @media screen and (min-width: 750px) {
+    .company-story__grid--two-columns {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .company-story__grid--image-first .company-story__image {
+      order: -1;
+    }
+  }
+
+  .company-story__image {
+    position: relative;
+    overflow: hidden;
+    border-radius: {{ section.settings.image_border_radius }}px;
+  }
+
+  .company-story__image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+{%- endstyle -%}
+
+<div class="company-story section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
+  <div class="page-width">
+    <div class="company-story__content">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="company-story__heading {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+          {{ section.settings.heading | escape }}
+        </h2>
+      {%- endif -%}
+
+      <div class="company-story__grid {% if section.settings.image != blank %}company-story__grid--two-columns{% endif %} {% if section.settings.image_position == 'left' %}company-story__grid--image-first{% endif %}">
+        {%- if section.settings.image != blank -%}
+          <div class="company-story__image{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+            <img
+              src="{{ section.settings.image | image_url: width: 800 }}"
+              alt="{{ section.settings.image.alt | default: section.settings.heading | escape }}"
+              loading="lazy"
+              width="{{ section.settings.image.width }}"
+              height="{{ section.settings.image.height }}"
+            >
+          </div>
+        {%- endif -%}
+
+        <div class="company-story__text{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+              {%- when 'text' -%}
+                <div class="rte {{ block.settings.text_style }}">
+                  {{ block.settings.text }}
+                </div>
+              
+              {%- when 'highlight' -%}
+                <div class="company-story__highlight">
+                  <h3 class="h4">{{ block.settings.highlight_heading | escape }}</h3>
+                  <p>{{ block.settings.highlight_text | escape }}</p>
+                </div>
+              
+              {%- when 'stats' -%}
+                <div class="company-story__stats">
+                  <div class="company-story__stat">
+                    <span class="company-story__stat-number h2">{{ block.settings.stat_number | escape }}</span>
+                    <span class="company-story__stat-label">{{ block.settings.stat_label | escape }}</span>
+                  </div>
+                </div>
+            {%- endcase -%}
+          {%- endfor -%}
+
+          {%- if section.settings.button_label != blank -%}
+            <div class="company-story__button">
+              <a
+                {% if section.settings.button_link == blank %}
+                  role="link" aria-disabled="true"
+                {% else %}
+                  href="{{ section.settings.button_link }}"
+                {% endif %}
+                class="button {% if section.settings.button_style_secondary %}button--secondary{% else %}button--primary{% endif %}"
+              >
+                {{ section.settings.button_label | escape }}
+              </a>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Company Story",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Unsere Geschichte",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Small"
+        },
+        {
+          "value": "h1",
+          "label": "Medium"
+        },
+        {
+          "value": "h0",
+          "label": "Large"
+        }
+      ],
+      "default": "h1",
+      "label": "Heading Size"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "right",
+      "label": "Image Position"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Image Border Radius",
+      "default": 8
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ],
+      "default": "left",
+      "label": "Text Alignment"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 600,
+      "max": 1200,
+      "step": 50,
+      "unit": "px",
+      "label": "Maximum Content Width",
+      "default": 1000
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_style_secondary",
+      "default": false,
+      "label": "Use Secondary Button Style"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        {
+          "value": "background-1",
+          "label": "Background 1"
+        },
+        {
+          "value": "background-2",
+          "label": "Background 2"
+        },
+        {
+          "value": "inverse",
+          "label": "Inverse"
+        },
+        {
+          "value": "accent-1",
+          "label": "Accent 1"
+        },
+        {
+          "value": "accent-2",
+          "label": "Accent 2"
+        }
+      ],
+      "default": "background-1",
+      "label": "Color Scheme"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text Block",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Godspeed steht für nachhaltige Mobilität und unschlagbare Preise. Als Schweizer Unternehmen verbinden wir traditionelle Qualität mit innovativer Technik, um Ihnen die besten Fahrräder und E-Bikes zu fairen Preisen anzubieten.</p>",
+          "label": "Text"
+        },
+        {
+          "type": "select",
+          "id": "text_style",
+          "options": [
+            {
+              "value": "body",
+              "label": "Body"
+            },
+            {
+              "value": "subtitle",
+              "label": "Subtitle"
+            }
+          ],
+          "default": "body",
+          "label": "Text Style"
+        }
+      ]
+    },
+    {
+      "type": "highlight",
+      "name": "Highlight Box",
+      "settings": [
+        {
+          "type": "text",
+          "id": "highlight_heading",
+          "default": "Unser Engagement",
+          "label": "Highlight Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "highlight_text",
+          "default": "Unser Engagement für die Umwelt zeigt sich in jedem Produkt - von energieeffizienten E-Bikes bis zu langlebigen Fahrrädern.",
+          "label": "Highlight Text"
+        }
+      ]
+    },
+    {
+      "type": "stats",
+      "name": "Statistics",
+      "settings": [
+        {
+          "type": "text",
+          "id": "stat_number",
+          "default": "10+",
+          "label": "Statistic Number"
+        },
+        {
+          "type": "text",
+          "id": "stat_label",
+          "default": "Jahre Erfahrung",
+          "label": "Statistic Label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Company Story",
+      "blocks": [
+        {
+          "type": "text"
+        },
+        {
+          "type": "highlight"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

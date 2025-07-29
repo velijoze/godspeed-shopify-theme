@@ -1,0 +1,169 @@
+{{ 'section-benefits-bar.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="benefits-bar color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="page-width">
+    <div class="benefits-bar__container">
+      {%- for block in section.blocks -%}
+        <div class="benefits-bar__item" {{ block.shopify_attributes }}>
+          <div class="benefits-bar__icon">
+            {%- if block.settings.icon == 'returns' -%}
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            {%- elsif block.settings.icon == 'shipping' -%}
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13 16V6C13 5.44772 12.5523 5 12 5H4C3.44772 5 3 5.44772 3 6V14C3 14.5523 3.44772 15 4 15H5M13 16L19 10L21 12L15 18L13 16ZM13 16H9.5C8.67157 16 8 16.6716 8 17.5C8 18.3284 8.67157 19 9.5 19H12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            {%- elsif block.settings.icon == 'support' -%}
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18.364 5.636C21.8787 9.15076 21.8787 14.8492 18.364 18.364C14.8492 21.8787 9.15076 21.8787 5.636 18.364C2.12132 14.8492 2.12132 9.15076 5.636 5.636C9.15076 2.12132 14.8492 2.12132 18.364 5.636Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M9 9C9 5.68629 14.5 5.68629 15 9C15 11.5 12 10.5 12 13.5M12 17H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            {%- else -%}
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+                <path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            {%- endif -%}
+          </div>
+          <div class="benefits-bar__content">
+            {%- if block.settings.heading != blank -%}
+              <h3 class="benefits-bar__heading">{{ block.settings.heading }}</h3>
+            {%- endif -%}
+            {%- if block.settings.text != blank -%}
+              <p class="benefits-bar__text">{{ block.settings.text }}</p>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Benefits Bar",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            {
+              "value": "returns",
+              "label": "Returns"
+            },
+            {
+              "value": "shipping",
+              "label": "Shipping"
+            },
+            {
+              "value": "support",
+              "label": "Support"
+            }
+          ],
+          "default": "returns"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Free Returns",
+          "label": "Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "default": "Returns within 30 days receive a full refund.",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Benefits Bar",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "returns",
+            "heading": "FREE RETURNS",
+            "text": "Returns within 30 days receive a full refund."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "shipping",
+            "heading": "WORLDWIDE SHIPPING",
+            "text": "Ship anywhere, rates available at checkout."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "support",
+            "heading": "24/7 SUPPORT",
+            "text": "Call us anytime at 1(800)555-1234."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

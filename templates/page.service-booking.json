@@ -1,0 +1,159 @@
+{
+  "sections": {
+    "hero": {
+      "type": "about-hero",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Service Termin buchen",
+            "heading_size": "h0"
+          }
+        },
+        "subheading": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Professioneller Service für Ihr E-Bike"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Buchen Sie Ihren Service-Termin online und halten Sie Ihr E-Bike in Top-Zustand. Unsere zertifizierten Techniker sorgen für optimale Performance.</p>",
+            "text_style": "subtitle"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "subheading",
+        "text"
+      ],
+      "settings": {
+        "overlay_opacity": 40,
+        "text_alignment": "center",
+        "color_scheme": "background-1",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "booking_form": {
+      "type": "company-story",
+      "blocks": {
+        "booking_text": {
+          "type": "text",
+          "settings": {
+            "text": "<div id='service-booking' style='background: #f8f9fa; padding: 2rem; border-radius: 12px; max-width: 800px; margin: 0 auto;'><h3>Service-Termin Buchung</h3><form id='service-form'><div style='display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;'><div><label style='display: block; font-weight: bold; margin-bottom: 0.5rem;'>Vorname *</label><input type='text' name='firstname' required style='width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px;'></div><div><label style='display: block; font-weight: bold; margin-bottom: 0.5rem;'>Nachname *</label><input type='text' name='lastname' required style='width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px;'></div></div><div style='margin-bottom: 1.5rem;'><label style='display: block; font-weight: bold; margin-bottom: 0.5rem;'>E-Mail *</label><input type='email' name='email' required style='width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px;'></div><div style='margin-bottom: 1.5rem;'><label style='display: block; font-weight: bold; margin-bottom: 0.5rem;'>Telefon *</label><input type='tel' name='phone' required style='width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px;'></div><div style='display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;'><div><label style='display: block; font-weight: bold; margin-bottom: 0.5rem;'>E-Bike Marke</label><input type='text' name='bike-brand' placeholder='z.B. Bosch, Cube, Trek' style='width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px;'></div><div><label style='display: block; font-weight: bold; margin-bottom: 0.5rem;'>Modell</label><input type='text' name='bike-model' placeholder='z.B. Powerfly 5' style='width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px;'></div></div><div style='margin-bottom: 1.5rem;'><label style='display: block; font-weight: bold; margin-bottom: 0.5rem;'>Service Art *</label><select name='service-type' required style='width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px;'><option value=''>Service wählen...</option><option value='basic-service'>Basis-Service (CHF 89)</option><option value='full-service'>Vollservice (CHF 149)</option><option value='battery-check'>Akku-Check (CHF 45)</option><option value='brake-service'>Bremsen-Service (CHF 65)</option><option value='gear-adjustment'>Schaltung einstellen (CHF 35)</option><option value='repair'>Reparatur (Kostenvoranschlag)</option><option value='diagnosis'>Diagnose (CHF 25)</option></select></div><div style='margin-bottom: 1.5rem;'><label style='display: block; font-weight: bold; margin-bottom: 0.5rem;'>Standort *</label><select name='location' required style='width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px;'><option value=''>Standort wählen...</option><option value='zurich'>Zürich Hauptbahnhof</option><option value='basel'>Basel City</option><option value='bern'>Bern Altstadt</option><option value='geneva'>Genf</option><option value='lucerne'>Luzern Zentrum</option><option value='stgallen'>St. Gallen</option></select></div><div style='display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;'><div><label style='display: block; font-weight: bold; margin-bottom: 0.5rem;'>Wunschtermin *</label><input type='date' name='preferred-date' required style='width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px;' min='" + new Date().toISOString().split('T')[0] + "'></div><div><label style='display: block; font-weight: bold; margin-bottom: 0.5rem;'>Uhrzeit *</label><select name='preferred-time' required style='width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px;'><option value=''>Zeit wählen...</option><option value='09:00'>09:00 - 10:00</option><option value='10:00'>10:00 - 11:00</option><option value='11:00'>11:00 - 12:00</option><option value='14:00'>14:00 - 15:00</option><option value='15:00'>15:00 - 16:00</option><option value='16:00'>16:00 - 17:00</option></select></div></div><div style='margin-bottom: 1.5rem;'><label style='display: block; font-weight: bold; margin-bottom: 0.5rem;'>Problem Beschreibung</label><textarea name='description' rows='4' placeholder='Beschreiben Sie das Problem oder gewünschte Services...' style='width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; resize: vertical;'></textarea></div><div style='margin-bottom: 1.5rem;'><label style='display: flex; align-items: center; cursor: pointer;'><input type='checkbox' name='terms' required style='margin-right: 0.5rem;'> Ich akzeptiere die <a href='/pages/terms-of-service' target='_blank'>AGB</a> und <a href='/pages/privacy-policy' target='_blank'>Datenschutzerklärung</a></label></div><button type='submit' style='width: 100%; background: #28a745; color: white; padding: 1rem; border: none; border-radius: 4px; font-size: 1.1rem; font-weight: bold; cursor: pointer;'>Termin verbindlich buchen</button></form><div id='booking-success' style='display: none; background: #d4edda; color: #155724; padding: 1.5rem; border-radius: 4px; margin-top: 1rem; text-align: center;'><h4>✅ Termin erfolgreich gebucht!</h4><p>Wir haben Ihre Buchung erhalten und senden Ihnen in Kürze eine Bestätigung per E-Mail.</p></div></div><script>document.getElementById('service-form').addEventListener('submit', function(e) { e.preventDefault(); const formData = new FormData(this); fetch('/contact', { method: 'POST', body: formData }).then(response => { document.getElementById('service-form').style.display = 'none'; document.getElementById('booking-success').style.display = 'block'; }).catch(error => { alert('Fehler beim Senden der Buchung. Bitte versuchen Sie es erneut oder rufen Sie uns an.'); }); });</script>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "booking_text"
+      ],
+      "settings": {
+        "heading": "Online Terminbuchung",
+        "heading_size": "h1",
+        "image_position": "right",
+        "text_alignment": "center",
+        "max_width": 1000,
+        "color_scheme": "background-1",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "service_packages": {
+      "type": "services-grid",
+      "blocks": {
+        "basic_service": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-heart.svg",
+            "title": "Basis-Service (CHF 89)",
+            "text": "<p><strong>Grundwartung Ihres E-Bikes</strong></p><ul><li>✓ Sichtprüfung aller Komponenten</li><li>✓ Reifendruck und Verschleiß prüfen</li><li>✓ Bremsen einstellen</li><li>✓ Schaltung justieren</li><li>✓ Kette reinigen und ölen</li><li>✓ Akku-Check (Kapazität)</li></ul><p><strong>Dauer:</strong> ca. 45 Minuten</p>",
+            "button_label": "Basis-Service buchen",
+            "button_link": "#service-booking"
+          }
+        },
+        "full_service": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-return.svg",
+            "title": "Vollservice (CHF 149)",
+            "text": "<p><strong>Komplette Wartung und Pflege</strong></p><ul><li>✓ Alle Basis-Service Leistungen</li><li>✓ Antriebsreinigung komplett</li><li>✓ Speichen nachspannen</li><li>✓ Lager prüfen und fetten</li><li>✓ Software-Update (falls verfügbar)</li><li>✓ Verschleißteile-Check</li><li>✓ Detailreinigung</li></ul><p><strong>Dauer:</strong> ca. 90 Minuten</p>",
+            "button_label": "Vollservice buchen",
+            "button_link": "#service-booking"
+          }
+        },
+        "express_service": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-truck.svg",
+            "title": "Express-Service (CHF 199)",
+            "text": "<p><strong>Vollservice + Abholung/Bringservice</strong></p><ul><li>✓ Alle Vollservice Leistungen</li><li>✓ Kostenlose Abholung zu Hause</li><li>✓ Kostenlose Rückbringung</li><li>✓ Leihbike während der Wartung</li><li>✓ Innerhalb 24h erledigt</li><li>✓ Garantie auf alle Arbeiten</li></ul><p><strong>Verfügbar:</strong> Zürich, Basel, Bern (Umkreis 25km)</p>",
+            "button_label": "Express-Service buchen",
+            "button_link": "#service-booking"
+          }
+        }
+      },
+      "block_order": [
+        "basic_service",
+        "full_service",
+        "express_service"
+      ],
+      "settings": {
+        "heading": "Unsere Service-Pakete",
+        "heading_size": "h1",
+        "description": "<p>Wählen Sie das passende Service-Paket für Ihr E-Bike. Alle Services werden von zertifizierten Technikern durchgeführt.</p>",
+        "text_alignment": "center",
+        "card_text_alignment": "left",
+        "icon_size": 80,
+        "card_border_radius": 8,
+        "color_scheme": "background-2",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "service_info": {
+      "type": "company-story",
+      "blocks": {
+        "info_text": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Was Sie zum Service-Termin mitbringen sollten:</strong></p><ul><li>🔋 <strong>Akku und Ladegerät:</strong> Für Funktionsprüfung und Updates</li><li>🔑 <strong>Schlüssel:</strong> Falls Ihr E-Bike abschließbare Komponenten hat</li><li>📱 <strong>Smartphone:</strong> Für App-Updates und Einstellungen</li><li>📋 <strong>Garantieunterlagen:</strong> Falls noch Garantie besteht</li></ul><p><strong>Service-Ablauf:</strong></p><ol><li><strong>Annahme:</strong> Kurze Besprechung der gewünschten Services</li><li><strong>Diagnose:</strong> Gründliche Prüfung aller Komponenten</li><li><strong>Service:</strong> Durchführung der vereinbarten Arbeiten</li><li><strong>Testfahrt:</strong> Funktionscheck nach dem Service</li><li><strong>Übergabe:</strong> Erklärung der durchgeführten Arbeiten</li></ol><p>Bei größeren Reparaturen erstellen wir zuerst einen kostenlosen Kostenvoranschlag.</p>",
+            "text_style": "body"
+          }
+        },
+        "warranty_highlight": {
+          "type": "highlight",
+          "settings": {
+            "highlight_heading": "Service-Garantie",
+            "highlight_text": "Auf alle unsere Services geben wir 6 Monate Garantie. Sollten Probleme auftreten, beheben wir diese kostenlos."
+          }
+        }
+      },
+      "block_order": [
+        "info_text",
+        "warranty_highlight"
+      ],
+      "settings": {
+        "heading": "Service-Informationen",
+        "heading_size": "h1",
+        "image_position": "left",
+        "text_alignment": "left",
+        "max_width": 1000,
+        "button_label": "Jetzt Termin buchen",
+        "button_link": "#service-booking",
+        "color_scheme": "background-1",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "booking_form",
+    "service_packages",
+    "service_info"
+  ]
+}

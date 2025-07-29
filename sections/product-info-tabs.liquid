@@ -1,0 +1,354 @@
+{{ 'section-product-info-tabs.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="product-info-tabs color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="page-width">
+    <div class="product-info-tabs__container">
+      {%- for block in section.blocks -%}
+        <div class="product-info-tab" {{ block.shopify_attributes }}>
+          <button 
+            class="product-info-tab__header" 
+            type="button"
+            aria-expanded="false"
+            aria-controls="tab-content-{{ block.id }}"
+            data-tab-toggle>
+            <span class="product-info-tab__title">{{ block.settings.title }}</span>
+            <span class="product-info-tab__icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </button>
+          
+          <div class="product-info-tab__content" id="tab-content-{{ block.id }}">
+            <div class="product-info-tab__content-inner">
+              {%- case block.type -%}
+                
+                {%- when 'specifications' -%}
+                  {%- if block.settings.specs_content != blank -%}
+                    <div class="product-specs">
+                      {{ block.settings.specs_content }}
+                    </div>
+                  {%- else -%}
+                    <div class="product-specs">
+                      <div class="spec-row">
+                        <span class="spec-label">Battery Range:</span>
+                        <span class="spec-value">{{ product.metafields.custom.battery_range | default: '50-80km' }}</span>
+                      </div>
+                      <div class="spec-row">
+                        <span class="spec-label">Motor Power:</span>
+                        <span class="spec-value">{{ product.metafields.custom.motor_power | default: '250W' }}</span>
+                      </div>
+                      <div class="spec-row">
+                        <span class="spec-label">Max Speed:</span>
+                        <span class="spec-value">{{ product.metafields.custom.max_speed | default: '25km/h' }}</span>
+                      </div>
+                      <div class="spec-row">
+                        <span class="spec-label">Frame Material:</span>
+                        <span class="spec-value">{{ product.metafields.custom.frame_material | default: 'Aluminum Alloy' }}</span>
+                      </div>
+                      <div class="spec-row">
+                        <span class="spec-label">Weight:</span>
+                        <span class="spec-value">{{ product.metafields.custom.weight | default: '22kg' }}</span>
+                      </div>
+                      <div class="spec-row">
+                        <span class="spec-label">Charging Time:</span>
+                        <span class="spec-value">{{ product.metafields.custom.charging_time | default: '4-6 hours' }}</span>
+                      </div>
+                    </div>
+                  {%- endif -%}
+
+                {%- when 'features' -%}
+                  {%- if block.settings.features_content != blank -%}
+                    <div class="product-features">
+                      {{ block.settings.features_content }}
+                    </div>
+                  {%- else -%}
+                    <div class="product-features">
+                      <ul class="features-list">
+                        <li>Removable battery for easy charging</li>
+                        <li>LED display with speed, battery, and distance</li>
+                        <li>Integrated front and rear lights</li>
+                        <li>Hydraulic disc brakes for reliable stopping</li>
+                        <li>7-speed Shimano transmission</li>
+                        <li>Adjustable handlebar and seat height</li>
+                        <li>Built-in USB charging port</li>
+                        <li>Anti-theft alarm system</li>
+                      </ul>
+                    </div>
+                  {%- endif -%}
+
+                {%- when 'warranty' -%}
+                  {%- if block.settings.warranty_content != blank -%}
+                    <div class="product-warranty">
+                      {{ block.settings.warranty_content }}
+                    </div>
+                  {%- else -%}
+                    <div class="product-warranty">
+                      <div class="warranty-section">
+                        <h4>Frame Warranty</h4>
+                        <p>5-year warranty against manufacturing defects on frame and fork.</p>
+                      </div>
+                      <div class="warranty-section">
+                        <h4>Battery & Motor</h4>
+                        <p>2-year warranty on battery and motor components with normal use.</p>
+                      </div>
+                      <div class="warranty-section">
+                        <h4>Electronics</h4>
+                        <p>1-year warranty on display, controller, and electrical components.</p>
+                      </div>
+                      <div class="warranty-section">
+                        <h4>What's Not Covered</h4>
+                        <p>Normal wear items like tires, brake pads, chains, and damage from accidents or misuse.</p>
+                      </div>
+                    </div>
+                  {%- endif -%}
+
+                {%- when 'reviews' -%}
+                  <div class="product-reviews">
+                    {%- if block.settings.show_product_reviews -%}
+                      <div id="shopify-product-reviews" data-id="{{ product.id }}">
+                        {%- comment -%} Shopify Product Reviews will be injected here {%- endcomment -%}
+                      </div>
+                    {%- endif -%}
+                    
+                    {%- if block.settings.reviews_content != blank -%}
+                      {{ block.settings.reviews_content }}
+                    {%- else -%}
+                      <div class="reviews-placeholder">
+                        <div class="review-item">
+                          <div class="review-rating">★★★★★</div>
+                          <p class="review-text">"Amazing e-bike! The battery lasts all day and the ride is so smooth."</p>
+                          <p class="review-author">- Sarah M., Verified Buyer</p>
+                        </div>
+                        <div class="review-item">
+                          <div class="review-rating">★★★★★</div>
+                          <p class="review-text">"Perfect for my daily commute. Great build quality and customer service."</p>
+                          <p class="review-author">- Mike R., Verified Buyer</p>
+                        </div>
+                        <div class="review-item">
+                          <div class="review-rating">★★★★☆</div>
+                          <p class="review-text">"Love the design and performance. Delivery was fast too!"</p>
+                          <p class="review-author">- Emma K., Verified Buyer</p>
+                        </div>
+                      </div>
+                    {%- endif -%}
+                  </div>
+
+                {%- when 'custom' -%}
+                  {%- if block.settings.custom_content != blank -%}
+                    <div class="product-custom-content">
+                      {{ block.settings.custom_content }}
+                    </div>
+                  {%- endif -%}
+
+              {%- endcase -%}
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const tabToggles = document.querySelectorAll('[data-tab-toggle]');
+  
+  tabToggles.forEach(toggle => {
+    toggle.addEventListener('click', function() {
+      const content = this.nextElementSibling;
+      const isExpanded = this.getAttribute('aria-expanded') === 'true';
+      
+      // Close all other tabs
+      tabToggles.forEach(otherToggle => {
+        if (otherToggle !== this) {
+          otherToggle.setAttribute('aria-expanded', 'false');
+          otherToggle.nextElementSibling.style.maxHeight = '0';
+          otherToggle.classList.remove('product-info-tab__header--active');
+        }
+      });
+      
+      // Toggle current tab
+      this.setAttribute('aria-expanded', !isExpanded);
+      this.classList.toggle('product-info-tab__header--active');
+      
+      if (!isExpanded) {
+        content.style.maxHeight = content.scrollHeight + 'px';
+      } else {
+        content.style.maxHeight = '0';
+      }
+    });
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Product Info Tabs",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "specifications",
+      "name": "Specifications",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Tab title",
+          "default": "Specifications"
+        },
+        {
+          "type": "richtext",
+          "id": "specs_content",
+          "label": "Custom specifications content",
+          "info": "Leave blank to use auto-generated specs from product metafields"
+        }
+      ]
+    },
+    {
+      "type": "features",
+      "name": "Features",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Tab title",
+          "default": "Features"
+        },
+        {
+          "type": "richtext",
+          "id": "features_content",
+          "label": "Custom features content",
+          "info": "Leave blank to use default e-bike features"
+        }
+      ]
+    },
+    {
+      "type": "warranty",
+      "name": "Warranty",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Tab title",
+          "default": "Warranty"
+        },
+        {
+          "type": "richtext",
+          "id": "warranty_content",
+          "label": "Custom warranty content",
+          "info": "Leave blank to use default warranty information"
+        }
+      ]
+    },
+    {
+      "type": "reviews",
+      "name": "Reviews",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Tab title",
+          "default": "Reviews"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_product_reviews",
+          "label": "Show Shopify Product Reviews",
+          "default": false,
+          "info": "Requires Shopify Product Reviews app"
+        },
+        {
+          "type": "richtext",
+          "id": "reviews_content",
+          "label": "Custom reviews content",
+          "info": "Leave blank to show placeholder reviews"
+        }
+      ]
+    },
+    {
+      "type": "custom",
+      "name": "Custom Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Tab title",
+          "default": "Custom"
+        },
+        {
+          "type": "richtext",
+          "id": "custom_content",
+          "label": "Custom content"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Info Tabs",
+      "blocks": [
+        {
+          "type": "specifications"
+        },
+        {
+          "type": "features"
+        },
+        {
+          "type": "warranty"
+        },
+        {
+          "type": "reviews"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

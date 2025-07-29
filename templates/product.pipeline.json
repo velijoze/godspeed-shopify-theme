@@ -71,6 +71,59 @@
         "padding_bottom": 12
       }
     },
+    "buy-it-with": {
+      "type": "buy-it-with",
+      "settings": {
+        "heading": "Buy it with",
+        "collection": "",
+        "products_to_show": 2,
+        "show_savings": true,
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "product-info-tabs": {
+      "type": "product-info-tabs",
+      "blocks": {
+        "specifications": {
+          "type": "specifications",
+          "settings": {
+            "title": "Specifications"
+          }
+        },
+        "features": {
+          "type": "features",
+          "settings": {
+            "title": "Features"
+          }
+        },
+        "warranty": {
+          "type": "warranty",
+          "settings": {
+            "title": "Warranty"
+          }
+        },
+        "reviews": {
+          "type": "reviews",
+          "settings": {
+            "title": "Reviews",
+            "show_product_reviews": false
+          }
+        }
+      },
+      "block_order": [
+        "specifications",
+        "features", 
+        "warranty",
+        "reviews"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "related-products": {
       "type": "related-products",
       "settings": {
@@ -92,6 +145,8 @@
   },
   "order": [
     "main",
+    "buy-it-with",
+    "product-info-tabs",
     "related-products"
   ]
 }

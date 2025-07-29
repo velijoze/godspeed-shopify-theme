@@ -1,0 +1,420 @@
+{{ 'section-featured-collections-tabs.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="featured-collections-tabs color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="featured-collections-tabs__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    {%- comment -%} Collection Tabs {%- endcomment -%}
+    <div class="featured-collections-tabs__nav">
+      {%- assign first_collection = section.settings.first_collection -%}
+      {%- assign second_collection = section.settings.second_collection -%}
+      
+      {%- if first_collection != blank -%}
+        <button 
+          class="featured-collections-tabs__tab featured-collections-tabs__tab--active" 
+          data-tab="first"
+          aria-selected="true">
+          {{ section.settings.first_tab_label | default: first_collection.title | upcase }}
+        </button>
+      {%- endif -%}
+      
+      {%- if second_collection != blank -%}
+        <button 
+          class="featured-collections-tabs__tab" 
+          data-tab="second"
+          aria-selected="false">
+          {{ section.settings.second_tab_label | default: second_collection.title | upcase }}
+        </button>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Collection Content {%- endcomment -%}
+    <div class="featured-collections-tabs__content">
+      
+      {%- comment -%} First Collection {%- endcomment -%}
+      {%- if first_collection != blank -%}
+        <div class="featured-collections-tabs__panel featured-collections-tabs__panel--active" data-panel="first">
+          <div class="featured-collections-tabs__products-container">
+            <button class="featured-collections-tabs__nav-arrow featured-collections-tabs__nav-arrow--prev" data-direction="prev" disabled>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            
+            <div class="featured-collections-tabs__products-wrapper">
+              <div class="featured-collections-tabs__products" data-collection="first">
+                {%- for product in first_collection.products limit: section.settings.products_to_show -%}
+                  <div class="featured-collections-tabs__product-item">
+                    {% render 'card-product-pipeline',
+                      card_product: product,
+                      section_id: section.id,
+                      lazy_load: true,
+                      show_secondary_image: section.settings.show_secondary_image,
+                      show_rating: section.settings.show_rating,
+                      quick_add: section.settings.quick_add
+                    %}
+                  </div>
+                {%- endfor -%}
+              </div>
+            </div>
+            
+            <button class="featured-collections-tabs__nav-arrow featured-collections-tabs__nav-arrow--next" data-direction="next">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- comment -%} Second Collection {%- endcomment -%}
+      {%- if second_collection != blank -%}
+        <div class="featured-collections-tabs__panel" data-panel="second">
+          <div class="featured-collections-tabs__products-container">
+            <button class="featured-collections-tabs__nav-arrow featured-collections-tabs__nav-arrow--prev" data-direction="prev" disabled>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            
+            <div class="featured-collections-tabs__products-wrapper">
+              <div class="featured-collections-tabs__products" data-collection="second">
+                {%- for product in second_collection.products limit: section.settings.products_to_show -%}
+                  <div class="featured-collections-tabs__product-item">
+                    {% render 'card-product-pipeline',
+                      card_product: product,
+                      section_id: section.id,
+                      lazy_load: true,
+                      show_secondary_image: section.settings.show_secondary_image,
+                      show_rating: section.settings.show_rating,
+                      quick_add: section.settings.quick_add
+                    %}
+                  </div>
+                {%- endfor -%}
+              </div>
+            </div>
+            
+            <button class="featured-collections-tabs__nav-arrow featured-collections-tabs__nav-arrow--next" data-direction="next">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} As Seen In Section {%- endcomment -%}
+    {%- if section.settings.show_as_seen_in and section.blocks.size > 0 -%}
+      <div class="featured-collections-tabs__as-seen-in">
+        {%- if section.settings.as_seen_in_heading != blank -%}
+          <h3 class="featured-collections-tabs__as-seen-in-heading">{{ section.settings.as_seen_in_heading }}</h3>
+        {%- endif -%}
+        
+        <div class="featured-collections-tabs__logos">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'logo' -%}
+              <div class="featured-collections-tabs__logo-item" {{ block.shopify_attributes }}>
+                {%- if block.settings.logo != blank -%}
+                  {%- if block.settings.link != blank -%}
+                    <a href="{{ block.settings.link }}" class="featured-collections-tabs__logo-link" {% if block.settings.open_new_tab %}target="_blank" rel="noopener"{% endif %}>
+                  {%- endif -%}
+                  
+                  <img 
+                    src="{{ block.settings.logo | img_url: '200x100' }}"
+                    alt="{{ block.settings.logo.alt | default: 'Logo' | escape }}"
+                    class="featured-collections-tabs__logo-image"
+                    width="100"
+                    height="50"
+                    loading="lazy">
+                  
+                  {%- if block.settings.link != blank -%}
+                    </a>
+                  {%- endif -%}
+                {%- else -%}
+                  <div class="featured-collections-tabs__logo-placeholder">
+                    <span>LOGO</span>
+                  </div>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const tabs = document.querySelectorAll('.featured-collections-tabs__tab');
+  const panels = document.querySelectorAll('.featured-collections-tabs__panel');
+  const arrows = document.querySelectorAll('.featured-collections-tabs__nav-arrow');
+  
+  // Tab switching
+  tabs.forEach(tab => {
+    tab.addEventListener('click', function() {
+      const targetTab = this.dataset.tab;
+      
+      // Update tabs
+      tabs.forEach(t => {
+        t.classList.remove('featured-collections-tabs__tab--active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      this.classList.add('featured-collections-tabs__tab--active');
+      this.setAttribute('aria-selected', 'true');
+      
+      // Update panels
+      panels.forEach(panel => {
+        panel.classList.remove('featured-collections-tabs__panel--active');
+      });
+      const targetPanel = document.querySelector(`[data-panel="${targetTab}"]`);
+      if (targetPanel) {
+        targetPanel.classList.add('featured-collections-tabs__panel--active');
+      }
+      
+      // Reset scroll position for new panel
+      const productContainer = targetPanel.querySelector('.featured-collections-tabs__products');
+      if (productContainer) {
+        productContainer.scrollLeft = 0;
+        updateArrowStates(targetPanel);
+      }
+    });
+  });
+  
+  // Arrow navigation
+  arrows.forEach(arrow => {
+    arrow.addEventListener('click', function() {
+      const direction = this.dataset.direction;
+      const panel = this.closest('.featured-collections-tabs__panel');
+      const productContainer = panel.querySelector('.featured-collections-tabs__products');
+      const itemWidth = productContainer.querySelector('.featured-collections-tabs__product-item').offsetWidth + 20; // including gap
+      
+      if (direction === 'prev') {
+        productContainer.scrollLeft -= itemWidth * 2; // Scroll 2 items
+      } else {
+        productContainer.scrollLeft += itemWidth * 2; // Scroll 2 items
+      }
+      
+      // Update arrow states after scroll
+      setTimeout(() => updateArrowStates(panel), 100);
+    });
+  });
+  
+  function updateArrowStates(panel) {
+    const productContainer = panel.querySelector('.featured-collections-tabs__products');
+    const prevArrow = panel.querySelector('.featured-collections-tabs__nav-arrow--prev');
+    const nextArrow = panel.querySelector('.featured-collections-tabs__nav-arrow--next');
+    
+    if (productContainer && prevArrow && nextArrow) {
+      const scrollLeft = productContainer.scrollLeft;
+      const maxScroll = productContainer.scrollWidth - productContainer.clientWidth;
+      
+      prevArrow.disabled = scrollLeft <= 0;
+      nextArrow.disabled = scrollLeft >= maxScroll - 1; // -1 for rounding errors
+    }
+  }
+  
+  // Initialize arrow states for active panel
+  const activePanel = document.querySelector('.featured-collections-tabs__panel--active');
+  if (activePanel) {
+    updateArrowStates(activePanel);
+  }
+  
+  // Update arrow states on scroll
+  document.querySelectorAll('.featured-collections-tabs__products').forEach(container => {
+    container.addEventListener('scroll', function() {
+      const panel = this.closest('.featured-collections-tabs__panel');
+      updateArrowStates(panel);
+    });
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Featured Collections Tabs",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section heading",
+      "default": "FEATURED COLLECTIONS"
+    },
+    {
+      "type": "collection",
+      "id": "first_collection",
+      "label": "First collection"
+    },
+    {
+      "type": "text",
+      "id": "first_tab_label",
+      "label": "First tab label",
+      "default": "FIRST COLLECTION",
+      "info": "Leave blank to use collection title"
+    },
+    {
+      "type": "collection",
+      "id": "second_collection",
+      "label": "Second collection"
+    },
+    {
+      "type": "text",
+      "id": "second_tab_label",
+      "label": "Second tab label", 
+      "default": "SECOND COLLECTION",
+      "info": "Leave blank to use collection title"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 3,
+      "max": 12,
+      "step": 1,
+      "label": "Products to show per collection",
+      "default": 8
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "label": "Show second product image on hover",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "label": "Show product rating",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "quick_add",
+      "label": "Quick add",
+      "default": "none",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "standard",
+          "label": "Standard"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "As Seen In Section"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_as_seen_in",
+      "label": "Show 'As Seen In' section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "as_seen_in_heading",
+      "label": "'As Seen In' heading",
+      "default": "AS SEEN IN"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Logo link"
+        },
+        {
+          "type": "checkbox",
+          "id": "open_new_tab",
+          "label": "Open link in new tab",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collections Tabs",
+      "blocks": [
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo" 
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,344 @@
+{{ 'section-key-features-hotspots.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="key-features-hotspots color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="page-width">
+    <div class="key-features-hotspots__container">
+      
+      {%- comment -%} Left Side - Text Content {%- endcomment -%}
+      <div class="key-features-hotspots__content">
+        {%- if section.settings.heading != blank -%}
+          <h2 class="key-features-hotspots__heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+
+        <div class="key-features-hotspots__features">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'feature' -%}
+              <div class="key-features-hotspots__feature" {{ block.shopify_attributes }}>
+                {%- if block.settings.title != blank -%}
+                  <h3 class="key-features-hotspots__feature-title">{{ block.settings.title }}</h3>
+                {%- endif -%}
+                {%- if block.settings.description != blank -%}
+                  <div class="key-features-hotspots__feature-description">
+                    {{ block.settings.description }}
+                  </div>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+
+      {%- comment -%} Right Side - Image with Hotspots {%- endcomment -%}
+      <div class="key-features-hotspots__image-container">
+        {%- if section.settings.featured_image != blank -%}
+          <div class="key-features-hotspots__image-wrapper">
+            <img
+              src="{{ section.settings.featured_image | img_url: '800x600' }}"
+              alt="{{ section.settings.featured_image.alt | escape }}"
+              class="key-features-hotspots__image"
+              width="800"
+              height="600"
+              loading="lazy">
+            
+            {%- comment -%} Hotspot Markers {%- endcomment -%}
+            <div class="key-features-hotspots__markers">
+              {%- for block in section.blocks -%}
+                {%- if block.type == 'hotspot' -%}
+                  <button 
+                    class="key-features-hotspots__marker" 
+                    style="left: {{ block.settings.position_x }}%; top: {{ block.settings.position_y }}%;"
+                    data-hotspot-id="{{ block.id }}"
+                    aria-label="Show feature details"
+                    {{ block.shopify_attributes }}>
+                    <span class="key-features-hotspots__marker-dot">×</span>
+                    <div class="key-features-hotspots__tooltip" id="tooltip-{{ block.id }}">
+                      {%- if block.settings.tooltip_title != blank -%}
+                        <h4 class="key-features-hotspots__tooltip-title">{{ block.settings.tooltip_title }}</h4>
+                      {%- endif -%}
+                      {%- if block.settings.tooltip_text != blank -%}
+                        <p class="key-features-hotspots__tooltip-text">{{ block.settings.tooltip_text }}</p>
+                      {%- endif -%}
+                    </div>
+                  </button>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+          </div>
+        {%- else -%}
+          {%- comment -%} Placeholder when no image is set {%- endcomment -%}
+          <div class="key-features-hotspots__placeholder">
+            <svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="300" fill="#f3f4f6" stroke="#d1d5db" stroke-width="2" stroke-dasharray="8,8"/>
+              <text x="200" y="150" text-anchor="middle" fill="#9ca3af" font-size="16" font-family="Arial, sans-serif">
+                Add product image with hotspots
+              </text>
+            </svg>
+            
+            {%- comment -%} Example hotspots for placeholder {%- endcomment -%}
+            <div class="key-features-hotspots__markers">
+              <button class="key-features-hotspots__marker" style="left: 25%; top: 30%;" disabled>
+                <span class="key-features-hotspots__marker-dot">×</span>
+              </button>
+              <button class="key-features-hotspots__marker" style="left: 70%; top: 45%;" disabled>
+                <span class="key-features-hotspots__marker-dot">×</span>
+              </button>
+              <button class="key-features-hotspots__marker" style="left: 45%; top: 70%;" disabled>
+                <span class="key-features-hotspots__marker-dot">×</span>
+              </button>
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const markers = document.querySelectorAll('.key-features-hotspots__marker');
+  
+  markers.forEach(marker => {
+    const tooltip = marker.querySelector('.key-features-hotspots__tooltip');
+    
+    if (tooltip) {
+      // Show tooltip on hover
+      marker.addEventListener('mouseenter', function() {
+        tooltip.style.opacity = '1';
+        tooltip.style.visibility = 'visible';
+        tooltip.style.transform = 'translateY(-10px)';
+      });
+      
+      // Hide tooltip on mouse leave
+      marker.addEventListener('mouseleave', function() {
+        tooltip.style.opacity = '0';
+        tooltip.style.visibility = 'hidden';
+        tooltip.style.transform = 'translateY(0)';
+      });
+      
+      // Toggle tooltip on click (for mobile)
+      marker.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Close other tooltips
+        markers.forEach(otherMarker => {
+          if (otherMarker !== marker) {
+            const otherTooltip = otherMarker.querySelector('.key-features-hotspots__tooltip');
+            if (otherTooltip) {
+              otherTooltip.style.opacity = '0';
+              otherTooltip.style.visibility = 'hidden';
+              otherTooltip.style.transform = 'translateY(0)';
+            }
+          }
+        });
+        
+        // Toggle current tooltip
+        const isVisible = tooltip.style.opacity === '1';
+        if (isVisible) {
+          tooltip.style.opacity = '0';
+          tooltip.style.visibility = 'hidden';
+          tooltip.style.transform = 'translateY(0)';
+        } else {
+          tooltip.style.opacity = '1';
+          tooltip.style.visibility = 'visible';
+          tooltip.style.transform = 'translateY(-10px)';
+        }
+      });
+    }
+  });
+  
+  // Close tooltips when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.key-features-hotspots__marker')) {
+      markers.forEach(marker => {
+        const tooltip = marker.querySelector('.key-features-hotspots__tooltip');
+        if (tooltip) {
+          tooltip.style.opacity = '0';
+          tooltip.style.visibility = 'hidden';
+          tooltip.style.transform = 'translateY(0)';
+        }
+      });
+    }
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Key Features with Hotspots",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section heading",
+      "default": "KEY FEATURES"
+    },
+    {
+      "type": "image_picker",
+      "id": "featured_image",
+      "label": "Product image",
+      "info": "Recommended size: 800x600px"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Feature title",
+          "default": "THE HIGHEST QUALITY"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Feature description",
+          "default": "<p>Crafted with precision and attention to detail, we ensure excellence. Designed to meet the highest standards, ensuring an exceptional experience every time.</p>"
+        }
+      ]
+    },
+    {
+      "type": "hotspot",
+      "name": "Hotspot",
+      "settings": [
+        {
+          "type": "range",
+          "id": "position_x",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Horizontal position",
+          "default": 50,
+          "info": "Position from left edge (0% = left, 100% = right)"
+        },
+        {
+          "type": "range",
+          "id": "position_y",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Vertical position",
+          "default": 50,
+          "info": "Position from top edge (0% = top, 100% = bottom)"
+        },
+        {
+          "type": "text",
+          "id": "tooltip_title",
+          "label": "Tooltip title",
+          "default": "Feature Name"
+        },
+        {
+          "type": "textarea",
+          "id": "tooltip_text",
+          "label": "Tooltip description",
+          "default": "Detailed description of this feature or component."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Key Features with Hotspots",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "title": "THE HIGHEST QUALITY",
+            "description": "<p>Crafted with precision and attention to detail, we ensure excellence. Designed to meet the highest standards, ensuring an exceptional experience every time.</p>"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "RELIABILITY YOU CAN TRUST",
+            "description": "<p>Built to last with premium materials and rigorous testing. Every component is designed for durability and long-term performance.</p>"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "PREMIUM INPUTS, QUALITY PRODUCT",
+            "description": "<p>We source only the finest materials and components to create products that exceed expectations in both form and function.</p>"
+          }
+        },
+        {
+          "type": "hotspot",
+          "settings": {
+            "position_x": 30,
+            "position_y": 25,
+            "tooltip_title": "Premium Battery",
+            "tooltip_text": "Long-lasting lithium battery with 50-80km range per charge."
+          }
+        },
+        {
+          "type": "hotspot",
+          "settings": {
+            "position_x": 70,
+            "position_y": 40,
+            "tooltip_title": "Powerful Motor",
+            "tooltip_text": "250W brushless motor for smooth, efficient performance."
+          }
+        },
+        {
+          "type": "hotspot",
+          "settings": {
+            "position_x": 45,
+            "position_y": 70,
+            "tooltip_title": "Hydraulic Brakes",
+            "tooltip_text": "Professional-grade hydraulic disc brakes for reliable stopping power."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

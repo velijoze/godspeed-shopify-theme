@@ -1,0 +1,159 @@
+{
+  "sections": {
+    "hero": {
+      "type": "about-hero",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "E-Bike Vergleich",
+            "heading_size": "h0"
+          }
+        },
+        "subheading": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Vergleichen Sie E-Bikes nach Ihren Kriterien"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Finden Sie das perfekte E-Bike durch direkten Vergleich von Spezifikationen, Preisen und Features. Übersichtlich und detailliert.</p>",
+            "text_style": "subtitle"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "subheading",
+        "text"
+      ],
+      "settings": {
+        "overlay_opacity": 30,
+        "text_alignment": "center",
+        "color_scheme": "background-1",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "comparison_tool": {
+      "type": "company-story",
+      "blocks": {
+        "comparison_text": {
+          "type": "text",
+          "settings": {
+            "text": "<div id='bike-comparison' style='background: #f8f9fa; padding: 2rem; border-radius: 12px;'><h3>E-Bike Vergleichstabelle</h3><p style='margin-bottom: 2rem; color: #666;'>Wählen Sie bis zu 3 E-Bikes zum Vergleich aus. Die wichtigsten Spezifikationen werden übersichtlich gegenübergestellt.</p><div style='overflow-x: auto;'><table style='width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);'><thead><tr style='background: #343a40; color: white;'><th style='padding: 1rem; text-align: left; border-right: 1px solid #495057;'>Spezifikation</th><th style='padding: 1rem; text-align: center; border-right: 1px solid #495057;'>E-Bike A</th><th style='padding: 1rem; text-align: center; border-right: 1px solid #495057;'>E-Bike B</th><th style='padding: 1rem; text-align: center;'>E-Bike C</th></tr></thead><tbody><tr style='border-bottom: 1px solid #dee2e6;'><td style='padding: 1rem; font-weight: bold; background: #f8f9fa;'>Modell</td><td style='padding: 1rem; text-align: center;'><select style='width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;'><option value=''>E-Bike wählen...</option><option value='city-comfort'>City Comfort Pro</option><option value='trekking-sport'>Trekking Sport X1</option><option value='mountain-trail'>Mountain Trail Pro</option><option value='cargo-family'>Cargo Family+</option></select></td><td style='padding: 1rem; text-align: center;'><select style='width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;'><option value=''>E-Bike wählen...</option><option value='city-comfort'>City Comfort Pro</option><option value='trekking-sport'>Trekking Sport X1</option><option value='mountain-trail'>Mountain Trail Pro</option><option value='cargo-family'>Cargo Family+</option></select></td><td style='padding: 1rem; text-align: center;'><select style='width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;'><option value=''>E-Bike wählen...</option><option value='city-comfort'>City Comfort Pro</option><option value='trekking-sport'>Trekking Sport X1</option><option value='mountain-trail'>Mountain Trail Pro</option><option value='cargo-family'>Cargo Family+</option></select></td></tr><tr style='border-bottom: 1px solid #dee2e6;'><td style='padding: 1rem; font-weight: bold; background: #f8f9fa;'>Preis (CHF)</td><td id='price-a' style='padding: 1rem; text-align: center; font-weight: bold; color: #28a745;'>-</td><td id='price-b' style='padding: 1rem; text-align: center; font-weight: bold; color: #28a745;'>-</td><td id='price-c' style='padding: 1rem; text-align: center; font-weight: bold; color: #28a745;'>-</td></tr><tr style='border-bottom: 1px solid #dee2e6;'><td style='padding: 1rem; font-weight: bold; background: #f8f9fa;'>Motor</td><td id='motor-a' style='padding: 1rem; text-align: center;'>-</td><td id='motor-b' style='padding: 1rem; text-align: center;'>-</td><td id='motor-c' style='padding: 1rem; text-align: center;'>-</td></tr><tr style='border-bottom: 1px solid #dee2e6;'><td style='padding: 1rem; font-weight: bold; background: #f8f9fa;'>Akku-Kapazität</td><td id='battery-a' style='padding: 1rem; text-align: center;'>-</td><td id='battery-b' style='padding: 1rem; text-align: center;'>-</td><td id='battery-c' style='padding: 1rem; text-align: center;'>-</td></tr><tr style='border-bottom: 1px solid #dee2e6;'><td style='padding: 1rem; font-weight: bold; background: #f8f9fa;'>Reichweite</td><td id='range-a' style='padding: 1rem; text-align: center;'>-</td><td id='range-b' style='padding: 1rem; text-align: center;'>-</td><td id='range-c' style='padding: 1rem; text-align: center;'>-</td></tr><tr style='border-bottom: 1px solid #dee2e6;'><td style='padding: 1rem; font-weight: bold; background: #f8f9fa;'>Gewicht</td><td id='weight-a' style='padding: 1rem; text-align: center;'>-</td><td id='weight-b' style='padding: 1rem; text-align: center;'>-</td><td id='weight-c' style='padding: 1rem; text-align: center;'>-</td></tr><tr style='border-bottom: 1px solid #dee2e6;'><td style='padding: 1rem; font-weight: bold; background: #f8f9fa;'>Rahmenmaterial</td><td id='frame-a' style='padding: 1rem; text-align: center;'>-</td><td id='frame-b' style='padding: 1rem; text-align: center;'>-</td><td id='frame-c' style='padding: 1rem; text-align: center;'>-</td></tr><tr style='border-bottom: 1px solid #dee2e6;'><td style='padding: 1rem; font-weight: bold; background: #f8f9fa;'>Schaltung</td><td id='gears-a' style='padding: 1rem; text-align: center;'>-</td><td id='gears-b' style='padding: 1rem; text-align: center;'>-</td><td id='gears-c' style='padding: 1rem; text-align: center;'>-</td></tr><tr style='border-bottom: 1px solid #dee2e6;'><td style='padding: 1rem; font-weight: bold; background: #f8f9fa;'>Bremsen</td><td id='brakes-a' style='padding: 1rem; text-align: center;'>-</td><td id='brakes-b' style='padding: 1rem; text-align: center;'>-</td><td id='brakes-c' style='padding: 1rem; text-align: center;'>-</td></tr><tr><td style='padding: 1rem; font-weight: bold; background: #f8f9fa;'>Federung</td><td id='suspension-a' style='padding: 1rem; text-align: center;'>-</td><td id='suspension-b' style='padding: 1rem; text-align: center;'>-</td><td id='suspension-c' style='padding: 1rem; text-align: center;'>-</td></tr></tbody></table></div><div style='text-align: center; margin-top: 2rem;'><button onclick='resetComparison()' style='background: #6c757d; color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 4px; margin-right: 1rem; cursor: pointer;'>Zurücksetzen</button><a href='/collections/e-bikes' style='background: #007bff; color: white; padding: 0.75rem 1.5rem; text-decoration: none; border-radius: 4px; font-weight: bold;'>Alle E-Bikes ansehen</a></div></div><script>const bikeData = { 'city-comfort': { name: 'City Comfort Pro', price: '2,499', motor: 'Bosch Active Line Plus', battery: '400 Wh', range: '60-100 km', weight: '24 kg', frame: 'Aluminium', gears: '8-Gang Shimano', brakes: 'Shimano Hydraulik', suspension: 'Federgabel vorne' }, 'trekking-sport': { name: 'Trekking Sport X1', price: '3,299', motor: 'Bosch Performance CX', battery: '625 Wh', range: '80-120 km', weight: '26 kg', frame: 'Aluminium', gears: '12-Gang SRAM', brakes: 'SRAM Level Hydraulik', suspension: 'Federgabel vorne' }, 'mountain-trail': { name: 'Mountain Trail Pro', price: '4,799', motor: 'Shimano EP8', battery: '630 Wh', range: '60-90 km', weight: '23 kg', frame: 'Carbon', gears: '12-Gang Shimano XT', brakes: 'Shimano XT 4-Kolben', suspension: 'Full Suspension 140mm' }, 'cargo-family': { name: 'Cargo Family+', price: '3,899', motor: 'Bosch Cargo Line', battery: '500 Wh', range: '50-80 km', weight: '35 kg', frame: 'Stahl verstärkt', gears: '8-Gang Shimano', brakes: 'Magura MT5 Hydraulik', suspension: 'Keine' } }; document.querySelectorAll('select').forEach((select, index) => { select.addEventListener('change', function() { const bikeKey = this.value; const column = String.fromCharCode(97 + index); updateComparison(bikeKey, column); }); }); function updateComparison(bikeKey, column) { if (bikeKey && bikeData[bikeKey]) { const bike = bikeData[bikeKey]; document.getElementById('price-' + column).textContent = bike.price; document.getElementById('motor-' + column).textContent = bike.motor; document.getElementById('battery-' + column).textContent = bike.battery; document.getElementById('range-' + column).textContent = bike.range; document.getElementById('weight-' + column).textContent = bike.weight; document.getElementById('frame-' + column).textContent = bike.frame; document.getElementById('gears-' + column).textContent = bike.gears; document.getElementById('brakes-' + column).textContent = bike.brakes; document.getElementById('suspension-' + column).textContent = bike.suspension; } else { document.getElementById('price-' + column).textContent = '-'; document.getElementById('motor-' + column).textContent = '-'; document.getElementById('battery-' + column).textContent = '-'; document.getElementById('range-' + column).textContent = '-'; document.getElementById('weight-' + column).textContent = '-'; document.getElementById('frame-' + column).textContent = '-'; document.getElementById('gears-' + column).textContent = '-'; document.getElementById('brakes-' + column).textContent = '-'; document.getElementById('suspension-' + column).textContent = '-'; } } function resetComparison() { document.querySelectorAll('select').forEach(select => select.value = ''); ['a', 'b', 'c'].forEach(column => updateComparison('', column)); }</script>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "comparison_text"
+      ],
+      "settings": {
+        "heading": "Interaktiver Vergleich",
+        "heading_size": "h1",
+        "image_position": "right",
+        "text_alignment": "center",
+        "max_width": 1200,
+        "color_scheme": "background-1",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "comparison_tips": {
+      "type": "services-grid",
+      "blocks": {
+        "motor_tip": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-price-tag.svg",
+            "title": "Motor-Vergleich",
+            "text": "<p><strong>Worauf achten:</strong></p><ul><li><strong>Bosch Active Line:</strong> Sanfte Unterstützung, ideal für City</li><li><strong>Bosch Performance CX:</strong> Sportlich, für Trekking/MTB</li><li><strong>Shimano EP8:</strong> Leise, natürliches Fahrgefühl</li><li><strong>Bosch Cargo Line:</strong> Extra Kraft für schwere Lasten</li></ul>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "battery_tip": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-heart.svg",
+            "title": "Akku-Kapazität",
+            "text": "<p><strong>Faustregel:</strong></p><ul><li><strong>400 Wh:</strong> City-Fahrten, ebenes Gelände</li><li><strong>500 Wh:</strong> Pendeln, mittlere Strecken</li><li><strong>625+ Wh:</strong> Lange Touren, Berge, schwere Lasten</li></ul><p>Höhere Kapazität = größere Reichweite, aber auch mehr Gewicht</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "range_tip": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-truck.svg",
+            "title": "Reichweite richtig einschätzen",
+            "text": "<p><strong>Einflussfaktoren:</strong></p><ul><li>Unterstützungsstufe (Eco vs. Turbo)</li><li>Fahrergewicht und Zuladung</li><li>Gelände (eben vs. bergig)</li><li>Wetter (Gegenwind, Kälte)</li><li>Reifendruck und Fahrstil</li></ul><p>Reale Reichweite oft 20-30% unter Herstellerangabe</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "motor_tip",
+        "battery_tip",
+        "range_tip"
+      ],
+      "settings": {
+        "heading": "Vergleichs-Tipps von unseren Experten",
+        "heading_size": "h1",
+        "description": "<p>Damit Sie die richtige Entscheidung treffen, erklären wir Ihnen die wichtigsten Spezifikationen und worauf Sie achten sollten.</p>",
+        "text_alignment": "center",
+        "card_text_alignment": "left",
+        "icon_size": 80,
+        "card_border_radius": 8,
+        "color_scheme": "background-2",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "next_steps": {
+      "type": "company-story",
+      "blocks": {
+        "next_text": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Sie haben Ihr Wunsch-E-Bike gefunden?</strong></p><p>Perfekt! Jetzt können Sie den nächsten Schritt machen:</p><ul><li>📞 <strong>Beratungstermin:</strong> Lassen Sie sich persönlich beraten</li><li>🚴‍♂️ <strong>Probefahrt buchen:</strong> Testen Sie das E-Bike ausgiebig</li><li>📐 <strong>Größenberatung:</strong> Finden Sie die perfekte Rahmengröße</li><li>💳 <strong>Finanzierung:</strong> Berechnen Sie Ihre monatliche Rate</li></ul><p>Unser Expertenteam steht Ihnen bei allen Fragen zur Verfügung und hilft Ihnen dabei, das perfekte E-Bike für Ihre Bedürfnisse zu finden.</p>",
+            "text_style": "body"
+          }
+        },
+        "contact_highlight": {
+          "type": "highlight",
+          "settings": {
+            "highlight_heading": "Persönliche Beratung",
+            "highlight_text": "Haben Sie Fragen zum Vergleich oder benötigen Sie Hilfe bei der Auswahl? Unsere E-Bike Experten beraten Sie gerne kostenlos."
+          }
+        }
+      },
+      "block_order": [
+        "next_text",
+        "contact_highlight"
+      ],
+      "settings": {
+        "heading": "Nächste Schritte",
+        "heading_size": "h1",
+        "image_position": "left",
+        "text_alignment": "left",
+        "max_width": 1000,
+        "button_label": "Jetzt beraten lassen",
+        "button_link": "/pages/contact",
+        "color_scheme": "background-1",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "comparison_tool",
+    "comparison_tips", 
+    "next_steps"
+  ]
+}

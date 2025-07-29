@@ -1,0 +1,186 @@
+{% comment %}
+  SEO-Optimized Category Structure for E-bike Store
+  Includes: structured data, breadcrumbs, meta optimization
+{% endcomment %}
+
+{% liquid
+  assign category_keywords = collection.handle | replace: '-', ' '
+  assign category_title = collection.title | default: category_keywords
+  assign category_description = collection.description | strip_html | truncatewords: 30
+%}
+
+<!-- Category SEO Meta Tags -->
+{% if template.name == 'collection' %}
+  <meta name="description" content="{{ category_description }} - Premium e-bikes at {{ shop.name }}. Free shipping, warranty included.">
+  <meta name="keywords" content="{{ category_keywords }}, e-bike, electric bike, {{ shop.name }}, sustainable transport">
+  
+  <!-- Open Graph for Social Sharing -->
+  <meta property="og:title" content="{{ category_title }} E-bikes | {{ shop.name }}">
+  <meta property="og:description" content="{{ category_description }}">
+  <meta property="og:type" content="product.group">
+  {% if collection.featured_image %}
+    <meta property="og:image" content="{{ collection.featured_image | image_url: width: 1200 }}">
+  {% endif %}
+  
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ category_title }} | {{ shop.name }}">
+  <meta name="twitter:description" content="{{ category_description }}">
+{% endif %}
+
+<!-- Structured Data for Categories -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "{{ category_title }}",
+  "description": "{{ category_description }}",
+  "url": "{{ shop.url }}{{ collection.url }}",
+  "mainEntity": {
+    "@type": "ProductCollection",
+    "name": "{{ category_title }}",
+    "description": "{{ category_description }}",
+    "numberOfItems": {{ collection.products_count }},
+    "hasPart": [
+      {% for product in collection.products limit: 10 %}
+      {
+        "@type": "Product",
+        "name": "{{ product.title | escape }}",
+        "url": "{{ shop.url }}{{ product.url }}",
+        "image": "{{ product.featured_image | image_url: width: 400 }}",
+        "offers": {
+          "@type": "Offer",
+          "price": "{{ product.price | money_without_currency }}",
+          "priceCurrency": "{{ cart.currency.iso_code }}",
+          "availability": "{% if product.available %}InStock{% else %}OutOfStock{% endif %}"
+        }
+      }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ]
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "{{ shop.url }}"
+      },
+      {
+        "@type": "ListItem", 
+        "position": 2,
+        "name": "{{ category_title }}",
+        "item": "{{ shop.url }}{{ collection.url }}"
+      }
+    ]
+  }
+}
+</script>
+
+<!-- SEO-Optimized Breadcrumbs -->
+<nav class="breadcrumb-seo" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">
+    <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="/" itemprop="item">
+        <span itemprop="name">Home</span>
+      </a>
+      <meta itemprop="position" content="1">
+    </li>
+    {% if collection %}
+      <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <span itemprop="name">{{ category_title }}</span>
+        <meta itemprop="position" content="2">
+      </li>
+    {% endif %}
+  </ol>
+</nav>
+
+<!-- Category Page Schema Enhancement -->
+{% if template.name == 'collection' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Store",
+  "name": "{{ shop.name }}",
+  "description": "{{ shop.description | strip_html | truncatewords: 20 }}",
+  "url": "{{ shop.url }}",
+  "telephone": "+41 {{ shop.phone | default: '44 123 4567' }}",
+  "address": {
+    "@type": "PostalAddress", 
+    "streetAddress": "{{ shop.address.street }}",
+    "addressLocality": "{{ shop.address.city | default: 'Zurich' }}",
+    "addressCountry": "CH"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "{{ category_title }}",
+    "itemListElement": [
+      {% for product in collection.products limit: 20 %}
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Product",
+          "name": "{{ product.title | escape }}",
+          "description": "{{ product.description | strip_html | truncatewords: 15 | escape }}",
+          "image": "{{ product.featured_image | image_url: width: 600 }}",
+          "brand": {
+            "@type": "Brand",
+            "name": "{{ product.vendor | default: shop.name }}"
+          },
+          "category": "{{ category_title }}"
+        },
+        "price": "{{ product.price | money_without_currency }}",
+        "priceCurrency": "{{ cart.currency.iso_code }}",
+        "availability": "{% if product.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
+        "url": "{{ shop.url }}{{ product.url }}"
+      }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ]
+  }
+}
+</script>
+{% endif %}
+
+<!-- Category-Specific SEO Keywords -->
+{% liquid
+  case collection.handle
+    when 'commuter-bikes'
+      assign seo_keywords = 'commuter e-bike, urban electric bike, city bike, daily commute'
+    when 'mountain-bikes' 
+      assign seo_keywords = 'mountain e-bike, electric mountain bike, off-road, trail riding'
+    when 'cargo-bikes'
+      assign seo_keywords = 'cargo e-bike, family bike, transport bike, heavy duty'
+    when 'folding-bikes'
+      assign seo_keywords = 'folding e-bike, compact electric bike, portable bike'
+    else
+      assign seo_keywords = 'electric bike, e-bike, sustainable transport, eco-friendly'
+  endcase
+%}
+
+<meta name="keywords" content="{{ seo_keywords }}, {{ shop.name }}, Switzerland, premium quality">
+
+<style>
+.breadcrumb-seo {
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+.breadcrumb-list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.breadcrumb-item:not(:last-child)::after {
+  content: ' > ';
+  margin: 0 0.5rem;
+  color: #666;
+}
+.breadcrumb-item a {
+  color: #007bff;
+  text-decoration: none;
+}
+.breadcrumb-item a:hover {
+  text-decoration: underline;
+}
+</style>

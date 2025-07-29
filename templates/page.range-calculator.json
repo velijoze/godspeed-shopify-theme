@@ -1,0 +1,159 @@
+{
+  "sections": {
+    "hero": {
+      "type": "about-hero",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "E-Bike Reichweiten-Rechner",
+            "heading_size": "h0"
+          }
+        },
+        "subheading": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Berechnen Sie die realistische Reichweite Ihres E-Bikes"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Ermitteln Sie die erwartete Reichweite basierend auf Ihrem Fahrstil, Gewicht, Gelände und Wetterbedingungen. Realistisch und präzise.</p>",
+            "text_style": "subtitle"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "subheading",
+        "text"
+      ],
+      "settings": {
+        "overlay_opacity": 30,
+        "text_alignment": "center",
+        "color_scheme": "background-1",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "range_calculator": {
+      "type": "company-story",
+      "blocks": {
+        "calculator_text": {
+          "type": "text",
+          "settings": {
+            "text": "<div id='range-calculator' style='background: #f8f9fa; padding: 2rem; border-radius: 12px; max-width: 900px; margin: 0 auto;'><h3>Reichweiten-Rechner</h3><div style='display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;'><div><h4>E-Bike Spezifikationen</h4><div style='margin-bottom: 1rem;'><label style='display: block; font-weight: bold; margin-bottom: 0.5rem;'>Akku-Kapazität (Wh)</label><select id='battery-capacity' style='width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px;' onchange='calculateRange()'><option value='400'>400 Wh</option><option value='500' selected>500 Wh</option><option value='625'>625 Wh</option><option value='750'>750 Wh</option></select></div><div style='margin-bottom: 1rem;'><label style='display: block; font-weight: bold; margin-bottom: 0.5rem;'>Motor-Typ</label><select id='motor-type' style='width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px;' onchange='calculateRange()'><option value='1.2'>Bosch Active Line (effizient)</option><option value='1.0' selected>Bosch Performance (ausgewogen)</option><option value='0.8'>Bosch Performance CX (kraftvoll)</option><option value='1.1'>Shimano Steps (sanft)</option></select></div><div style='margin-bottom: 1rem;'><label style='display: block; font-weight: bold; margin-bottom: 0.5rem;'>E-Bike Typ</label><select id='bike-type' style='width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px;' onchange='calculateRange()'><option value='1.1' selected>City E-Bike</option><option value='1.0'>Trekking E-Bike</option><option value='0.9'>E-Mountainbike</option><option value='0.7'>Cargo E-Bike</option></select></div></div><div><h4>Fahrer & Bedingungen</h4><div style='margin-bottom: 1rem;'><label style='display: block; font-weight: bold; margin-bottom: 0.5rem;'>Fahrergewicht + Gepäck (kg)</label><input type='number' id='total-weight' value='80' min='50' max='150' style='width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px;' oninput='calculateRange()'></div><div style='margin-bottom: 1rem;'><label style='display: block; font-weight: bold; margin-bottom: 0.5rem;'>Unterstützungsstufe</label><select id='assist-level' style='width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px;' onchange='calculateRange()'><option value='1.5'>Eco (minimale Unterstützung)</option><option value='1.2' selected>Tour (mittlere Unterstützung)</option><option value='0.9'>Sport (hohe Unterstützung)</option><option value='0.6'>Turbo (maximale Unterstützung)</option></select></div><div style='margin-bottom: 1rem;'><label style='display: block; font-weight: bold; margin-bottom: 0.5rem;'>Gelände</label><select id='terrain' style='width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px;' onchange='calculateRange()'><option value='1.3' selected>Flach (Stadt, ebene Strecken)</option><option value='1.0'>Hügelig (leichte Steigungen)</option><option value='0.8'>Bergig (viele Steigungen)</option><option value='0.6'>Sehr bergig (Alpen, steile Pässe)</option></select></div><div style='margin-bottom: 1rem;'><label style='display: block; font-weight: bold; margin-bottom: 0.5rem;'>Wetterbedingungen</label><select id='weather' style='width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px;' onchange='calculateRange()'><option value='1.1' selected>Optimal (mild, windstill)</option><option value='1.0'>Gut (normale Bedingungen)</option><option value='0.9'>Gegenwind (mäßig)</option><option value='0.8'>Starker Gegenwind</option><option value='0.7'>Kalt (unter 5°C)</option></select></div></div></div><div id='range-result' style='background: white; padding: 2rem; border-radius: 8px; margin-top: 2rem; border-left: 4px solid #28a745;'><h4 style='color: #28a745; margin-bottom: 1rem;'>Geschätzte Reichweite:</h4><div style='display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; text-align: center;'><div style='background: #e8f5e8; padding: 1rem; border-radius: 6px;'><div style='font-size: 2rem; font-weight: bold; color: #28a745;' id='range-optimistic'>-</div><div style='font-size: 0.9rem; color: #666;'>Optimistisch</div></div><div style='background: #fff3cd; padding: 1rem; border-radius: 6px;'><div style='font-size: 2rem; font-weight: bold; color: #856404;' id='range-realistic'>-</div><div style='font-size: 0.9rem; color: #666;'>Realistisch</div></div><div style='background: #f8d7da; padding: 1rem; border-radius: 6px;'><div style='font-size: 2rem; font-weight: bold; color: #721c24;' id='range-conservative'>-</div><div style='font-size: 0.9rem; color: #666;'>Konservativ</div></div></div><div id='range-advice' style='margin-top: 1rem; padding: 1rem; background: #e7f3ff; border-radius: 6px; font-size: 0.9rem; color: #004085;'></div></div></div><script>function calculateRange() { const battery = parseInt(document.getElementById('battery-capacity').value); const motorEff = parseFloat(document.getElementById('motor-type').value); const bikeType = parseFloat(document.getElementById('bike-type').value); const weight = parseInt(document.getElementById('total-weight').value); const assistLevel = parseFloat(document.getElementById('assist-level').value); const terrain = parseFloat(document.getElementById('terrain').value); const weather = parseFloat(document.getElementById('weather').value); const baseRange = (battery / 12) * motorEff * bikeType * assistLevel * terrain * weather; const weightFactor = Math.max(0.7, 1 - ((weight - 70) * 0.003)); const optimistic = Math.round(baseRange * weightFactor * 1.2); const realistic = Math.round(baseRange * weightFactor); const conservative = Math.round(baseRange * weightFactor * 0.8); document.getElementById('range-optimistic').textContent = optimistic + ' km'; document.getElementById('range-realistic').textContent = realistic + ' km'; document.getElementById('range-conservative').textContent = conservative + ' km'; let advice = '💡 '; if (realistic > 80) { advice += 'Ausgezeichnete Reichweite! Perfekt für lange Touren und Pendlerfahrten.'; } else if (realistic > 60) { advice += 'Sehr gute Reichweite für die meisten Fahrten. Ideal für tägliches Pendeln.'; } else if (realistic > 40) { advice += 'Gute Reichweite für Stadt- und Kurzstreckenfahrten. Bei längeren Touren Lademöglichkeiten planen.'; } else { advice += 'Begrenzte Reichweite - ideal für kurze Stadtfahrten. Häufigeres Laden erforderlich.'; } if (weight > 100) { advice += ' Tipp: Gepäck reduzieren kann Reichweite erhöhen.'; } if (assistLevel < 1.0) { advice += ' Tipp: Niedrigere Unterstützungsstufe für mehr Reichweite wählen.'; } document.getElementById('range-advice').innerHTML = advice; } calculateRange();</script>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "calculator_text"
+      ],
+      "settings": {
+        "heading": "Interaktiver Reichweiten-Rechner",
+        "heading_size": "h1",
+        "image_position": "right",
+        "text_alignment": "center",
+        "max_width": 1000,
+        "color_scheme": "background-1",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "factors_explanation": {
+      "type": "services-grid",
+      "blocks": {
+        "battery_factor": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-price-tag.svg",
+            "title": "Akku-Kapazität",
+            "text": "<p><strong>Der wichtigste Faktor</strong></p><ul><li><strong>400 Wh:</strong> Basis-Reichweite für City-Fahrten</li><li><strong>500 Wh:</strong> Standard für Pendler</li><li><strong>625+ Wh:</strong> Lange Touren, schweres Gelände</li></ul><p>Faustregel: Pro 100 Wh etwa 25-30 km Reichweite bei normalen Bedingungen</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "weight_factor": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-heart.svg",
+            "title": "Gewicht & Beladung",
+            "text": "<p><strong>Große Auswirkung auf Reichweite</strong></p><ul><li>Jedes zusätzliche kg reduziert Reichweite um ca. 1-2%</li><li>Gepäck in Rucksack = mehr Luftwiderstand</li><li>Gepäck am Rad = weniger Einfluss</li></ul><p>Tipp: Schwere Gegenstände tief und zentral am Rad befestigen</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "terrain_factor": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-truck.svg",
+            "title": "Gelände & Steigungen",
+            "text": "<p><strong>Steigungen kosten viel Energie</strong></p><ul><li>Flaches Gelände: 100% Reichweite</li><li>Hügeliges Gelände: ca. 80% Reichweite</li><li>Bergiges Gelände: ca. 60% Reichweite</li></ul><p>Bergab wird Energie zurückgewonnen (Rekuperation), aber nie 100%</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "battery_factor",
+        "weight_factor",
+        "terrain_factor"
+      ],
+      "settings": {
+        "heading": "Reichweiten-Faktoren verstehen",
+        "heading_size": "h1",
+        "description": "<p>Verstehen Sie, welche Faktoren die Reichweite Ihres E-Bikes beeinflussen und wie Sie sie optimieren können.</p>",
+        "text_alignment": "center",
+        "card_text_alignment": "left",
+        "icon_size": 80,
+        "card_border_radius": 8,
+        "color_scheme": "background-2",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "range_tips": {
+      "type": "company-story",
+      "blocks": {
+        "tips_text": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>So maximieren Sie Ihre E-Bike Reichweite:</strong></p><h4>🔋 Akku-Pflege:</h4><ul><li>Akku nie komplett entleeren (idealer Bereich: 20-80%)</li><li>Bei Kälte Akku warm halten (Neopren-Hülle)</li><li>Regelmäßig vollständig laden (alle 20-30 Zyklen)</li><li>Akku bei längerer Lagerung bei 60% lagern</li></ul><h4>🚴‍♂️ Fahrtechnik:</h4><ul><li>Gleichmäßige Trittfrequenz (60-80 U/min optimal)</li><li>Vorausschauend fahren (Schwung nutzen)</li><li>Niedrige Unterstützungsstufe wählen</li><li>Gänge optimal nutzen (hohe Trittfrequenz)</li></ul><h4>⚙️ Technische Optimierung:</h4><ul><li>Reifendruck regelmäßig prüfen (spart bis zu 20% Energie)</li><li>Kette sauber und geölt halten</li><li>Aerodynamische Sitzposition</li><li>Unnötiges Gewicht entfernen</li></ul>",
+            "text_style": "body"
+          }
+        },
+        "range_highlight": {
+          "type": "highlight",
+          "settings": {
+            "highlight_heading": "Profi-Tipp",
+            "highlight_text": "Die Display-Anzeige zeigt oft die verbleibende Reichweite unter aktuellen Bedingungen. Diese kann sich während der Fahrt ändern!"
+          }
+        }
+      },
+      "block_order": [
+        "tips_text",
+        "range_highlight"
+      ],
+      "settings": {
+        "heading": "Reichweite maximieren - Profi-Tipps",
+        "heading_size": "h1",
+        "image_position": "left",
+        "text_alignment": "left",
+        "max_width": 1000,
+        "button_label": "E-Bikes entdecken",
+        "button_link": "/collections/e-bikes",
+        "color_scheme": "background-1",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "range_calculator",
+    "factors_explanation",
+    "range_tips"
+  ]
+}

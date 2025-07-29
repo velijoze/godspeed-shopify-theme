@@ -1,0 +1,27 @@
+{% comment %}
+  Pipeline Breadcrumb Section
+  Shows navigation path with structured data
+{% endcomment %}
+
+{% render 'pipeline-breadcrumbs' %}
+
+{% schema %}
+{
+  "name": "Pipeline Breadcrumbs",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_breadcrumbs",
+      "default": true,
+      "label": "Show breadcrumbs"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pipeline Breadcrumbs"
+    }
+  ]
+}
+{% endschema %}

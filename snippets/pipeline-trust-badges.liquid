@@ -1,0 +1,248 @@
+{% comment %}
+  Pipeline Trust Badges & Payment Icons
+  Shows security, shipping, and payment trust signals
+{% endcomment %}
+
+<div class="pipeline-trust-badges">
+  
+  {%- if section.settings.show_trust_badges -%}
+    <div class="trust-badges__row">
+      
+      {%- comment -%} Security Badge {%- endcomment -%}
+      <div class="trust-badge">
+        <div class="trust-badge__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
+          </svg>
+        </div>
+        <div class="trust-badge__content">
+          <div class="trust-badge__title">{{ section.settings.security_title | default: 'Secure Checkout' }}</div>
+          <div class="trust-badge__text">{{ section.settings.security_text | default: '256-bit SSL Encryption' }}</div>
+        </div>
+      </div>
+
+      {%- comment -%} Shipping Badge {%- endcomment -%}
+      <div class="trust-badge">
+        <div class="trust-badge__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+          </svg>
+        </div>
+        <div class="trust-badge__content">
+          <div class="trust-badge__title">{{ section.settings.shipping_title | default: 'Free Shipping' }}</div>
+          <div class="trust-badge__text">{{ section.settings.shipping_text | default: 'On orders over $100' }}</div>
+        </div>
+      </div>
+
+      {%- comment -%} Guarantee Badge {%- endcomment -%}
+      <div class="trust-badge">
+        <div class="trust-badge__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+          </svg>
+        </div>
+        <div class="trust-badge__content">
+          <div class="trust-badge__title">{{ section.settings.guarantee_title | default: '30-Day Guarantee' }}</div>
+          <div class="trust-badge__text">{{ section.settings.guarantee_text | default: 'Risk-free returns' }}</div>
+        </div>
+      </div>
+
+    </div>
+  {%- endif -%}
+
+  {%- if section.settings.show_payment_icons -%}
+    <div class="payment-icons">
+      <div class="payment-icons__title">{{ section.settings.payment_title | default: 'Guaranteed Safe Checkout' }}</div>
+      <ul class="payment-icons__list">
+        {%- for type in shop.enabled_payment_types -%}
+          <li class="payment-icons__item">
+            {{ type | payment_type_svg_tag: class: 'payment-icon' }}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  {%- endif -%}
+
+  {%- if section.settings.show_info_blocks -%}
+    <div class="info-blocks">
+      
+      {%- comment -%} Questions Block {%- endcomment -%}
+      <div class="info-block">
+        <div class="info-block__icon">❓</div>
+        <div class="info-block__content">
+          <div class="info-block__title">{{ section.settings.questions_title | default: 'Questions?' }}</div>
+          <a href="{{ section.settings.questions_link | default: '/pages/contact' }}" class="info-block__link">
+            {{ section.settings.questions_text | default: 'Ask an expert' }}
+          </a>
+        </div>
+      </div>
+
+      {%- comment -%} Phone Block {%- endcomment -%}
+      {%- if section.settings.phone_number -%}
+        <div class="info-block">
+          <div class="info-block__icon">📞</div>
+          <div class="info-block__content">
+            <div class="info-block__title">{{ section.settings.phone_title | default: 'Call Us' }}</div>
+            <a href="tel:{{ section.settings.phone_number | remove: ' ' | remove: '-' | remove: '(' | remove: ')' }}" class="info-block__link">
+              {{ section.settings.phone_number }}
+            </a>
+          </div>
+        </div>
+      {%- endif -%}
+
+    </div>
+  {%- endif -%}
+
+</div>
+
+<style>
+  .pipeline-trust-badges {
+    margin: 2rem 0;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+  }
+
+  .trust-badges__row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .trust-badge__icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  .trust-badge__icon svg {
+    width: 24px;
+    height: 24px;
+    color: #667eea;
+  }
+
+  .trust-badge__title {
+    font-weight: 600;
+    color: #111827;
+    font-size: 0.9375rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .trust-badge__text {
+    font-size: 0.8125rem;
+    color: #6b7280;
+  }
+
+  .payment-icons {
+    text-align: center;
+    padding: 1.5rem 0;
+    border-top: 1px solid #e5e7eb;
+    border-bottom: 1px solid #e5e7eb;
+    margin: 1.5rem 0;
+  }
+
+  .payment-icons__title {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .payment-icons__list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+  }
+
+  .payment-icon {
+    height: 32px;
+    width: auto;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+  }
+
+  .payment-icon:hover {
+    opacity: 1;
+  }
+
+  .info-blocks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .info-block {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .info-block__icon {
+    font-size: 1.5rem;
+  }
+
+  .info-block__title {
+    font-size: 0.8125rem;
+    color: #6b7280;
+    margin-bottom: 0.25rem;
+  }
+
+  .info-block__link {
+    font-weight: 600;
+    color: #667eea;
+    text-decoration: none;
+    font-size: 0.9375rem;
+    transition: color 0.2s ease;
+  }
+
+  .info-block__link:hover {
+    color: #5a67d8;
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .pipeline-trust-badges {
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    
+    .trust-badges__row {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    
+    .payment-icons__list {
+      gap: 0.75rem;
+    }
+    
+    .payment-icon {
+      height: 28px;
+    }
+    
+    .info-blocks {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+</style>

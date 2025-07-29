@@ -1,0 +1,220 @@
+{
+  "sections": {
+    "hero": {
+      "type": "about-hero",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Garantie & Gewährleistung",
+            "heading_size": "h0"
+          }
+        },
+        "subheading": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Umfassender Schutz für Ihr E-Bike"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Ihr E-Bike ist eine Investition. Deshalb bieten wir Ihnen umfassende Garantieleistungen und transparente Gewährleistung für alle unsere Produkte.</p>",
+            "text_style": "subtitle"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "subheading",
+        "text"
+      ],
+      "settings": {
+        "overlay_opacity": 30,
+        "text_alignment": "center",
+        "color_scheme": "background-1",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "warranty_overview": {
+      "type": "services-grid",
+      "blocks": {
+        "frame_warranty": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-heart.svg",
+            "title": "Rahmen-Garantie",
+            "text": "<p><strong>5 Jahre Garantie</strong></p><ul><li>✓ Materialfehler am Rahmen</li><li>✓ Risse durch Produktionsfehler</li><li>✓ Schweißnaht-Probleme</li><li>✓ Lackdefekte (2 Jahre)</li></ul><p><em>Ausgenommen: Verschleiß, Unfälle, unsachgemäße Nutzung</em></p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "motor_warranty": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-return.svg",
+            "title": "Motor & Elektronik",
+            "text": "<p><strong>2 Jahre Garantie</strong></p><ul><li>✓ Bosch, Shimano, Brose Motoren</li><li>✓ Display und Bedieneinheit</li><li>✓ Kabel und Steckverbindungen</li><li>✓ Sensoren und Controller</li></ul><p><em>Erweiterte Garantie bis 4 Jahre möglich</em></p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "battery_warranty": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-price-tag.svg",
+            "title": "Akku-Garantie",
+            "text": "<p><strong>2 Jahre / 500 Zyklen</strong></p><ul><li>✓ Mindestens 60% Kapazität nach 500 Zyklen</li><li>✓ Defekte Zellen oder BMS</li><li>✓ Lade-Probleme</li><li>✓ Ersatz bei Totalausfall</li></ul><p><em>Premium-Akkus: 3 Jahre / 1000 Zyklen</em></p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "frame_warranty",
+        "motor_warranty",
+        "battery_warranty"
+      ],
+      "settings": {
+        "heading": "Unsere Garantieleistungen",
+        "heading_size": "h1",
+        "description": "<p>Alle E-Bikes von Godspeed sind umfassend abgesichert. Je nach Komponente bieten wir unterschiedliche Garantiezeiten.</p>",
+        "text_alignment": "center",
+        "card_text_alignment": "left",
+        "icon_size": 80,
+        "card_border_radius": 8,
+        "color_scheme": "background-2",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "warranty_process": {
+      "type": "company-story",
+      "blocks": {
+        "process_text": {
+          "type": "text",
+          "settings": {
+            "text": "<h3>So funktioniert die Garantieabwicklung</h3><h4>1. Problem feststellen</h4><p>Bemerken Sie einen Defekt an Ihrem E-Bike, kontaktieren Sie uns umgehend. Je früher wir informiert werden, desto schneller können wir helfen.</p><h4>2. Erste Diagnose</h4><p>Unser Service-Team führt eine erste Diagnose durch - entweder telefonisch, per Video-Call oder vor Ort in unseren Filialen.</p><h4>3. Garantieprüfung</h4><p>Wir prüfen, ob der Schaden unter die Garantie fällt. Dafür benötigen wir:</p><ul><li>• Kaufbeleg mit Datum</li><li>• Rahmennummer des E-Bikes</li><li>• Fotos des Problems</li><li>• Beschreibung der Umstände</li></ul><h4>4. Reparatur oder Austausch</h4><p><strong>Bei Garantiefall:</strong></p><ul><li>✓ Kostenlose Reparatur oder Austausch</li><li>✓ Abholung und Lieferung im Umkreis von 25km (Zürich, Basel, Bern)</li><li>✓ Leihbike während der Reparaturzeit</li><li>✓ Schnelle Bearbeitung (max. 14 Tage)</li></ul><h4>5. Gewährleistung vs. Garantie</h4><p><strong>Gewährleistung (2 Jahre gesetzlich):</strong><br>Schutz vor Mängeln, die bereits beim Kauf vorhanden waren</p><p><strong>Garantie (freiwillig):</strong><br>Zusätzlicher Schutz des Herstellers über die gesetzliche Gewährleistung hinaus</p>",
+            "text_style": "body"
+          }
+        },
+        "contact_highlight": {
+          "type": "highlight",
+          "settings": {
+            "highlight_heading": "Garantie-Hotline",
+            "highlight_text": "Bei Garantiefällen erreichen Sie unsere Spezialisten unter +41 44 123 45 67 oder garantie@godspeed.ch"
+          }
+        }
+      },
+      "block_order": [
+        "process_text",
+        "contact_highlight"
+      ],
+      "settings": {
+        "heading": "Garantieabwicklung Schritt für Schritt",
+        "heading_size": "h1",
+        "image_position": "right",
+        "text_alignment": "left",
+        "max_width": 1000,
+        "color_scheme": "background-1",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "extended_warranty": {
+      "type": "services-grid",
+      "blocks": {
+        "extended_motor": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-truck.svg",
+            "title": "Erweiterte Motor-Garantie",
+            "text": "<p><strong>4 Jahre Vollschutz</strong></p><p><strong>Preis:</strong> CHF 299 (bei Kauf), CHF 399 (nachträglich)</p><ul><li>✓ Motor-Austausch bei Defekt</li><li>✓ Arbeitszeit inklusive</li><li>✓ Abholung/Lieferung</li><li>✓ Übertragbar bei Verkauf</li></ul>",
+            "button_label": "Erweiterte Garantie buchen",
+            "button_link": "/pages/contact"
+          }
+        },
+        "premium_care": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-heart.svg",
+            "title": "Premium Care Paket",
+            "text": "<p><strong>5 Jahre Rundum-Schutz</strong></p><p><strong>Preis:</strong> CHF 699 (bei Kauf), CHF 899 (nachträglich)</p><ul><li>✓ Alle Komponenten abgedeckt</li><li>✓ Jährlicher Gratis-Service</li><li>✓ Unfallschutz (50% Erstattung)</li><li>✓ Pick-up & Delivery Service</li></ul>",
+            "button_label": "Premium Care buchen",
+            "button_link": "/pages/contact"
+          }
+        },
+        "battery_plus": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-leaf.svg",
+            "title": "Akku Plus Garantie",
+            "text": "<p><strong>4 Jahre / 1000 Zyklen</strong></p><p><strong>Preis:</strong> CHF 199 (bei Kauf), CHF 249 (nachträglich)</p><ul><li>✓ 70% Kapazität garantiert</li><li>✓ Kostenloser Austausch</li><li>✓ Neue Akku-Technologien</li><li>✓ Recycling des alten Akkus</li></ul>",
+            "button_label": "Akku Plus buchen",
+            "button_link": "/pages/contact"
+          }
+        }
+      },
+      "block_order": [
+        "extended_motor",
+        "premium_care",
+        "battery_plus"
+      ],
+      "settings": {
+        "heading": "Erweiterte Garantie-Optionen",
+        "heading_size": "h1",
+        "description": "<p>Für noch mehr Sicherheit bieten wir erweiterte Garantie-Pakete an. Beim Kauf günstiger, aber auch nachträglich buchbar.</p>",
+        "text_alignment": "center",
+        "card_text_alignment": "left",
+        "icon_size": 80,
+        "card_border_radius": 8,
+        "color_scheme": "background-2",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "warranty_exclusions": {
+      "type": "company-story",
+      "blocks": {
+        "exclusions_text": {
+          "type": "text",
+          "settings": {
+            "text": "<h3>Was ist nicht von der Garantie abgedeckt?</h3><p><strong>Normale Verschleißteile:</strong></p><ul><li>• Bremsbeläge und Bremsscheiben</li><li>• Kette, Kassette, Kettenblätter</li><li>• Reifen und Schläuche</li><li>• Griffe, Sattel, Pedale</li><li>• Züge und Schalthüllen</li></ul><p><strong>Schäden durch unsachgemäße Nutzung:</strong></p><ul><li>• Überlastung (über max. Gewicht)</li><li>• Unsachgemäße Reinigung (Hochdruckreiniger)</li><li>• Eigenreparaturen oder Umbauten</li><li>• Transport ohne geeignete Träger</li><li>• Lagerung in feuchten/salzigen Umgebungen</li></ul><p><strong>Unfälle und äußere Einwirkungen:</strong></p><ul><li>• Stürze, Kollisionen, Vandalismus</li><li>• Diebstahl oder Teilediebstahl</li><li>• Wetterschäden (Hagel, Überschwemmung)</li><li>• Tierschäden</li></ul><p><strong>Wichtiger Hinweis:</strong> Regelmäßige Wartung ist Voraussetzung für die Garantie. Wir empfehlen jährliche Inspektionen in unseren Service-Centern.</p>",
+            "text_style": "body"
+          }
+        },
+        "care_highlight": {
+          "type": "highlight",
+          "settings": {
+            "highlight_heading": "Garantie erhalten",
+            "highlight_text": "Behandeln Sie Ihr E-Bike pfleglich und lassen Sie es regelmäßig warten. So bleibt die Garantie gültig und Ihr E-Bike läuft jahrelang perfekt."
+          }
+        }
+      },
+      "block_order": [
+        "exclusions_text",
+        "care_highlight"
+      ],
+      "settings": {
+        "heading": "Garantie-Ausschlüsse",
+        "heading_size": "h1",
+        "image_position": "left",
+        "text_alignment": "left",
+        "max_width": 1000,
+        "button_label": "Service buchen",
+        "button_link": "/pages/service-booking",
+        "color_scheme": "background-1",
+        "padding_top": 60,
+        "padding_bottom": 80
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "warranty_overview",
+    "warranty_process",
+    "extended_warranty",
+    "warranty_exclusions"
+  ]
+}

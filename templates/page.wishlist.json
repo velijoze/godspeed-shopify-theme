@@ -1,0 +1,123 @@
+{
+  "sections": {
+    "hero": {
+      "type": "about-hero",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Meine Wunschliste",
+            "heading_size": "h0"
+          }
+        },
+        "subheading": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Ihre gespeicherten E-Bikes und Favoriten"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Hier finden Sie alle E-Bikes, die Sie als Favoriten gespeichert haben. Vergleichen Sie Preise, verfolgen Sie Verfügbarkeit und verpassen Sie keine Angebote.</p>",
+            "text_style": "subtitle"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "subheading",
+        "text"
+      ],
+      "settings": {
+        "overlay_opacity": 30,
+        "text_alignment": "center",
+        "color_scheme": "background-1",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "wishlist_content": {
+      "type": "company-story",
+      "blocks": {
+        "wishlist_text": {
+          "type": "text",
+          "settings": {
+            "text": "<div id='wishlist-container'><div id='wishlist-empty' style='text-align: center; padding: 3rem; background: #f8f9fa; border-radius: 8px; margin: 2rem 0;'><h3>Ihre Wunschliste ist noch leer</h3><p>Fügen Sie E-Bikes zu Ihrer Wunschliste hinzu, indem Sie auf das Herz-Symbol ❤️ klicken.</p><a href='/collections/e-bikes' style='background: #007bff; color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 4px; display: inline-block; margin-top: 1rem;'>E-Bikes entdecken</a></div><div id='wishlist-items' style='display: none;'><div style='display: flex; justify-content: between; align-items: center; margin-bottom: 2rem;'><h3>Gespeicherte E-Bikes (<span id='wishlist-count'>0</span>)</h3><button onclick='clearWishlist()' style='background: #dc3545; color: white; padding: 0.5rem 1rem; border: none; border-radius: 4px; cursor: pointer;'>Alle entfernen</button></div><div id='wishlist-grid' style='display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;'></div><div style='text-align: center; margin-top: 3rem;'><a href='/pages/compare' style='background: #28a745; color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 4px; margin-right: 1rem;'>E-Bikes vergleichen</a><a href='/pages/financing-calculator' style='background: #17a2b8; color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 4px;'>Finanzierung berechnen</a></div></div></div><script>document.addEventListener('DOMContentLoaded', function() { loadWishlist(); }); function loadWishlist() { const wishlist = JSON.parse(localStorage.getItem('godspeed_wishlist') || '[]'); const emptyDiv = document.getElementById('wishlist-empty'); const itemsDiv = document.getElementById('wishlist-items'); const countSpan = document.getElementById('wishlist-count'); const gridDiv = document.getElementById('wishlist-grid'); if (wishlist.length === 0) { emptyDiv.style.display = 'block'; itemsDiv.style.display = 'none'; } else { emptyDiv.style.display = 'none'; itemsDiv.style.display = 'block'; countSpan.textContent = wishlist.length; gridDiv.innerHTML = ''; wishlist.forEach(item => { const card = createWishlistCard(item); gridDiv.appendChild(card); }); } } function createWishlistCard(item) { const card = document.createElement('div'); card.style.cssText = 'background: white; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: transform 0.3s ease;'; card.innerHTML = `<div style='position: relative;'><img src='${item.image}' alt='${item.title}' style='width: 100%; height: 200px; object-fit: cover;'><button onclick='removeFromWishlist(\"${item.id}\")' style='position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,0.9); border: none; border-radius: 50%; width: 35px; height: 35px; cursor: pointer; display: flex; align-items: center; justify-content: center;'>❌</button></div><div style='padding: 1.5rem;'><h4 style='margin: 0 0 0.5rem 0; font-size: 1.1rem;'>${item.title}</h4><p style='color: #666; margin: 0 0 1rem 0; font-size: 0.9rem;'>${item.vendor || 'Godspeed'}</p><div style='display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;'><span style='font-size: 1.2rem; font-weight: bold; color: #28a745;'>${item.price}</span><span style='padding: 0.25rem 0.75rem; background: ${item.available ? '#d4edda' : '#f8d7da'}; color: ${item.available ? '#155724' : '#721c24'}; border-radius: 20px; font-size: 0.8rem;'>${item.available ? 'Verfügbar' : 'Ausverkauft'}</span></div><div style='display: flex; gap: 0.5rem;'><a href='${item.url}' style='flex: 1; background: #007bff; color: white; padding: 0.75rem; text-decoration: none; border-radius: 4px; text-align: center; font-size: 0.9rem;'>Details ansehen</a>${item.available ? `<button onclick='addToCart(\"${item.id}\")' style='background: #28a745; color: white; padding: 0.75rem 1rem; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9rem;'>In den Warenkorb</button>` : `<button onclick='notifyWhenAvailable(\"${item.id}\")' style='background: #6c757d; color: white; padding: 0.75rem 1rem; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9rem;'>Benachrichtigen</button>`}</div></div>`; return card; } function removeFromWishlist(productId) { let wishlist = JSON.parse(localStorage.getItem('godspeed_wishlist') || '[]'); wishlist = wishlist.filter(item => item.id !== productId); localStorage.setItem('godspeed_wishlist', JSON.stringify(wishlist)); loadWishlist(); } function clearWishlist() { if (confirm('Möchten Sie wirklich alle E-Bikes aus Ihrer Wunschliste entfernen?')) { localStorage.removeItem('godspeed_wishlist'); loadWishlist(); } } function addToCart(productId) { fetch('/cart/add.js', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: productId, quantity: 1 }) }).then(response => response.json()).then(data => { alert('E-Bike wurde zum Warenkorb hinzugefügt!'); }).catch(error => { alert('Fehler beim Hinzufügen zum Warenkorb.'); }); } function notifyWhenAvailable(productId) { const email = prompt('Geben Sie Ihre E-Mail-Adresse ein, um benachrichtigt zu werden, wenn das E-Bike wieder verfügbar ist:'); if (email && email.includes('@')) { alert('Danke! Wir benachrichtigen Sie, sobald das E-Bike wieder verfügbar ist.'); } }</script>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "wishlist_text"
+      ],
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "image_position": "right",
+        "text_alignment": "left",
+        "max_width": 1200,
+        "color_scheme": "background-1",
+        "padding_top": 20,
+        "padding_bottom": 40
+      }
+    },
+    "wishlist_features": {
+      "type": "services-grid",
+      "blocks": {
+        "price_tracking": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-price-tag.svg",
+            "title": "Preise verfolgen",
+            "text": "<p>Erhalten Sie Benachrichtigungen, wenn Ihre Wunsch-E-Bikes im Preis reduziert werden. Verpassen Sie keine Angebote mehr.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "availability": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-heart.svg",
+            "title": "Verfügbarkeit prüfen",
+            "text": "<p>Sehen Sie sofort, welche E-Bikes verfügbar sind und lassen Sie sich benachrichtigen, wenn ausverkaufte Modelle wieder da sind.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "easy_compare": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-return.svg",
+            "title": "Einfach vergleichen",
+            "text": "<p>Übertragen Sie Ihre Favoriten direkt zum Vergleichstool und finden Sie das perfekte E-Bike für Ihre Bedürfnisse.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "price_tracking",
+        "availability",
+        "easy_compare"
+      ],
+      "settings": {
+        "heading": "Wunschliste Vorteile",
+        "heading_size": "h1",
+        "description": "<p>Ihre Wunschliste ist mehr als nur eine einfache Sammlung - sie hilft Ihnen aktiv beim E-Bike Kauf.</p>",
+        "text_alignment": "center",
+        "card_text_alignment": "center",
+        "icon_size": 80,
+        "card_border_radius": 8,
+        "color_scheme": "background-2",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "wishlist_content",
+    "wishlist_features"
+  ]
+}

@@ -1,0 +1,365 @@
+{{ 'section-multicolumn.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .sustainability-features {
+    text-align: {{ section.settings.text_alignment }};
+  }
+
+  .sustainability-features__heading {
+    margin-bottom: 3rem;
+  }
+
+  .sustainability-features__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .sustainability-features__grid--2-columns {
+      grid-template-columns: 1fr 1fr;
+    }
+    
+    .sustainability-features__grid--3-columns {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  .sustainability-feature {
+    text-align: {{ section.settings.card_text_alignment }};
+    transition: transform 0.3s ease;
+  }
+
+  .sustainability-feature:hover {
+    transform: translateY(-5px);
+  }
+
+  .sustainability-feature__icon {
+    width: {{ section.settings.icon_size }}px;
+    height: {{ section.settings.icon_size }}px;
+    margin: 0 auto 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(22, 163, 74, 0.1) 100%);
+    border-radius: 50%;
+    color: rgba(34, 197, 94, 1);
+  }
+
+  .sustainability-feature__icon svg {
+    width: 50%;
+    height: 50%;
+  }
+
+  .sustainability-feature__title {
+    margin-bottom: 1rem;
+    color: rgba(34, 197, 94, 1);
+  }
+
+  .sustainability-feature__text {
+    margin-bottom: 1.5rem;
+  }
+
+  .sustainability-feature__stats {
+    background: rgba(34, 197, 94, 0.05);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+  }
+
+  .sustainability-feature__stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: rgba(34, 197, 94, 1);
+    display: block;
+  }
+
+  .sustainability-feature__stat-label {
+    font-size: 0.875rem;
+    opacity: 0.8;
+  }
+{%- endstyle -%}
+
+<div class="sustainability-features section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <div class="sustainability-features__heading">
+        <h2 class="{{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+          {{ section.settings.heading | escape }}
+        </h2>
+        {%- if section.settings.description != blank -%}
+          <div class="rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+            {{ section.settings.description }}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="sustainability-features__grid sustainability-features__grid--{{ section.blocks.size }}-columns">
+      {%- for block in section.blocks -%}
+        <div class="sustainability-feature{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" {{ block.shopify_attributes }}>
+          {%- if block.settings.icon != blank -%}
+            <div class="sustainability-feature__icon">
+              {{ block.settings.icon | inline_asset_content }}
+            </div>
+          {%- endif -%}
+
+          {%- if block.settings.title != blank -%}
+            <h3 class="sustainability-feature__title h4">{{ block.settings.title | escape }}</h3>
+          {%- endif -%}
+
+          {%- if block.settings.text != blank -%}
+            <div class="sustainability-feature__text rte">
+              {{ block.settings.text }}
+            </div>
+          {%- endif -%}
+
+          {%- if block.settings.stat_number != blank -%}
+            <div class="sustainability-feature__stats">
+              <span class="sustainability-feature__stat-number">{{ block.settings.stat_number | escape }}</span>
+              <span class="sustainability-feature__stat-label">{{ block.settings.stat_label | escape }}</span>
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Sustainability Features",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Unsere Nachhaltigkeits-Initiative",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Small"
+        },
+        {
+          "value": "h1",
+          "label": "Medium"
+        },
+        {
+          "value": "h0",
+          "label": "Large"
+        }
+      ],
+      "default": "h1",
+      "label": "Heading Size"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ],
+      "default": "center",
+      "label": "Text Alignment"
+    },
+    {
+      "type": "select",
+      "id": "card_text_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ],
+      "default": "center",
+      "label": "Card Text Alignment"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 60,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "label": "Icon Size",
+      "default": 80
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        {
+          "value": "background-1",
+          "label": "Background 1"
+        },
+        {
+          "value": "background-2",
+          "label": "Background 2"
+        },
+        {
+          "value": "inverse",
+          "label": "Inverse"
+        },
+        {
+          "value": "accent-1",
+          "label": "Accent 1"
+        },
+        {
+          "value": "accent-2",
+          "label": "Accent 2"
+        }
+      ],
+      "default": "background-1",
+      "label": "Color Scheme"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Sustainability Feature",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "options": [
+            {
+              "value": "icon-leaf.svg",
+              "label": "Leaf"
+            },
+            {
+              "value": "icon-heart.svg",
+              "label": "Heart"
+            },
+            {
+              "value": "icon-truck.svg",
+              "label": "Delivery"
+            },
+            {
+              "value": "icon-return.svg",
+              "label": "Recycle"
+            }
+          ],
+          "default": "icon-leaf.svg",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "default": "CO2 Reduktion",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Jedes E-Bike ersetzt durchschnittlich 50 Autofahrten pro Jahr und reduziert Ihren CO2-Fußabdruck erheblich.</p>",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "stat_number",
+          "label": "Statistic Number (e.g., 75%)"
+        },
+        {
+          "type": "text",
+          "id": "stat_label",
+          "label": "Statistic Label (e.g., weniger CO2)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sustainability Features",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "icon-leaf.svg",
+            "title": "CO2 Reduktion",
+            "text": "<p>Jedes E-Bike ersetzt durchschnittlich 50 Autofahrten pro Jahr und reduziert Ihren CO2-Fußabdruck erheblich.</p>",
+            "stat_number": "75%",
+            "stat_label": "weniger CO2"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "icon-heart.svg",
+            "title": "Gesunde Mobilität",
+            "text": "<p>E-Bikes fördern aktive Bewegung und verbessern die Gesundheit, während sie gleichzeitig umweltfreundlich sind.</p>",
+            "stat_number": "45min",
+            "stat_label": "tägl. Bewegung"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "icon-return.svg",
+            "title": "Recycling Program",
+            "text": "<p>Wir nehmen alte Fahrräder und E-Bikes zurück und sorgen für fachgerechtes Recycling aller Komponenten.</p>",
+            "stat_number": "95%",
+            "stat_label": "recycelbar"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

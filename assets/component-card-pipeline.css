@@ -48,33 +48,62 @@
   opacity: 1;
 }
 
-/* Product Badges */
+/* Product Badges - PIPELINE STYLE WITH SAVE AMOUNTS */
 .pipeline-product-card .card__badge {
   position: absolute;
   top: 1rem;
   left: 1rem;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .pipeline-product-card .badge {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
   color: #2c2c2c;
-  padding: 0.5rem 1rem;
-  font-size: 1.2rem;
-  font-weight: 400;
+  padding: 0.6rem 1.2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   border-radius: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .pipeline-product-card .badge--sold-out {
-  background: rgba(220, 38, 38, 0.9);
+  background: rgba(220, 38, 38, 0.95);
   color: white;
+  border-color: rgba(220, 38, 38, 0.3);
 }
 
 .pipeline-product-card .badge--on-sale {
-  background: rgba(34, 197, 94, 0.9);
+  background: rgba(34, 197, 94, 0.95);
   color: white;
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+.pipeline-product-card .badge--save {
+  background: rgba(59, 130, 246, 0.95);
+  color: white;
+  border-color: rgba(59, 130, 246, 0.3);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+/* Sale pricing display */
+.pipeline-product-card .price--on-sale .price__sale {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.pipeline-product-card .price--on-sale .price__regular {
+  color: #9ca3af;
+  text-decoration: line-through;
+  font-size: 1.2rem;
+  margin-left: 0.5rem;
 }
 
 /* Quick Actions - View & Buy */

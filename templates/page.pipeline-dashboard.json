@@ -1,0 +1,54 @@
+{
+  "sections": {
+    "pipeline-header": {
+      "type": "pipeline-dashboard-header",
+      "settings": {
+        "title": "Pipeline Theme Control Center",
+        "subtitle": "Manage all your Pipeline premium features in one place"
+      }
+    },
+    "pipeline-controls": {
+      "type": "pipeline-master-control",
+      "settings": {
+        "enable_all_pipeline": true,
+        "enable_enhanced_search": true,
+        "search_placeholder": "Search our e-bikes...",
+        "search_blur": 10,
+        "search_button_color": "#2c2c2c",
+        "enable_image_zoom": true,
+        "zoom_level": 2,
+        "mobile_zoom_level": 1.5,
+        "enable_enhanced_cart": true,
+        "cart_width": 420,
+        "cart_show_count_badge": true,
+        "enable_gallery_enhancements": true,
+        "gallery_border_radius": 12,
+        "enable_animations": true,
+        "animation_speed": "normal",
+        "enable_lazy_loading": true,
+        "enable_prefetching": true
+      }
+    },
+    "pipeline-status": {
+      "type": "pipeline-feature-status",
+      "settings": {
+        "show_performance_metrics": true,
+        "show_feature_usage": true
+      }
+    },
+    "pipeline-identifier": {
+      "type": "pipeline-feature-identifier",
+      "settings": {
+        "show_visual_guide": true,
+        "show_test_buttons": true,
+        "show_section_guide": true
+      }
+    }
+  },
+  "order": [
+    "pipeline-header",
+    "pipeline-controls", 
+    "pipeline-status",
+    "pipeline-identifier"
+  ]
+}
