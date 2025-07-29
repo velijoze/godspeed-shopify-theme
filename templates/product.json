@@ -5,7 +5,7 @@
       "settings": {}
     },
     "main": {
-      "type": "main-product",
+      "type": "pipeline-main-product",
       "blocks": {
         "vendor": {
           "type": "text",
