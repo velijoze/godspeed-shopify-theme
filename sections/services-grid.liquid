@@ -143,7 +143,7 @@
     {
       "type": "text",
       "id": "heading",
-      "default": "Unsere Services",
+      "default": "{{ 'sections.services.heading' | t }}",
       "label": "Heading"
     },
     {
@@ -352,27 +352,27 @@
           "type": "service",
           "settings": {
             "icon": "icon-price-tag.svg",
-            "title": "0% Finanzierung",
-            "text": "<p>Bis zu 36 Monate zinsfrei finanzieren. Faire Konditionen ohne versteckte Kosten.</p>",
-            "button_label": "Mehr erfahren"
+            "title": "{{ 'sections.services.financing_title' | t }}",
+            "text": "<p>{{ 'sections.services.financing_text' | t }}</p>",
+            "button_label": "{{ 'sections.services.learn_more' | t }}"
           }
         },
         {
           "type": "service",
           "settings": {
             "icon": "icon-heart.svg",
-            "title": "Persönliche Beratung",
-            "text": "<p>Unsere Experten helfen Ihnen, das perfekte Fahrrad für Ihre Bedürfnisse zu finden.</p>",
-            "button_label": "Beratung buchen"
+            "title": "{{ 'sections.services.consultation_title' | t }}",
+            "text": "<p>{{ 'sections.services.consultation_text' | t }}</p>",
+            "button_label": "{{ 'sections.services.book_consultation' | t }}"
           }
         },
         {
           "type": "service",
           "settings": {
             "icon": "icon-return.svg",
-            "title": "Professioneller Service",
-            "text": "<p>Wartung, Reparatur und lebenslange Unterstützung von unserem Fachteam.</p>",
-            "button_label": "Service buchen"
+            "title": "{{ 'sections.services.professional_title' | t }}",
+            "text": "<p>{{ 'sections.services.professional_text' | t }}</p>",
+            "button_label": "{{ 'sections.services.book_service' | t }}"
           }
         }
       ]

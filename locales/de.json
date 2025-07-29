@@ -561,5 +561,34 @@
     "frequently_bought": "Oft zusammen gekauft",
     "complete_setup": "Komplettiere dein E-Bike Setup",
     "you_may_like": "Das könnte dir auch gefallen"
+  },
+  "sections": {
+    "services": {
+      "heading": "Unsere Services",
+      "financing_title": "0% Finanzierung",
+      "financing_text": "Bis zu 36 Monate zinsfrei finanzieren. Faire Konditionen ohne versteckte Kosten.",
+      "learn_more": "Mehr erfahren",
+      "consultation_title": "Persönliche Beratung",
+      "consultation_text": "Unsere Experten helfen Ihnen, das perfekte Fahrrad für Ihre Bedürfnisse zu finden.",
+      "book_consultation": "Beratung buchen",
+      "professional_title": "Professioneller Service",
+      "professional_text": "Wartung, Reparatur und lebenslange Unterstützung von unserem Fachteam.",
+      "book_service": "Service buchen"
+    },
+    "sustainability": {
+      "features_heading": "Unsere Nachhaltigkeits-Initiative",
+      "hero_heading": "Nachhaltigkeit",
+      "hero_subheading": "Unsere Umwelt-Initiative"
+    }
+  },
+  "chat": {
+    "chat_with_us": "Mit uns chatten",
+    "online_now": "Jetzt online", 
+    "type_message": "Nachricht eingeben..."
+  },
+  "navigation": {
+    "view_all_commuter": "Alle City E-Bikes",
+    "view_all_mountain": "Alle Mountain E-Bikes",
+    "view_all_cargo": "Alle Cargo E-Bikes"
   }
 }

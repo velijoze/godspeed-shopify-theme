@@ -562,5 +562,34 @@
     "frequently_bought": "Frequently Bought Together",
     "complete_setup": "Complete your e-bike setup",
     "you_may_like": "You may also like"
+  },
+  "sections": {
+    "services": {
+      "heading": "Our Services",
+      "financing_title": "0% Financing",
+      "financing_text": "Finance up to 36 months interest-free. Fair conditions without hidden costs.",
+      "learn_more": "Learn more",
+      "consultation_title": "Personal Consultation",
+      "consultation_text": "Our experts help you find the perfect bike for your needs.",
+      "book_consultation": "Book consultation",
+      "professional_title": "Professional Service",
+      "professional_text": "Maintenance, repair and lifetime support from our expert team.",
+      "book_service": "Book service"
+    },
+    "sustainability": {
+      "features_heading": "Our Sustainability Initiative",
+      "hero_heading": "Sustainability",
+      "hero_subheading": "Our Environmental Initiative"
+    }
+  },
+  "chat": {
+    "chat_with_us": "Chat with us",
+    "online_now": "Online now",
+    "type_message": "Type your message..."
+  },
+  "navigation": {
+    "view_all_commuter": "View All Commuter",
+    "view_all_mountain": "View All Mountain", 
+    "view_all_cargo": "View All Cargo"
   }
 }
