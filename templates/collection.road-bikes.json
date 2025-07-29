@@ -12,7 +12,7 @@
         "color_scheme": "inverse"
       }
     },
-    "mountain-bike-guide": {
+    "road-bike-guide": {
       "type": "rich-text",
       "settings": {
         "desktop_content_position": "center",
@@ -26,23 +26,23 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "🏔️ Mountain Bike Categories",
+            "heading": "<� Road Bike Categories (Strada)",
             "heading_size": "h2"
           }
         },
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p><strong>Cross Country (XC):</strong> Lightweight, efficient bikes for racing and fast trail riding<br><strong>Trail:</strong> Versatile all-around bikes for most mountain bike trails<br><strong>Enduro/All-Mountain:</strong> Aggressive bikes for steep, technical terrain<br><strong>Downhill:</strong> Heavy-duty bikes built for lift-accessed downhill racing<br><strong>Fat Bikes:</strong> Wide-tire bikes for snow, sand, and extreme conditions</p>"
+            "text": "<p><strong>Racing/Performance:</strong> Lightweight, aggressive geometry for competitive cycling<br><strong>Endurance/Comfort:</strong> Relaxed geometry for long-distance comfort<br><strong>Aero Bikes:</strong> Aerodynamic designs for time trials and racing<br><strong>Time Trial/Triathlon:</strong> Ultra-aero bikes for against-the-clock racing<br><strong>Touring:</strong> Built for loaded touring with strong frames and wide gear ranges</p>"
           }
         },
         "button": {
           "type": "button",
           "settings": {
-            "button_label": "🤖 Compare Mountain Bikes with AI",
+            "button_label": "> Compare Road Bikes with AI",
             "button_link": "/pages/compare",
             "button_style_secondary": false,
-            "button_label_2": "📏 Find Your Size",
+            "button_label_2": "=� Find Your Size",
             "button_link_2": "/pages/size-guide",
             "button_style_secondary_2": true
           }
@@ -85,7 +85,7 @@
   },
   "order": [
     "banner",
-    "mountain-bike-guide", 
+    "road-bike-guide", 
     "toolbar",
     "product-grid"
   ]
