@@ -525,5 +525,37 @@
       "send_on": "YYYY-MM-DD",
       "send_on_label": "Send on (optional)"
     }
+  },
+  "pages": {
+    "about": {
+      "heading": "About Godspeed",
+      "subheading": "Sustainable mobility for a better future",
+      "description": "Godspeed stands for sustainable mobility and unbeatable prices. As a Swiss company, we combine traditional quality with innovative technology.",
+      "our_story": "Our Story",
+      "story_text": "<p>Since our founding, we have specialized in offering high-quality bicycles and e-bikes at unbeatable prices. Our team of experienced bicycle experts carefully selects each product to ensure it meets our high quality standards.</p><p>We believe that sustainable mobility should be accessible to everyone. That's why we offer not only first-class products, but also comprehensive advice and professional service.</p>",
+      "mission_heading": "Our Mission",
+      "mission_text": "Making high-quality mobility accessible to everyone while protecting our planet.",
+      "customers_label": "Satisfied Customers"
+    }
+  },
+  "products": {
+    "specifications": "Specifications",
+    "shipping_returns": "Shipping & Returns",
+    "shipping_content": "<h4>🚚 Shipping Information</h4><ul><li>Free shipping on orders over $100</li><li>Standard delivery: 3-7 business days</li><li>Express delivery: 1-3 business days</li><li>International shipping available</li></ul><h4>↩️ Returns & Exchanges</h4><ul><li>30-day return policy</li><li>Items must be unused and in original packaging</li><li>Free returns for defective items</li><li>Customer pays return shipping for exchanges</li></ul>",
+    "care_title": "E-Bike Care",
+    "care_content": "<h4>🔋 Battery Care</h4><ul><li>Charge battery after each ride</li><li>Store in cool, dry place</li><li>Avoid extreme temperatures</li><li>Monthly full discharge recommended</li></ul><h4>🛠️ Maintenance</h4><ul><li>Regular tire pressure checks</li><li>Chain lubrication every 100 miles</li><li>Annual professional service recommended</li><li>Keep electrical connections clean and dry</li></ul>",
+    "security_title": "Secure Checkout",
+    "security_text": "256-bit SSL Encryption",
+    "free_shipping": "Free Shipping",
+    "free_shipping_threshold": "On orders over $100",
+    "guarantee_title": "30-Day Guarantee",
+    "guarantee_text": "Risk-free returns",
+    "payment_title": "Guaranteed Safe Checkout",
+    "questions_title": "Questions?",
+    "questions_text": "Ask an expert",
+    "phone_title": "Call Us",  
+    "frequently_bought": "Frequently Bought Together",
+    "complete_setup": "Complete your e-bike setup",
+    "you_may_like": "You may also like"
   }
 }

@@ -536,5 +536,37 @@
       "expanded": "Formulaire de destinataire de carte-cadeau agrandi",
       "collapsed": "Formulaire de destinataire de carte-cadeau réduit"
     }
+  },
+  "pages": {
+    "about": {
+      "heading": "À propos de Godspeed",
+      "subheading": "Mobilité durable pour un avenir meilleur",
+      "description": "Godspeed représente la mobilité durable et des prix imbattables. En tant qu'entreprise suisse, nous combinons la qualité traditionnelle avec une technologie innovante.",
+      "our_story": "Notre Histoire",
+      "story_text": "<p>Depuis notre fondation, nous nous sommes spécialisés dans l'offre de vélos et vélos électriques de haute qualité à des prix imbattables. Notre équipe d'experts en vélos expérimentés sélectionne soigneusement chaque produit pour s'assurer qu'il répond à nos normes de qualité élevées.</p><p>Nous croyons que la mobilité durable devrait être accessible à tous. C'est pourquoi nous offrons non seulement des produits de première classe, mais aussi des conseils complets et un service professionnel.</p>",
+      "mission_heading": "Notre Mission",
+      "mission_text": "Rendre la mobilité de haute qualité accessible à tous tout en protégeant notre planète.",
+      "customers_label": "Clients Satisfaits"
+    }
+  },
+  "products": {
+    "specifications": "Spécifications",
+    "shipping_returns": "Expédition & Retours",
+    "shipping_content": "<h4>🚚 Informations d'expédition</h4><ul><li>Livraison gratuite sur commandes de plus de 100 CHF</li><li>Livraison standard: 3-7 jours ouvrables</li><li>Livraison express: 1-3 jours ouvrables</li><li>Expédition internationale disponible</li></ul><h4>↩️ Retours & Échanges</h4><ul><li>Politique de retour de 30 jours</li><li>Les articles doivent être inutilisés et dans l'emballage d'origine</li><li>Retours gratuits pour articles défectueux</li><li>Le client paie les frais de retour pour les échanges</li></ul>",
+    "care_title": "Entretien E-Bike",
+    "care_content": "<h4>🔋 Entretien de la Batterie</h4><ul><li>Charger la batterie après chaque trajet</li><li>Stocker dans un endroit frais et sec</li><li>Éviter les températures extrêmes</li><li>Décharge complète mensuelle recommandée</li></ul><h4>🛠️ Maintenance</h4><ul><li>Vérifications régulières de la pression des pneus</li><li>Lubrification de la chaîne tous les 100 miles</li><li>Service professionnel annuel recommandé</li><li>Garder les connexions électriques propres et sèches</li></ul>",
+    "security_title": "Commande Sécurisée",
+    "security_text": "Cryptage SSL 256-bit",
+    "free_shipping": "Livraison Gratuite",
+    "free_shipping_threshold": "Sur commandes de plus de 100 CHF",
+    "guarantee_title": "Garantie 30 Jours",
+    "guarantee_text": "Retours sans risque",
+    "payment_title": "Commande Sécurisée Garantie",
+    "questions_title": "Questions?",
+    "questions_text": "Demander à un expert",
+    "phone_title": "Appelez-nous",
+    "frequently_bought": "Souvent Achetés Ensemble",
+    "complete_setup": "Complétez votre configuration e-bike",
+    "you_may_like": "Vous pourriez aussi aimer"
   }
 }

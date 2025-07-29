@@ -524,5 +524,37 @@
       "expanded": "Formular für den Empfänger des Geschenkgutscheins erweitert",
       "collapsed": "Formular für den Empfänger des Geschenkgutscheins minimiert"
     }
+  },
+  "pages": {
+    "about": {
+      "heading": "Über Godspeed",
+      "subheading": "Nachhaltige Mobilität für eine bessere Zukunft",
+      "description": "Godspeed steht für nachhaltige Mobilität und unschlagbare Preise. Als Schweizer Unternehmen verbinden wir traditionelle Qualität mit innovativer Technik.",
+      "our_story": "Unsere Geschichte",
+      "story_text": "<p>Seit unserer Gründung haben wir uns darauf spezialisiert, hochwertige Fahrräder und E-Bikes zu unschlagbaren Preisen anzubieten. Unser Team aus erfahrenen Fahrradexperten wählt jedes Produkt sorgfältig aus, um sicherzustellen, dass es unseren hohen Qualitätsstandards entspricht.</p><p>Wir glauben daran, dass nachhaltige Mobilität für alle zugänglich sein sollte. Deshalb bieten wir nicht nur erstklassige Produkte, sondern auch umfassende Beratung und professionellen Service.</p>",
+      "mission_heading": "Unsere Mission",
+      "mission_text": "Hochwertige Mobilität für alle zugänglich machen, während wir gleichzeitig unseren Planeten schützen.",
+      "customers_label": "Zufriedene Kunden"
+    }
+  },
+  "products": {
+    "specifications": "Spezifikationen",
+    "shipping_returns": "Versand & Rückgabe",
+    "shipping_content": "<h4>🚚 Versandinformationen</h4><ul><li>Kostenloser Versand ab 100 CHF</li><li>Standardlieferung: 3-7 Werktage</li><li>Expresslieferung: 1-3 Werktage</li><li>Internationaler Versand verfügbar</li></ul><h4>↩️ Rückgabe & Umtausch</h4><ul><li>30-Tage-Rückgaberecht</li><li>Artikel müssen unbenutzt und in Originalverpackung sein</li><li>Kostenlose Rückgabe bei defekten Artikeln</li><li>Kunde trägt Rücksendekosten bei Umtausch</li></ul>",
+    "care_title": "E-Bike Pflege",
+    "care_content": "<h4>🔋 Akku-Pflege</h4><ul><li>Akku nach jeder Fahrt laden</li><li>An kühlem, trockenem Ort lagern</li><li>Extreme Temperaturen vermeiden</li><li>Monatliche Vollentladung empfohlen</li></ul><h4>🛠️ Wartung</h4><ul><li>Regelmäßige Reifendruckkontrolle</li><li>Kettenschmierung alle 100 Meilen</li><li>Jährlicher Profi-Service empfohlen</li><li>Elektrische Verbindungen sauber und trocken halten</li></ul>",
+    "security_title": "Sicherer Checkout",
+    "security_text": "256-Bit SSL-Verschlüsselung",
+    "free_shipping": "Kostenloser Versand",
+    "free_shipping_threshold": "Ab Bestellungen über 100 CHF",
+    "guarantee_title": "30-Tage-Garantie",
+    "guarantee_text": "Risikofreie Rückgabe",
+    "payment_title": "Garantiert sicherer Checkout",
+    "questions_title": "Fragen?",
+    "questions_text": "Experten fragen",
+    "phone_title": "Anrufen",
+    "frequently_bought": "Oft zusammen gekauft",
+    "complete_setup": "Komplettiere dein E-Bike Setup",
+    "you_may_like": "Das könnte dir auch gefallen"
   }
 }

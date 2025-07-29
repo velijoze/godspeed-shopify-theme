@@ -6,20 +6,20 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Über Godspeed",
+            "heading": "{{ 'pages.about.heading' | t }}",
             "heading_size": "h0"
           }
         },
         "subheading": {
           "type": "subheading",
           "settings": {
-            "subheading": "Nachhaltige Mobilität für eine bessere Zukunft"
+            "subheading": "{{ 'pages.about.subheading' | t }}"
           }
         },
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>Godspeed steht für nachhaltige Mobilität und unschlagbare Preise. Als Schweizer Unternehmen verbinden wir traditionelle Qualität mit innovativer Technik.</p>",
+            "text": "<p>{{ 'pages.about.description' | t }}</p>",
             "text_style": "subtitle"
           }
         }
@@ -43,22 +43,22 @@
         "story_text": {
           "type": "text",
           "settings": {
-            "text": "<p>Seit unserer Gründung haben wir uns darauf spezialisiert, hochwertige Fahrräder und E-Bikes zu unschlagbaren Preisen anzubieten. Unser Team aus erfahrenen Fahrradexperten wählt jedes Produkt sorgfältig aus, um sicherzustellen, dass es unseren hohen Qualitätsstandards entspricht.</p><p>Wir glauben daran, dass nachhaltige Mobilität für alle zugänglich sein sollte. Deshalb bieten wir nicht nur erstklassige Produkte, sondern auch umfassende Beratung und professionellen Service.</p>",
+            "text": "{{ 'pages.about.story_text' | t }}",
             "text_style": "body"
           }
         },
         "highlight": {
           "type": "highlight",
           "settings": {
-            "highlight_heading": "Unsere Mission",
-            "highlight_text": "Hochwertige Mobilität für alle zugänglich machen, während wir gleichzeitig unseren Planeten schützen."
+            "highlight_heading": "{{ 'pages.about.mission_heading' | t }}",
+            "highlight_text": "{{ 'pages.about.mission_text' | t }}"
           }
         },
         "stats": {
           "type": "stats",
           "settings": {
             "stat_number": "1000+",
-            "stat_label": "Zufriedene Kunden"
+            "stat_label": "{{ 'pages.about.customers_label' | t }}"
           }
         }
       },
@@ -68,7 +68,7 @@
         "stats"
       ],
       "settings": {
-        "heading": "Unsere Geschichte",
+        "heading": "{{ 'pages.about.our_story' | t }}",
         "heading_size": "h1",
         "image_position": "right",
         "text_alignment": "left",

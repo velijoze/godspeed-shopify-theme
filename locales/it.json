@@ -536,5 +536,37 @@
       "expanded": "Modulo destinatario del buono regalo espanso",
       "collapsed": "Modulo destinatario del buono regalo compresso"
     }
+  },
+  "pages": {
+    "about": {
+      "heading": "Su Godspeed",
+      "subheading": "Mobilità sostenibile per un futuro migliore",
+      "description": "Godspeed rappresenta la mobilità sostenibile e prezzi imbattibili. Come azienda svizzera, combiniamo la qualità tradizionale con la tecnologia innovativa.",
+      "our_story": "La Nostra Storia",
+      "story_text": "<p>Dalla nostra fondazione, ci siamo specializzati nell'offrire biciclette ed e-bike di alta qualità a prezzi imbattibili. Il nostro team di esperti di biciclette esperti seleziona attentamente ogni prodotto per assicurarsi che soddisfi i nostri elevati standard di qualità.</p><p>Crediamo che la mobilità sostenibile dovrebbe essere accessibile a tutti. Ecco perché offriamo non solo prodotti di prima classe, ma anche consulenza completa e servizio professionale.</p>",
+      "mission_heading": "La Nostra Missione",
+      "mission_text": "Rendere la mobilità di alta qualità accessibile a tutti proteggendo al contempo il nostro pianeta.",
+      "customers_label": "Clienti Soddisfatti"
+    }
+  },
+  "products": {
+    "specifications": "Specifiche",
+    "shipping_returns": "Spedizione & Resi",
+    "shipping_content": "<h4>🚚 Informazioni di Spedizione</h4><ul><li>Spedizione gratuita su ordini superiori a 100 CHF</li><li>Consegna standard: 3-7 giorni lavorativi</li><li>Consegna express: 1-3 giorni lavorativi</li><li>Spedizione internazionale disponibile</li></ul><h4>↩️ Resi & Cambi</h4><ul><li>Politica di reso di 30 giorni</li><li>Gli articoli devono essere inutilizzati e nella confezione originale</li><li>Resi gratuiti per articoli difettosi</li><li>Il cliente paga le spese di spedizione per i cambi</li></ul>",
+    "care_title": "Cura E-Bike",
+    "care_content": "<h4>🔋 Cura della Batteria</h4><ul><li>Caricare la batteria dopo ogni corsa</li><li>Conservare in luogo fresco e asciutto</li><li>Evitare temperature estreme</li><li>Scarica completa mensile consigliata</li></ul><h4>🛠️ Manutenzione</h4><ul><li>Controlli regolari della pressione dei pneumatici</li><li>Lubrificazione catena ogni 100 miglia</li><li>Servizio professionale annuale consigliato</li><li>Mantenere le connessioni elettriche pulite e asciutte</li></ul>",
+    "security_title": "Checkout Sicuro",
+    "security_text": "Crittografia SSL a 256-bit",
+    "free_shipping": "Spedizione Gratuita",
+    "free_shipping_threshold": "Su ordini superiori a 100 CHF",
+    "guarantee_title": "Garanzia 30 Giorni",
+    "guarantee_text": "Resi senza rischio",
+    "payment_title": "Checkout Sicuro Garantito",
+    "questions_title": "Domande?",
+    "questions_text": "Chiedi a un esperto",
+    "phone_title": "Chiamaci",
+    "frequently_bought": "Spesso Acquistati Insieme",
+    "complete_setup": "Completa la tua configurazione e-bike",
+    "you_may_like": "Potrebbe piacerti anche"
   }
 }
