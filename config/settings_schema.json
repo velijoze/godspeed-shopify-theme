@@ -1574,6 +1574,120 @@
         "label": "Enable AI features on mobile",
         "default": true,
         "info": "Show AI insights and recommendations on mobile devices"
+      },
+      {
+        "type": "header",
+        "content": "AI Provider Configuration"
+      },
+      {
+        "type": "password",
+        "id": "claude_api_key",
+        "label": "Claude API key",
+        "info": "API key for Claude (primary AI provider)"
+      },
+      {
+        "type": "password",
+        "id": "openai_api_key",
+        "label": "OpenAI API key",
+        "info": "API key for OpenAI (secondary AI provider)"
+      },
+      {
+        "type": "password",
+        "id": "gemini_api_key",
+        "label": "Google Gemini API key",
+        "info": "API key for Google Gemini (tertiary AI provider)"
+      },
+      {
+        "type": "select",
+        "id": "ai_primary_provider",
+        "label": "Primary AI provider",
+        "default": "claude",
+        "options": [
+          {
+            "value": "claude",
+            "label": "Claude (Anthropic)"
+          },
+          {
+            "value": "openai",
+            "label": "OpenAI"
+          },
+          {
+            "value": "gemini",
+            "label": "Google Gemini"
+          }
+        ],
+        "info": "Primary AI provider for chatbot and content generation"
+      },
+      {
+        "type": "checkbox",
+        "id": "ai_fallback_enabled",
+        "label": "Enable AI provider fallback",
+        "default": true,
+        "info": "Automatically try other providers if primary fails"
+      },
+      {
+        "type": "header",
+        "content": "Content Generation Settings"
+      },
+      {
+        "type": "checkbox",
+        "id": "ai_content_generation_enabled",
+        "label": "Enable AI content generation",
+        "default": false,
+        "info": "Automatically generate blog posts and product descriptions"
+      },
+      {
+        "type": "select",
+        "id": "content_generation_schedule",
+        "label": "Content generation schedule",
+        "default": "weekly",
+        "options": [
+          {
+            "value": "daily",
+            "label": "Daily"
+          },
+          {
+            "value": "weekly",
+            "label": "Weekly"
+          },
+          {
+            "value": "monthly",
+            "label": "Monthly"
+          },
+          {
+            "value": "manual",
+            "label": "Manual only"
+          }
+        ],
+        "info": "How frequently to generate new content"
+      },
+      {
+        "type": "checkbox",
+        "id": "ai_product_descriptions",
+        "label": "Auto-generate product descriptions",
+        "default": false,
+        "info": "Use AI to enhance product descriptions"
+      },
+      {
+        "type": "range",
+        "id": "ai_rate_limit_requests",
+        "min": 10,
+        "max": 1000,
+        "step": 10,
+        "label": "AI requests per hour",
+        "default": 100,
+        "info": "Rate limit for AI API requests"
+      },
+      {
+        "type": "range",
+        "id": "ai_cache_duration",
+        "min": 5,
+        "max": 1440,
+        "step": 5,
+        "unit": "min",
+        "label": "AI response cache duration",
+        "default": 60,
+        "info": "How long to cache AI responses"
       }
     ]
   },
@@ -1679,6 +1793,839 @@
         "label": "Show chat on mobile",
         "default": true,
         "info": "Display chat widget on mobile devices"
+      }
+    ]
+  },
+  {
+    "name": "🔧 Godspeed E-Bike Features",
+    "settings": [
+      {
+        "type": "header",
+        "content": "E-Bike Customer Journey Tools"
+      },
+      {
+        "type": "paragraph",
+        "content": "Control all custom e-bike features and tools for your customers"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_bike_comparison",
+        "label": "Enable bike comparison tool",
+        "default": true,
+        "info": "Allow customers to compare up to 3 e-bikes side-by-side"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_size_calculator",
+        "label": "Enable size calculator",
+        "default": true,
+        "info": "Interactive tool to help customers find the right bike size"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_financing_calculator",
+        "label": "Enable financing calculator",
+        "default": true,
+        "info": "0% financing calculator with monthly payment options"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_range_calculator",
+        "label": "Enable range calculator",
+        "default": true,
+        "info": "Advanced multi-factor e-bike range estimation tool"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_test_ride_booking",
+        "label": "Enable test ride booking",
+        "default": true,
+        "info": "Complete test ride appointment booking system"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_service_booking",
+        "label": "Enable service booking",
+        "default": true,
+        "info": "Professional service appointment scheduling"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_wishlist",
+        "label": "Enable wishlist functionality",
+        "default": true,
+        "info": "Allow customers to save favorite products"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_warranty_page",
+        "label": "Enable warranty information page",
+        "default": true,
+        "info": "Comprehensive warranty and protection information"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_guides",
+        "label": "Enable e-bike guides",
+        "default": true,
+        "info": "Comprehensive buying and maintenance guides"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_faq",
+        "label": "Enable interactive FAQ",
+        "default": true,
+        "info": "Collapsible FAQ system with search functionality"
+      },
+      {
+        "type": "header",
+        "content": "Magnifying Glass Settings"
+      },
+      {
+        "type": "select",
+        "id": "magnify_position",
+        "label": "Magnifying glass position",
+        "default": "top-right",
+        "options": [
+          {
+            "value": "top-right",
+            "label": "Top right"
+          },
+          {
+            "value": "bottom-left",
+            "label": "Bottom left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "custom",
+            "label": "Custom position"
+          }
+        ],
+        "info": "Position of the magnifying glass icon on product images"
+      },
+      {
+        "type": "range",
+        "id": "magnify_size",
+        "min": 20,
+        "max": 80,
+        "step": 5,
+        "unit": "px",
+        "label": "Magnifying glass icon size",
+        "default": 40,
+        "info": "Size of the magnifying glass icon"
+      },
+      {
+        "type": "header",
+        "content": "Comparison Tool Settings"
+      },
+      {
+        "type": "range",
+        "id": "comparison_max_bikes",
+        "min": 2,
+        "max": 4,
+        "step": 1,
+        "label": "Maximum bikes in comparison",
+        "default": 3,
+        "info": "Maximum number of bikes customers can compare at once"
+      },
+      {
+        "type": "select",
+        "id": "calculator_units",
+        "label": "Calculator display units",
+        "default": "metric",
+        "options": [
+          {
+            "value": "metric",
+            "label": "Metric (km, kg, cm)"
+          },
+          {
+            "value": "imperial",
+            "label": "Imperial (miles, lbs, inches)"
+          },
+          {
+            "value": "both",
+            "label": "Both with toggle"
+          }
+        ],
+        "info": "Units displayed in calculators and specifications"
+      },
+      {
+        "type": "header",
+        "content": "Mobile Optimization"
+      },
+      {
+        "type": "checkbox",
+        "id": "features_mobile_visible",
+        "label": "Show all features on mobile",
+        "default": true,
+        "info": "Display all e-bike tools on mobile devices"
+      },
+      {
+        "type": "checkbox",
+        "id": "mobile_simplified_ui",
+        "label": "Use simplified mobile UI",
+        "default": true,
+        "info": "Streamlined interface for better mobile experience"
+      },
+      {
+        "type": "header",
+        "content": "Feature Notifications"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_booking_confirmations",
+        "label": "Send booking confirmation emails",
+        "default": true,
+        "info": "Automatic email confirmations for test rides and services"
+      }
+    ]
+  },
+  {
+    "name": "🏪 Store Locations",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Swiss Store Locations Management"
+      },
+      {
+        "type": "paragraph",
+        "content": "Configure all your physical store locations across Switzerland"
+      },
+      {
+        "type": "header",
+        "content": "Zürich Location"
+      },
+      {
+        "type": "text",
+        "id": "location_zurich_name",
+        "label": "Store name",
+        "default": "Godspeed Zürich",
+        "info": "Display name for Zürich location"
+      },
+      {
+        "type": "textarea",
+        "id": "location_zurich_address",
+        "label": "Address",
+        "default": "Bahnhofstrasse 1\n8001 Zürich\nSchweiz",
+        "info": "Full address including postal code"
+      },
+      {
+        "type": "text",
+        "id": "location_zurich_phone",
+        "label": "Phone number",
+        "default": "+41 44 123 45 67",
+        "info": "Phone number with country code"
+      },
+      {
+        "type": "text",
+        "id": "location_zurich_email",
+        "label": "Email address",
+        "default": "zurich@godspeed.ch",
+        "info": "Location-specific email"
+      },
+      {
+        "type": "textarea",
+        "id": "location_zurich_hours",
+        "label": "Business hours",
+        "default": "Mo-Fr: 09:00-18:00\nSa: 09:00-16:00\nSo: Geschlossen",
+        "info": "Opening hours for this location"
+      },
+      {
+        "type": "url",
+        "id": "location_zurich_maps",
+        "label": "Google Maps link",
+        "info": "Link to Google Maps for directions"
+      },
+      {
+        "type": "header",
+        "content": "Basel Location"
+      },
+      {
+        "type": "text",
+        "id": "location_basel_name",
+        "label": "Store name",
+        "default": "Godspeed Basel",
+        "info": "Display name for Basel location"
+      },
+      {
+        "type": "textarea",
+        "id": "location_basel_address",
+        "label": "Address",
+        "default": "Freie Strasse 1\n4001 Basel\nSchweiz",
+        "info": "Full address including postal code"
+      },
+      {
+        "type": "text",
+        "id": "location_basel_phone",
+        "label": "Phone number",
+        "default": "+41 61 123 45 67",
+        "info": "Phone number with country code"
+      },
+      {
+        "type": "text",
+        "id": "location_basel_email",
+        "label": "Email address",
+        "default": "basel@godspeed.ch",
+        "info": "Location-specific email"
+      },
+      {
+        "type": "textarea",
+        "id": "location_basel_hours",
+        "label": "Business hours",
+        "default": "Mo-Fr: 09:00-18:00\nSa: 09:00-16:00\nSo: Geschlossen",
+        "info": "Opening hours for this location"
+      },
+      {
+        "type": "url",
+        "id": "location_basel_maps",
+        "label": "Google Maps link",
+        "info": "Link to Google Maps for directions"
+      },
+      {
+        "type": "header",
+        "content": "Bern Location"
+      },
+      {
+        "type": "text",
+        "id": "location_bern_name",
+        "label": "Store name",
+        "default": "Godspeed Bern",
+        "info": "Display name for Bern location"
+      },
+      {
+        "type": "textarea",
+        "id": "location_bern_address",
+        "label": "Address",
+        "default": "Kramgasse 1\n3011 Bern\nSchweiz",
+        "info": "Full address including postal code"
+      },
+      {
+        "type": "text",
+        "id": "location_bern_phone",
+        "label": "Phone number",
+        "default": "+41 31 123 45 67",
+        "info": "Phone number with country code"
+      },
+      {
+        "type": "text",
+        "id": "location_bern_email",
+        "label": "Email address",
+        "default": "bern@godspeed.ch",
+        "info": "Location-specific email"
+      },
+      {
+        "type": "textarea",
+        "id": "location_bern_hours",
+        "label": "Business hours",
+        "default": "Mo-Fr: 09:00-18:00\nSa: 09:00-16:00\nSo: Geschlossen",
+        "info": "Opening hours for this location"
+      },
+      {
+        "type": "url",
+        "id": "location_bern_maps",
+        "label": "Google Maps link",
+        "info": "Link to Google Maps for directions"
+      },
+      {
+        "type": "header",
+        "content": "Genf Location"
+      },
+      {
+        "type": "text",
+        "id": "location_genf_name",
+        "label": "Store name",
+        "default": "Godspeed Genève",
+        "info": "Display name for Geneva location"
+      },
+      {
+        "type": "textarea",
+        "id": "location_genf_address",
+        "label": "Address",
+        "default": "Rue du Rhône 1\n1204 Genève\nSuisse",
+        "info": "Full address including postal code"
+      },
+      {
+        "type": "text",
+        "id": "location_genf_phone",
+        "label": "Phone number",
+        "default": "+41 22 123 45 67",
+        "info": "Phone number with country code"
+      },
+      {
+        "type": "text",
+        "id": "location_genf_email",
+        "label": "Email address",
+        "default": "geneve@godspeed.ch",
+        "info": "Location-specific email"
+      },
+      {
+        "type": "textarea",
+        "id": "location_genf_hours",
+        "label": "Business hours",
+        "default": "Lu-Ve: 09:00-18:00\nSa: 09:00-16:00\nDi: Fermé",
+        "info": "Opening hours for this location"
+      },
+      {
+        "type": "url",
+        "id": "location_genf_maps",
+        "label": "Google Maps link",
+        "info": "Link to Google Maps for directions"
+      },
+      {
+        "type": "header",
+        "content": "Luzern Location"
+      },
+      {
+        "type": "text",
+        "id": "location_luzern_name",
+        "label": "Store name",
+        "default": "Godspeed Luzern",
+        "info": "Display name for Lucerne location"
+      },
+      {
+        "type": "textarea",
+        "id": "location_luzern_address",
+        "label": "Address",
+        "default": "Kapellplatz 1\n6004 Luzern\nSchweiz",
+        "info": "Full address including postal code"
+      },
+      {
+        "type": "text",
+        "id": "location_luzern_phone",
+        "label": "Phone number",
+        "default": "+41 41 123 45 67",
+        "info": "Phone number with country code"
+      },
+      {
+        "type": "text",
+        "id": "location_luzern_email",
+        "label": "Email address",
+        "default": "luzern@godspeed.ch",
+        "info": "Location-specific email"
+      },
+      {
+        "type": "textarea",
+        "id": "location_luzern_hours",
+        "label": "Business hours",
+        "default": "Mo-Fr: 09:00-18:00\nSa: 09:00-16:00\nSo: Geschlossen",
+        "info": "Opening hours for this location"
+      },
+      {
+        "type": "url",
+        "id": "location_luzern_maps",
+        "label": "Google Maps link",
+        "info": "Link to Google Maps for directions"
+      },
+      {
+        "type": "header",
+        "content": "St. Gallen Location"
+      },
+      {
+        "type": "text",
+        "id": "location_stgallen_name",
+        "label": "Store name",
+        "default": "Godspeed St. Gallen",
+        "info": "Display name for St. Gallen location"
+      },
+      {
+        "type": "textarea",
+        "id": "location_stgallen_address",
+        "label": "Address",
+        "default": "Multergasse 1\n9000 St. Gallen\nSchweiz",
+        "info": "Full address including postal code"
+      },
+      {
+        "type": "text",
+        "id": "location_stgallen_phone",
+        "label": "Phone number",
+        "default": "+41 71 123 45 67",
+        "info": "Phone number with country code"
+      },
+      {
+        "type": "text",
+        "id": "location_stgallen_email",
+        "label": "Email address",
+        "default": "stgallen@godspeed.ch",
+        "info": "Location-specific email"
+      },
+      {
+        "type": "textarea",
+        "id": "location_stgallen_hours",
+        "label": "Business hours",
+        "default": "Mo-Fr: 09:00-18:00\nSa: 09:00-16:00\nSo: Geschlossen",
+        "info": "Opening hours for this location"
+      },
+      {
+        "type": "url",
+        "id": "location_stgallen_maps",
+        "label": "Google Maps link",
+        "info": "Link to Google Maps for directions"
+      }
+    ]
+  },
+  {
+    "name": "💬 Text & Messaging",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Multi-language Content Management"
+      },
+      {
+        "type": "paragraph",
+        "content": "Customize all text content for different languages and features"
+      },
+      {
+        "type": "header",
+        "content": "Feature Button Labels"
+      },
+      {
+        "type": "text",
+        "id": "text_compare_bikes",
+        "label": "Compare bikes button",
+        "default": "E-Bikes vergleichen",
+        "info": "Button text for bike comparison tool"
+      },
+      {
+        "type": "text",
+        "id": "text_size_guide",
+        "label": "Size guide button",
+        "default": "Größenberatung",
+        "info": "Button text for size calculator"
+      },
+      {
+        "type": "text",
+        "id": "text_financing",
+        "label": "Financing button",
+        "default": "Finanzierung berechnen",
+        "info": "Button text for financing calculator"
+      },
+      {
+        "type": "text",
+        "id": "text_range_calculator",
+        "label": "Range calculator button",
+        "default": "Reichweite berechnen",
+        "info": "Button text for range calculator"
+      },
+      {
+        "type": "text",
+        "id": "text_test_ride",
+        "label": "Test ride button",
+        "default": "Probefahrt buchen",
+        "info": "Button text for test ride booking"
+      },
+      {
+        "type": "text",
+        "id": "text_service_booking",
+        "label": "Service booking button",
+        "default": "Service buchen",
+        "info": "Button text for service appointments"
+      },
+      {
+        "type": "text",
+        "id": "text_add_to_wishlist",
+        "label": "Add to wishlist button",
+        "default": "Zur Wunschliste",
+        "info": "Button text for wishlist feature"
+      },
+      {
+        "type": "header",
+        "content": "Success Messages"
+      },
+      {
+        "type": "textarea",
+        "id": "message_booking_success",
+        "label": "Booking confirmation message",
+        "default": "Vielen Dank! Ihre Buchung wurde erfolgreich übermittelt. Sie erhalten in Kürze eine Bestätigungs-E-Mail.",
+        "info": "Message shown after successful booking"
+      },
+      {
+        "type": "textarea",
+        "id": "message_wishlist_added",
+        "label": "Wishlist added message",
+        "default": "Produkt wurde zur Wunschliste hinzugefügt!",
+        "info": "Message when item is added to wishlist"
+      },
+      {
+        "type": "textarea",
+        "id": "message_comparison_added",
+        "label": "Comparison added message",
+        "default": "E-Bike wurde zum Vergleich hinzugefügt!",
+        "info": "Message when bike is added to comparison"
+      },
+      {
+        "type": "header",
+        "content": "Error Messages"
+      },
+      {
+        "type": "textarea",
+        "id": "error_booking_failed",
+        "label": "Booking error message",
+        "default": "Entschuldigung, die Buchung konnte nicht verarbeitet werden. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt.",
+        "info": "Message shown when booking fails"
+      },
+      {
+        "type": "textarea",
+        "id": "error_form_validation",
+        "label": "Form validation error",
+        "default": "Bitte füllen Sie alle erforderlichen Felder aus.",
+        "info": "Message for incomplete forms"
+      },
+      {
+        "type": "textarea",
+        "id": "error_network",
+        "label": "Network error message",
+        "default": "Verbindungsfehler. Bitte überprüfen Sie Ihre Internetverbindung.",
+        "info": "Message for network connectivity issues"
+      },
+      {
+        "type": "header",
+        "content": "Feature Tooltips"
+      },
+      {
+        "type": "text",
+        "id": "tooltip_comparison",
+        "label": "Comparison tooltip",
+        "default": "Bis zu 3 E-Bikes direkt vergleichen",
+        "info": "Tooltip text for comparison feature"
+      },
+      {
+        "type": "text",
+        "id": "tooltip_size_guide",
+        "label": "Size guide tooltip",
+        "default": "Finden Sie die perfekte Rahmengröße",
+        "info": "Tooltip text for size calculator"
+      },
+      {
+        "type": "text",
+        "id": "tooltip_financing",
+        "label": "Financing tooltip",
+        "default": "0% Finanzierung verfügbar",
+        "info": "Tooltip text for financing options"
+      },
+      {
+        "type": "header",
+        "content": "Placeholder Texts"
+      },
+      {
+        "type": "text",
+        "id": "placeholder_name",
+        "label": "Name field placeholder",
+        "default": "Ihr vollständiger Name",
+        "info": "Placeholder for name input fields"
+      },
+      {
+        "type": "text",
+        "id": "placeholder_email",
+        "label": "Email field placeholder",
+        "default": "ihre.email@beispiel.ch",
+        "info": "Placeholder for email input fields"
+      },
+      {
+        "type": "text",
+        "id": "placeholder_phone",
+        "label": "Phone field placeholder",
+        "default": "+41 XX XXX XX XX",
+        "info": "Placeholder for phone input fields"
+      },
+      {
+        "type": "text",
+        "id": "placeholder_message",
+        "label": "Message field placeholder",
+        "default": "Ihre Nachricht oder spezielle Wünsche...",
+        "info": "Placeholder for message/comment fields"
+      }
+    ]
+  },
+  {
+    "name": "🔌 API Integration",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Third-Party API Configuration"
+      },
+      {
+        "type": "paragraph",
+        "content": "Configure external API integrations for enhanced functionality"
+      },
+      {
+        "type": "header",
+        "content": "Cube API (Supplier Integration)"
+      },
+      {
+        "type": "text",
+        "id": "cube_api_endpoint",
+        "label": "Cube API endpoint",
+        "default": "https://api.cube.eu/v1",
+        "info": "Base URL for Cube API integration"
+      },
+      {
+        "type": "password",
+        "id": "cube_api_key",
+        "label": "Cube API key",
+        "info": "Your secure API key for Cube integration"
+      },
+      {
+        "type": "checkbox",
+        "id": "cube_api_enabled",
+        "label": "Enable Cube API integration",
+        "default": false,
+        "info": "Connect to Cube for real-time inventory and pricing"
+      },
+      {
+        "type": "header",
+        "content": "VeloConnect API (Industry Standard)"
+      },
+      {
+        "type": "text",
+        "id": "veloconnect_api_endpoint",
+        "label": "VeloConnect API endpoint",
+        "default": "https://api.veloconnect.com",
+        "info": "Base URL for VeloConnect API"
+      },
+      {
+        "type": "password",
+        "id": "veloconnect_api_key",
+        "label": "VeloConnect API key",
+        "info": "Your secure API key for VeloConnect"
+      },
+      {
+        "type": "checkbox",
+        "id": "veloconnect_api_enabled",
+        "label": "Enable VeloConnect integration",
+        "default": false,
+        "info": "Industry-standard bicycle data exchange"
+      },
+      {
+        "type": "header",
+        "content": "Calendly Integration (Booking)"
+      },
+      {
+        "type": "password",
+        "id": "calendly_api_key",
+        "label": "Calendly API key",
+        "info": "API key for test ride and service booking"
+      },
+      {
+        "type": "text",
+        "id": "calendly_user_url",
+        "label": "Calendly user URL",
+        "default": "https://calendly.com/godspeed-ch",
+        "info": "Your Calendly scheduling URL"
+      },
+      {
+        "type": "checkbox",
+        "id": "calendly_enabled",
+        "label": "Enable Calendly booking",
+        "default": true,
+        "info": "Professional appointment scheduling integration"
+      },
+      {
+        "type": "header",
+        "content": "Google Maps Integration"
+      },
+      {
+        "type": "password",
+        "id": "google_maps_api_key",
+        "label": "Google Maps API key",
+        "info": "API key for store location maps and directions"
+      },
+      {
+        "type": "checkbox",
+        "id": "google_maps_enabled",
+        "label": "Enable Google Maps integration",
+        "default": true,
+        "info": "Display interactive maps for store locations"
+      },
+      {
+        "type": "header",
+        "content": "Sync & Performance Settings"
+      },
+      {
+        "type": "select",
+        "id": "api_sync_frequency",
+        "label": "Data synchronization frequency",
+        "default": "hourly",
+        "options": [
+          {
+            "value": "realtime",
+            "label": "Real-time"
+          },
+          {
+            "value": "15min",
+            "label": "Every 15 minutes"
+          },
+          {
+            "value": "hourly",
+            "label": "Hourly"
+          },
+          {
+            "value": "daily",
+            "label": "Daily"
+          },
+          {
+            "value": "manual",
+            "label": "Manual only"
+          }
+        ],
+        "info": "How often to sync data with external APIs"
+      },
+      {
+        "type": "range",
+        "id": "api_timeout",
+        "min": 5,
+        "max": 60,
+        "step": 5,
+        "unit": "s",
+        "label": "API request timeout",
+        "default": 30,
+        "info": "Maximum wait time for API responses"
+      },
+      {
+        "type": "range",
+        "id": "api_retry_attempts",
+        "min": 1,
+        "max": 5,
+        "step": 1,
+        "label": "Retry attempts on failure",
+        "default": 3,
+        "info": "Number of times to retry failed API calls"
+      },
+      {
+        "type": "range",
+        "id": "api_cache_duration",
+        "min": 5,
+        "max": 1440,
+        "step": 5,
+        "unit": "min",
+        "label": "Cache duration",
+        "default": 60,
+        "info": "How long to cache API responses"
+      },
+      {
+        "type": "header",
+        "content": "Webhooks & Notifications"
+      },
+      {
+        "type": "url",
+        "id": "webhook_inventory_update",
+        "label": "Inventory update webhook URL",
+        "info": "URL to receive inventory change notifications"
+      },
+      {
+        "type": "url",
+        "id": "webhook_booking_confirmation",
+        "label": "Booking confirmation webhook URL",
+        "info": "URL to receive booking notifications"
+      },
+      {
+        "type": "checkbox",
+        "id": "api_debug_mode",
+        "label": "Enable API debug logging",
+        "default": false,
+        "info": "Log detailed API requests for troubleshooting"
       }
     ]
   }
