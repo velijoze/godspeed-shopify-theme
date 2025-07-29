@@ -547,6 +547,11 @@
       "mission_heading": "Notre Mission",
       "mission_text": "Rendre la mobilité de haute qualité accessible à tous tout en protégeant notre planète.",
       "customers_label": "Clients Satisfaits"
+    },
+    "test_ride": {
+      "heading": "Réserver un Essai",
+      "subheading": "Testez votre e-bike de rêve gratuitement",
+      "description": "Réservez un essai gratuit dans l'un de nos magasins. Nos experts ajusteront parfaitement l'e-bike pour vous et vous accompagneront lors de l'essai."
     }
   },
   "products": {

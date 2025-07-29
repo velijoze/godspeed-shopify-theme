@@ -1467,22 +1467,22 @@
     ]
   },
   {
-    "name": "🤖 AI & Intelligence Features",
+    "name": "t:settings_schema.ai_features.name",
     "settings": [
       {
         "type": "header",
-        "content": "AI-Powered Smart Features"
+        "content": "t:settings_schema.ai_features.settings.header__1.content"
       },
       {
         "type": "paragraph",
-        "content": "Enable intelligent features to enhance customer experience with smart recommendations, insights, and behavior tracking."
+        "content": "t:settings_schema.ai_features.settings.paragraph__1.content"
       },
       {
         "type": "checkbox",
         "id": "enable_ai_insights",
-        "label": "Enable AI smart insights",
+        "label": "t:settings_schema.ai_features.settings.enable_ai_insights.label",
         "default": true,
-        "info": "Show intelligent price analysis and performance comparisons"
+        "info": "t:settings_schema.ai_features.settings.enable_ai_insights.info"
       },
       {
         "type": "checkbox",
@@ -1525,9 +1525,9 @@
       {
         "type": "text",
         "id": "ai_recommendations_subtitle",
-        "label": "AI recommendations subtitle",
+        "label": "t:settings_schema.ai_features.settings.ai_recommendations_subtitle.label",
         "default": "Based on your preferences, you might also like:",
-        "info": "Subtitle text for AI recommendations section"
+        "info": "t:settings_schema.ai_features.settings.ai_recommendations_subtitle.info"
       },
       {
         "type": "checkbox",
@@ -1578,27 +1578,27 @@
     ]
   },
   {
-    "name": "💬 Live Chat Settings",
+    "name": "t:settings_schema.live_chat.name",
     "settings": [
       {
         "type": "header",
-        "content": "Live Chat Configuration"
+        "content": "t:settings_schema.live_chat.settings.header__1.content"
       },
       {
         "type": "paragraph",
-        "content": "Configure your live chat widget to provide real-time customer support. Multiple chat platforms are supported."
+        "content": "t:settings_schema.live_chat.settings.paragraph__1.content"
       },
       {
         "type": "checkbox",
         "id": "enable_live_chat",
-        "label": "Enable live chat widget",
+        "label": "t:settings_schema.live_chat.settings.enable_live_chat.label",
         "default": true,
-        "info": "Show the chat widget on all pages"
+        "info": "t:settings_schema.live_chat.settings.enable_live_chat.info"
       },
       {
         "type": "select",
         "id": "chat_platform",
-        "label": "Chat platform",
+        "label": "t:settings_schema.live_chat.settings.chat_platform.label",
         "default": "pipeline",
         "options": [
           {

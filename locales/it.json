@@ -547,6 +547,11 @@
       "mission_heading": "La Nostra Missione",
       "mission_text": "Rendere la mobilità di alta qualità accessibile a tutti proteggendo al contempo il nostro pianeta.",
       "customers_label": "Clienti Soddisfatti"
+    },
+    "test_ride": {
+      "heading": "Prenota Test Drive",
+      "subheading": "Testa la tua e-bike dei sogni gratuitamente",
+      "description": "Prenota un test drive gratuito in uno dei nostri negozi. I nostri esperti regoleranno perfettamente l'e-bike per te e ti accompagneranno durante il test."
     }
   },
   "products": {

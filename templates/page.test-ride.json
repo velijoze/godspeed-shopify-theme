@@ -6,20 +6,20 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Probefahrt buchen",
+            "heading": "{{ 'pages.test_ride.heading' | t }}",
             "heading_size": "h0"
           }
         },
         "subheading": {
           "type": "subheading",
           "settings": {
-            "subheading": "Testen Sie Ihr Wunsch-E-Bike kostenlos"
+            "subheading": "{{ 'pages.test_ride.subheading' | t }}"
           }
         },
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>Buchen Sie eine kostenlose Probefahrt an einem unserer Standorte. Unsere Experten stellen das E-Bike optimal für Sie ein und begleiten Sie bei der Testfahrt.</p>",
+            "text": "<p>{{ 'pages.test_ride.description' | t }}</p>",
             "text_style": "subtitle"
           }
         }

@@ -535,6 +535,11 @@
       "mission_heading": "Unsere Mission",
       "mission_text": "Hochwertige Mobilität für alle zugänglich machen, während wir gleichzeitig unseren Planeten schützen.",
       "customers_label": "Zufriedene Kunden"
+    },
+    "test_ride": {
+      "heading": "Probefahrt buchen",
+      "subheading": "Testen Sie Ihr Wunsch-E-Bike kostenlos",
+      "description": "Buchen Sie eine kostenlose Probefahrt an einem unserer Standorte. Unsere Experten stellen das E-Bike optimal für Sie ein und begleiten Sie bei der Testfahrt."
     }
   },
   "products": {

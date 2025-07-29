@@ -3416,6 +3416,63 @@
       "presets": {
         "name": "Collapsible content"
       }
+    },
+    "ai_features": {
+      "name": "🤖 AI & Intelligence Features",
+      "settings": {
+        "header__1": {
+          "content": "AI-Powered Smart Features"
+        },
+        "paragraph__1": {
+          "content": "Enable intelligent features to enhance customer experience with smart recommendations, insights, and behavior tracking."
+        },
+        "enable_ai_insights": {
+          "label": "Enable AI smart insights",
+          "info": "Show intelligent price analysis and performance comparisons"
+        },
+        "enable_ai_recommendations": {
+          "label": "Enable AI product recommendations", 
+          "info": "Display personalized bike recommendations based on customer behavior"
+        },
+        "enable_behavior_tracking": {
+          "label": "Enable customer behavior tracking",
+          "info": "Track customer interactions to improve recommendations (stored locally)"
+        },
+        "max_recommendations": {
+          "label": "Maximum recommendations to show",
+          "info": "Number of AI recommendations to display"
+        },
+        "ai_insights_title": {
+          "label": "Smart insights section title",
+          "info": "Title displayed above AI insights"
+        },
+        "ai_recommendations_title": {
+          "label": "AI recommendations section title",
+          "info": "Title displayed above AI recommendations"
+        },
+        "ai_recommendations_subtitle": {
+          "label": "AI recommendations subtitle",
+          "info": "Subtitle text for AI recommendations section"
+        }
+      }
+    },
+    "live_chat": {
+      "name": "💬 Live Chat Settings",
+      "settings": {
+        "header__1": {
+          "content": "Live Chat Configuration"
+        },
+        "paragraph__1": {
+          "content": "Configure your live chat widget to provide real-time customer support. Multiple chat platforms are supported."
+        },
+        "enable_live_chat": {
+          "label": "Enable live chat widget",
+          "info": "Show the chat widget on all pages"
+        },
+        "chat_platform": {
+          "label": "Chat platform"
+        }
+      }
     }
   }
 }

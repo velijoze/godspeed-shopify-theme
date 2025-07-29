@@ -536,6 +536,11 @@
       "mission_heading": "Our Mission",
       "mission_text": "Making high-quality mobility accessible to everyone while protecting our planet.",
       "customers_label": "Satisfied Customers"
+    },
+    "test_ride": {
+      "heading": "Book Test Ride",
+      "subheading": "Test your dream e-bike for free",
+      "description": "Book a free test ride at one of our locations. Our experts will optimally adjust the e-bike for you and accompany you on the test ride."
     }
   },
   "products": {
