@@ -3,8 +3,10 @@
   Multi-platform chat integration with AI-powered responses
 {% endcomment %}
 
+{%- unless settings.enable_live_chat == false -%}
 {%- comment -%} Chat Widget Container {%- endcomment -%}
-<div class="pipeline-chat-widget" id="pipeline-chat-widget">
+<div class="pipeline-chat-widget" id="pipeline-chat-widget" 
+     {% unless settings.chat_show_on_mobile %}data-hide-mobile{% endunless %}>
   
   {%- comment -%} Chat Button {%- endcomment -%}
   <button class="chat-trigger" data-chat-toggle aria-label="Open chat">
@@ -634,3 +636,4 @@ document.addEventListener('DOMContentLoaded', function() {
   }, 10000);
 });
 </script>
+{%- endunless -%}

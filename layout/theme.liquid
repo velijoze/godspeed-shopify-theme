@@ -391,6 +391,9 @@
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
     
+    {%- comment -%} AI-Enhanced Bike Comparison Tool {%- endcomment -%}
+    <script src="{{ 'bike-comparison.js' | asset_url }}" defer="defer"></script>
+    
     {%- comment -%} Pipeline Quick View Modal {%- endcomment -%}
     {% render 'quick-view-modal-pipeline' %}
     
@@ -401,5 +404,30 @@
     
     {%- comment -%} Pipeline AI Optimization {%- endcomment -%}
     {% render 'pipeline-ai-optimization' %}
+    
+    {%- comment -%} Pipeline LLM Optimization {%- endcomment -%}
+    {% render 'pipeline-llm-optimization' %}
+    
+    {%- comment -%} Pipeline SEO Optimization {%- endcomment -%}
+    {% render 'site-specific-seo' %}
+    {% render 'seo-category-optimization' %}
+    
+    {%- comment -%} Pipeline VeloConnect API Integration {%- endcomment -%}
+    {% render 'pipeline-veloconnect-api' %}
+    
+    {%- comment -%} Pipeline Vendor API Integration {%- endcomment -%}
+    {% render 'pipeline-vendor-api' %}
+    
+    {%- comment -%} Pipeline Wishlist Functionality {%- endcomment -%}
+    {% render 'pipeline-wishlist' %}
+    
+    {%- comment -%} Pipeline Trust Badges {%- endcomment -%}
+    {% render 'pipeline-trust-badges' %}
+    
+    {%- comment -%} Pipeline Breadcrumbs {%- endcomment -%}
+    {% render 'pipeline-breadcrumbs' %}
+    
+    {%- comment -%} Pipeline Live Chat Widget {%- endcomment -%}
+    {% render 'pipeline-live-chat' %}
   </body>
 </html>
