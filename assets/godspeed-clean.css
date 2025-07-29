@@ -1766,7 +1766,15 @@ textarea:focus {
 }
 
 .grid--4-col {
-  grid-template-columns: repeat(3, 1fr) !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+}
+
+.grid--5-col {
+  grid-template-columns: repeat(5, 1fr) !important;
+}
+
+.grid--1-col {
+  grid-template-columns: 1fr !important;
 }
 
 @media (max-width: 990px) {
@@ -1774,19 +1782,26 @@ textarea:focus {
   .product-grid,
   .grid--2-col,
   .grid--3-col,
-  .grid--4-col {
+  .grid--4-col,
+  .grid--5-col {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 2rem 1.5rem !important;
     padding: 3rem 2rem !important;
+  }
+  
+  .grid--1-col {
+    grid-template-columns: 1fr !important;
   }
 }
 
 @media (max-width: 750px) {
   .collection__products,
   .product-grid,
+  .grid--1-col,
   .grid--2-col,
   .grid--3-col,
-  .grid--4-col {
+  .grid--4-col,
+  .grid--5-col {
     grid-template-columns: 1fr !important;
     gap: 3rem !important;
     padding: 3rem 1.5rem !important;
@@ -2027,12 +2042,32 @@ p, .rte {
   font-weight: 600 !important;
 }
 
-/* Override base grid for featured collections - ensure 3 columns */
+/* Override base grid for featured collections - responsive columns */
 .featured-collection .product-grid,
 .featured-collection .grid {
-  grid-template-columns: repeat(3, 1fr) !important;
   gap: 3rem !important;
   padding: 4rem 2rem !important;
+}
+
+/* Featured collection responsive grid based on theme settings */
+.featured-collection .grid--1-col {
+  grid-template-columns: 1fr !important;
+}
+
+.featured-collection .grid--2-col {
+  grid-template-columns: repeat(2, 1fr) !important;
+}
+
+.featured-collection .grid--3-col {
+  grid-template-columns: repeat(3, 1fr) !important;
+}
+
+.featured-collection .grid--4-col {
+  grid-template-columns: repeat(4, 1fr) !important;
+}
+
+.featured-collection .grid--5-col {
+  grid-template-columns: repeat(5, 1fr) !important;
 }
 
 @media screen and (max-width: 990px) {
@@ -2043,8 +2078,19 @@ p, .rte {
   
   .featured-collection .product-grid,
   .featured-collection .grid {
-    grid-template-columns: repeat(2, 1fr) !important;
     gap: 2rem !important;
+  }
+  
+  /* Mobile responsive - respect column settings but cap at 2 for tablets */
+  .featured-collection .grid--1-col {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .featured-collection .grid--2-col,
+  .featured-collection .grid--3-col,
+  .featured-collection .grid--4-col,
+  .featured-collection .grid--5-col {
+    grid-template-columns: repeat(2, 1fr) !important;
   }
   
   .featured-collection .pipeline-product-card .card__media,
@@ -2062,8 +2108,16 @@ p, .rte {
   
   .featured-collection .product-grid,
   .featured-collection .grid {
-    grid-template-columns: 1fr !important;
     gap: 3rem !important;
+  }
+  
+  /* Mobile responsive - force single column on small screens */
+  .featured-collection .grid--1-col,
+  .featured-collection .grid--2-col,
+  .featured-collection .grid--3-col,
+  .featured-collection .grid--4-col,
+  .featured-collection .grid--5-col {
+    grid-template-columns: 1fr !important;
   }
   
   .featured-collection .pipeline-product-card .card__media,
