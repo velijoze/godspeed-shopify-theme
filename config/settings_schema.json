@@ -1465,5 +1465,116 @@
         "default": "scheme-1"
       }
     ]
+  },
+  {
+    "name": "🤖 AI & Intelligence Features",
+    "settings": [
+      {
+        "type": "header",
+        "content": "AI-Powered Smart Features"
+      },
+      {
+        "type": "paragraph",
+        "content": "Enable intelligent features to enhance customer experience with smart recommendations, insights, and behavior tracking."
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_ai_insights",
+        "label": "Enable AI smart insights",
+        "default": true,
+        "info": "Show intelligent price analysis and performance comparisons"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_ai_recommendations",
+        "label": "Enable AI product recommendations",
+        "default": true,
+        "info": "Display personalized bike recommendations based on customer behavior"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_behavior_tracking",
+        "label": "Enable customer behavior tracking",
+        "default": true,
+        "info": "Track customer interactions to improve recommendations (stored locally)"
+      },
+      {
+        "type": "range",
+        "id": "max_recommendations",
+        "min": 1,
+        "max": 5,
+        "step": 1,
+        "label": "Maximum recommendations to show",
+        "default": 3,
+        "info": "Number of AI recommendations to display"
+      },
+      {
+        "type": "text",
+        "id": "ai_insights_title",
+        "label": "Smart insights section title",
+        "default": "🤖 Smart Insights",
+        "info": "Title displayed above AI insights"
+      },
+      {
+        "type": "text",
+        "id": "ai_recommendations_title", 
+        "label": "AI recommendations section title",
+        "default": "🤖 AI Recommendations",
+        "info": "Title displayed above AI recommendations"
+      },
+      {
+        "type": "text",
+        "id": "ai_recommendations_subtitle",
+        "label": "AI recommendations subtitle",
+        "default": "Based on your preferences, you might also like:",
+        "info": "Subtitle text for AI recommendations section"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_recommendation_scores",
+        "label": "Show recommendation confidence scores",
+        "default": false,
+        "info": "Display AI confidence scores for debugging purposes"
+      },
+      {
+        "type": "range",
+        "id": "interaction_retention_days",
+        "min": 7,
+        "max": 90,
+        "step": 7,
+        "unit": "days",
+        "label": "Behavior tracking retention period",
+        "default": 30,
+        "info": "How long to keep customer interaction data for recommendations"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_smart_animations",
+        "label": "Enable smart feature animations",
+        "default": true,
+        "info": "Animate AI insights and recommendations when they appear"
+      },
+      {
+        "type": "color",
+        "id": "ai_insights_accent_color",
+        "label": "AI insights accent color",
+        "default": "#3B82F6",
+        "info": "Color used for AI insights highlights and borders"
+      },
+      {
+        "type": "color",
+        "id": "ai_recommendations_accent_color", 
+        "label": "AI recommendations accent color",
+        "default": "#8B5CF6",
+        "info": "Color used for AI recommendation cards and buttons"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_mobile_ai_features",
+        "label": "Enable AI features on mobile",
+        "default": true,
+        "info": "Show AI insights and recommendations on mobile devices"
+      }
+    ]
   }
 ]

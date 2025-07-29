@@ -1,7 +1,376 @@
-# Shopify theme files to ignore
-node_modules/
+# Godspeed Shopify Theme - Git Ignore Configuration
+
+# Environment and Configuration Files
 .env
 .env.local
-*.log
+.env.development.local
+.env.test.local
+.env.production.local
+config.json
+secrets.json
+
+# Shopify CLI Configuration
+.shopify/
+.shopifyrc
+shopify.theme.toml
+
+# API Keys and Credentials
+**/api-keys.json
+**/credentials.json
+**/secrets/
+*.pem
+*.key
+*.cert
+
+# Test Results and Artifacts
+test-results/
+playwright-report/
+test-results-*/
+coverage/
+*.coverage
+.nyc_output
+junit.xml
+test-summary.json
+feature-results.json
+test-run-metadata.json
+
+# Playwright Browser Downloads
+.playwright/
+playwright/
+
+# Screenshots and Videos (from tests)
+tests/screenshots/*.png
+tests/videos/*.webm
+tests/traces/*.zip
+artifacts/
+
+# Node.js Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+.pnpm-debug.log*
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 .DS_Store
 Thumbs.db
+
+# Build and Cache Files
+.cache/
+.temp/
+.tmp/
+dist/
+build/
+out/
+
+# CSS Build Files (keep source files)
+assets/application.css.map
+assets/*.min.css
+assets/*.min.js
+
+# Log Files
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+lerna-debug.log*
+
+# Runtime Data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage and Profiling
+coverage/
+.coverage
+*.lcov
+.nyc_output/
+.coverage.json
+
+# Performance Monitoring
+performance-metrics/
+web-vitals-data/
+lighthouse-reports/
+
+# Database Files (if any local development)
+*.sqlite
+*.sqlite3
+*.db
+
+# Backup Files
+*.backup
+*.bak
+*.old
+*.orig
+
+# Temporary Files
+.tmp/
+.temp/
+tmp/
+temp/
+
+# OS Generated Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env
+.env.test
+
+# parcel-bundler cache (https://parceljs.org/)
+.parcel-cache
+
+# Next.js build output
+.next/
+
+# Nuxt.js build / generate output
+.nuxt
+dist
+
+# Gatsby files
+.cache/
+public
+
+# Storybook build outputs
+.out
+.storybook-out
+
+# Rollup.js default build output
+dist/
+
+# Serverless directories
+.serverless/
+
+# FuseBox cache
+.fusebox/
+
+# DynamoDB Local files
+.dynamodb/
+
+# TernJS port file
+.tern-port
+
+# Stores VSCode versions used for testing VSCode extensions
+.vscode-test
+
+# Shopify Theme Development
+config/settings_data.json
+locales/*.default.json
+
+# Shopify Private App Files
+private_app_credentials.json
+
+# Third-party Integration Files
+calendly-config.json
+google-maps-config.json
+cube-api-config.json
+veloconnect-config.json
+
+# Monitoring and Analytics
+analytics-data/
+error-logs/
+performance-logs/
+
+# Development Tools
+.babel_cache/
+.webpack_cache/
+.vite_cache/
+
+# Linting and Formatting
+.eslintrc.cache
+.prettier.cache
+
+# Type checking
+*.tsbuildinfo
+
+# Dependency directories for various package managers
+jspm_packages/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file (duplicated for emphasis)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Local development server files
+.vercel
+
+# SvelteKit build / generate output
+.svelte-kit
+
+# Vite build output
+dist-ssr
+*.local
+
+# Turbo
+.turbo
+
+# MacOS
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
+# Windows thumbnail cache files
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+
+# Dump file
+*.stackdump
+
+# Folder config file
+[Dd]esktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# Linux
+*~
+
+# temporary files which can be created if a process still has a handle open of a deleted file
+.fuse_hidden*
+
+# KDE directory preferences
+.directory
+
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+
+# .nfs files are created when an open file is removed but is still being accessed
+.nfs*
+
+# Custom Exclusions for Godspeed Theme
+
+# Exclude test recordings and artifacts but keep test files
+tests/**/*.png
+tests/**/*.webm  
+tests/**/*.mp4
+tests/**/*.zip
+!tests/**/*.spec.js
+!tests/**/*.md
+
+# Keep important config files but exclude sensitive data
+!config/settings_schema.json
+config/settings_data.json
+
+# Keep CSS source but exclude maps and minified versions
+!assets/application.css
+!assets/godspeed-dynamic.css.liquid
+assets/*.map
+
+# API integration files - keep templates, exclude credentials
+!assets/api-dashboard.js
+api-credentials/
+vendor-keys/
+
+# Keep documentation but exclude auto-generated reports
+!README.md
+!CLAUDE.md
+!tests/README.md
+!tests/COMPREHENSIVE-README.md
+auto-generated-docs/
+
+# Shopify Theme Specific
+.theme-check.yml
+.shopify-theme-inspector/
+
+# Exclude but keep structure
+locales/*.json
+!locales/en.default.json
+
+# Performance and monitoring data
+performance-data/
+monitoring-data/
+analytics-exports/
+
+# Backup and versioning
+backups/
+versions/
+*.backup.liquid
+*.backup.css
+*.backup.js
+
+# End of .gitignore

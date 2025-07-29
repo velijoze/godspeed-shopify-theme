@@ -2732,3 +2732,170 @@ div[class*="header"] {
     font-size: 1.6rem;
   }
 }
+
+/* ============================================================================
+   AI Enhancement Styles - Smart Insights & Recommendations
+   ============================================================================ */
+
+/* AI Smart Insights */
+.smart-insights {
+  margin-top: var(--spacing-8);
+  animation: fadeIn 0.5s ease-in;
+}
+
+.ai-insights {
+  background: linear-gradient(135deg, var(--primary-50), var(--accent-50));
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-6);
+  border: 1px solid var(--accent-200);
+}
+
+.ai-insights h3 {
+  color: var(--primary-900);
+  margin-bottom: var(--spacing-4);
+  font-size: var(--text-xl);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.insight-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4);
+  margin-bottom: var(--spacing-4);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.insight-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.insight-card h4 {
+  color: var(--accent-700);
+  margin-bottom: var(--spacing-3);
+  font-size: var(--text-lg);
+}
+
+.insight-card p {
+  margin-bottom: var(--spacing-2);
+  color: var(--primary-700);
+}
+
+.insight-card strong {
+  color: var(--primary-900);
+}
+
+/* AI Recommendations */
+.ai-recommendations {
+  margin-top: var(--spacing-8);
+  padding: var(--spacing-6);
+  background: var(--primary-50);
+  border-radius: var(--radius-xl);
+  border: 2px dashed var(--accent-300);
+}
+
+.ai-recommendations-content h3 {
+  color: var(--primary-900);
+  margin-bottom: var(--spacing-2);
+  font-size: var(--text-xl);
+}
+
+.ai-subtitle {
+  color: var(--primary-600);
+  margin-bottom: var(--spacing-4);
+  font-style: italic;
+}
+
+.ai-recommendation-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4);
+  margin-bottom: var(--spacing-3);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-base);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-3);
+}
+
+.ai-recommendation-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateX(4px);
+  border-left: 4px solid var(--accent-500);
+}
+
+.ai-recommendation-card h4 {
+  color: var(--primary-900);
+  margin: 0;
+  font-size: var(--text-lg);
+}
+
+.rec-price {
+  color: var(--accent-600);
+  font-weight: 600;
+  font-size: var(--text-lg);
+  margin: 0;
+}
+
+.rec-reason {
+  color: var(--primary-600);
+  font-size: var(--text-sm);
+  margin: 0;
+  flex: 1 1 100%;
+}
+
+.btn-add-to-compare {
+  background: var(--accent-600);
+  color: white;
+  border: none;
+  padding: var(--spacing-2) var(--spacing-4);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  white-space: nowrap;
+}
+
+.btn-add-to-compare:hover {
+  background: var(--accent-700);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-add-to-compare:active {
+  transform: translateY(0);
+}
+
+/* Animation for AI features */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile responsive AI features */
+@media (max-width: 768px) {
+  .ai-recommendation-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .btn-add-to-compare {
+    width: 100%;
+    margin-top: var(--spacing-2);
+  }
+  
+  .insight-card {
+    margin-bottom: var(--spacing-3);
+  }
+}
