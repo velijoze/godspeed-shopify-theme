@@ -47,7 +47,7 @@ class AIChainBot {
     this.trackPageView();
     this.isInitialized = true;
     
-    console.log('AI Chatbot initialized successfully');
+    // AI Chatbot initialized successfully
   }
 
   /**
@@ -139,7 +139,7 @@ class AIChainBot {
             break;
           }
         } catch (error) {
-          console.error(`${provider} API failed:`, error);
+          // Provider API failed, try next provider if fallback enabled
           if (!settings.ai_fallback_enabled) {
             throw error;
           }
@@ -169,7 +169,7 @@ class AIChainBot {
       }
       
     } catch (error) {
-      console.error('AI Chatbot error:', error);
+      // Handle AI chatbot errors gracefully
       this.hideTypingIndicator();
       this.showError(error.message);
       this.updateProviderStatus('error');
@@ -314,8 +314,7 @@ class AIChainBot {
     
     this.addAIMessage(friendlyError, 'system', null, false);
     
-    // Log detailed error for debugging
-    console.error('Chatbot error:', errorMessage);
+    // Error logged for debugging
   }
 
   /**
@@ -398,7 +397,7 @@ class AIChainBot {
       const stored = localStorage.getItem('godspeed_user_actions');
       return stored ? JSON.parse(stored) : [];
     } catch (error) {
-      console.warn('Failed to load user actions:', error);
+      // Failed to load user actions, return empty array
       return [];
     }
   }
@@ -410,7 +409,7 @@ class AIChainBot {
     try {
       localStorage.setItem('godspeed_user_actions', JSON.stringify(this.userContext.previousActions));
     } catch (error) {
-      console.warn('Failed to save user actions:', error);
+      // Failed to save user actions
     }
   }
 
