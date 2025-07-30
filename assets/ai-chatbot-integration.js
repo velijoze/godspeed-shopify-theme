@@ -622,6 +622,53 @@ class AIChainBot {
   }
 
   /**
+   * Detect language from message content using keyword patterns
+   */
+  detectMessageLanguage(message) {
+    const patterns = {
+      'de': [
+        'ich', 'ein', 'eine', 'der', 'die', 'das', 'für', 'mit', 'und', 'oder',
+        'suche', 'brauche', 'möchte', 'kann', 'will', 'haben', 'ist', 'sind',
+        'ebike', 'fahrrad', 'zürich', 'basel', 'bern', 'schweiz', 'berg', 'stadt',
+        'arbeitsweg', 'pendeln', 'fahren', 'kaufen', 'preis', 'kosten', 'gerne'
+      ],
+      'it': [
+        'io', 'una', 'un', 'per', 'con', 'e', 'o', 'la', 'il', 'di', 'da',
+        'cerco', 'vorrei', 'posso', 'voglio', 'ho', 'è', 'sono', 'che', 'come',
+        'ebike', 'bicicletta', 'lugano', 'ticino', 'svizzera', 'montagna', 'città',
+        'lavoro', 'andare', 'comprare', 'prezzo', 'costa', 'quanto', 'grazie'
+      ],
+      'fr': [
+        'je', 'un', 'une', 'le', 'la', 'pour', 'avec', 'et', 'ou', 'de', 'du',
+        'cherche', 'voudrais', 'peux', 'veux', 'ai', 'est', 'sont', 'que', 'comment',
+        'ebike', 'vélo', 'genève', 'lausanne', 'suisse', 'montagne', 'ville',
+        'travail', 'aller', 'acheter', 'prix', 'coûte', 'combien', 'merci'
+      ]
+    };
+
+    if (!message || message.trim().length === 0) return null;
+
+    const messageLower = message.toLowerCase();
+    const scores = {};
+
+    // Score each language based on keyword matches
+    for (const [lang, keywords] of Object.entries(patterns)) {
+      scores[lang] = keywords.filter(keyword => 
+        messageLower.includes(keyword)
+      ).length;
+    }
+
+    // Find language with highest score
+    const maxScore = Math.max(...Object.values(scores));
+    
+    // Require at least 1 keyword match for detection
+    if (maxScore === 0) return null;
+
+    // Return language with highest score
+    return Object.keys(scores).find(lang => scores[lang] === maxScore);
+  }
+
+  /**
    * Build Swiss E-Bike Expert Prompt
    */
   buildSwissEBikePrompt(message) {
@@ -631,6 +678,10 @@ class AIChainBot {
       'it': 'Italian',
       'en': 'English'
     };
+
+    // Auto-detect language from message content
+    const messageLanguage = this.detectMessageLanguage(message);
+    const responseLanguage = messageLanguage || this.userContext.language || 'de';
 
     const contextInfo = this.userContext ? `
 Context: Customer is on ${this.userContext.currentPage || 'unknown page'}
@@ -651,7 +702,7 @@ Swiss E-Bike Knowledge:
 - 6 store locations: Zürich, Basel, Bern, Genève, Luzern, St. Gallen
 - Test ride booking and professional service available
 
-Respond in ${languageNames[this.userContext.language] || 'German'} with:
+Respond in ${languageNames[responseLanguage]} with:
 1. Helpful, expert advice
 2. Swiss market specific information
 3. Recommendation for test rides when relevant
