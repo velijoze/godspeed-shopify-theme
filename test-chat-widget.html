@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Widget Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f3f4f6;
+        }
+        h1 {
+            color: #333;
+        }
+        .test-results {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .test-item {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .pass {
+            background: #d4edda;
+            color: #155724;
+        }
+        .fail {
+            background: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <h1>Godspeed Chat Widget Test</h1>
+    
+    <div class="test-results" id="test-results">
+        <h2>Test Results:</h2>
+    </div>
+
+    <!-- Include the chat widget HTML -->
+    <div class="pipeline-chat-widget" id="pipeline-chat-widget" 
+         data-primary-provider="claude"
+         data-fallback-enabled="true"
+         data-claude-api-key="test-key"
+         data-cache-duration="60"
+         data-api-timeout="30">
+        
+        <button class="chat-trigger" data-chat-toggle aria-label="Open chat">
+            <div class="chat-icon">💬</div>
+            <span class="chat-text">Chat with us</span>
+        </button>
+
+        <div class="chat-panel" data-chat-panel>
+            <div class="chat-header">
+                <div class="chat-agent">
+                    <div class="agent-info">
+                        <div class="agent-name">E-Bike Expert</div>
+                        <div class="agent-status">
+                            <span class="status-dot online"></span>
+                            <span class="status-text">Online now</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="chat-close" data-chat-close>✕</button>
+            </div>
+
+            <div class="chat-messages" data-chat-messages>
+                <div class="message agent-message">
+                    <div class="message-content">
+                        <div class="message-text">Hi! I'm here to help you find the perfect e-bike. What questions do you have?</div>
+                        <div class="message-time">now</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-quick-replies" data-quick-replies>
+                <button class="quick-reply" data-quick-text="I'm looking for my first e-bike">
+                    🚴‍♂️ First e-bike
+                </button>
+                <button class="quick-reply" data-quick-text="What's the best commuter e-bike?">
+                    🏢 Commuting
+                </button>
+            </div>
+
+            <div class="chat-input-container">
+                <div class="chat-input-wrapper">
+                    <input type="text" 
+                           class="chat-input" 
+                           data-chat-input
+                           placeholder="Your message..."
+                           maxlength="500">
+                    <button class="chat-send-button" data-chat-send aria-label="Send message">
+                        ➤
+                    </button>
+                </div>
+                
+                <div class="chat-footer">
+                    <div class="ai-provider-status" style="display: none;">
+                        <span>AI Status:</span>
+                        <span data-provider="claude" class="provider-dot" title="Claude"></span>
+                        <span data-provider="openai" class="provider-dot" title="OpenAI"></span>
+                        <span data-provider="gemini" class="provider-dot" title="Gemini"></span>
+                    </div>
+                    <div class="chat-powered-by">
+                        <span>Powered by AI Assistant</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include the AI integration script -->
+    <script src="assets/ai-chatbot-integration.js"></script>
+
+    <!-- Test script -->
+    <script>
+        function runTests() {
+            const results = document.getElementById('test-results');
+            
+            function addResult(testName, passed, message) {
+                const div = document.createElement('div');
+                div.className = `test-item ${passed ? 'pass' : 'fail'}`;
+                div.innerHTML = `<strong>${testName}:</strong> ${passed ? '✓ PASS' : '✗ FAIL'} - ${message}`;
+                results.appendChild(div);
+            }
+
+            // Test 1: Check if AIChainBot is initialized
+            addResult(
+                'AIChainBot Initialization',
+                typeof window.AIChainBot !== 'undefined',
+                window.AIChainBot ? 'AI Chatbot class loaded successfully' : 'AI Chatbot class not found'
+            );
+
+            // Test 2: Check if chat widget exists
+            const chatWidget = document.getElementById('pipeline-chat-widget');
+            addResult(
+                'Chat Widget Element',
+                chatWidget !== null,
+                chatWidget ? 'Chat widget element found' : 'Chat widget element not found'
+            );
+
+            // Test 3: Check if chat trigger button exists
+            const chatTrigger = document.querySelector('[data-chat-toggle]');
+            addResult(
+                'Chat Trigger Button',
+                chatTrigger !== null,
+                chatTrigger ? 'Chat trigger button found' : 'Chat trigger button not found'
+            );
+
+            // Test 4: Check if settings are accessible
+            if (window.AIChainBot) {
+                const settings = window.AIChainBot.getThemeSettings();
+                addResult(
+                    'Theme Settings',
+                    settings && settings.ai_primary_provider === 'claude',
+                    `Settings loaded: Primary provider = ${settings?.ai_primary_provider}`
+                );
+            }
+
+            // Test 5: Check if chat panel exists
+            const chatPanel = document.querySelector('[data-chat-panel]');
+            addResult(
+                'Chat Panel',
+                chatPanel !== null,
+                chatPanel ? 'Chat panel found' : 'Chat panel not found'
+            );
+
+            // Test 6: Test click functionality
+            if (chatTrigger && chatPanel) {
+                chatTrigger.click();
+                setTimeout(() => {
+                    const isOpen = chatPanel.classList.contains('open');
+                    addResult(
+                        'Chat Panel Toggle',
+                        isOpen,
+                        isOpen ? 'Chat panel opens on click' : 'Chat panel did not open'
+                    );
+                }, 100);
+            }
+        }
+
+        // Run tests when page loads
+        window.addEventListener('DOMContentLoaded', runTests);
+    </script>
+
+    <style>
+        /* Basic chat widget styles for testing */
+        .pipeline-chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+        
+        .chat-trigger {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #3B82F6;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 20px;
+            cursor: pointer;
+        }
+        
+        .chat-panel {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+            display: none;
+            flex-direction: column;
+        }
+        
+        .chat-panel.open {
+            display: flex;
+        }
+        
+        .chat-header {
+            padding: 16px;
+            background: #3B82F6;
+            color: white;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+        }
+        
+        .chat-input-container {
+            padding: 16px;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .chat-input-wrapper {
+            display: flex;
+            gap: 8px;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 4px;
+        }
+        
+        .chat-input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            padding: 8px;
+            outline: none;
+        }
+        
+        .chat-send-button {
+            background: #3B82F6;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+        
+        .provider-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #e5e7eb;
+            display: inline-block;
+            margin: 0 2px;
+        }
+        
+        .provider-dot.active {
+            background: #10B981;
+        }
+        
+        .quick-reply {
+            background: #f3f4f6;
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+            padding: 6px 12px;
+            margin: 4px;
+            cursor: pointer;
+        }
+    </style>
+</body>
+</html>
