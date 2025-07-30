@@ -6,7 +6,14 @@
 {%- if settings.enable_live_chat -%}
 {%- comment -%} Chat Widget Container {%- endcomment -%}
 <div class="pipeline-chat-widget" id="pipeline-chat-widget" 
-     {% unless settings.chat_show_on_mobile %}data-hide-mobile{% endunless %}>
+     {% unless settings.chat_show_on_mobile %}data-hide-mobile{% endunless %}
+     {% if settings.ai_primary_provider %}data-primary-provider="{{ settings.ai_primary_provider }}"{% endif %}
+     {% if settings.ai_fallback_enabled %}data-fallback-enabled="{{ settings.ai_fallback_enabled }}"{% endif %}
+     {% if settings.claude_api_key %}data-claude-api-key="{{ settings.claude_api_key }}"{% endif %}
+     {% if settings.openai_api_key %}data-openai-api-key="{{ settings.openai_api_key }}"{% endif %}
+     {% if settings.gemini_api_key %}data-gemini-api-key="{{ settings.gemini_api_key }}"{% endif %}
+     {% if settings.ai_cache_duration %}data-cache-duration="{{ settings.ai_cache_duration }}"{% endif %}
+     {% if settings.api_timeout %}data-api-timeout="{{ settings.api_timeout }}"{% endif %}>
   
   {%- comment -%} Chat Button {%- endcomment -%}
   <button class="chat-trigger" data-chat-toggle aria-label="Open chat">
@@ -35,7 +42,7 @@
                onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSI+PGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiM2NjdlZWEiLz48cGF0aCBkPSJNMjAgMTBjLTIuNzYgMC01IDIuMjQtNSA1czIuMjQgNSA1IDUgNS0yLjI0IDUtNS0yLjI0LTUtNS01em0wIDIwYy0zLjMzIDAtMTAtMS42Ny0xMC01di0yaDIwdjJjMCAzLjMzLTYuNjcgNS0xMCA1eiIgZmlsbD0id2hpdGUiLz48L3N2Zz4='">
         </div>
         <div class="agent-info">
-          <div class="agent-name">{{ section.settings.agent_name | default: 'E-Bike Expert' }}</div>
+          <div class="agent-name">{{ settings.agent_name | default: 'E-Bike Expert' }}</div>
           <div class="agent-status">
             <span class="status-dot online"></span>
             <span class="status-text">{{ 'chat.online_now' | t }}</span>
@@ -55,7 +62,7 @@
           <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSI+PGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiM2NjdlZWEiLz48cGF0aCBkPSJNMjAgMTBjLTIuNzYgMC01IDIuMjQtNSA1czIuMjQgNSA1IDUgNS0yLjI0IDUtNS0yLjI0LTUtNS01em0wIDIwYy0zLjMzIDAtMTAtMS42Ny0xMC01di0yaDIwdjJjMCAzLjMzLTYuNjcgNS0xMCA1eiIgZmlsbD0id2hpdGUiLz48L3N2Zz4=" alt="Agent">
         </div>
         <div class="message-content">
-          <div class="message-text">{{ section.settings.welcome_message | default: 'Hi! I\'m here to help you find the perfect e-bike. What questions do you have?' }}</div>
+          <div class="message-text">{{ settings.welcome_message | default: 'Hi! I\'m here to help you find the perfect e-bike. What questions do you have?' }}</div>
           <div class="message-time">now</div>
         </div>
       </div>
@@ -518,7 +525,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </button>
       </div>
       <div class="chat-powered-by">
-        <span>Powered by {{ section.settings.chat_provider | default: 'Pipeline Chat' }}</span>
+        <span>Powered by {{ settings.chat_provider | default: 'Pipeline Chat' }}</span>
       </div>
     </div>
 
@@ -527,27 +534,27 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 
 {%- comment -%} Third-party Chat Integration Points {%- endcomment -%}
-{%- if section.settings.chat_platform == 'intercom' and section.settings.intercom_id != blank -%}
+{%- if settings.chat_platform == 'intercom' and settings.intercom_id != blank -%}
   <script>
     window.intercomSettings = {
       api_base: "https://widget.intercom.io",
-      app_id: "{{ section.settings.intercom_id }}",
+      app_id: "{{ settings.intercom_id }}",
       custom_launcher_selector: '[data-chat-toggle]'
     };
   </script>
-  <script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/{{ section.settings.intercom_id }}';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();</script>
+  <script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/{{ settings.intercom_id }}';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();</script>
 {%- endif -%}
 
-{%- if section.settings.chat_platform == 'zendesk' and section.settings.zendesk_key != blank -%}
-  <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key={{ section.settings.zendesk_key }}"></script>
+{%- if settings.chat_platform == 'zendesk' and settings.zendesk_key != blank -%}
+  <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key={{ settings.zendesk_key }}"></script>
 {%- endif -%}
 
-{%- if section.settings.chat_platform == 'crisp' and section.settings.crisp_id != blank -%}
-  <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="{{ section.settings.crisp_id }}";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+{%- if settings.chat_platform == 'crisp' and settings.crisp_id != blank -%}
+  <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="{{ settings.crisp_id }}";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 {%- endif -%}
 
-{%- if section.settings.chat_platform == 'tidio' and section.settings.tidio_id != blank -%}
-  <script src="//code.tidio.co/{{ section.settings.tidio_id }}.js" async></script>
+{%- if settings.chat_platform == 'tidio' and settings.tidio_id != blank -%}
+  <script src="//code.tidio.co/{{ settings.tidio_id }}.js" async></script>
 {%- endif -%}
 
 <style>

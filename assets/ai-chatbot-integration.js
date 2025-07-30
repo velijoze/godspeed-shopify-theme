@@ -92,13 +92,13 @@ class AIChainBot {
   }
 
   /**
-   * Send message to AI API
+   * Send message to AI APIs directly from client
    */
   async sendMessage(messageText = null) {
     const message = messageText || this.chatInput?.value?.trim();
     
     if (!message) {
-      this.showError('Please enter a message', 'de');
+      this.showError('Please enter a message', this.userContext.language);
       return;
     }
     
@@ -117,43 +117,50 @@ class AIChainBot {
     try {
       const startTime = Date.now();
       
-      const response = await fetch('/api/chatbot', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          message: message,
-          context: this.userContext,
-          language: this.userContext.language,
-          settings: this.getThemeSettings()
-        })
-      });
+      // Get settings from theme
+      const settings = this.getThemeSettings();
+      
+      // Try AI providers in order
+      let aiResponse = null;
+      const providers = this.getProviderOrder(settings);
+      
+      for (const provider of providers) {
+        try {
+          if (provider === 'claude') {
+            aiResponse = await this.callClaudeAPI(message, settings);
+          } else if (provider === 'openai') {
+            aiResponse = await this.callOpenAIAPI(message, settings);
+          } else if (provider === 'gemini') {
+            aiResponse = await this.callGeminiAPI(message, settings);
+          }
+          
+          if (aiResponse) {
+            aiResponse.provider = provider;
+            break;
+          }
+        } catch (error) {
+          console.error(`${provider} API failed:`, error);
+          if (!settings.ai_fallback_enabled) {
+            throw error;
+          }
+        }
+      }
+      
+      if (!aiResponse) {
+        throw new Error('All AI providers failed');
+      }
       
       const responseTime = Date.now() - startTime;
       this.responseTime = responseTime;
       
-      if (!response.ok) {
-        const errorData = await response.json();
-        
-        if (response.status === 429) {
-          this.showRateLimitError(errorData.retryAfter);
-          return;
-        }
-        
-        throw new Error(errorData.error || 'Failed to get AI response');
-      }
-      
-      const data = await response.json();
-      
       this.hideTypingIndicator();
-      this.addAIMessage(data.response, data.provider, responseTime, data.cached);
-      this.updateProviderStatus('success', data.provider);
+      this.addAIMessage(aiResponse.text, aiResponse.provider, responseTime, false);
+      this.updateProviderStatus('success', aiResponse.provider);
       
       // Store conversation for context
       this.conversationHistory.push(
         { role: 'user', content: message, timestamp: Date.now() },
-        { role: 'assistant', content: data.response, provider: data.provider, timestamp: Date.now() }
+        { role: 'assistant', content: aiResponse.text, provider: aiResponse.provider, timestamp: Date.now() }
       );
       
       // Limit history to last 10 exchanges
@@ -411,12 +418,17 @@ class AIChainBot {
    * Get theme settings for API calls
    */
   getThemeSettings() {
-    // In a real implementation, these would come from Shopify theme settings
+    // Get settings from data attributes or window object
+    const chatWidget = document.getElementById('pipeline-chat-widget');
+    
     return {
-      ai_primary_provider: window.Shopify?.theme?.settings?.ai_primary_provider || 'claude',
-      ai_fallback_enabled: window.Shopify?.theme?.settings?.ai_fallback_enabled !== false,
-      ai_cache_duration: window.Shopify?.theme?.settings?.ai_cache_duration || 60,
-      api_timeout: window.Shopify?.theme?.settings?.api_timeout || 30
+      ai_primary_provider: chatWidget?.dataset.primaryProvider || window.themeSettings?.ai_primary_provider || 'claude',
+      ai_fallback_enabled: chatWidget?.dataset.fallbackEnabled !== 'false',
+      claude_api_key: chatWidget?.dataset.claudeApiKey || window.themeSettings?.claude_api_key,
+      openai_api_key: chatWidget?.dataset.openaiApiKey || window.themeSettings?.openai_api_key,
+      gemini_api_key: chatWidget?.dataset.geminiApiKey || window.themeSettings?.gemini_api_key,
+      ai_cache_duration: parseInt(chatWidget?.dataset.cacheDuration || '60'),
+      api_timeout: parseInt(chatWidget?.dataset.apiTimeout || '30')
     };
   }
 
@@ -466,6 +478,189 @@ class AIChainBot {
         this.chatMessages.appendChild(welcomeMessage);
       }
     }
+  }
+
+  /**
+   * Get provider order based on settings
+   */
+  getProviderOrder(settings) {
+    const providers = ['claude', 'openai', 'gemini'];
+    const primary = settings.ai_primary_provider;
+    
+    if (primary && providers.includes(primary)) {
+      providers.splice(providers.indexOf(primary), 1);
+      providers.unshift(primary);
+    }
+    
+    return providers;
+  }
+
+  /**
+   * Call Claude API directly
+   */
+  async callClaudeAPI(message, settings) {
+    const apiKey = settings.claude_api_key;
+    if (!apiKey) {
+      throw new Error('Claude API key not configured');
+    }
+
+    const prompt = this.buildSwissEBikePrompt(message);
+    
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01'
+      },
+      body: JSON.stringify({
+        model: 'claude-3-sonnet-20240229',
+        max_tokens: 1000,
+        messages: [
+          {
+            role: 'user',
+            content: prompt
+          }
+        ]
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`Claude API error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return {
+      text: data.content[0].text
+    };
+  }
+
+  /**
+   * Call OpenAI API directly
+   */
+  async callOpenAIAPI(message, settings) {
+    const apiKey = settings.openai_api_key;
+    if (!apiKey) {
+      throw new Error('OpenAI API key not configured');
+    }
+
+    const prompt = this.buildSwissEBikePrompt(message);
+    
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`
+      },
+      body: JSON.stringify({
+        model: 'gpt-4',
+        messages: [
+          {
+            role: 'system',
+            content: 'You are a Swiss e-bike expert helping customers at Godspeed, a premium e-bike retailer in Switzerland.'
+          },
+          {
+            role: 'user',
+            content: prompt
+          }
+        ],
+        max_tokens: 1000,
+        temperature: 0.7
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`OpenAI API error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return {
+      text: data.choices[0].message.content
+    };
+  }
+
+  /**
+   * Call Gemini API directly
+   */
+  async callGeminiAPI(message, settings) {
+    const apiKey = settings.gemini_api_key;
+    if (!apiKey) {
+      throw new Error('Gemini API key not configured');
+    }
+
+    const prompt = this.buildSwissEBikePrompt(message);
+    
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        contents: [
+          {
+            parts: [
+              {
+                text: prompt
+              }
+            ]
+          }
+        ],
+        generationConfig: {
+          maxOutputTokens: 1000,
+          temperature: 0.7
+        }
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`Gemini API error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return {
+      text: data.candidates[0].content.parts[0].text
+    };
+  }
+
+  /**
+   * Build Swiss E-Bike Expert Prompt
+   */
+  buildSwissEBikePrompt(message) {
+    const languageNames = {
+      'de': 'German',
+      'fr': 'French', 
+      'it': 'Italian',
+      'en': 'English'
+    };
+
+    const contextInfo = this.userContext ? `
+Context: Customer is on ${this.userContext.currentPage || 'unknown page'}
+Previous actions: ${JSON.stringify(this.userContext.previousActions?.slice(-5) || [])}
+` : '';
+
+    return `You are a Swiss e-bike expert working at Godspeed, a premium e-bike retailer in Switzerland. 
+
+${contextInfo}
+
+Swiss E-Bike Knowledge:
+- Pedelec (25 km/h) vs S-Pedelec (45 km/h) regulations
+- Swiss insurance requirements for e-bikes
+- Alpine terrain considerations for range and motor selection
+- Bosch, Shimano, and Brose motor systems
+- Swiss weather conditions and seasonal riding
+- 0% financing options available
+- 6 store locations: Zürich, Basel, Bern, Genève, Luzern, St. Gallen
+- Test ride booking and professional service available
+
+Respond in ${languageNames[this.userContext.language] || 'German'} with:
+1. Helpful, expert advice
+2. Swiss market specific information
+3. Recommendation for test rides when relevant
+4. Clear next steps for the customer
+
+Customer message: "${message}"
+
+Keep response under 200 words, friendly but professional tone.`;
   }
 }
 
