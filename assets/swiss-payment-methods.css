@@ -1,0 +1,164 @@
+/* SWISS PAYMENT METHODS DISPLAY */
+
+.swiss-payment-methods {
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  background: var(--color-background-subtle, #f8fafc);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: 8px;
+}
+
+.swiss-payment-methods__header {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.swiss-payment-methods__title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-secondary, #4a4a4a);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.swiss-payment-methods__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .swiss-payment-methods__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Payment Method Items */
+.payment-method {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: white;
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: 6px;
+  transition: all var(--transition-fast);
+}
+
+.payment-method:hover {
+  border-color: var(--color-focus, #3b82f6);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
+}
+
+.payment-method__icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.payment-method__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  min-width: 0;
+}
+
+.payment-method__name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-primary, #1a1a1a);
+  line-height: 1.2;
+}
+
+.payment-method__desc {
+  font-size: 0.75rem;
+  color: var(--color-text-muted, #6b6b6b);
+  line-height: 1.2;
+}
+
+/* Payment Cards Styling */
+.payment-cards {
+  display: flex;
+  gap: 2px;
+}
+
+.card-icon {
+  font-size: 0.625rem;
+  font-weight: 700;
+  padding: 2px 4px;
+  border-radius: 2px;
+  color: white;
+}
+
+.card-icon--visa {
+  background: #1A1F71;
+}
+
+.card-icon--mastercard {
+  background: #EB001B;
+}
+
+/* Security Badge */
+.swiss-payment-methods__security {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #047857;
+}
+
+/* Specific Payment Method Variations */
+.payment-method--twint:hover {
+  border-color: #00D4FF;
+  box-shadow: 0 2px 8px rgba(0, 212, 255, 0.15);
+}
+
+.payment-method--postfinance:hover {
+  border-color: #FFCC00;
+  box-shadow: 0 2px 8px rgba(255, 204, 0, 0.15);
+}
+
+.payment-method--heylight:hover {
+  border-color: #6366F1;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.15);
+}
+
+/* Mobile Optimizations */
+@media (max-width: 480px) {
+  .swiss-payment-methods {
+    margin: 1rem 0;
+    padding: 1rem;
+  }
+  
+  .swiss-payment-methods__grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  
+  .payment-method {
+    padding: 1rem;
+  }
+  
+  .payment-method__icon {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .payment-method__name {
+    font-size: 1rem;
+  }
+  
+  .payment-method__desc {
+    font-size: 0.875rem;
+  }
+}

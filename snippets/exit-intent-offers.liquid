@@ -1,0 +1,277 @@
+{% comment %}
+  Exit Intent Offers
+  Displays targeted offers when users are about to leave the page
+  
+  Usage:
+  {% render 'exit-intent-offers' %}
+{% endcomment %}
+
+{{ 'exit-intent-offers.css' | asset_url | stylesheet_tag }}
+
+{%- if settings.enable_exit_intent -%}
+<div class="exit-intent-modal" data-exit-intent-modal style="display: none;">
+  <div class="exit-intent-modal__backdrop" data-exit-intent-backdrop></div>
+  <div class="exit-intent-modal__content">
+    <button class="exit-intent-modal__close" data-exit-intent-close aria-label="Close offer">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    
+    <div class="exit-intent-modal__header">
+      <div class="exit-intent-modal__icon">⚡</div>
+      <h2 class="exit-intent-modal__title">{{ settings.exit_intent_title | default: 'Warte! Verpasse nicht diese Chance!' }}</h2>
+      <p class="exit-intent-modal__subtitle">{{ settings.exit_intent_subtitle | default: 'Erhalte 10% Rabatt auf dein erstes E-Bike' }}</p>
+    </div>
+    
+    <div class="exit-intent-modal__body">
+      <div class="exit-intent-modal__offer">
+        <div class="exit-intent-modal__discount">
+          <span class="exit-intent-modal__discount-text">{{ settings.exit_intent_discount_percent | default: 10 }}% RABATT</span>
+          <span class="exit-intent-modal__discount-code">Code: {{ settings.exit_intent_discount_code | default: 'GODSPEED10' }}</span>
+        </div>
+        
+        <div class="exit-intent-modal__benefits">
+          <div class="exit-intent-modal__benefit">
+            <div class="exit-intent-modal__benefit-icon">✓</div>
+            <span>Kostenloser Versand in der Schweiz</span>
+          </div>
+          <div class="exit-intent-modal__benefit">
+            <div class="exit-intent-modal__benefit-icon">✓</div>
+            <span>30 Tage Rückgaberecht</span>
+          </div>
+          <div class="exit-intent-modal__benefit">
+            <div class="exit-intent-modal__benefit-icon">✓</div>
+            <span>2 Jahre Vollgarantie</span>
+          </div>
+        </div>
+        
+        <div class="exit-intent-modal__timer">
+          <div class="exit-intent-modal__timer-text">Angebot läuft ab in:</div>
+          <div class="exit-intent-modal__countdown">
+            <span class="exit-intent-modal__countdown-minutes">{{ settings.exit_intent_timer_minutes | default: 10 | minus: 1 }}</span>:
+            <span class="exit-intent-modal__countdown-seconds">59</span>
+          </div>
+        </div>
+        
+        <div class="exit-intent-modal__actions">
+          <a href="/collections/e-bikes" class="exit-intent-modal__button exit-intent-modal__button--primary">
+            Jetzt E-Bikes entdecken
+          </a>
+          <button class="exit-intent-modal__button exit-intent-modal__button--secondary" data-exit-intent-close>
+            Nein danke
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{%- if template.name == 'cart' and settings.enable_cart_abandonment_popup -%}
+<!-- Cart abandonment specific offer -->
+<div class="exit-intent-modal exit-intent-modal--cart" data-exit-intent-modal-cart style="display: none;">
+  <div class="exit-intent-modal__backdrop" data-exit-intent-backdrop-cart></div>
+  <div class="exit-intent-modal__content">
+    <button class="exit-intent-modal__close" data-exit-intent-close-cart aria-label="Close offer">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    
+    <div class="exit-intent-modal__header">
+      <div class="exit-intent-modal__icon">🛒</div>
+      <h2 class="exit-intent-modal__title">{{ settings.cart_abandonment_title | default: 'Dein E-Bike wartet auf dich!' }}</h2>
+      <p class="exit-intent-modal__subtitle">Vergiss nicht deine Artikel im Warenkorb</p>
+    </div>
+    
+    <div class="exit-intent-modal__body">
+      <div class="exit-intent-modal__cart-items" data-cart-items>
+        <!-- Cart items will be populated by JavaScript -->
+      </div>
+      
+      <div class="exit-intent-modal__offer">
+        <div class="exit-intent-modal__shipping-notice">
+          <div class="exit-intent-modal__shipping-icon">🚛</div>
+          <div class="exit-intent-modal__shipping-text">
+            <strong>Kostenloser Versand</strong> bei Bestellungen über CHF 100
+          </div>
+        </div>
+        
+        <div class="exit-intent-modal__actions">
+          <a href="/checkout" class="exit-intent-modal__button exit-intent-modal__button--primary">
+            Zur Kasse gehen
+          </a>
+          <button class="exit-intent-modal__button exit-intent-modal__button--secondary" data-exit-intent-close-cart>
+            Weiter einkaufen
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{%- endif -%}
+{%- endif -%}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Exit intent detection
+  let exitIntentTriggered = false;
+  let cartExitIntentTriggered = false;
+  
+  // Check if user has already seen the offer based on admin settings
+  const today = new Date().toDateString();
+  const frequencyHours = {{ settings.exit_intent_frequency_hours | default: 24 }};
+  const lastShown = localStorage.getItem('exitIntentShown');
+  const cartLastShown = localStorage.getItem('cartExitIntentShown');
+  
+  const modal = document.querySelector('[data-exit-intent-modal]');
+  const cartModal = document.querySelector('[data-exit-intent-modal-cart]');
+  
+  // Mouse leave detection for exit intent
+  document.addEventListener('mouseleave', function(e) {
+    if (e.clientY <= 0 && !exitIntentTriggered && lastShown !== today) {
+      if (cartModal && window.location.pathname === '/cart') {
+        // Show cart-specific modal
+        if (!cartExitIntentTriggered && cartLastShown !== today) {
+          showCartExitIntent();
+        }
+      } else if (modal) {
+        // Show general modal
+        showExitIntent();
+      }
+    }
+  });
+  
+  // Show exit intent modal
+  function showExitIntent() {
+    exitIntentTriggered = true;
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    localStorage.setItem('exitIntentShown', today);
+    
+    // Start countdown timer
+    startCountdown();
+    
+    // Track event
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'exit_intent_shown', {
+        'event_category': 'engagement',
+        'event_label': 'discount_offer'
+      });
+    }
+  }
+  
+  // Show cart abandonment modal
+  function showCartExitIntent() {
+    cartExitIntentTriggered = true;
+    
+    // Populate cart items
+    fetch('/cart.js')
+      .then(response => response.json())
+      .then(cart => {
+        const cartItemsContainer = cartModal.querySelector('[data-cart-items]');
+        
+        if (cart.items.length > 0) {
+          cartItemsContainer.innerHTML = cart.items.map(item => `
+            <div class="exit-intent-modal__cart-item">
+              <img src="${item.image}" alt="${item.title}" class="exit-intent-modal__cart-item-image">
+              <div class="exit-intent-modal__cart-item-details">
+                <div class="exit-intent-modal__cart-item-title">${item.title}</div>
+                <div class="exit-intent-modal__cart-item-price">CHF ${(item.price / 100).toFixed(2)} × ${item.quantity}</div>
+              </div>
+            </div>
+          `).join('');
+          
+          cartModal.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+          localStorage.setItem('cartExitIntentShown', today);
+          
+          // Track event
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'cart_exit_intent_shown', {
+              'event_category': 'ecommerce',
+              'event_label': 'cart_recovery',
+              'value': cart.total_price / 100
+            });
+          }
+        }
+      })
+      .catch(error => console.error('Error fetching cart:', error));
+  }
+  
+  // Countdown timer
+  function startCountdown() {
+    let minutes = 9;
+    let seconds = 59;
+    
+    const minutesElement = modal.querySelector('.exit-intent-modal__countdown-minutes');
+    const secondsElement = modal.querySelector('.exit-intent-modal__countdown-seconds');
+    
+    const timer = setInterval(() => {
+      if (seconds === 0) {
+        if (minutes === 0) {
+          clearInterval(timer);
+          closeExitIntent();
+          return;
+        }
+        minutes--;
+        seconds = 59;
+      } else {
+        seconds--;
+      }
+      
+      minutesElement.textContent = minutes.toString().padStart(2, '0');
+      secondsElement.textContent = seconds.toString().padStart(2, '0');
+    }, 1000);
+  }
+  
+  // Close modal functions
+  function closeExitIntent() {
+    if (modal) {
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  }
+  
+  function closeCartExitIntent() {
+    if (cartModal) {
+      cartModal.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  }
+  
+  // Event listeners for closing modals
+  if (modal) {
+    modal.querySelector('[data-exit-intent-close]').addEventListener('click', closeExitIntent);
+    modal.querySelector('[data-exit-intent-backdrop]').addEventListener('click', closeExitIntent);
+  }
+  
+  if (cartModal) {
+    cartModal.querySelector('[data-exit-intent-close-cart]').addEventListener('click', closeCartExitIntent);
+    cartModal.querySelector('[data-exit-intent-backdrop-cart]').addEventListener('click', closeCartExitIntent);
+  }
+  
+  // Keyboard event for ESC key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeExitIntent();
+      closeCartExitIntent();
+    }
+  });
+  
+  // Copy discount code functionality
+  modal?.addEventListener('click', function(e) {
+    if (e.target.closest('.exit-intent-modal__discount-code')) {
+      const code = 'GODSPEED10';
+      navigator.clipboard.writeText(code).then(() => {
+        e.target.textContent = 'Code kopiert!';
+        setTimeout(() => {
+          e.target.textContent = 'Code: ' + code;
+        }, 2000);
+      });
+    }
+  });
+});
+</script>

@@ -4,22 +4,33 @@
 {% endcomment %}
 
 <div class="mega-menu" data-mega-menu>
-  <button class="mega-menu-trigger" data-mega-menu-trigger>
+  <button class="mega-menu-trigger" 
+          data-mega-menu-trigger
+          aria-expanded="false"
+          aria-haspopup="true"
+          aria-controls="mega-menu-content"
+          id="mega-menu-trigger">
     E-Bikes
+    <span class="mega-menu-arrow" aria-hidden="true">▼</span>
   </button>
   
-  <div class="mega-menu-dropdown" data-mega-menu-dropdown>
+  <div class="mega-menu-dropdown" 
+       data-mega-menu-dropdown
+       id="mega-menu-content"
+       role="menu"
+       aria-labelledby="mega-menu-trigger"
+       aria-hidden="true">
     <div class="mega-menu-grid">
       
       <!-- Commuter E-Bikes Category -->
-      <div class="mega-menu-category">
-        <h3>Commuter</h3>
+      <div class="mega-menu-category" role="group" aria-labelledby="commuter-heading">
+        <h3 id="commuter-heading" role="presentation">Commuter</h3>
         
         {% assign commuter_collection = collections['all'] %}
         {% if commuter_collection.products.size > 0 %}
           {% assign featured_product = commuter_collection.products.first %}
           <div class="mega-menu-product">
-            <a href="{{ featured_product.url }}">
+            <a href="{{ featured_product.url }}" role="menuitem">
               {% if featured_product.featured_image %}
                 <img src="{{ featured_product.featured_image | img_url: '300x300' }}" 
                      alt="{{ featured_product.title | escape }}"
@@ -51,7 +62,7 @@
         {% if mountain_collection.products.size > 1 %}
           {% assign featured_product = mountain_collection.products[1] %}
           <div class="mega-menu-product">
-            <a href="{{ featured_product.url }}">
+            <a href="{{ featured_product.url }}" role="menuitem">
               {% if featured_product.featured_image %}
                 <img src="{{ featured_product.featured_image | img_url: '300x300' }}" 
                      alt="{{ featured_product.title | escape }}"
@@ -83,7 +94,7 @@
         {% if cargo_collection.products.size > 2 %}
           {% assign featured_product = cargo_collection.products[2] %}
           <div class="mega-menu-product">
-            <a href="{{ featured_product.url }}">
+            <a href="{{ featured_product.url }}" role="menuitem">
               {% if featured_product.featured_image %}
                 <img src="{{ featured_product.featured_image | img_url: '300x300' }}" 
                      alt="{{ featured_product.title | escape }}"

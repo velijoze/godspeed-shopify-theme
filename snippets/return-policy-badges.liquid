@@ -1,0 +1,128 @@
+{% comment %}
+  Return Policy Trust Badges
+  Displays prominent return policy and guarantee information
+  
+  Usage:
+  {% render 'return-policy-badges' %}
+{% endcomment %}
+
+{{ 'return-policy-badges.css' | asset_url | stylesheet_tag }}
+
+<div class="return-policy-badges">
+  <div class="return-policy-badges__grid">
+    
+    <!-- 30-Day Return Policy -->
+    <div class="policy-badge policy-badge--return">
+      <div class="policy-badge__icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 12C3 7.58172 6.58172 4 11 4H13L11 2M21 12C21 16.4183 17.4183 20 13 20H11L13 22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="policy-badge__content">
+        <span class="policy-badge__title">
+          {{ 'products.return_policy.return_days' | t: default: '30 Tage Rückgaberecht' }}
+        </span>
+        <span class="policy-badge__desc">
+          {{ 'products.return_policy.return_desc' | t: default: 'Risikofrei testen' }}
+        </span>
+      </div>
+    </div>
+
+    <!-- Free Returns -->
+    <div class="policy-badge policy-badge--shipping">
+      <div class="policy-badge__icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 3H20C20.5523 3 21 3.44772 21 4V11C21 11.5523 20.5523 12 20 12H4C3.44772 12 3 11.5523 3 11V4C3 3.44772 3.44772 3 4 3H8" stroke="currentColor" stroke-width="2"/>
+          <path d="M12 21C14.2091 21 16 19.2091 16 17C16 14.7909 14.2091 13 12 13C9.79086 13 8 14.7909 8 17C8 19.2091 9.79086 21 12 21Z" stroke="currentColor" stroke-width="2"/>
+          <path d="M10 17L11 18L14 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="policy-badge__content">
+        <span class="policy-badge__title">
+          {{ 'products.return_policy.free_returns' | t: default: 'Kostenlose Rückgabe' }}
+        </span>
+        <span class="policy-badge__desc">
+          {{ 'products.return_policy.free_returns_desc' | t: default: 'Bei Defekten' }}
+        </span>
+      </div>
+    </div>
+
+    <!-- 2-Year Warranty -->
+    <div class="policy-badge policy-badge--warranty">
+      <div class="policy-badge__icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L3 7V13C3 17.55 6.84 21.74 12 22C17.16 21.74 21 17.55 21 13V7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="policy-badge__content">
+        <span class="policy-badge__title">
+          {{ 'products.return_policy.warranty_years' | t: default: '2 Jahre Garantie' }}
+        </span>
+        <span class="policy-badge__desc">
+          {{ 'products.return_policy.warranty_desc' | t: default: 'Motor & Akku' }}
+        </span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Detailed Return Policy Summary -->
+  <div class="return-policy-summary">
+    <details class="return-policy-details">
+      <summary class="return-policy-summary__header">
+        <span class="return-policy-summary__title">
+          {{ 'products.return_policy.full_policy' | t: default: 'Vollständige Rückgabebedingungen' }}
+        </span>
+        <div class="return-policy-summary__icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </summary>
+      
+      <div class="return-policy-content">
+        <div class="return-policy-section">
+          <h4 class="return-policy-section__title">
+            {{ 'products.return_policy.conditions_title' | t: default: 'Rückgabebedingungen' }}
+          </h4>
+          <ul class="return-policy-list">
+            <li>{{ 'products.return_policy.condition_1' | t: default: 'Artikel muss unbenutzt und in Originalverpackung sein' }}</li>
+            <li>{{ 'products.return_policy.condition_2' | t: default: 'Rückgabe innerhalb von 30 Tagen nach Erhalt' }}</li>
+            <li>{{ 'products.return_policy.condition_3' | t: default: 'Originalrechnung oder Bestellbestätigung erforderlich' }}</li>
+            <li>{{ 'products.return_policy.condition_4' | t: default: 'Keine Gebrauchsspuren oder Beschädigungen' }}</li>
+          </ul>
+        </div>
+        
+        <div class="return-policy-section">
+          <h4 class="return-policy-section__title">
+            {{ 'products.return_policy.process_title' | t: default: 'Rückgabeprozess' }}
+          </h4>
+          <ol class="return-policy-steps">
+            <li>{{ 'products.return_policy.step_1' | t: default: 'Kontaktieren Sie unseren Kundenservice' }}</li>
+            <li>{{ 'products.return_policy.step_2' | t: default: 'Erhalten Sie Ihr Rücksendelabel' }}</li>
+            <li>{{ 'products.return_policy.step_3' | t: default: 'Verpacken Sie den Artikel sicher' }}</li>
+            <li>{{ 'products.return_policy.step_4' | t: default: 'Senden Sie das Paket zurück' }}</li>
+            <li>{{ 'products.return_policy.step_5' | t: default: 'Erhalten Sie Ihre Rückerstattung in 5-7 Werktagen' }}</li>
+          </ol>
+        </div>
+
+        <div class="return-policy-contact">
+          <div class="return-policy-contact__info">
+            <span class="return-policy-contact__label">
+              {{ 'products.return_policy.contact_label' | t: default: 'Kundenservice:' }}
+            </span>
+            <a href="mailto:service@godspeed.ch" class="return-policy-contact__link">
+              service@godspeed.ch
+            </a>
+            <span class="return-policy-contact__divider">•</span>
+            <a href="tel:+41443221100" class="return-policy-contact__link">
+              +41 44 322 11 00
+            </a>
+          </div>
+        </div>
+      </div>
+    </details>
+  </div>
+</div>

@@ -24,7 +24,7 @@
 }
 
 .benefits-bar__icon {
-  color: #666666;
+  color: var(--color-text-secondary, #4a4a4a);
   transition: color 0.3s ease;
 }
 
@@ -48,7 +48,7 @@
 
 .benefits-bar__text {
   font-size: 1.4rem;
-  color: #666666;
+  color: var(--color-text-secondary, #4a4a4a);
   margin: 0;
   line-height: 1.4;
   font-weight: 400;

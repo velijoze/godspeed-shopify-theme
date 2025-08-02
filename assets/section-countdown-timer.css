@@ -19,7 +19,7 @@
 
 .countdown-timer__text {
   font-size: 1.8rem;
-  color: #666666;
+  color: var(--color-text-secondary, #4a4a4a);
   margin-bottom: 4rem;
   line-height: 1.5;
 }
@@ -51,7 +51,7 @@
 
 .countdown-timer__label {
   font-size: 1.4rem;
-  color: #666666;
+  color: var(--color-text-secondary, #4a4a4a);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-weight: 400;
@@ -86,7 +86,7 @@
 .countdown-timer__expired h3 {
   font-size: 2.4rem;
   font-weight: 300;
-  color: #666666;
+  color: var(--color-text-secondary, #4a4a4a);
   letter-spacing: 0.02em;
 }
 

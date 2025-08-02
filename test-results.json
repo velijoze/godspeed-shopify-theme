@@ -1,0 +1,4 @@
+
+> godspeed-shopify-theme-comprehensive@2.0.0 test
+> playwright test --config=playwright.config.simple.js --reporter=json 2
+

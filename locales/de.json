@@ -560,7 +560,51 @@
     "phone_title": "Anrufen",
     "frequently_bought": "Oft zusammen gekauft",
     "complete_setup": "Komplettiere dein E-Bike Setup",
-    "you_may_like": "Das könnte dir auch gefallen"
+    "you_may_like": "Das könnte dir auch gefallen",
+    "payment_methods": {
+      "title": "Sichere Zahlungsmethoden",
+      "twint_desc": "Mobile Zahlung",
+      "postfinance_desc": "Schweizer Bank",
+      "heylight_desc": "In 3 Raten zahlen",
+      "cards": "Kreditkarten",
+      "cards_desc": "Visa & Mastercard",
+      "security": "100% sichere Zahlung"
+    },
+    "shipping": {
+      "calculator_title": "Versandkosten berechnen",
+      "postal_code": "Postleitzahl",
+      "postal_code_placeholder": "z.B. 8001",
+      "quantity": "Anzahl",
+      "calculate": "Berechnen",
+      "express_available": "Express-Versand verfügbar",
+      "results_title": "Versandoptionen",
+      "standard_shipping": "Standard",
+      "express_shipping": "Express",
+      "working_days": "Werktage",
+      "invalid_postal_code": "Bitte geben Sie eine gültige Schweizer Postleitzahl ein",
+      "invalid_quantity": "Anzahl muss zwischen 1 und 10 liegen"
+    },
+    "return_policy": {
+      "return_days": "30 Tage Rückgaberecht",
+      "return_desc": "Risikofrei testen",
+      "free_returns": "Kostenlose Rückgabe",
+      "free_returns_desc": "Bei Defekten",
+      "warranty_years": "2 Jahre Garantie",
+      "warranty_desc": "Motor & Akku",
+      "full_policy": "Vollständige Rückgabebedingungen",
+      "conditions_title": "Rückgabebedingungen",
+      "condition_1": "Artikel muss unbenutzt und in Originalverpackung sein",
+      "condition_2": "Rückgabe innerhalb von 30 Tagen nach Erhalt",
+      "condition_3": "Originalrechnung oder Bestellbestätigung erforderlich",
+      "condition_4": "Keine Gebrauchsspuren oder Beschädigungen",
+      "process_title": "Rückgabeprozess",
+      "step_1": "Kontaktieren Sie unseren Kundenservice",
+      "step_2": "Erhalten Sie Ihr Rücksendelabel",
+      "step_3": "Verpacken Sie den Artikel sicher",
+      "step_4": "Senden Sie das Paket zurück",
+      "step_5": "Erhalten Sie Ihre Rückerstattung in 5-7 Werktagen",
+      "contact_label": "Kundenservice:"
+    }
   },
   "sections": {
     "services": {

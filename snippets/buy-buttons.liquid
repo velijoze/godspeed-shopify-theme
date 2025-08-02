@@ -97,6 +97,16 @@
             {{ form | payment_button }}
           {%- endif -%}
         </div>
+        
+        {%- comment -%} Swiss Payment Methods Display {%- endcomment -%}
+        {%- render 'swiss-payment-methods' -%}
+        
+        {%- comment -%} Shipping Cost Calculator {%- endcomment -%}
+        {%- render 'shipping-calculator', product: product -%}
+        
+        {%- comment -%} Return Policy Trust Badges {%- endcomment -%}
+        {%- render 'return-policy-badges' -%}
+        
       {%- endform -%}
     </product-form>
   {%- else -%}

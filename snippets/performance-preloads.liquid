@@ -1,0 +1,113 @@
+{% comment %}
+  Performance Preload Hints
+  Preloads critical resources for faster page rendering
+  
+  Usage:
+  {% render 'performance-preloads' %}
+{% endcomment %}
+
+<!-- Critical CSS Preloads -->
+<link rel="preload" href="{{ 'animation-standards.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<!-- Critical JavaScript Preloads -->
+<link rel="preload" href="{{ 'core-bundle.js' | asset_url }}" as="script">
+
+<!-- Critical Image Preloads -->
+{%- if template.name == 'index' -%}
+  {%- comment -%} Homepage critical images {%- endcomment -%}
+  {%- assign hero_section = sections['hero-pipeline'] -%}
+  {%- if hero_section.settings.image -%}
+    <link rel="preload" href="{{ hero_section.settings.image | image_url: width: 1920 }}" as="image" importance="high">
+  {%- endif -%}
+  
+  {%- comment -%} Featured products images {%- endcomment -%}
+  {%- assign featured_collection = collections[settings.featured_collection] | default: collections.all -%}
+  {%- for product in featured_collection.products limit: 4 -%}
+    {%- if product.featured_media -%}
+      <link rel="preload" href="{{ product.featured_media | image_url: width: 533 }}" as="image">
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+{%- if template.name == 'product' -%}
+  {%- comment -%} Product page critical images {%- endcomment -%}
+  {%- if product.featured_media -%}
+    <link rel="preload" href="{{ product.featured_media | image_url: width: 1100 }}" as="image" importance="high">
+  {%- endif -%}
+  
+  {%- comment -%} First 3 product media images {%- endcomment -%}
+  {%- for media in product.media limit: 3 -%}
+    {%- if media.media_type == 'image' -%}
+      <link rel="preload" href="{{ media | image_url: width: 1100 }}" as="image">
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+{%- if template.name == 'collection' -%}
+  {%- comment -%} Collection page critical images {%- endcomment -%}
+  {%- if collection.image -%}
+    <link rel="preload" href="{{ collection.image | image_url: width: 1920 }}" as="image" importance="high">
+  {%- endif -%}
+  
+  {%- comment -%} First 8 collection product images {%- endcomment -%}
+  {%- for product in collection.products limit: 8 -%}
+    {%- if product.featured_media -%}
+      <link rel="preload" href="{{ product.featured_media | image_url: width: 533 }}" as="image">
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+<!-- Logo and branding preloads -->
+{%- if settings.logo -%}
+  <link rel="preload" href="{{ settings.logo | image_url: width: 300 }}" as="image" importance="high">
+{%- endif -%}
+
+{%- if settings.favicon -%}
+  <link rel="preload" href="{{ settings.favicon | image_url: width: 32, height: 32 }}" as="image">
+{%- endif -%}
+
+<!-- Social media and payment icons -->
+<link rel="preload" href="{{ 'icon-facebook.svg' | asset_url }}" as="image">
+<link rel="preload" href="{{ 'icon-instagram.svg' | asset_url }}" as="image">
+<link rel="preload" href="{{ 'icon-payment-visa.svg' | asset_url }}" as="image">
+<link rel="preload" href="{{ 'icon-payment-mastercard.svg' | asset_url }}" as="image">
+
+<!-- Critical API endpoints -->
+<link rel="dns-prefetch" href="//cdn.shopify.com">
+<link rel="dns-prefetch" href="//shopify-payments.shopifycs.com">
+<link rel="dns-prefetch" href="//fonts.gstatic.com">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+
+<!-- Preconnect to critical third-party domains -->
+<link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Module preload for modern browsers -->
+{%- if template.name == 'product' -%}
+  <link rel="modulepreload" href="{{ 'product-media.js' | asset_url }}">
+  <link rel="modulepreload" href="{{ 'product-form.js' | asset_url }}">
+{%- endif -%}
+
+{%- if settings.cart_type == 'drawer' -%}
+  <link rel="modulepreload" href="{{ 'cart-drawer.js' | asset_url }}">
+{%- endif -%}
+
+<!-- Prefetch likely next pages -->
+{%- if template.name == 'index' -%}
+  <link rel="prefetch" href="/collections">
+  <link rel="prefetch" href="/collections/e-bikes">
+{%- endif -%}
+
+{%- if template.name == 'collection' -%}
+  {%- comment -%} Prefetch first few product pages {%- endcomment -%}
+  {%- for product in collection.products limit: 3 -%}
+    <link rel="prefetch" href="{{ product.url }}">
+  {%- endfor -%}
+{%- endif -%}
+
+{%- if template.name == 'product' -%}
+  <link rel="prefetch" href="/cart">
+  {%- if collection -%}
+    <link rel="prefetch" href="{{ collection.url }}">
+  {%- endif -%}
+{%- endif -%}

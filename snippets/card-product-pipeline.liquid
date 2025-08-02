@@ -22,7 +22,7 @@ Pipeline-style Product Card with Quick Buy and Advanced Features
                   {{ product.featured_media | img_url: 'master' }} {{ product.featured_media.width }}w"
           src="{{ product.featured_media | img_url: '533x' }}"
           sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
-          alt="{{ product.featured_media.alt | escape }}"
+          alt="{% render 'product-image-alt', product: product, media: product.featured_media %}"
           class="motion-reduce product-card-image"
           {% unless lazy_load == false %}loading="lazy"{% endunless %}
           width="{{ product.featured_media.width }}"
@@ -36,7 +36,7 @@ Pipeline-style Product Card with Quick Buy and Advanced Features
                     {% if product.media[1].width >= 533 %}{{ product.media[1] | img_url: '533x' }} 533w,{% endif %}
                     {{ product.media[1] | img_url: 'master' }} {{ product.media[1].width }}w"
             src="{{ product.media[1] | img_url: '533x' }}"
-            alt="{{ product.media[1].alt | escape }}"
+            alt="{% render 'product-image-alt', product: product, media: product.media[1] %}"
             class="motion-reduce product-card-image-hover"
             loading="lazy"
             width="{{ product.media[1].width }}"

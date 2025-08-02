@@ -126,7 +126,7 @@ details[open].menu-opening > .menu-drawer__submenu {
 }
 
 .menu-drawer__menu-item > .svg-wrapper {
-  width: 15px;
+  width: 24px;
   position: absolute;
   right: 3rem;
   top: 50%;
@@ -166,7 +166,7 @@ details[open].menu-opening > .menu-drawer__submenu {
 .menu-drawer__close-button .svg-wrapper {
   transform: rotate(180deg);
   margin-right: 1rem;
-  width: 15px;
+  width: 24px;
 }
 
 .menu-drawer__utility-links {

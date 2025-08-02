@@ -572,7 +572,51 @@
     "phone_title": "Chiamaci",
     "frequently_bought": "Spesso Acquistati Insieme",
     "complete_setup": "Completa la tua configurazione e-bike",
-    "you_may_like": "Potrebbe piacerti anche"
+    "you_may_like": "Potrebbe piacerti anche",
+    "payment_methods": {
+      "title": "Metodi di Pagamento Sicuri",
+      "twint_desc": "Pagamento mobile",
+      "postfinance_desc": "Banca svizzera",
+      "heylight_desc": "Paga in 3 rate",
+      "cards": "Carte di credito",
+      "cards_desc": "Visa & Mastercard",
+      "security": "Pagamento 100% sicuro"
+    },
+    "shipping": {
+      "calculator_title": "Calcolatore Costi di Spedizione",
+      "postal_code": "Codice postale",
+      "postal_code_placeholder": "es. 8001",
+      "quantity": "Quantità",
+      "calculate": "Calcola",
+      "express_available": "Spedizione express disponibile",
+      "results_title": "Opzioni di spedizione",
+      "standard_shipping": "Standard",
+      "express_shipping": "Express",
+      "working_days": "giorni lavorativi",
+      "invalid_postal_code": "Inserire un codice postale svizzero valido",
+      "invalid_quantity": "La quantità deve essere tra 1 e 10"
+    },
+    "return_policy": {
+      "return_days": "Reso entro 30 giorni",
+      "return_desc": "Test senza rischi",
+      "free_returns": "Resi gratuiti",
+      "free_returns_desc": "In caso di difetti",
+      "warranty_years": "Garanzia 2 anni",
+      "warranty_desc": "Motore & Batteria",
+      "full_policy": "Condizioni di reso complete",
+      "conditions_title": "Condizioni di reso",
+      "condition_1": "L'articolo deve essere inutilizzato e nella confezione originale",
+      "condition_2": "Reso entro 30 giorni dal ricevimento",
+      "condition_3": "Fattura originale o conferma d'ordine richiesta",
+      "condition_4": "Nessun segno di usura o danno",
+      "process_title": "Processo di reso",
+      "step_1": "Contatta il nostro servizio clienti",
+      "step_2": "Ricevi la tua etichetta di reso",
+      "step_3": "Confeziona l'articolo in sicurezza",
+      "step_4": "Spedisci il pacco di ritorno",
+      "step_5": "Ricevi il tuo rimborso in 5-7 giorni lavorativi",
+      "contact_label": "Servizio clienti:"
+    }
   },
   "sections": {
     "services": {

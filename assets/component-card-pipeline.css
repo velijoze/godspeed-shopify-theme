@@ -139,7 +139,8 @@
   text-decoration: none;
   display: inline-block;
   transition: all 0.3s ease;
-  min-width: 110px;
+  min-width: 120px;
+  min-height: 44px;
   text-align: center;
   border-radius: 4px;
 }
@@ -194,7 +195,7 @@
 }
 
 .pipeline-product-card .card__heading a:hover {
-  color: #666666;
+  color: var(--color-text-secondary);
 }
 
 /* Color Swatches */
@@ -233,7 +234,7 @@
 
 .color-count {
   font-size: 1.2rem;
-  color: #666666;
+  color: var(--color-text-secondary);
   font-weight: 400;
 }
 
@@ -261,7 +262,7 @@
 
 .rating-count {
   font-size: 1.2rem;
-  color: #666666;
+  color: var(--color-text-secondary);
   font-weight: 400;
 }
 
@@ -273,7 +274,7 @@
 .price--pipeline .price__regular {
   font-size: 1.4rem;
   font-weight: 400;
-  color: #666666;
+  color: var(--color-text-secondary);
   letter-spacing: 0.02em;
 }
 
@@ -286,7 +287,7 @@
 
 .price--pipeline .price__regular {
   text-decoration: line-through;
-  color: #999999;
+  color: var(--color-text-muted);
   margin-left: 0.5rem;
 }
 

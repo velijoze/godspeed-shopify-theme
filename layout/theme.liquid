@@ -1,5 +1,14 @@
 <!doctype html>
-<html class="js antialiased" lang="{{ request.locale.iso_code }}">
+<html class="js antialiased" lang="{{ request.locale.iso_code }}"
+      data-enable-social-proof="{{ settings.enable_social_proof | default: true }}"
+      data-enable-exit-intent="{{ settings.enable_exit_intent | default: true }}"
+      data-enable-form-validation="{{ settings.enable_form_validation | default: true }}"
+      data-enable-critical-css="{{ settings.enable_critical_css | default: true }}"
+      data-enable-resource-preloading="{{ settings.enable_resource_preloading | default: true }}"
+      data-enable-design-system="{{ settings.enable_design_system | default: true }}"
+      data-social-proof-accent-color="{{ settings.social_proof_accent_color | default: '#3B82F6' }}"
+      data-validation-error-color="{{ settings.validation_error_color | default: '#EF4444' }}"
+      data-validation-success-color="{{ settings.validation_success_color | default: '#10B981' }}">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,15 +45,56 @@
       {% render 'collection-seo-optimization' %}
     {% endif %}
 
-    <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'pipeline-performance.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'search-form.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'pipeline-zoom.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'pipeline-animations.js' | asset_url }}" defer="defer"></script>
+    <!-- Core Bundle: Essential functionality in one file -->
+    <script src="{{ 'core-bundle.js' | asset_url }}" defer="defer"></script>
+    
+    <!-- Non-critical scripts loaded with intersection observer or on user interaction -->
+    <script>
+      window.addEventListener('core-bundle-ready', () => {
+        // Load non-critical scripts on idle or user interaction
+        const loadScript = (src) => {
+          const script = document.createElement('script');
+          script.src = src;
+          script.defer = true;
+          document.head.appendChild(script);
+        };
+
+        // Load immediately needed scripts
+        loadScript('{{ 'details-disclosure.js' | asset_url }}');
+        loadScript('{{ 'details-modal.js' | asset_url }}');
+        {%- if settings.enable_aria_states -%}
+          loadScript('{{ 'aria-menu-states.js' | asset_url }}');
+        {%- endif -%}
+        
+        // Load performance/UX scripts on first user interaction
+        let interactionLoaded = false;
+        const loadOnInteraction = () => {
+          if (interactionLoaded) return;
+          interactionLoaded = true;
+          
+          loadScript('{{ 'pipeline-performance.js' | asset_url }}');
+          loadScript('{{ 'search-form.js' | asset_url }}');
+          loadScript('{{ 'pipeline-zoom.js' | asset_url }}');
+          loadScript('{{ 'pipeline-animations.js' | asset_url }}');
+          {%- if settings.enable_form_validation -%}
+            loadScript('{{ 'form-validation.js' | asset_url }}');
+          {%- endif -%}
+          
+          // Remove event listeners after loading
+          document.removeEventListener('click', loadOnInteraction);
+          document.removeEventListener('scroll', loadOnInteraction);
+          document.removeEventListener('keydown', loadOnInteraction);
+        };
+
+        // Load on first user interaction
+        document.addEventListener('click', loadOnInteraction, { once: true });
+        document.addEventListener('scroll', loadOnInteraction, { once: true });
+        document.addEventListener('keydown', loadOnInteraction, { once: true });
+        
+        // Fallback: load after 3 seconds if no interaction
+        setTimeout(loadOnInteraction, 3000);
+      });
+    </script>
 
     {%- if settings.animations_reveal_on_scroll -%}
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
@@ -269,19 +319,58 @@
       }
     {% endstyle %}
 
-    {{ 'base.css' | asset_url | stylesheet_tag }}
+    <!-- Critical CSS Inlined for fastest rendering -->
+    {%- if settings.enable_critical_css -%}
+      {% render 'critical-css-inline' %}
+    {%- endif -%}
+    
+    <!-- Animation Standards - High priority for UX -->
+    {%- if settings.enable_standardized_animations -%}
+      {{ 'animation-standards.css' | asset_url | stylesheet_tag }}
+    {%- endif -%}
+    
+    <!-- Design System - Consistent spacing and typography -->
+    {%- if settings.enable_design_system -%}
+      {{ 'design-system.css' | asset_url | stylesheet_tag }}
+    {%- endif -%}
+
+    <!-- Performance preload hints for critical resources -->
+    {%- if settings.enable_resource_preloading -%}
+      {% render 'performance-preloads' %}
+    {%- endif -%}
+
+    <!-- Non-critical CSS loaded asynchronously -->
+    <link rel="stylesheet" href="{{ 'base.css' | asset_url }}" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
     {%- if settings.cart_type == 'drawer' -%}
-      {{ 'component-cart-drawer.css' | asset_url | stylesheet_tag }}
-      {{ 'component-cart.css' | asset_url | stylesheet_tag }}
-      {{ 'component-totals.css' | asset_url | stylesheet_tag }}
-      {{ 'component-price.css' | asset_url | stylesheet_tag }}
-      {{ 'component-discounts.css' | asset_url | stylesheet_tag }}
+      <link rel="stylesheet" href="{{ 'component-cart-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
+      <link rel="stylesheet" href="{{ 'component-cart.css' | asset_url }}" media="print" onload="this.media='all'">
+      <link rel="stylesheet" href="{{ 'component-totals.css' | asset_url }}" media="print" onload="this.media='all'">
+      <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
+      <link rel="stylesheet" href="{{ 'component-discounts.css' | asset_url }}" media="print" onload="this.media='all'">
     {%- endif -%}
     
     <!-- Load custom CSS LAST to ensure it overrides everything -->
-    {{ 'godspeed-clean.css' | asset_url | stylesheet_tag }}
+    <link rel="stylesheet" href="{{ 'godspeed-clean.css' | asset_url }}" media="print" onload="this.media='all'">
+    
+    <!-- Form validation styles -->
+    {%- if settings.enable_form_validation -%}
+      <link rel="stylesheet" href="{{ 'form-validation.css' | asset_url }}" media="print" onload="this.media='all'">
+    {%- endif -%}
+    
+    <!-- Fallback for browsers that don't support onload -->
+    <noscript>
+      <link rel="stylesheet" href="{{ 'base.css' | asset_url }}">
+      <link rel="stylesheet" href="{{ 'godspeed-clean.css' | asset_url }}">
+      {%- if settings.cart_type == 'drawer' -%}
+        <link rel="stylesheet" href="{{ 'component-cart-drawer.css' | asset_url }}">
+        <link rel="stylesheet" href="{{ 'component-cart.css' | asset_url }}">
+        <link rel="stylesheet" href="{{ 'component-totals.css' | asset_url }}">
+        <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}">
+        <link rel="stylesheet" href="{{ 'component-discounts.css' | asset_url }}">
+      {%- endif -%}
+    </noscript>
 
     {%- unless settings.type_body_font.system? -%}
       {% comment %}theme-check-disable AssetPreload{% endcomment %}
@@ -429,5 +518,12 @@
     
     {%- comment -%} Pipeline Live Chat Widget {%- endcomment -%}
     {% render 'pipeline-live-chat' %}
+    
+    {%- comment -%} Social Proof Elements {%- endcomment -%}
+    {% render 'social-proof', type: 'recent-purchases' %}
+    {% render 'social-proof', type: 'sales-popup' %}
+    
+    {%- comment -%} Exit Intent Offers {%- endcomment -%}
+    {% render 'exit-intent-offers' %}
   </body>
 </html>

@@ -572,7 +572,51 @@
     "phone_title": "Appelez-nous",
     "frequently_bought": "Souvent Achetés Ensemble",
     "complete_setup": "Complétez votre configuration e-bike",
-    "you_may_like": "Vous pourriez aussi aimer"
+    "you_may_like": "Vous pourriez aussi aimer",
+    "payment_methods": {
+      "title": "Méthodes de Paiement Sécurisées",
+      "twint_desc": "Paiement mobile",
+      "postfinance_desc": "Banque suisse",
+      "heylight_desc": "Payer en 3 fois",
+      "cards": "Cartes de crédit",
+      "cards_desc": "Visa & Mastercard",
+      "security": "Paiement 100% sécurisé"
+    },
+    "shipping": {
+      "calculator_title": "Calculateur de Frais d'Expédition",
+      "postal_code": "Code postal",
+      "postal_code_placeholder": "ex. 8001",
+      "quantity": "Quantité",
+      "calculate": "Calculer",
+      "express_available": "Expédition express disponible",
+      "results_title": "Options d'expédition",
+      "standard_shipping": "Standard",
+      "express_shipping": "Express",
+      "working_days": "jours ouvrables",
+      "invalid_postal_code": "Veuillez entrer un code postal suisse valide",
+      "invalid_quantity": "La quantité doit être entre 1 et 10"
+    },
+    "return_policy": {
+      "return_days": "Retour sous 30 jours",
+      "return_desc": "Test sans risque",
+      "free_returns": "Retours gratuits",
+      "free_returns_desc": "En cas de défaut",
+      "warranty_years": "Garantie 2 ans",
+      "warranty_desc": "Moteur & Batterie",
+      "full_policy": "Conditions de retour complètes",
+      "conditions_title": "Conditions de retour",
+      "condition_1": "L'article doit être inutilisé et dans son emballage d'origine",
+      "condition_2": "Retour dans les 30 jours suivant la réception",
+      "condition_3": "Facture originale ou confirmation de commande requise",
+      "condition_4": "Aucune trace d'usure ou dommage",
+      "process_title": "Processus de retour",
+      "step_1": "Contactez notre service client",
+      "step_2": "Recevez votre étiquette de retour",
+      "step_3": "Emballez l'article en sécurité",
+      "step_4": "Renvoyez le colis",
+      "step_5": "Recevez votre remboursement en 5-7 jours ouvrables",
+      "contact_label": "Service client:"
+    }
   },
   "sections": {
     "services": {

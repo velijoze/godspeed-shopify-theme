@@ -24,7 +24,7 @@
   },
   "keywords": [
     "shopify",
-    "theme", 
+    "theme",
     "e-commerce",
     "e-bike",
     "testing",
@@ -68,7 +68,7 @@
   },
   "browsers": [
     "Chrome Desktop",
-    "Firefox Desktop", 
+    "Firefox Desktop",
     "Safari Desktop",
     "Chrome Mobile",
     "Safari Mobile"
@@ -78,5 +78,11 @@
     "api": "native playwright request",
     "performance": "playwright + browser APIs",
     "accessibility": "playwright + axe-core integration"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.54.2"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.54.2"
   }
 }

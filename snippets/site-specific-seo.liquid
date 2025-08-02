@@ -93,12 +93,25 @@
 <meta name="googlebot" content="index, follow">
 <link rel="canonical" href="{{ canonical_url }}">
 
-<!-- Swiss/German Language & Region -->
+<!-- Swiss Multi-Language & Regional Targeting -->
 <meta name="geo.region" content="CH">
 <meta name="geo.placename" content="Switzerland">
-<meta name="language" content="en-CH">
-<link rel="alternate" hreflang="en-ch" href="{{ shop.url }}{{ request.path }}">
-<link rel="alternate" hreflang="de-ch" href="{{ shop.url }}/de{{ request.path }}">
+<meta name="language" content="{{ request.locale.iso_code }}-CH">
+
+<!-- Complete hreflang implementation for Swiss regions -->
+<link rel="alternate" hreflang="de-ch" href="{{ shop.url }}{% if request.locale.iso_code != 'de' %}/de{% endif %}{{ request.path }}">
+<link rel="alternate" hreflang="fr-ch" href="{{ shop.url }}{% if request.locale.iso_code != 'fr' %}/fr{% endif %}{{ request.path }}">
+<link rel="alternate" hreflang="it-ch" href="{{ shop.url }}{% if request.locale.iso_code != 'it' %}/it{% endif %}{{ request.path }}">
+<link rel="alternate" hreflang="x-default" href="{{ shop.url }}{{ request.path }}">
+
+<!-- Regional targeting for Swiss cantons -->
+{%- if request.locale.iso_code == 'it' -%}
+  <meta name="geo.region" content="CH-TI"> <!-- Ticino -->
+{%- elsif request.locale.iso_code == 'fr' -%}
+  <meta name="geo.region" content="CH-GE"> <!-- Geneva region -->
+{%- else -%}
+  <meta name="geo.region" content="CH-ZH"> <!-- German-speaking region -->
+{%- endif -%}
 
 <!-- E-commerce Specific Meta -->
 <meta name="product-type" content="Electric Bicycles">

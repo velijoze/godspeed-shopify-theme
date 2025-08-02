@@ -1,0 +1,65 @@
+{% comment %}
+  Critical CSS Inline
+  Inlines above-the-fold critical styles for faster initial render
+  
+  Usage:
+  {% render 'critical-css-inline' %}
+{% endcomment %}
+
+<style>
+/* Critical CSS - Above the fold styles */
+/* Reset and base */
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;padding:0;font-family:var(--font-body-family);font-size:calc(var(--font-body-scale)*1rem);line-height:1.6}
+
+/* Layout foundation */
+.page-width{max-width:var(--page-width,120rem);margin:0 auto;padding:0 1.5rem}
+.section-header{position:sticky;top:0;z-index:20}
+.header{background:rgb(var(--color-background));border-bottom:1px solid rgba(var(--color-foreground),.1)}
+
+/* Typography critical */
+h1,h2,h3,h4,h5,h6{font-family:var(--font-heading-family);font-weight:var(--font-heading-weight);margin:0 0 1rem;line-height:1.2}
+h1{font-size:calc(var(--font-heading-scale)*2.5rem)}
+h2{font-size:calc(var(--font-heading-scale)*2rem)}
+.h1{font-size:calc(var(--font-heading-scale)*2.5rem);font-weight:var(--font-heading-weight);font-family:var(--font-heading-family);line-height:1.2}
+
+/* Header navigation critical */
+.header__heading,.header__heading-link{font-size:1.5rem;font-weight:700;text-decoration:none;color:rgb(var(--color-foreground))}
+.list-menu{display:flex;list-style:none;margin:0;padding:0}
+.list-menu__item{margin:0 1rem}
+.header__menu-item{color:rgba(var(--color-foreground),.85)}
+
+/* Main content critical */
+.main-content{min-height:50vh}
+.hero{min-height:50vh;display:flex;align-items:center}
+
+/* Button critical styles */
+.button{display:inline-flex;align-items:center;justify-content:center;padding:1rem 2rem;background:rgb(var(--color-button));color:rgb(var(--color-button-text));text-decoration:none;border:0;cursor:pointer;border-radius:var(--buttons-radius,0)}
+.button:hover{background:rgba(var(--color-button),.9)}
+
+/* Image critical */
+img{max-width:100%;height:auto;border-radius:var(--media-radius,0)}
+
+/* Mobile navigation */
+@media (max-width:989px){
+.header__icons{display:flex;align-items:center}
+.list-menu{display:none}
+.drawer-menu{position:fixed;top:0;left:-100%;width:100%;height:100vh;background:rgb(var(--color-background));z-index:100;transition:left .3s ease}
+.drawer-menu.active{left:0}
+}
+
+/* Loading states */
+.loading{opacity:.6}
+.motion-reduce{transition:none!important;animation:none!important}
+
+/* Focus states for accessibility */
+:focus-visible{outline:var(--focused-base-outline);outline-offset:var(--focused-base-outline-offset)}
+
+/* Cart critical */
+.cart-notification{position:fixed;top:0;right:0;z-index:1000;background:rgb(var(--color-background));border:1px solid rgba(var(--color-foreground),.1);padding:1rem;max-width:400px}
+
+/* Performance critical utilities */
+.visually-hidden{position:absolute!important;overflow:hidden;width:1px;height:1px;margin:-1px;padding:0;border:0;clip:rect(0,0,0,0);white-space:nowrap}
+.skip-to-content-link{position:absolute;left:-9999px;z-index:999999;padding:1rem;background:rgb(var(--color-background));color:rgb(var(--color-foreground));text-decoration:none}
+.skip-to-content-link:focus{left:6px;top:7px}
+</style>

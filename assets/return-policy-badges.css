@@ -1,0 +1,253 @@
+/* RETURN POLICY TRUST BADGES */
+
+.return-policy-badges {
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  background: white;
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Badge Grid */
+.return-policy-badges__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .return-policy-badges__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Individual Policy Badge */
+.policy-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: var(--color-background-subtle, #f8fafc);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: 6px;
+  transition: all var(--transition-fast);
+}
+
+.policy-badge:hover {
+  background: white;
+  border-color: var(--color-focus, #3b82f6);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
+}
+
+.policy-badge__icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  color: var(--color-focus, #3b82f6);
+}
+
+.policy-badge--return .policy-badge__icon {
+  color: #10B981; /* Green for returns */
+}
+
+.policy-badge--shipping .policy-badge__icon {
+  color: #3B82F6; /* Blue for shipping */
+}
+
+.policy-badge--warranty .policy-badge__icon {
+  color: #8B5CF6; /* Purple for warranty */
+}
+
+.policy-badge__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.policy-badge__title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-primary, #1a1a1a);
+  line-height: 1.2;
+}
+
+.policy-badge__desc {
+  font-size: 0.75rem;
+  color: var(--color-text-muted, #6b6b6b);
+  line-height: 1.2;
+}
+
+/* Return Policy Summary */
+.return-policy-summary {
+  border-top: 1px solid var(--color-border, #e2e8f0);
+  padding-top: 1.5rem;
+}
+
+.return-policy-details {
+  width: 100%;
+}
+
+.return-policy-summary__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  cursor: pointer;
+  list-style: none;
+  outline: none;
+}
+
+.return-policy-summary__header::-webkit-details-marker {
+  display: none;
+}
+
+.return-policy-summary__title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-primary, #1a1a1a);
+}
+
+.return-policy-summary__icon {
+  width: 16px;
+  height: 16px;
+  color: var(--color-text-muted, #6b6b6b);
+  transition: transform 0.2s ease;
+}
+
+.return-policy-details[open] .return-policy-summary__icon {
+  transform: rotate(180deg);
+}
+
+/* Policy Content */
+.return-policy-content {
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border, #e2e8f0);
+}
+
+.return-policy-section {
+  margin-bottom: 1.5rem;
+}
+
+.return-policy-section:last-child {
+  margin-bottom: 0;
+}
+
+.return-policy-section__title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-primary, #1a1a1a);
+  margin: 0 0 0.75rem 0;
+}
+
+.return-policy-list,
+.return-policy-steps {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: var(--color-text-secondary, #4a4a4a);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.return-policy-list li,
+.return-policy-steps li {
+  margin-bottom: 0.5rem;
+}
+
+.return-policy-list li:last-child,
+.return-policy-steps li:last-child {
+  margin-bottom: 0;
+}
+
+/* Contact Information */
+.return-policy-contact {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: var(--color-background-subtle, #f8fafc);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: 6px;
+}
+
+.return-policy-contact__info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  font-size: 0.875rem;
+}
+
+.return-policy-contact__label {
+  font-weight: 600;
+  color: var(--color-text-primary, #1a1a1a);
+}
+
+.return-policy-contact__link {
+  color: var(--color-focus, #3b82f6);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.return-policy-contact__link:hover {
+  text-decoration: underline;
+}
+
+.return-policy-contact__divider {
+  color: var(--color-text-muted, #6b6b6b);
+}
+
+/* Mobile Optimizations */
+@media (max-width: 640px) {
+  .return-policy-badges {
+    margin: 1rem 0;
+    padding: 1rem;
+  }
+  
+  .return-policy-badges__grid {
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  .policy-badge {
+    padding: 0.75rem;
+  }
+  
+  .policy-badge__title {
+    font-size: 1rem;
+  }
+  
+  .policy-badge__desc {
+    font-size: 0.875rem;
+  }
+  
+  .return-policy-contact__info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+  
+  .return-policy-contact__divider {
+    display: none;
+  }
+}
+
+/* Animation for expanding details */
+.return-policy-details {
+  transition: all 0.3s ease;
+}
+
+.return-policy-content {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

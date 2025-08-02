@@ -1,0 +1,121 @@
+{% comment %}
+  heylight Payment Configuration
+  This snippet configures heylight payment options for Swiss market
+  
+  Usage:
+  {% render 'heylight-config' %}
+{% endcomment %}
+
+{% comment %} heylight Configuration - Ready for Plugin Integration {% endcomment %}
+<script>
+  window.heylightConfig = {
+    enabled: true,
+    merchantId: '{{ settings.heylight_merchant_id | default: "GODSPEED_MERCHANT_ID" }}',
+    environment: '{{ settings.heylight_environment | default: "production" }}',
+    currency: 'CHF',
+    locale: 'de-CH',
+    
+    // Product page integration
+    productPageSelector: '.product-form__buttons',
+    showOnProductPage: {{ settings.heylight_show_product_page | default: true }},
+    
+    // Cart page integration  
+    cartPageSelector: '.cart__footer',
+    showOnCartPage: {{ settings.heylight_show_cart_page | default: true }},
+    
+    // Checkout integration
+    checkoutIntegration: {{ settings.heylight_checkout_integration | default: true }},
+    
+    // Minimum order amount for heylight (in CHF)
+    minAmount: {{ settings.heylight_min_amount | default: 50 }},
+    maxAmount: {{ settings.heylight_max_amount | default: 5000 }},
+    
+    // UI customization
+    buttonStyle: {
+      backgroundColor: '#6366F1',
+      textColor: '#FFFFFF',
+      borderRadius: '6px',
+      fontSize: '14px'
+    },
+    
+    // Swiss market specific settings
+    swissCompliance: {
+      dataProtection: true,
+      gdprCompliant: true,
+      localDataStorage: true
+    },
+    
+    // Analytics integration
+    trackingEnabled: {{ settings.heylight_tracking | default: true }},
+    
+    // Debug mode (disable in production)
+    debug: {{ settings.heylight_debug | default: false }}
+  };
+  
+  // Initialize heylight when available
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof window.heylight !== 'undefined') {
+      window.heylight.init(window.heylightConfig);
+      console.log('heylight payment initialized for Godspeed');
+    } else {
+      console.log('heylight plugin not loaded - configuration ready');
+    }
+  });
+</script>
+
+{% comment %} heylight Payment Widget Placeholder {% endcomment %}
+<div class="heylight-widget" 
+     data-merchant-id="{{ settings.heylight_merchant_id }}"
+     data-currency="CHF"
+     data-locale="de-CH">
+  {% comment %} Widget will be populated by heylight JS {% endcomment %}
+</div>
+
+{% comment %} heylight Informational Banner {% endcomment %}
+<div class="heylight-info-banner">
+  <div class="heylight-info-content">
+    <span class="heylight-info-icon">💳</span>
+    <span class="heylight-info-text">
+      {{ 'products.payment_methods.heylight_info' | t: default: 'Jetzt kaufen, später bezahlen - in 3 einfachen Raten' }}
+    </span>
+    <a href="#" class="heylight-info-link" onclick="window.heylight && window.heylight.showInfo()">
+      {{ 'products.payment_methods.learn_more' | t: default: 'Mehr erfahren' }}
+    </a>
+  </div>
+</div>
+
+<style>
+  .heylight-info-banner {
+    margin: 0.75rem 0;
+    padding: 0.75rem 1rem;
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: 6px;
+    font-size: 0.875rem;
+  }
+  
+  .heylight-info-content {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .heylight-info-icon {
+    font-size: 1.25rem;
+  }
+  
+  .heylight-info-text {
+    flex: 1;
+    color: var(--color-text-primary, #1a1a1a);
+  }
+  
+  .heylight-info-link {
+    color: #6366F1;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .heylight-info-link:hover {
+    text-decoration: underline;
+  }
+</style>

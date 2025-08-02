@@ -1,0 +1,60 @@
+{% comment %}
+  Product Image Alt Text with Fallback
+  Generates SEO-friendly alt text for product images when none provided
+  
+  Usage:
+  {% render 'product-image-alt', product: product, media: media %}
+{% endcomment %}
+
+{%- liquid
+  # Get the media object (either passed directly or from product)
+  if media
+    assign image_media = media
+  elsif product.featured_media
+    assign image_media = product.featured_media
+  else
+    assign image_media = null
+  endif
+  
+  # Start with existing alt text if available
+  assign alt_text = ''
+  if image_media.alt and image_media.alt != blank
+    assign alt_text = image_media.alt
+  elsif product
+    # Generate fallback alt text
+    assign product_title = product.title | escape
+    assign product_vendor = product.vendor | escape
+    
+    # Create comprehensive alt text
+    if product.type and product.type != blank
+      assign product_type = product.type | escape
+      assign alt_text = product_type | append: ' - ' | append: product_title
+    else
+      assign alt_text = product_title
+    endif
+    
+    # Add vendor if available and different from title
+    if product_vendor and product_vendor != blank and product_title contains product_vendor == false
+      assign alt_text = alt_text | append: ' von ' | append: product_vendor
+    endif
+    
+    # Add key features if in title/tags
+    assign e_bike_terms = 'e-bike,ebike,electric,elektrisch,motor,battery,akku' | split: ','
+    for term in e_bike_terms
+      if product.title contains term or product.tags contains term
+        unless alt_text contains 'E-Bike'
+          assign alt_text = 'E-Bike - ' | append: alt_text
+        endunless
+        break
+      endif
+    endfor
+  endif
+  
+  # Ensure we have fallback text
+  if alt_text == blank
+    assign alt_text = 'Produktbild'
+  endif
+  
+  # Clean up and output
+  assign alt_text = alt_text | strip | escape
+-%}{{ alt_text }}

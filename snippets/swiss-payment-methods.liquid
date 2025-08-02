@@ -1,0 +1,84 @@
+{% comment %}
+  Swiss Payment Methods Display
+  Shows TWINT, PostFinance, and heylight payment options prominently
+  
+  Usage:
+  {% render 'swiss-payment-methods' %}
+{% endcomment %}
+
+{{ 'swiss-payment-methods.css' | asset_url | stylesheet_tag }}
+
+<div class="swiss-payment-methods">
+  <div class="swiss-payment-methods__header">
+    <span class="swiss-payment-methods__title">
+      {{ 'products.payment_methods.title' | t: default: 'Sichere Zahlungsmethoden' }}
+    </span>
+  </div>
+  
+  <div class="swiss-payment-methods__grid">
+    <!-- TWINT Payment -->
+    <div class="payment-method payment-method--twint">
+      <div class="payment-method__icon">
+        <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="40" height="40" rx="8" fill="#00D4FF"/>
+          <path d="M8 12h24v4H8v-4zm0 8h16v4H8v-4zm0 8h20v4H8v-4z" fill="white"/>
+        </svg>
+      </div>
+      <div class="payment-method__info">
+        <span class="payment-method__name">TWINT</span>
+        <span class="payment-method__desc">{{ 'products.payment_methods.twint_desc' | t: default: 'Mobile Payment' }}</span>
+      </div>
+    </div>
+
+    <!-- PostFinance Payment -->
+    <div class="payment-method payment-method--postfinance">
+      <div class="payment-method__icon">
+        <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="40" height="40" rx="8" fill="#FFCC00"/>
+          <path d="M10 15h20v2H10v-2zm0 4h16v2H10v-2zm0 4h18v2H10v-2z" fill="#333"/>
+        </svg>
+      </div>
+      <div class="payment-method__info">
+        <span class="payment-method__name">PostFinance</span>
+        <span class="payment-method__desc">{{ 'products.payment_methods.postfinance_desc' | t: default: 'Schweizer Bank' }}</span>
+      </div>
+    </div>
+
+    <!-- heylight Payment -->
+    <div class="payment-method payment-method--heylight">
+      <div class="payment-method__icon">
+        <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="40" height="40" rx="8" fill="#6366F1"/>
+          <path d="M12 18v4h4v-4h-4zm6 0v4h4v-4h-4zm6 0v4h4v-4h-4z" fill="white"/>
+        </svg>
+      </div>
+      <div class="payment-method__info">
+        <span class="payment-method__name">heylight</span>
+        <span class="payment-method__desc">{{ 'products.payment_methods.heylight_desc' | t: default: 'In 3 Raten zahlen' }}</span>
+      </div>
+    </div>
+
+    <!-- Visa/Mastercard -->
+    <div class="payment-method payment-method--cards">
+      <div class="payment-method__icon">
+        <div class="payment-cards">
+          <div class="card-icon card-icon--visa">VISA</div>
+          <div class="card-icon card-icon--mastercard">MC</div>
+        </div>
+      </div>
+      <div class="payment-method__info">
+        <span class="payment-method__name">{{ 'products.payment_methods.cards' | t: default: 'Kreditkarten' }}</span>
+        <span class="payment-method__desc">{{ 'products.payment_methods.cards_desc' | t: default: 'Visa & Mastercard' }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Security Badge -->
+  <div class="swiss-payment-methods__security">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 1L3 3V7C3 10.55 5.84 13.74 9 14C12.16 13.74 15 10.55 15 7V3L8 1Z" fill="#10B981"/>
+      <path d="M6.5 8L7.5 9L10.5 6" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span>{{ 'products.payment_methods.security' | t: default: '100% sichere Zahlung' }}</span>
+  </div>
+</div>

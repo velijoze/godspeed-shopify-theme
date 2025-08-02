@@ -1,0 +1,186 @@
+{% comment %}
+  Shipping Cost Calculator Widget
+  Real-time shipping cost calculation for Swiss customers
+  
+  Usage:
+  {% render 'shipping-calculator', product: product %}
+{% endcomment %}
+
+{{ 'shipping-calculator.css' | asset_url | stylesheet_tag }}
+
+<div class="shipping-calculator">
+  <div class="shipping-calculator__header">
+    <div class="shipping-calculator__icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 5H21L19 12H5L3 5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M7 17H17L19 12H5L7 17Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="9" cy="20" r="1" stroke="currentColor" stroke-width="2"/>
+        <circle cx="15" cy="20" r="1" stroke="currentColor" stroke-width="2"/>
+      </svg>
+    </div>
+    <span class="shipping-calculator__title">
+      {{ 'products.shipping.calculator_title' | t: default: 'Versandkosten berechnen' }}
+    </span>
+  </div>
+
+  <div class="shipping-calculator__form">
+    <div class="shipping-calculator__input-group">
+      <label for="shipping-postal-code" class="shipping-calculator__label">
+        {{ 'products.shipping.postal_code' | t: default: 'Postleitzahl' }}
+      </label>
+      <input 
+        type="text" 
+        id="shipping-postal-code" 
+        class="shipping-calculator__input"
+        placeholder="{{ 'products.shipping.postal_code_placeholder' | t: default: 'z.B. 8001' }}"
+        maxlength="4"
+        pattern="[0-9]{4}"
+      >
+    </div>
+
+    <div class="shipping-calculator__input-group shipping-calculator__input-group--half">
+      <label for="shipping-quantity" class="shipping-calculator__label">
+        {{ 'products.shipping.quantity' | t: default: 'Anzahl' }}
+      </label>
+      <input 
+        type="number" 
+        id="shipping-quantity" 
+        class="shipping-calculator__input"
+        value="1"
+        min="1"
+        max="10"
+      >
+    </div>
+
+    <button type="button" class="shipping-calculator__button" id="calculate-shipping">
+      <span class="shipping-calculator__button-text">
+        {{ 'products.shipping.calculate' | t: default: 'Berechnen' }}
+      </span>
+      <div class="shipping-calculator__loading" style="display: none;">
+        <div class="loading-spinner"></div>
+      </div>
+    </button>
+  </div>
+
+  <div class="shipping-calculator__results" id="shipping-results" style="display: none;">
+    <!-- Results will be populated by JavaScript -->
+  </div>
+
+  <div class="shipping-calculator__info">
+    <div class="shipping-info-item">
+      <span class="shipping-info-icon">⚡</span>
+      <span class="shipping-info-text">
+        {{ 'products.shipping.express_available' | t: default: 'Express-Versand verfügbar' }}
+      </span>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const calculator = document.querySelector('.shipping-calculator');
+  const postalCodeInput = document.getElementById('shipping-postal-code');
+  const quantityInput = document.getElementById('shipping-quantity');
+  const calculateButton = document.getElementById('calculate-shipping');
+  const resultsDiv = document.getElementById('shipping-results');
+  
+  // Swiss postal code validation
+  function isValidSwissPostalCode(code) {
+    return /^[0-9]{4}$/.test(code) && parseInt(code) >= 1000 && parseInt(code) <= 9999;
+  }
+  
+  // Calculate shipping costs (Swiss-specific logic)
+  function calculateShippingCost(postalCode, quantity) {
+    const productWeight = {{ product.weight | default: 2000 }}; // grams
+    const totalWeight = productWeight * quantity;
+    
+    // Standard shipping rates based on weight and location
+    let standardCost = 8.90;
+    if (totalWeight > 5000) standardCost = 14.90;
+    if (totalWeight > 10000) standardCost = 19.90;
+    
+    // Remote areas (higher postal codes)
+    if (parseInt(postalCode) > 7000 && parseInt(postalCode) < 8000) {
+      standardCost += 5.00; // Graubünden surcharge
+    }
+    
+    return {
+      standard: { cost: standardCost, days: '3-5', name: 'Standard' },
+      express: { cost: standardCost + 15.00, days: '1-2', name: 'Express' }
+    };
+  }
+  
+  // Render shipping results
+  function renderResults(results) {
+    resultsDiv.innerHTML = `
+      <div class="shipping-results__header">
+        <span class="shipping-results__title">Versandoptionen</span>
+      </div>
+      <div class="shipping-results__options">
+        <div class="shipping-option">
+          <div class="shipping-option__info">
+            <span class="shipping-option__name">${results.standard.name}</span>
+            <span class="shipping-option__time">${results.standard.days} Werktage</span>
+          </div>
+          <span class="shipping-option__cost">
+            ${results.standard.cost.toFixed(2)} CHF
+          </span>
+        </div>
+        <div class="shipping-option">
+          <div class="shipping-option__info">
+            <span class="shipping-option__name">${results.express.name}</span>
+            <span class="shipping-option__time">${results.express.days} Werktage</span>
+          </div>
+          <span class="shipping-option__cost">${results.express.cost.toFixed(2)} CHF</span>
+        </div>
+      </div>
+    `;
+    resultsDiv.style.display = 'block';
+  }
+  
+  // Handle calculation
+  calculateButton.addEventListener('click', function() {
+    const postalCode = postalCodeInput.value.trim();
+    const quantity = parseInt(quantityInput.value);
+    
+    // Validation
+    if (!isValidSwissPostalCode(postalCode)) {
+      alert('Bitte geben Sie eine gültige Schweizer Postleitzahl ein (1000-9999)');
+      return;
+    }
+    
+    if (quantity < 1 || quantity > 10) {
+      alert('Anzahl muss zwischen 1 und 10 liegen');
+      return;
+    }
+    
+    // Show loading
+    calculateButton.querySelector('.shipping-calculator__button-text').style.display = 'none';
+    calculateButton.querySelector('.shipping-calculator__loading').style.display = 'flex';
+    calculateButton.disabled = true;
+    
+    // Simulate API call delay
+    setTimeout(() => {
+      const results = calculateShippingCost(postalCode, quantity);
+      renderResults(results);
+      
+      // Hide loading
+      calculateButton.querySelector('.shipping-calculator__button-text').style.display = 'block';
+      calculateButton.querySelector('.shipping-calculator__loading').style.display = 'none';
+      calculateButton.disabled = false;
+    }, 1000);
+  });
+  
+  // Auto-format postal code input
+  postalCodeInput.addEventListener('input', function() {
+    this.value = this.value.replace(/[^0-9]/g, '').substring(0, 4);
+  });
+  
+  // Enter key support
+  postalCodeInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      calculateButton.click();
+    }
+  });
+});
+</script>
