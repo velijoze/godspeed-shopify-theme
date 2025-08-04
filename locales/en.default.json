@@ -1,5 +1,8 @@
 {
   "general": {
+    "breadcrumbs": {
+      "home": "Home"
+    },
     "password_page": {
       "login_form_heading": "Enter store using password:",
       "login_password_button": "Enter using password",
@@ -212,7 +215,7 @@
       "sort_by_label": "Sort by:",
       "to": "To",
       "clear_filter": "Remove filter",
-      "filter_by_label": "Filter by:"
+      "filter_by_label": "Filter:"
     }
   },
   "templates": {
