@@ -186,11 +186,19 @@ window.PerformanceUtility = PerformanceUtility;
 window.getFocusableElements = getFocusableElements;
 
 // Initialize core functionality
-document.addEventListener('DOMContentLoaded', () => {
+function initializeCore() {
   console.log('Core bundle loaded successfully');
   
   // Dispatch custom event for other scripts to hook into
   window.dispatchEvent(new CustomEvent('core-bundle-ready', { 
     detail: { timestamp: Date.now() } 
   }));
-});
+}
+
+// Ensure initialization happens regardless of DOM state
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeCore);
+} else {
+  // DOM already loaded, initialize immediately
+  initializeCore();
+}
