@@ -712,6 +712,83 @@
     }
   },
   "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "choose_options": "Choose options",
+      "choose_product_options": "Choose options for {{ product_name }}",
+      "description": "Description",
+      "inventory_in_stock": "In stock",
+      "inventory_in_stock_show_count": "{{ quantity }} in stock",
+      "inventory_low_stock": "Low stock",
+      "inventory_low_stock_show_count": "Low stock: {{ quantity }} left",
+      "inventory_out_of_stock": "Out of stock",
+      "inventory_out_of_stock_continue_selling": "In stock",
+      "sku": "SKU",
+      "on_sale": "Sale",
+      "product_variants": "Product variants",
+      "media": {
+        "gallery_viewer": "Gallery Viewer",
+        "load_image": "Load image {{ index }} in gallery view",
+        "load_model": "Load 3D Model {{ index }} in gallery view",
+        "load_video": "Play video {{ index }} in gallery view",
+        "image_available": "Image {{ index }} is now available in gallery view",
+        "open_media": "Open media {{ index }} in modal",
+        "play_model": "Play 3D Viewer",
+        "play_video": "Play video"
+      },
+      "quantity": {
+        "label": "Quantity",
+        "input_label": "Quantity for {{ product }}",
+        "increase": "Increase quantity for {{ product }}",
+        "decrease": "Decrease quantity for {{ product }}",
+        "minimum_of": "Minimum of {{ quantity }}",
+        "maximum_of": "Maximum of {{ quantity }}",
+        "multiples_of": "Increments of {{ quantity }}",
+        "min_of": "Min {{ quantity }}",
+        "max_of": "Max {{ quantity }}",
+        "in_cart_html": "<span class=\"quantity-cart\">{{ quantity }}</span> in cart",
+        "note": "View quantity rules"
+      },
+      "volume_pricing": {
+        "title": "Volume Pricing",
+        "note": "Volume pricing available",
+        "minimum": "{{ quantity }}+",
+        "price_at_each": "at {{ price }}/ea",
+        "price_range": "{{ minimum }} - {{ maximum }}"
+      },
+      "pickup_availability": {
+        "view_store_info": "View store information",
+        "check_other_stores": "Check availability at other stores",
+        "pick_up_available": "Pickup available",
+        "pick_up_available_at_html": "Pickup available at <span class=\"color-foreground\">{{ location_name }}</span>",
+        "pick_up_unavailable_at_html": "Pickup currently unavailable at <span class=\"color-foreground\">{{ location_name }}</span>",
+        "unavailable": "Couldn't load pickup availability",
+        "refresh": "Refresh"
+      },
+      "price": {
+        "from_price_html": "From {{ price }}",
+        "regular_price": "Regular price",
+        "sale_price": "Sale price",
+        "unit_price": "Unit price"
+      },
+      "share": "Share this product",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "vendor": "Vendor",
+      "value_unavailable": "{{ option_value }} - Unavailable",
+      "variant_sold_out_or_unavailable": "Variant sold out or unavailable",
+      "video_exit_message": "{{ title }} opens full screen video in same window.",
+      "view_full_details": "View full details",
+      "xr_button": "View in your space",
+      "xr_button_label": "View in your space, loads item in augmented reality window",
+      "taxes_included": "Taxes included.",
+      "duties_included": "Duties included.",
+      "duties_and_taxes_included": "Duties and taxes included.",
+      "shipping_policy_html": "<a href=\"{{ link }}\">Shipping</a> calculated at checkout."
+    },
+    "modal": {
+      "label": "Media gallery"
+    },
     "specifications": "Specifications",
     "shipping_returns": "Shipping & Returns",
     "shipping_content": "<h4>🚚 Shipping Information</h4><ul><li>Free shipping on orders over $100</li><li>Standard delivery: 3-7 business days</li><li>Express delivery: 1-3 business days</li><li>International shipping available</li></ul><h4>↩️ Returns & Exchanges</h4><ul><li>30-day return policy</li><li>Items must be unused and in original packaging</li><li>Free returns for defective items</li><li>Customer pays return shipping for exchanges</li></ul>",
@@ -731,8 +808,25 @@
     "complete_setup": "Complete your e-bike setup",
     "you_may_like": "You may also like",
     "shipping": {
+      "calculator_title": "Calculate Shipping Costs",
       "invalid_postal_code": "Please enter a valid Swiss postal code (1000-9999)",
       "invalid_quantity": "Quantity must be between 1 and 10"
+    },
+    "payment_methods": {
+      "title": "Payment Methods",
+      "twint_desc": "Pay instantly with your smartphone",
+      "postfinance_desc": "Swiss banking solution",
+      "heylight_desc": "Buy now, pay in 3 installments",
+      "cards": "Credit Cards",
+      "cards_desc": "All major credit cards accepted"
+    },
+    "return_policy": {
+      "return_days": "30 Days",
+      "return_desc": "Free returns within 30 days",
+      "free_returns": "Free Returns", 
+      "free_returns_desc": "Return shipping on us for defective items",
+      "warranty_years": "2 Years",
+      "warranty_desc": "Comprehensive warranty coverage"
     },
     "facets": {
       "filter_and_operator_subtitle": "Match all",
