@@ -134,7 +134,7 @@
         "brompton"
       ],
       "settings": {
-        "heading": "Unsere Premium Marken"
+        "heading": "Our Premium Brands"
       }
     },
     "services_grid": {
@@ -144,9 +144,9 @@
           "type": "service",
           "settings": {
             "icon": "icon-price-tag.svg",
-            "title": "0% Finanzierung",
-            "text": "<p>Bis zu 36 Monate zinsfreie Finanzierung. Faire Konditionen ohne versteckte Kosten.</p>",
-            "button_label": "Jetzt beantragen",
+            "title": "0% Financing",
+            "text": "<p>Up to 36 months interest-free financing. Fair terms without hidden costs.</p>",
+            "button_label": "Apply Now",
             "button_link": "/pages/financing-calculator"
           }
         },
@@ -154,9 +154,9 @@
           "type": "service", 
           "settings": {
             "icon": "icon-delivery.svg",
-            "title": "Kostenlose Probefahrt",
-            "text": "<p>Testen Sie Ihr Wunsch-E-Bike kostenlos an einem unserer 4 Standorte in der Schweiz.</p>",
-            "button_label": "Termin buchen",
+            "title": "Free Test Ride",
+            "text": "<p>Test your dream e-bike for free at one of our 6 locations in Switzerland.</p>",
+            "button_label": "Book Now",
             "button_link": "/pages/test-ride"
           }
         },
@@ -164,9 +164,9 @@
           "type": "service",
           "settings": {
             "icon": "icon-wrench.svg", 
-            "title": "Professioneller Service",
-            "text": "<p>Umfassende Wartung und Reparatur für alle E-Bikes und Velos. Größtes Service-Center im Tessin.</p>",
-            "button_label": "Service buchen",
+            "title": "Professional Service",
+            "text": "<p>Comprehensive maintenance and repair for all e-bikes and bicycles. Largest service center in Ticino.</p>",
+            "button_label": "Book Service",
             "button_link": "/pages/service-booking"
           }
         }
@@ -177,9 +177,9 @@
         "workshop"
       ],
       "settings": {
-        "heading": "Unsere Services",
+        "heading": "Our Services",
         "heading_size": "h1",
-        "description": "<p>Professionelle Betreuung von der Beratung bis zur Wartung - alles aus einer Hand.</p>",
+        "description": "<p>Professional support from consultation to maintenance - everything from one source.</p>",
         "text_alignment": "center",
         "card_text_alignment": "center",
         "icon_size": 80,
@@ -195,14 +195,14 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Bleiben Sie informiert",
+            "heading": "Stay Informed",
             "heading_size": "h1"
           }
         },
         "paragraph": {
           "type": "paragraph", 
           "settings": {
-            "text": "<p>Erhalten Sie exklusive Angebote, Neuigkeiten über E-Bikes und hilfreiche Tipps direkt in Ihr Postfach.</p>"
+            "text": "<p>Get exclusive offers, e-bike news and helpful tips delivered directly to your inbox.</p>"
           }
         },
         "email_form": {

@@ -79,7 +79,7 @@
           },
           {
             "id": "main-menu-city-classic",
-            "title": "Klassische Stadträder",
+            "title": "Classic City Bikes",
             "url": "/collections/city-bikes?filter.v.option.style=Classic",
             "type": "collection_link",
             "position": 2,
@@ -88,7 +88,7 @@
           },
           {
             "id": "main-menu-city-folding",
-            "title": "Klappräder",
+            "title": "Folding Bikes",
             "url": "/collections/city-bikes?filter.v.option.style=Folding",
             "type": "collection_link",
             "position": 3,
@@ -145,7 +145,7 @@
       },
       {
         "id": "main-menu-accessories",
-        "title": "Zubehör",
+        "title": "Accessories",
         "url": "/collections/accessories",
         "type": "collection_link",
         "position": 5,
@@ -153,7 +153,7 @@
         "menu_items": [
           {
             "id": "main-menu-acc-helmets",
-            "title": "Helme",
+            "title": "Helmets",
             "url": "/collections/accessories?filter.v.option.category=Helmets",
             "type": "collection_link",
             "position": 1,
@@ -162,7 +162,7 @@
           },
           {
             "id": "main-menu-acc-locks",
-            "title": "Schlösser",
+            "title": "Locks",
             "url": "/collections/accessories?filter.v.option.category=Locks",
             "type": "collection_link",
             "position": 2,
@@ -171,7 +171,7 @@
           },
           {
             "id": "main-menu-acc-bags",
-            "title": "Taschen",
+            "title": "Bags",
             "url": "/collections/accessories?filter.v.option.category=Bags",
             "type": "collection_link",
             "position": 3,
@@ -180,7 +180,7 @@
           },
           {
             "id": "main-menu-acc-lights",
-            "title": "Beleuchtung",
+            "title": "Lighting",
             "url": "/collections/accessories?filter.v.option.category=Lights",
             "type": "collection_link",
             "position": 4,
@@ -189,7 +189,7 @@
           },
           {
             "id": "main-menu-acc-maintenance",
-            "title": "Wartung & Pflege",
+            "title": "Maintenance & Care",
             "url": "/collections/accessories?filter.v.option.category=Maintenance",
             "type": "collection_link",
             "position": 5,
@@ -208,7 +208,7 @@
         "menu_items": [
           {
             "id": "main-menu-services-financing",
-            "title": "0% Finanzierung",
+            "title": "0% Financing",
             "url": "/pages/financing",
             "type": "page_link",
             "position": 1,
@@ -217,7 +217,7 @@
           },
           {
             "id": "main-menu-services-consultation",
-            "title": "Beratung",
+            "title": "Consultation",
             "url": "/pages/consultation",
             "type": "page_link",
             "position": 2,
@@ -226,7 +226,7 @@
           },
           {
             "id": "main-menu-services-repair",
-            "title": "Reparatur & Service",
+            "title": "Repair & Service",
             "url": "/pages/service",
             "type": "page_link",
             "position": 3,
@@ -235,7 +235,7 @@
           },
           {
             "id": "main-menu-services-test-ride",
-            "title": "Probefahrt",
+            "title": "Test Ride",
             "url": "/pages/test-ride",
             "type": "page_link",
             "position": 4,
@@ -246,7 +246,7 @@
       },
       {
         "id": "main-menu-about",
-        "title": "Über uns",
+        "title": "About Us",
         "url": "/pages/about",
         "type": "page_link",
         "position": 7,
@@ -254,7 +254,7 @@
         "menu_items": [
           {
             "id": "main-menu-about-story",
-            "title": "Unsere Geschichte",
+            "title": "Our Story",
             "url": "/pages/about#company-story",
             "type": "page_link",
             "position": 1,
@@ -263,7 +263,7 @@
           },
           {
             "id": "main-menu-about-sustainability",
-            "title": "Nachhaltigkeit",
+            "title": "Sustainability",
             "url": "/pages/sustainability",
             "type": "page_link",
             "position": 2,
@@ -272,7 +272,7 @@
           },
           {
             "id": "main-menu-about-locations",
-            "title": "Standorte",
+            "title": "Locations",
             "url": "/pages/locations",
             "type": "page_link",
             "position": 3,
@@ -283,7 +283,7 @@
       },
       {
         "id": "main-menu-contact",
-        "title": "Kontakt",
+        "title": "Contact",
         "url": "/pages/contact",
         "type": "page_link",
         "position": 8,
@@ -309,7 +309,7 @@
       },
       {
         "id": "footer-about",
-        "title": "Über uns",
+        "title": "About Us",
         "url": "/pages/about",
         "type": "page_link",
         "position": 2,
@@ -336,7 +336,7 @@
       },
       {
         "id": "footer-contact",
-        "title": "Kontakt",
+        "title": "Contact",
         "url": "/pages/contact",
         "type": "page_link",
         "position": 5,
@@ -380,7 +380,7 @@
       },
       {
         "id": "footer-cat-accessories",
-        "title": "Zubehör",
+        "title": "Accessories",
         "url": "/collections/accessories",
         "type": "collection_link",
         "position": 4,
@@ -406,7 +406,7 @@
       },
       {
         "id": "footer-service-shipping",
-        "title": "Versand & Lieferung",
+        "title": "Shipping & Delivery",
         "url": "/pages/shipping",
         "type": "page_link",
         "position": 2,
@@ -415,7 +415,7 @@
       },
       {
         "id": "footer-service-returns",
-        "title": "Rückgabe & Umtausch",
+        "title": "Returns & Exchange",
         "url": "/pages/returns",
         "type": "page_link",
         "position": 3,
@@ -424,7 +424,7 @@
       },
       {
         "id": "footer-service-warranty",
-        "title": "Garantie",
+        "title": "Warranty",
         "url": "/pages/warranty",
         "type": "page_link",
         "position": 4,
