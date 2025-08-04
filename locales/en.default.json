@@ -265,6 +265,176 @@
     }
   },
   "sections": {
+    "collection_template": {
+      "empty": "No products found",
+      "title": "Collection",
+      "use_fewer_filters_html": "Use fewer filters or <a class=\"{{ class }}\" href=\"{{ link }}\">remove all</a>"
+    },
+    "main-collection-banner": {
+      "name": "Collection banner",
+      "settings": {
+        "paragraph": {
+          "content": "Give your customers useful information about this collection."
+        },
+        "show_collection_description": {
+          "label": "Show collection description"
+        },
+        "show_collection_image": {
+          "label": "Show collection image",
+          "info": "For best results, use an image with a 3:2 aspect ratio."
+        }
+      }
+    },
+    "main-collection-product-grid": {
+      "name": "Product grid",
+      "settings": {
+        "products_per_page": {
+          "label": "Products per page"
+        },
+        "columns_desktop": {
+          "label": "Number of columns on desktop"
+        },
+        "header__3": {
+          "content": "Product card"
+        },
+        "image_ratio": {
+          "label": "Image ratio",
+          "options__1": {
+            "label": "Adapt to image"
+          },
+          "options__2": {
+            "label": "Portrait"
+          },
+          "options__3": {
+            "label": "Square"
+          }
+        },
+        "show_secondary_image": {
+          "label": "Show second image on hover"
+        },
+        "show_vendor": {
+          "label": "Show product vendor"
+        },
+        "show_rating": {
+          "label": "Show product rating",
+          "info": "To display a rating, add a product rating app. <a href=\"https://help.shopify.com/manual/online-store/themes/theme-structure/page-types#search-results-page\" target=\"_blank\">Learn more</a>"
+        },
+        "quick_add": {
+          "label": "Enable quick add",
+          "info": "Learn more about <a href=\"https://help.shopify.com/manual/online-store/themes/theme-structure/page-types#search-results-page\" target=\"_blank\">quick add</a>",
+          "options": {
+            "option_1": "Disabled",
+            "option_2": "Standard",
+            "option_3": "Bulk"
+          }
+        },
+        "header__1": {
+          "content": "Filter and sort"
+        },
+        "enable_filtering": {
+          "label": "Enable filtering",
+          "info": "Filters are configured in the search and discovery section of your admin. <a href=\"https://help.shopify.com/manual/online-store/search-and-discovery/filters\" target=\"_blank\">Learn more</a>"
+        },
+        "filter_type": {
+          "label": "Filter type",
+          "info": "Horizontal: show along the top. Vertical: show in sidebar. Drawer: hide in menu.",
+          "options__1": {
+            "label": "Horizontal"
+          },
+          "options__2": {
+            "label": "Vertical"
+          },
+          "options__3": {
+            "label": "Drawer"
+          }
+        },
+        "enable_sorting": {
+          "label": "Enable sorting"
+        },
+        "header_mobile": {
+          "content": "Mobile layout"
+        },
+        "columns_mobile": {
+          "label": "Number of columns on mobile",
+          "options__1": {
+            "label": "1 column"
+          },
+          "options__2": {
+            "label": "2 columns"
+          }
+        }
+      }
+    },
+    "all": {
+      "colors": {
+        "label": "Color scheme",
+        "has_cards_info": "Background color affects cards"
+      },
+      "padding": {
+        "section_padding_heading": "Section padding",
+        "padding_top": "Top padding",
+        "padding_bottom": "Bottom padding"
+      },
+      "image_shape": {
+        "label": "Image shape",
+        "info": "Add style to your images",
+        "options__1": {
+          "label": "Default"
+        },
+        "options__2": {
+          "label": "Arch"
+        },
+        "options__3": {
+          "label": "Blob"
+        },
+        "options__4": {
+          "label": "Chevron left"
+        },
+        "options__5": {
+          "label": "Chevron right"
+        },
+        "options__6": {
+          "label": "Diamond"
+        },
+        "options__7": {
+          "label": "Parallelogram"
+        },
+        "options__8": {
+          "label": "Round"
+        }
+      },
+      "heading_size": {
+        "label": "Heading size",
+        "options__1": {
+          "label": "Small"
+        },
+        "options__2": {
+          "label": "Medium"
+        },
+        "options__3": {
+          "label": "Large"
+        },
+        "options__4": {
+          "label": "Extra large"
+        },
+        "options__5": {
+          "label": "Extra extra large"
+        }
+      },
+      "animation": {
+        "content": "Animation",
+        "image_behavior": {
+          "label": "Image behavior on scroll",
+          "options__1": {
+            "label": "None"
+          },
+          "options__2": {
+            "label": "Zoom in"
+          }
+        }
+      },
+      "spacing": "Spacing"
+    },
     "announcements": {
       "previous_announcement": "Previous announcement",
       "next_announcement": "Next announcement",
@@ -327,11 +497,6 @@
     },
     "collection_list": {
       "view_all": "View all"
-    },
-    "collection_template": {
-      "empty": "No products found",
-      "title": "Collection",
-      "use_fewer_filters_html": "Use fewer filters or <a class=\"{{ class }}\" href=\"{{ link }}\">remove all</a>"
     },
     "video": {
       "load_video": "Load video: {{ description }}"
