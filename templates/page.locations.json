@@ -51,109 +51,77 @@
     "locations_grid": {
       "type": "locations-grid",
       "blocks": {
+        "lugano": {
+          "type": "location",
+          "settings": {
+            "city": "Lugano",
+            "name": "Godspeed Lugano",
+            "address": "Via Pian Scairolo 8\n6915 Pambio-Noranco",
+            "description": "<p><strong>Hauptsitz & Werkstatt</strong></p><p>Unser Hauptstandort in Lugano bietet die komplette Palette an E-Bikes und Velos. Mit professioneller Werkstatt und WhatsApp Service für schnelle Beratung.</p>",
+            "hours": "Dienstag-Freitag: 9:00-18:00\nSamstag: 9:00-17:00\nSonntag & Montag: geschlossen",
+            "phone": "+41 91 224 53 43",
+            "email": "info@godspeed.ch",
+            "services": "Verkauf, Werkstatt, Service, WhatsApp Beratung",
+            "directions_link": "https://goo.gl/maps/lugano",
+            "booking_link": "/pages/contact"
+          }
+        },
+        "bellinzona": {
+          "type": "location",
+          "settings": {
+            "city": "Bellinzona",
+            "name": "Godspeed Bellinzona",
+            "address": "Viale Stazione 32\n6500 Bellinzona",
+            "description": "<p><strong>City Store</strong></p><p>Zentral gelegen in Bellinzona, direkt am Bahnhof. Perfekt für Pendler und alle, die eine schnelle Beratung oder Service benötigen.</p>",
+            "hours": "Dienstag-Freitag: 9:00-18:00\nSamstag: 9:00-17:00\nSonntag & Montag: geschlossen",
+            "phone": "+41 91 222 48 04",
+            "email": "bellinzona@godspeed.ch",
+            "services": "Verkauf, Service, Beratung",
+            "directions_link": "https://goo.gl/maps/bellinzona",
+            "booking_link": "/pages/contact"
+          }
+        },
+        "locarno": {
+          "type": "location",
+          "settings": {
+            "city": "Locarno",
+            "name": "Godspeed Locarno",
+            "address": "Via Serafino Balestra 1A\n6600 Locarno",
+            "description": "<p><strong>Service Center</strong></p><p>Unser Standort in Locarno bietet kompetente Beratung und Service für alle E-Bike und Velo Bedürfnisse in der Region Lago Maggiore.</p>",
+            "hours": "Dienstag-Freitag: 9:00-17:00\nSamstag: 9:00-15:00\nSonntag & Montag: geschlossen",
+            "phone": "+41 91 751 36 22",
+            "email": "locarno@godspeed.ch",
+            "services": "Verkauf, Service, Beratung",
+            "directions_link": "https://goo.gl/maps/locarno",
+            "booking_link": "/pages/contact"
+          }
+        },
         "zurich": {
           "type": "location",
           "settings": {
             "city": "Zürich",
-            "name": "Godspeed Zürich Hauptbahnhof",
-            "address": "Bahnhofstrasse 123\n8001 Zürich",
-            "description": "<p><strong>Unser Flagship Store</strong></p><p>Im Herzen von Zürich gelegen, bietet unser größter Standort die komplette Palette an E-Bikes, City-Bikes und Mountainbikes. Mit der größten Ausstellung, modernster Werkstatt und direkter Nähe zum Hauptbahnhof.</p>",
-            "hours": "Montag-Freitag: 9:00-18:30\nSamstag: 9:00-17:00\nSonntag: 11:00-16:00",
-            "phone": "+41 44 123 45 67",
+            "name": "Godspeed Zürich",
+            "address": "Forchstrasse 343\n8008 Zürich",
+            "description": "<p><strong>Service Point</strong></p><p>Unser Zürich Service Point bietet Verkauf und Service nur nach Vereinbarung. Perfekt für individuelle Beratung und spezielle Anfragen.</p>",
+            "hours": "Nur nach Vereinbarung\nTermin erforderlich",
+            "phone": "+41 76 417 44 34",
             "email": "zuerich@godspeed.ch",
-            "services": "Verkauf, Service, Reparatur, Probefahrt, Leasing",
-            "directions_link": "https://goo.gl/maps/example1",
-            "booking_link": "/pages/contact"
-          }
-        },
-        "basel": {
-          "type": "location",
-          "settings": {
-            "city": "Basel",
-            "name": "Godspeed Basel City",
-            "address": "Freie Strasse 45\n4001 Basel",
-            "description": "<p><strong>Urban Mobility Hub</strong></p><p>Spezialisiert auf urbane Mobilität mit Fokus auf City E-Bikes, Lastenräder und Pendler-Lösungen. Perfekt gelegen in der Basler Innenstadt mit direkter Anbindung an öffentliche Verkehrsmittel.</p>",
-            "hours": "Montag-Freitag: 9:30-18:00\nSamstag: 9:00-17:00\nSonntag: geschlossen",
-            "phone": "+41 61 234 56 78",
-            "email": "basel@godspeed.ch",
-            "services": "Verkauf, Service, Urban Bikes, Lastenräder",
-            "directions_link": "https://goo.gl/maps/example2",
-            "booking_link": "/pages/contact"
-          }
-        },
-        "bern": {
-          "type": "location",
-          "settings": {
-            "city": "Bern",
-            "name": "Godspeed Bern Altstadt",
-            "address": "Kramgasse 78\n3011 Bern",
-            "description": "<p><strong>Service & Beratung</strong></p><p>In der UNESCO-Welterbe Altstadt von Bern bieten wir kompetente Beratung und schnellen Service. Ideal für alle, die das perfekte E-Bike für die hügelige Bundesstadt suchen.</p>",
-            "hours": "Montag-Freitag: 10:00-18:00\nSamstag: 9:00-16:00\nSonntag: geschlossen",
-            "phone": "+41 31 345 67 89",
-            "email": "bern@godspeed.ch",
-            "services": "Verkauf, Service, Beratung, Reparatur",
-            "directions_link": "https://goo.gl/maps/example3",
-            "booking_link": "/pages/contact"
-          }
-        },
-        "geneva": {
-          "type": "location",
-          "settings": {
-            "city": "Genf",
-            "name": "Godspeed Genève",
-            "address": "Rue du Rhône 92\n1204 Genève",
-            "description": "<p><strong>International Gateway</strong></p><p>Notre magasin à Genève propose une sélection premium de vélos électriques avec service multilingue. Idéalement situé près du lac Léman avec expertise en mobilité internationale.</p>",
-            "hours": "Lundi-Vendredi: 9:00-18:30\nSamedi: 9:00-17:00\nDimanche: 12:00-17:00",
-            "phone": "+41 22 456 78 90",
-            "email": "geneve@godspeed.ch",
-            "services": "Vente, Service, Conseil multilingue, Location",
-            "directions_link": "https://goo.gl/maps/example4",
-            "booking_link": "/pages/contact"
-          }
-        },
-        "lucerne": {
-          "type": "location",
-          "settings": {
-            "city": "Luzern",
-            "name": "Godspeed Luzern Zentrum",
-            "address": "Hertensteinstrasse 34\n6004 Luzern",
-            "description": "<p><strong>Alpine Adventure Base</strong></p><p>Am Fuße der Alpen gelegen, spezialisiert auf Mountain E-Bikes und Touren-Ausrüstung. Mit direktem Zugang zu den schönsten Radwegen der Zentralschweiz.</p>",
-            "hours": "Montag-Freitag: 9:00-18:00\nSamstag: 8:30-17:00\nSonntag: 10:00-16:00",
-            "phone": "+41 41 567 89 01",
-            "email": "luzern@godspeed.ch",
-            "services": "Verkauf, Service, Mountain Bikes, Touren-Beratung",
-            "directions_link": "https://goo.gl/maps/example5",
-            "booking_link": "/pages/contact"
-          }
-        },
-        "st_gallen": {
-          "type": "location",
-          "settings": {
-            "city": "St. Gallen",
-            "name": "Godspeed St. Gallen",
-            "address": "Multergasse 12\n9000 St. Gallen",
-            "description": "<p><strong>Ostschweiz Kompetenz-Zentrum</strong></p><p>Unser Service-Center für die Ostschweiz mit Fokus auf Pendler-Lösungen und Business-E-Bikes. Spezialisiert auf Lösungen für die hügelige Topografie der Region.</p>",
-            "hours": "Montag-Freitag: 9:30-18:00\nSamstag: 9:00-16:00\nSonntag: geschlossen",
-            "phone": "+41 71 678 90 12",
-            "email": "stgallen@godspeed.ch",
-            "services": "Verkauf, Service, Business E-Bikes, Pendler-Beratung",
-            "directions_link": "https://goo.gl/maps/example6",
+            "services": "Verkauf nach Vereinbarung, Service",
+            "directions_link": "https://goo.gl/maps/zurich",
             "booking_link": "/pages/contact"
           }
         }
       },
       "block_order": [
-        "zurich",
-        "basel", 
-        "bern",
-        "geneva",
-        "lucerne",
-        "st_gallen"
+        "lugano",
+        "bellinzona", 
+        "locarno",
+        "zurich"
       ],
       "settings": {
         "heading": "Besuchen Sie uns vor Ort",
         "heading_size": "h1",
-        "description": "<p>6 Standorte in der ganzen Schweiz - jeder mit eigenem Charakter und spezialisiertem Service für Ihre Bedürfnisse.</p>",
+        "description": "<p>4 Standorte in der Schweiz - spezialisiert auf E-Bikes und Velos mit professionellem Service.</p>",
         "text_alignment": "center",
         "card_text_alignment": "center",
         "icon_size": 80,

@@ -1,5 +1,185 @@
 {
   "sections": {
+    "hero": {
+      "type": "about-hero",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Allgemeine Geschäftsbedingungen",
+            "heading_size": "h0"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Gültig für alle Käufe bei GODSPEED GMBH in der Schweiz und Liechtenstein.</p>",
+            "text_style": "subtitle"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "overlay_opacity": 30,
+        "text_alignment": "center",
+        "color_scheme": "background-1",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "terms_content": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_1": {
+          "type": "heading",
+          "settings": {
+            "heading": "1. Geltungsbereich",
+            "heading_size": "h2"
+          }
+        },
+        "text_1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Diese Allgemeinen Geschäftsbedingungen gelten für alle Kaufverträge mit der GODSPEED GMBH für Kunden in der Schweiz und Liechtenstein. Hiervon abweichende Regelungen erkennen wir nur an, wenn diese von uns schriftlich bestätigt werden.</p>"
+          }
+        },
+        "heading_2": {
+          "type": "heading",
+          "settings": {
+            "heading": "2. Vertragspartner",
+            "heading_size": "h2"
+          }
+        },
+        "text_2": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>GODSPEED GMBH</strong><br>Via Pian Scairolo 8<br>6915 Pambio-Noranco<br>Schweiz</p><p>Telefon: +41 91 224 53 43<br>E-Mail: info@godspeed.ch</p>"
+          }
+        },
+        "heading_3": {
+          "type": "heading",
+          "settings": {
+            "heading": "3. Vertragsabschluss",
+            "heading_size": "h2"
+          }
+        },
+        "text_3": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Ihre Bestellungen stellen verbindliche Angebote dar. Wir behalten uns vor, Bestellungen innerhalb von 7 Werktagen nach Eingang zu ablehnen. Der Vertrag kommt durch unsere Auftragsbestätigung oder durch Lieferung der Ware zustande.</p>"
+          }
+        },
+        "heading_4": {
+          "type": "heading",
+          "settings": {
+            "heading": "4. Preise und Verfügbarkeit",
+            "heading_size": "h2"
+          }
+        },
+        "text_4": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Alle Preise verstehen sich in Schweizer Franken (CHF) und sind unverbindlich. Preis- und Sortimentsänderungen sowie technische Änderungen bleiben vorbehalten. Die Mehrwertsteuer ist in den angegebenen Preisen enthalten.</p>"
+          }
+        },
+        "heading_5": {
+          "type": "heading",
+          "settings": {
+            "heading": "5. Lieferung und Zahlung",
+            "heading_size": "h2"
+          }
+        },
+        "text_5": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Wir liefern innerhalb der Schweiz und nach Liechtenstein. Die Lieferung erfolgt an die von Ihnen angegebene Adresse. Teillieferungen sind möglich. Es werden verschiedene Zahlungsarten akzeptiert, darunter Kreditkarte, TWINT, PostFinance und HeyLight Finanzierung.</p>"
+          }
+        },
+        "heading_6": {
+          "type": "heading",
+          "settings": {
+            "heading": "6. Widerrufsrecht",
+            "heading_size": "h2"
+          }
+        },
+        "text_6": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Sie haben das Recht, binnen 14 Tagen ohne Angabe von Gründen diesen Vertrag zu widerrufen. Die Widerrufsfrist beträgt 14 Tage ab dem Tag, an dem Sie oder ein von Ihnen benannter Dritter die Waren in Besitz genommen haben. Ausgeschlossen vom Widerrufsrecht sind Geschenkgutscheine und individuell angefertigte Artikel.</p>"
+          }
+        },
+        "heading_7": {
+          "type": "heading",
+          "settings": {
+            "heading": "7. Gewährleistung",
+            "heading_size": "h2"
+          }
+        },
+        "text_7": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Wir gewähren eine Garantie von 2 Jahren auf Material- und Verarbeitungsfehler. Ausgeschlossen sind Verschleißteile, unsachgemäße Behandlung und normale Abnutzung. Bei berechtigten Reklamationen erfolgt nach unserer Wahl Reparatur, Ersatzlieferung oder Kaufpreisminderung.</p>"
+          }
+        },
+        "heading_8": {
+          "type": "heading",
+          "settings": {
+            "heading": "8. Haftung",
+            "heading_size": "h2"
+          }
+        },
+        "text_8": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Unsere Haftung beschränkt sich auf Vorsatz und grobe Fahrlässigkeit. Eine Haftung für Folgeschäden ist ausgeschlossen, soweit gesetzlich zulässig. Die Haftung für Personenschäden bleibt unberührt.</p>"
+          }
+        },
+        "heading_9": {
+          "type": "heading",
+          "settings": {
+            "heading": "9. Anwendbares Recht und Gerichtsstand",
+            "heading_size": "h2"
+          }
+        },
+        "text_9": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Es gilt ausschließlich schweizerisches Recht. Gerichtsstand ist Lugano oder der Wohnsitz des Kunden, soweit dieser in der Schweiz liegt.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_1",
+        "text_1",
+        "heading_2", 
+        "text_2",
+        "heading_3",
+        "text_3",
+        "heading_4",
+        "text_4",
+        "heading_5",
+        "text_5",
+        "heading_6",
+        "text_6",
+        "heading_7",
+        "text_7",
+        "heading_8",
+        "text_8",
+        "heading_9",
+        "text_9"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "left",
+        "color_scheme": "background-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
     "main": {
       "type": "main-page",
       "settings": {
@@ -9,6 +189,8 @@
     }
   },
   "order": [
+    "hero",
+    "terms_content",
     "main"
   ]
 }

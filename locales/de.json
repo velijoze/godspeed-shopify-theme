@@ -529,11 +529,11 @@
     "about": {
       "heading": "Über Godspeed",
       "subheading": "Nachhaltige Mobilität für eine bessere Zukunft",
-      "description": "Godspeed steht für nachhaltige Mobilität und unschlagbare Preise. Als Schweizer Unternehmen verbinden wir traditionelle Qualität mit innovativer Technik.",
+      "description": "Wir glauben, dass Fahrräder zu einer besseren Gegenwart und Zukunft beitragen können und hochwertige Fahrräder für alle zugänglich sein sollten.",
       "our_story": "Unsere Geschichte",
-      "story_text": "<p>Seit unserer Gründung haben wir uns darauf spezialisiert, hochwertige Fahrräder und E-Bikes zu unschlagbaren Preisen anzubieten. Unser Team aus erfahrenen Fahrradexperten wählt jedes Produkt sorgfältig aus, um sicherzustellen, dass es unseren hohen Qualitätsstandards entspricht.</p><p>Wir glauben daran, dass nachhaltige Mobilität für alle zugänglich sein sollte. Deshalb bieten wir nicht nur erstklassige Produkte, sondern auch umfassende Beratung und professionellen Service.</p>",
+      "story_text": "<p>GODSPEED ist ein Schweizer Online-Fahrrad- und E-Bike-Händler, der sich nachhaltiger Mobilität verschrieben hat. Unsere Mission ist es, hochwertige Fahrräder zugänglich und erschwinglich zu machen.</p><p>Mit Standorten im Tessin und Zürich bieten wir eine umfassende Auswahl an E-Bikes und traditionellen Fahrrädern, von City-Bikes bis hin zu Mountain-Bikes und Cargo-Bikes. Wir sind mehr als nur ein Fahrradgeschäft - wir sind Partner bei der Förderung nachhaltiger Mobilität.</p>",
       "mission_heading": "Unsere Mission",
-      "mission_text": "Hochwertige Mobilität für alle zugänglich machen, während wir gleichzeitig unseren Planeten schützen.",
+      "mission_text": "Hochwertige Fahrräder für alle zugänglich machen und durch umweltfreundliche Mobilität zu einer besseren Zukunft beitragen.",
       "customers_label": "Zufriedene Kunden"
     },
     "test_ride": {
@@ -634,5 +634,56 @@
     "view_all_commuter": "Alle City E-Bikes",
     "view_all_mountain": "Alle Mountain E-Bikes",
     "view_all_cargo": "Alle Cargo E-Bikes"
+  },
+  "homepage": {
+    "hero": {
+      "heading": "GODSPEED: Ihr Ziel für E-Bikes und günstige Velos online in der Schweiz",
+      "description": "Entdecken Sie hochwertige Fahrräder zu unschlagbaren Preisen",
+      "button_text": "Jetzt entdecken"
+    }
+  },
+  "collections": {
+    "e_bikes": {
+      "title": "Elektrovelos (E-Bikes)",
+      "description": "Die beste Auswahl zum besten Preis. Umfassende E-Bike Palette für alle Bedürfnisse - von City & Trekking bis Mountain und Cargo E-Bikes.",
+      "categories": "E-MTB Hardtail, E-MTB Fully, City & Trekking, Cargo, E-Gravel"
+    },
+    "velos": {
+      "title": "Velos",
+      "description": "Hochwertige Fahrräder für alle Fahrstile. Von Gravel bis Mountainbike, von Kinderrädern bis Falträdern.",
+      "categories": "Gravel, Kinderräder, Mountainbike, Road, Damen, Faltbar, Dirt, City/Trekking"
+    },
+    "parts": {
+      "title": "Teile",
+      "description": "Hochwertige Komponenten und Ersatzteile für Ihr Fahrrad. 708 Produkte von führenden Marken.",
+      "categories": "Sattelstütze, Lenker, Griffe, Sattel, Bremsen, Räder, Pedale, Federung"
+    },
+    "accessories": {
+      "title": "Zubehör",
+      "description": "Komplette Ausstattung für Ihr Fahrraderlebnis. 605 Produkte für Komfort und Sicherheit.",
+      "categories": "Helme, Bekleidung, Werkzeug, Beleuchtung, Schlösser, Taschen"
+    }
+  },
+  "homepage_sections": {
+    "brands": {
+      "heading": "Unsere Premium Marken"
+    },
+    "services": {
+      "heading": "Unsere Services",
+      "description": "Professionelle Betreuung von der Beratung bis zur Wartung - alles aus einer Hand.",
+      "financing_title": "0% Finanzierung",
+      "financing_text": "Bis zu 36 Monate zinsfreie Finanzierung. Faire Konditionen ohne versteckte Kosten.",
+      "financing_button": "Jetzt beantragen",
+      "test_ride_title": "Kostenlose Probefahrt",
+      "test_ride_text": "Testen Sie Ihr Wunsch-E-Bike kostenlos an einem unserer 4 Standorte in der Schweiz.",
+      "test_ride_button": "Termin buchen",
+      "workshop_title": "Professioneller Service",
+      "workshop_text": "Umfassende Wartung und Reparatur für alle E-Bikes und Velos. Größtes Service-Center im Tessin.",
+      "workshop_button": "Service buchen"
+    },
+    "newsletter": {
+      "heading": "Bleiben Sie informiert",
+      "description": "Erhalten Sie exklusive Angebote, Neuigkeiten über E-Bikes und hilfreiche Tipps direkt in Ihr Postfach."
+    }
   }
 }

@@ -646,5 +646,12 @@
     "view_all_commuter": "Vedi Tutte Urbane",
     "view_all_mountain": "Vedi Tutte Mountain",
     "view_all_cargo": "Vedi Tutte Cargo"
+  },
+  "homepage": {
+    "hero": {
+      "heading": "GODSPEED: La vostra destinazione per e-bike e biciclette economiche online in Svizzera",
+      "description": "Scoprite biciclette di alta qualità a prezzi imbattibili",
+      "button_text": "Scopri ora"
+    }
   }
 }

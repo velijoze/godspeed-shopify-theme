@@ -530,11 +530,11 @@
     "about": {
       "heading": "About Godspeed",
       "subheading": "Sustainable mobility for a better future",
-      "description": "Godspeed stands for sustainable mobility and unbeatable prices. As a Swiss company, we combine traditional quality with innovative technology.",
+      "description": "We believe that bicycles can contribute to a better present and future and that high-quality bicycles should be accessible to everyone.",
       "our_story": "Our Story",
-      "story_text": "<p>Since our founding, we have specialized in offering high-quality bicycles and e-bikes at unbeatable prices. Our team of experienced bicycle experts carefully selects each product to ensure it meets our high quality standards.</p><p>We believe that sustainable mobility should be accessible to everyone. That's why we offer not only first-class products, but also comprehensive advice and professional service.</p>",
+      "story_text": "<p>GODSPEED is a Swiss online bicycle and e-bike retailer committed to sustainable transportation. Our mission is to make high-quality bicycles accessible and affordable.</p><p>With locations in Ticino and Zurich, we offer a comprehensive selection of e-bikes and traditional bicycles, from city bikes to mountain bikes and cargo bikes. We are more than just a bike shop - we are partners in promoting sustainable mobility.</p>",
       "mission_heading": "Our Mission",
-      "mission_text": "Making high-quality mobility accessible to everyone while protecting our planet.",
+      "mission_text": "Making high-quality bicycles accessible to everyone and contributing to a better future through environmentally friendly mobility.",
       "customers_label": "Satisfied Customers"
     },
     "test_ride": {
@@ -591,5 +591,24 @@
     "view_all_commuter": "View All Commuter",
     "view_all_mountain": "View All Mountain", 
     "view_all_cargo": "View All Cargo"
+  },
+  "homepage": {
+    "hero": {
+      "heading": "GODSPEED: Your destination for E-Bikes and affordable bikes online in Switzerland",
+      "description": "Discover high-quality bicycles at unbeatable prices",
+      "button_text": "Discover Now"
+    }
+  },
+  "collections": {
+    "e_bikes": {
+      "title": "Electric Bikes (E-Bikes)",
+      "description": "The best selection at the best price. Comprehensive e-bike range for all needs - from City & Trekking to Mountain and Cargo e-bikes.",
+      "categories": "E-MTB Hardtail, E-MTB Fully, City & Trekking, Cargo, E-Gravel"
+    },
+    "velos": {
+      "title": "Bicycles",
+      "description": "High-quality bicycles for all riding styles. From gravel to mountain bikes, from children's bikes to folding bikes.",
+      "categories": "Gravel, Children's Bikes, Mountain Bike, Road, Women's, Foldable, Dirt, City/Trekking"
+    }
   }
 }

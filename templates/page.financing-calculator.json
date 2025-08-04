@@ -19,7 +19,7 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>Mit unserem 0% Finanzierungsrechner können Sie sofort sehen, wie viel Ihr Wunsch-E-Bike monatlich kostet. Faire Konditionen, keine versteckten Kosten.</p>",
+            "text": "<p>Mit unserem HeyLight 0% Finanzierungsrechner können Sie sofort sehen, wie viel Ihr Wunsch-E-Bike monatlich kostet. 3-36 Monate Laufzeit, keine versteckten Kosten, sofortige Genehmigung.</p>",
             "text_style": "subtitle"
           }
         }
@@ -120,7 +120,7 @@
         "requirements_text": {
           "type": "text",
           "settings": {
-            "text": "<p><strong>Voraussetzungen für die Finanzierung:</strong></p><ul><li>✓ Mindestalter 18 Jahre</li><li>✓ Wohnsitz in der Schweiz</li><li>✓ Regelmäßiges Einkommen nachweisbar</li><li>✓ Positive Bonität (wird geprüft)</li><li>✓ Schweizer Bankkonto</li></ul><p><strong>Benötigte Unterlagen:</strong></p><ul><li>• Gültiger Ausweis oder Pass</li><li>• Lohnausweis der letzten 3 Monate</li><li>• Kontoauszüge der letzten 3 Monate</li><li>• Bei Selbständigen: Steuererklärung</li></ul><p><strong>Bearbeitungszeit:</strong> In der Regel erhalten Sie innerhalb von 24 Stunden eine verbindliche Zusage oder Absage.</p>",
+            "text": "<p><strong>HeyLight Finanzierung - Voraussetzungen:</strong></p><ul><li>✓ Mindestalter 18 Jahre</li><li>✓ Wohnsitz in der Schweiz</li><li>✓ Regelmäßiges Einkommen</li><li>✓ Schweizer Kredit-/Debitkarte (Visa, Mastercard, Amex)</li><li>✓ Smartphone für Verifizierung</li></ul><p><strong>Finanzierungssumme:</strong> Bis CHF 10,000</p><p><strong>Laufzeiten:</strong> 3-36 Monate bei 0% Zinsen</p><p><strong>Genehmigung:</strong> Sofortige Entscheidung innerhalb weniger Minuten. Keine Papierarbeit erforderlich.</p><p><strong>Vorzeitige Rückzahlung:</strong> Jederzeit ohne Strafgebühren möglich.</p>",
             "text_style": "body"
           }
         },

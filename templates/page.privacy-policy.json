@@ -1,5 +1,170 @@
 {
   "sections": {
+    "hero": {
+      "type": "about-hero",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Datenschutzerklärung",
+            "heading_size": "h0"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Wir haben technische und organisatorische Sicherheitsverfahren zum Schutz personenbezogener Daten vor unbefugter Verarbeitung oder versehentlichem Verlust.</p>",
+            "text_style": "subtitle"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "overlay_opacity": 30,
+        "text_alignment": "center",
+        "color_scheme": "background-1",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "privacy_content": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_1": {
+          "type": "heading",
+          "settings": {
+            "heading": "1. Verantwortliche Stelle",
+            "heading_size": "h2"
+          }
+        },
+        "text_1": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>GODSPEED GMBH</strong><br>Via Pian Scairolo 8<br>6915 Pambio-Noranco<br>Schweiz</p><p>Telefon: +41 91 224 53 43<br>E-Mail: info@godspeed.ch</p>"
+          }
+        },
+        "heading_2": {
+          "type": "heading",
+          "settings": {
+            "heading": "2. Zweck der Datenerhebung",
+            "heading_size": "h2"
+          }
+        },
+        "text_2": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Wir sammeln personenbezogene Daten, um bessere Dienstleistungen anzubieten und tägliche Aufgaben für Kunden zu erleichtern. Die Datenverarbeitung erfolgt zur:</p><ul><li>Bestellabwicklung und Kundenbetreuung</li><li>Kommunikation mit Kunden</li><li>Verbesserung unserer Dienstleistungen</li><li>Personalisierte Empfehlungen</li><li>Marketing (mit Einverständnis)</li></ul>"
+          }
+        },
+        "heading_3": {
+          "type": "heading",
+          "settings": {
+            "heading": "3. Erhobene Datenarten",
+            "heading_size": "h2"
+          }
+        },
+        "text_3": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Wir erheben folgende Arten von Daten:</p><ul><li>Persönliche Angaben (Name, Adresse, Kontaktinformationen)</li><li>Kaufhistorie und Bestelldaten</li><li>Website-Nutzungsdaten</li><li>Kommunikationspräferenzen</li><li>Cookies und Tracking-Daten</li></ul>"
+          }
+        },
+        "heading_4": {
+          "type": "heading",
+          "settings": {
+            "heading": "4. Datenspeicherung",
+            "heading_size": "h2"
+          }
+        },
+        "text_4": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Wir speichern personenbezogene Daten so lange wie notwendig für die Einhaltung gesetzlicher Bestimmungen oder den ursprünglichen Erhebungszweck. Daten werden nach vorgeschriebenen Aufbewahrungsfristen gelöscht.</p>"
+          }
+        },
+        "heading_5": {
+          "type": "heading",
+          "settings": {
+            "heading": "5. Ihre Rechte",
+            "heading_size": "h2"  
+          }
+        },
+        "text_5": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Sie haben das Recht:</p><ul><li>Auskunft über gespeicherte personenbezogene Daten zu verlangen</li><li>Daten zu korrigieren oder zu ergänzen</li><li>Der Datenverarbeitung zu widersprechen</li><li>Löschung personenbezogener Daten zu beantragen</li><li>Datenübertragbarkeit zu verlangen</li></ul>"
+          }
+        },
+        "heading_6": {
+          "type": "heading",
+          "settings": {
+            "heading": "6. Cookies und Tracking",
+            "heading_size": "h2"
+          }
+        },
+        "text_6": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Unsere Website verwendet Cookies zur Verbesserung der Benutzererfahrung. Cookies helfen uns dabei:</p><ul><li>Ihre Präferenzen zu speichern</li><li>Die Website-Leistung zu analysieren</li><li>Personalisierte Inhalte anzuzeigen</li><li>Marketing-Kampagnen zu optimieren</li></ul><p>Sie können Cookies in Ihren Browser-Einstellungen deaktivieren.</p>"
+          }
+        },
+        "heading_7": {
+          "type": "heading",
+          "settings": {
+            "heading": "7. Datensicherheit",
+            "heading_size": "h2"
+          }
+        },
+        "text_7": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Wir haben technische und organisatorische Sicherheitsverfahren implementiert, um Ihre personenbezogenen Daten vor unbefugter Verarbeitung, Verlust oder Beschädigung zu schützen. Alle Datenübertragungen erfolgen verschlüsselt.</p>"
+          }
+        },
+        "heading_8": {
+          "type": "heading",
+          "settings": {
+            "heading": "8. Kontakt",
+            "heading_size": "h2"
+          }
+        },
+        "text_8": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Bei Fragen zum Datenschutz oder zur Ausübung Ihrer Rechte kontaktieren Sie uns:</p><p>E-Mail: info@godspeed.ch<br>Telefon: +41 91 224 53 43<br>Post: GODSPEED GMBH, Via Pian Scairolo 8, 6915 Pambio-Noranco</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_1",
+        "text_1",
+        "heading_2",
+        "text_2", 
+        "heading_3",
+        "text_3",
+        "heading_4",
+        "text_4",
+        "heading_5",
+        "text_5",
+        "heading_6",
+        "text_6",
+        "heading_7",
+        "text_7",
+        "heading_8",
+        "text_8"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "left",
+        "color_scheme": "background-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
     "main": {
       "type": "main-page",
       "settings": {
@@ -9,6 +174,8 @@
     }
   },
   "order": [
+    "hero",
+    "privacy_content",
     "main"
   ]
 }

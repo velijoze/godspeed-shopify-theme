@@ -1,25 +1,201 @@
 {
   "sections": {
-    "main": {
-      "type": "main-page",
+    "contact_hero": {
+      "type": "about-hero",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Kontakt",
+            "heading_size": "h0"
+          }
+        },
+        "subheading": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Wir sind für Sie da - persönlich, telefonisch oder digital"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Haben Sie Fragen zu E-Bikes, benötigen Beratung oder möchten einen Service-Termin? Kontaktieren Sie uns über Ihr bevorzugtes Kommunikationsmittel.</p>",
+            "text_style": "subtitle"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "subheading",
+        "text"
+      ],
       "settings": {
-        "padding_top": 36,
-        "padding_bottom": 36
+        "overlay_opacity": 40,
+        "text_alignment": "center",
+        "color_scheme": "background-1",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "contact_methods": {
+      "type": "services-grid",
+      "blocks": {
+        "phone": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-phone.svg",
+            "title": "Telefonische Beratung",
+            "text": "<p><strong>Lugano:</strong> +41 91 224 53 43</p><p><strong>Bellinzona:</strong> +41 91 222 48 04</p><p><strong>Locarno:</strong> +41 91 751 36 22</p><p><strong>Zürich:</strong> +41 76 417 44 34</p><p>Montag-Freitag: 9:00-18:00<br>Samstag: 9:00-17:00</p>",
+            "button_label": "Jetzt anrufen",
+            "button_link": "tel:+41912245343"
+          }
+        },
+        "whatsapp": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-chat.svg",
+            "title": "WhatsApp Service",
+            "text": "<p><strong>Schnelle Hilfe per WhatsApp</strong></p><p>+41 76 340 53 43<br>+41 76 506 33 34</p><p>✓ Sofortige Antworten<br>✓ Bilder und Videos senden<br>✓ Terminvereinbarung<br>✓ Produktberatung</p>",
+            "button_label": "WhatsApp öffnen",
+            "button_link": "https://wa.me/41763405343"
+          }
+        },
+        "email": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-email.svg",
+            "title": "E-Mail Kontakt",
+            "text": "<p><strong>Allgemeine Anfragen:</strong><br>info@godspeed.ch</p><p><strong>Werkstatt Service:</strong><br>werkstatt@godspeed.ch</p><p><strong>Antwortzeit:</strong> < 24 Stunden<br><strong>Sprachen:</strong> Deutsch, Italienisch, Französisch</p>",
+            "button_label": "E-Mail schreiben",
+            "button_link": "mailto:info@godspeed.ch"
+          }
+        }
+      },
+      "block_order": [
+        "phone",
+        "whatsapp",
+        "email"
+      ],
+      "settings": {
+        "heading": "So erreichen Sie uns",
+        "heading_size": "h1",
+        "description": "<p>Wählen Sie Ihren bevorzugten Kommunikationsweg - wir antworten schnell und kompetent.</p>",
+        "text_alignment": "center",
+        "card_text_alignment": "center",
+        "icon_size": 80,
+        "card_border_radius": 8,
+        "color_scheme": "background-2",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "locations_grid": {
+      "type": "locations-grid",
+      "blocks": {
+        "lugano": {
+          "type": "location",
+          "settings": {
+            "city": "Lugano",
+            "name": "Godspeed Lugano",
+            "address": "Via Pian Scairolo 8\n6915 Pambio-Noranco",
+            "description": "<p><strong>Hauptsitz & Werkstatt</strong></p><p>Unser Hauptstandort in Lugano bietet die komplette Palette an E-Bikes und Velos. Mit professioneller Werkstatt und WhatsApp Service für schnelle Beratung.</p>",
+            "hours": "Dienstag-Freitag: 9:00-18:00\nSamstag: 9:00-17:00\nSonntag & Montag: geschlossen",
+            "phone": "+41 91 224 53 43",
+            "email": "info@godspeed.ch",
+            "services": "Verkauf, Werkstatt, Service, WhatsApp Beratung",
+            "directions_link": "https://goo.gl/maps/lugano",
+            "booking_link": "/pages/contact"
+          }
+        },
+        "bellinzona": {
+          "type": "location",
+          "settings": {
+            "city": "Bellinzona",
+            "name": "Godspeed Bellinzona",
+            "address": "Viale Stazione 32\n6500 Bellinzona",
+            "description": "<p><strong>City Store</strong></p><p>Zentral gelegen in Bellinzona, direkt am Bahnhof. Perfekt für Pendler und alle, die eine schnelle Beratung oder Service benötigen.</p>",
+            "hours": "Dienstag-Freitag: 9:00-18:00\nSamstag: 9:00-17:00\nSonntag & Montag: geschlossen",
+            "phone": "+41 91 222 48 04",
+            "email": "bellinzona@godspeed.ch",
+            "services": "Verkauf, Service, Beratung",
+            "directions_link": "https://goo.gl/maps/bellinzona",
+            "booking_link": "/pages/contact"
+          }
+        },
+        "locarno": {
+          "type": "location",
+          "settings": {
+            "city": "Locarno",
+            "name": "Godspeed Locarno",
+            "address": "Via Serafino Balestra 1A\n6600 Locarno",
+            "description": "<p><strong>Service Center</strong></p><p>Unser Standort in Locarno bietet kompetente Beratung und Service für alle E-Bike und Velo Bedürfnisse in der Region Lago Maggiore.</p>",
+            "hours": "Dienstag-Freitag: 9:00-17:00\nSamstag: 9:00-15:00\nSonntag & Montag: geschlossen",
+            "phone": "+41 91 751 36 22",
+            "email": "locarno@godspeed.ch",
+            "services": "Verkauf, Service, Beratung",
+            "directions_link": "https://goo.gl/maps/locarno",
+            "booking_link": "/pages/contact"
+          }
+        },
+        "zurich": {
+          "type": "location",
+          "settings": {
+            "city": "Zürich",
+            "name": "Godspeed Zürich",
+            "address": "Forchstrasse 343\n8008 Zürich",
+            "description": "<p><strong>Service Point</strong></p><p>Unser Zürich Service Point bietet Verkauf und Service nur nach Vereinbarung. Perfekt für individuelle Beratung und spezielle Anfragen.</p>",
+            "hours": "Nur nach Vereinbarung\nTermin erforderlich",
+            "phone": "+41 76 417 44 34",
+            "email": "zuerich@godspeed.ch",
+            "services": "Verkauf nach Vereinbarung, Service",
+            "directions_link": "https://goo.gl/maps/zurich",
+            "booking_link": "/pages/contact"
+          }
+        }
+      },
+      "block_order": [
+        "lugano",
+        "bellinzona",
+        "locarno",
+        "zurich"
+      ],
+      "settings": {
+        "heading": "Besuchen Sie uns vor Ort",
+        "heading_size": "h1",
+        "description": "<p>4 Standorte in der Schweiz - spezialisiert auf E-Bikes und Velos mit professionellem Service.</p>",
+        "text_alignment": "center",
+        "card_text_alignment": "center",
+        "icon_size": 80,
+        "card_border_radius": 12,
+        "image_border_radius": 8,
+        "color_scheme": "background-1",
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     },
     "form": {
       "type": "contact-form",
       "settings": {
-        "heading": "Kontakt aufnehmen",
+        "heading": "Schreiben Sie uns",
         "heading_size": "h1",
         "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
       }
     }
   },
   "order": [
-    "main",
-    "form"
+    "contact_hero",
+    "contact_methods",
+    "locations_grid", 
+    "form",
+    "main"
   ]
 }

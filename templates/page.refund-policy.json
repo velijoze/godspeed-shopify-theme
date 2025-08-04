@@ -1,5 +1,140 @@
 {
   "sections": {
+    "hero": {
+      "type": "about-hero",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Rückgabe & Umtausch",
+            "heading_size": "h0"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>14 Tage Widerrufsrecht für alle Online-Bestellungen. Faire und transparente Rückgabebedingungen.</p>",
+            "text_style": "subtitle"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "overlay_opacity": 30,
+        "text_alignment": "center",
+        "color_scheme": "background-1",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "refund_content": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_1": {
+          "type": "heading",
+          "settings": {
+            "heading": "1. Widerrufsrecht",
+            "heading_size": "h2"
+          }
+        },
+        "text_1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Sie haben das Recht, binnen 14 Tagen ohne Angabe von Gründen diesen Vertrag zu widerrufen. Die Widerrufsfrist beträgt 14 Tage ab dem Tag, an dem Sie oder ein von Ihnen benannter Dritter die Waren in Besitz genommen haben.</p><p><strong>Widerrufsfrist beginnt:</strong> Am Tag der Warenübergabe<br><strong>Form:</strong> Schriftlich per E-Mail, Brief oder Telefon<br><strong>Adresse:</strong> GODSPEED GMBH, Via Pian Scairolo 8, 6915 Pambio-Noranco</p>"
+          }
+        },
+        "heading_2": {
+          "type": "heading",
+          "settings": {
+            "heading": "2. Rückgabebedingungen",
+            "heading_size": "h2"
+          }
+        },
+        "text_2": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Zustand der Ware:</strong></p><ul><li>✓ Unbenutzt und in originalem Zustand</li><li>✓ Vollständige Originalverpackung</li><li>✓ Alle Zubehörteile und Dokumente enthalten</li><li>✓ Keine Beschädigungen oder Kratzer</li></ul><p><strong>Ausgeschlossen vom Widerrufsrecht:</strong></p><ul><li>• Geschenkgutscheine</li><li>• Individuell angefertigte Artikel</li><li>• Verschleißteile (Reifen, Bremsbeläge etc.)</li><li>• E-Bikes nach Probefahrt über 5km</li></ul>"
+          }
+        },
+        "heading_3": {
+          "type": "heading",
+          "settings": {
+            "heading": "3. Rücksendekosten",
+            "heading_size": "h2"
+          }
+        },
+        "text_3": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Kostenlose Rückgabe:</strong></p><ul><li>✓ Defekte oder falsch gelieferte Artikel</li><li>✓ Beschädigungen beim Transport</li><li>✓ Nicht der Bestellung entsprechende Ware</li></ul><p><strong>Kostenpflichtige Rückgabe (Kunde trägt Kosten):</strong></p><ul><li>• Widerruf ohne Mangel: CHF 9.90</li><li>• E-Bike Rücksendung: CHF 99.00</li><li>• Abholung beim Kunden: CHF 49.00</li></ul><p><strong>Tipp:</strong> Kostenlose Rückgabe in allen Filialen möglich!</p>"
+          }
+        },
+        "heading_4": {
+          "type": "heading",
+          "settings": {
+            "heading": "4. Rückerstattung",
+            "heading_size": "h2"
+          }
+        },
+        "text_4": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Bearbeitungszeit:</strong> 3-5 Werktage nach Wareneingang</p><p><strong>Rückerstattungsmethode:</strong></p><ul><li>✓ Originalzahlungsart (Kreditkarte, TWINT, etc.)</li><li>✓ Banküberweisung auf Wunsch</li><li>✓ Gutschrift für Neukauf</li></ul><p><strong>Finanzierte Käufe:</strong> Bei HeyLight-Finanzierung wird die Finanzierung automatisch storniert. Bereits gezahlte Raten werden vollständig erstattet.</p>"
+          }
+        },
+        "heading_5": {
+          "type": "heading",
+          "settings": {
+            "heading": "5. Umtausch",
+            "heading_size": "h2"
+          }
+        },
+        "text_5": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Größentausch:</strong> Kostenlos innerhalb 30 Tagen</p><p><strong>Farbwechsel:</strong> Möglich bei Verfügbarkeit</p><p><strong>Modell-Upgrade:</strong> Aufzahlung der Preisdifferenz</p><p><strong>Modell-Downgrade:</strong> Rückerstattung der Differenz</p><p><strong>Voraussetzung:</strong> Artikel in neuwertigem Zustand mit allen Originalteilen und Verpackung.</p>"
+          }
+        },
+        "heading_6": {
+          "type": "heading",
+          "settings": {
+            "heading": "6. Rückgabe-Prozess",
+            "heading_size": "h2"
+          }
+        },
+        "text_6": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Schritt 1:</strong> Rückgabe anmelden per E-Mail an returns@godspeed.ch</p><p><strong>Schritt 2:</strong> Rückgabe-Nummer erhalten (RMA-Nummer)</p><p><strong>Schritt 3:</strong> Ware sicher verpacken mit RMA-Nummer</p><p><strong>Schritt 4:</strong> Versand oder Filial-Rückgabe</p><p><strong>Schritt 5:</strong> Prüfung und Rückerstattung innerhalb 5 Werktagen</p><p><strong>Support:</strong> Bei Fragen: +41 91 224 53 43 oder info@godspeed.ch</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_1",
+        "text_1",
+        "heading_2",
+        "text_2",
+        "heading_3",
+        "text_3",
+        "heading_4",
+        "text_4",
+        "heading_5",
+        "text_5",
+        "heading_6",
+        "text_6"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "left",
+        "color_scheme": "background-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
     "main": {
       "type": "main-page",
       "settings": {
@@ -9,6 +144,8 @@
     }
   },
   "order": [
+    "hero",
+    "refund_content",
     "main"
   ]
 }

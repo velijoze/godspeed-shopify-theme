@@ -646,5 +646,34 @@
     "view_all_commuter": "Voir Tous Urbains",
     "view_all_mountain": "Voir Tous Mountain",
     "view_all_cargo": "Voir Tous Cargo"
+  },
+  "homepage": {
+    "hero": {
+      "heading": "GODSPEED: Votre destination pour les vélos électriques et vélos abordables en ligne en Suisse",
+      "description": "Découvrez des bicyclettes de haute qualité à des prix imbattables",
+      "button_text": "Découvrir maintenant"
+    }
+  },
+  "collections": {
+    "e_bikes": {
+      "title": "Vélos Électriques",
+      "description": "La meilleure sélection au meilleur prix. Gamme complète de vélos électriques pour tous les besoins - de la ville et randonnée aux VTT et cargo.",
+      "categories": "VTT-E Hardtail, VTT-E Fully, Ville & Randonnée, Cargo, E-Gravel"
+    },
+    "velos": {
+      "title": "Vélos",
+      "description": "Vélos de haute qualité pour tous les styles de conduite. Du gravel aux VTT, des vélos pour enfants aux vélos pliants.",
+      "categories": "Gravel, Vélos Enfants, VTT, Route, Femmes, Pliable, Dirt, Ville/Randonnée"
+    },
+    "parts": {
+      "title": "Pièces",
+      "description": "Composants et pièces détachées de qualité pour votre vélo.",
+      "categories": "Selle, Guidon, Freins, Roues, Transmission, Suspension"
+    },
+    "accessories": {
+      "title": "Accessoires",
+      "description": "Équipements et accessoires pour une expérience cycliste complète.",
+      "categories": "Casques, Vêtements, Outils, Éclairage, Antivols, Sacoches"
+    }
   }
 }
