@@ -3,7 +3,7 @@
   Multi-platform chat integration with AI-powered responses
 {% endcomment %}
 
-{%- if settings.enable_live_chat -%}
+{%- if false and settings.enable_live_chat -%}
 {%- comment -%} Chat Widget Container {%- endcomment -%}
 <div class="pipeline-chat-widget" id="pipeline-chat-widget" 
      {% unless settings.chat_show_on_mobile %}data-hide-mobile{% endunless %}
@@ -37,9 +37,8 @@
     <div class="chat-header">
       <div class="chat-agent">
         <div class="agent-avatar">
-          <img src="https://cdn.shopify.com/s/files/1/0533/2089/files/support-avatar.jpg?v=1642515494" 
-               alt="Support Agent" 
-               onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSI+PGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiM2NjdlZWEiLz48cGF0aCBkPSJNMjAgMTBjLTIuNzYgMC01IDIuMjQtNSA1czIuMjQgNSA1IDUgNS0yLjI0IDUtNS0yLjI0LTUtNS01em0wIDIwYy0zLjMzIDAtMTAtMS42Ny0xMC01di0yaDIwdjJjMCAzLjMzLTYuNjcgNS0xMCA1eiIgZmlsbD0id2hpdGUiLz48L3N2Zz4='">
+          <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSI+PGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiM2NjdlZWEiLz48cGF0aCBkPSJNMjAgMTBjLTIuNzYgMC01IDIuMjQtNSA1czIuMjQgNSA1IDUgNS0yLjI0IDUtNS0yLjI0LTUtNS01em0wIDIwYy0zLjMzIDAtMTAtMS42Ny0xMC01di0yaDIwdjJjMCAzLjMzLTYuNjcgNS0xMCA1eiIgZmlsbD0id2hpdGUiLz48L3N2Zz4=" 
+               alt="Support Agent">
         </div>
         <div class="agent-info">
           <div class="agent-name">{{ settings.agent_name | default: 'E-Bike Expert' }}</div>
@@ -115,7 +114,7 @@
 </div>
 
 {%- comment -%} Load AI Integration JavaScript {%- endcomment -%}
-{{ 'ai-chatbot-integration.js' | asset_url | script_tag }}
+{% comment %}{{ 'ai-chatbot-integration.js' | asset_url | script_tag }}{% endcomment %}
 
 {%- comment -%} Chat Widget Styles {%- endcomment -%}
 <style>

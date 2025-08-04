@@ -161,7 +161,7 @@
       "price": {
         "from_price_html": "From {{ price }}",
         "regular_price": "Regular price",
-        "sale_price": "Sale price",
+        "sale_price": "Sale price", 
         "unit_price": "Unit price"
       },
       "share": "Share this product",
@@ -208,10 +208,11 @@
         "other": "{{ count }} products"
       },
       "reset": "Reset",
-      "sort_button": "Sort",
+      "sort_button": "Sort", 
       "sort_by_label": "Sort by:",
       "to": "To",
-      "clear_filter": "Remove filter"
+      "clear_filter": "Remove filter",
+      "filter_by_label": "Filter by:"
     }
   },
   "templates": {
@@ -726,7 +727,11 @@
     "phone_title": "Call Us",  
     "frequently_bought": "Frequently Bought Together",
     "complete_setup": "Complete your e-bike setup",
-    "you_may_like": "You may also like"
+    "you_may_like": "You may also like",
+    "shipping": {
+      "invalid_postal_code": "Please enter a valid Swiss postal code (1000-9999)",
+      "invalid_quantity": "Quantity must be between 1 and 10"
+    }
   },
   "sections": {
     "services": {
@@ -744,7 +749,14 @@
     "sustainability": {
       "features_heading": "Our Sustainability Initiative",
       "hero_heading": "Sustainability",
-      "hero_subheading": "Our Environmental Initiative"
+      "hero_subheading": "Our Environmental Initiative",
+      "healthy_mobility_title": "Healthy Mobility",
+      "healthy_mobility_text": "<p>E-bikes promote active movement and improve health while being environmentally friendly.</p>",
+      "daily_movement": "daily movement"
+    },
+    "social_proof": {
+      "swiss_quality": "Swiss Quality",
+      "local_service": "Local Service"
     }
   },
   "chat": {

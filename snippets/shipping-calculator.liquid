@@ -145,12 +145,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Validation
     if (!isValidSwissPostalCode(postalCode)) {
-      alert('Bitte geben Sie eine gültige Schweizer Postleitzahl ein (1000-9999)');
+      alert('{{ "products.shipping.invalid_postal_code" | t }}');
       return;
     }
     
     if (quantity < 1 || quantity > 10) {
-      alert('Anzahl muss zwischen 1 und 10 liegen');
+      alert('{{ "products.shipping.invalid_quantity" | t }}');
       return;
     }
     
