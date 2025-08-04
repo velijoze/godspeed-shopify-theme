@@ -861,6 +861,40 @@
     }
   },
   "sections": {
+    "header": {
+      "announcement": "Announcement",
+      "menu": "Menu"
+    },
+    "cart": {
+      "checkout": "Checkout",
+      "cart_error": "There was an error while updating your cart. Please try again.",
+      "cart_quantity_error_html": "You can only add {{ quantity }} of this item to your cart."
+    },
+    "collection_template": {
+      "title": "Collection"
+    },
+    "footer": {
+      "payment": "Payment methods"
+    },
+    "quick_order_list": {
+      "each": "each",
+      "items_added": {
+        "one": "{{ quantity }} item added",
+        "other": "{{ quantity }} items added"
+      },
+      "items_removed": {
+        "one": "{{ quantity }} item removed", 
+        "other": "{{ quantity }} items removed"
+      },
+      "view_cart": "View cart",
+      "min_error": "This item has a minimum of {{ min }}",
+      "max_error": "This item has a maximum of {{ max }}",
+      "step_error": "You can only add this item in increments of {{ step }}"
+    },
+    "slideshow": {
+      "pause_slideshow": "Pause slideshow",
+      "play_slideshow": "Play slideshow"
+    },
     "services": {
       "heading": "Our Services",
       "financing_title": "0% Financing",
