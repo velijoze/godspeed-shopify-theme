@@ -327,7 +327,7 @@
       },
       {
         "id": "footer-locations",
-        "title": "Standorte",
+        "title": "Locations",
         "url": "/pages/locations",
         "type": "page_link",
         "position": 4,
@@ -397,7 +397,7 @@
     "menu_items": [
       {
         "id": "footer-service-financing",
-        "title": "0% Finanzierung",
+        "title": "0% Financing",
         "url": "/pages/financing",
         "type": "page_link",
         "position": 1,
