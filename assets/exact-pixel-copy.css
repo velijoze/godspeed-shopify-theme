@@ -196,19 +196,20 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
 }
 
-/* Product images - large like target */
+/* Product images - HUGE like target */
 .card__media {
   position: relative !important;
-  aspect-ratio: 1 !important;
+  aspect-ratio: 1.2 !important;
   overflow: hidden !important;
   background: white !important;
+  height: 280px !important;
 }
 
 .card__media img {
   width: 100% !important;
   height: 100% !important;
   object-fit: contain !important;
-  padding: 10px !important;
+  padding: 20px !important;
 }
 
 /* Sale badges - exact target position */
