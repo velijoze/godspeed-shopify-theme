@@ -73,7 +73,9 @@
                           <option value="{{ option.value | escape }}"{% if option.value == sort_by %} selected="selected"{% endif %}>{{ option.name | escape }}</option>
                         {%- endfor -%}
                       </select>
-                      {% render 'icon-caret' %}
+                      <svg class="icon icon-caret" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0.292893 0.292893C0.683417 -0.0976311 1.31658 -0.0976311 1.70711 0.292893L5 3.58579L8.29289 0.292893C8.68342 -0.0976311 9.31658 -0.0976311 9.70711 0.292893C10.0976 0.683417 10.0976 1.31658 9.70711 1.70711L5.70711 5.70711C5.31658 6.09763 4.68342 6.09763 4.29289 5.70711L0.292893 1.70711C-0.0976311 1.31658 -0.0976311 0.683417 0.292893 0.292893Z" fill="currentColor"/>
+</svg>
                     </div>
                   </div>
                 </div>
@@ -86,7 +88,9 @@
                           <span class="active-facets__button-inner">
                             {{ filter.label }}:
                             {{ filter_value.label | escape }}
-                            {% render 'icon-close-small' %}
+                            <svg class="icon icon-close" width="11" height="11" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="m1 1 9 9M10 1 1 10" stroke="currentColor" stroke-width="1.5"/>
+</svg>
                             <span class="visually-hidden">{{ 'products.facets.clear_filter' | t }}</span>
                           </span>
                         </a>
@@ -98,7 +102,9 @@
                           <a href="{{ filter.url_to_remove }}" class="active-facets__button active-facets__button--light">
                             <span class="active-facets__button-inner">
                               {%- if filter.min_value.value -%}{{ filter.min_value.value | money }}{%- else -%}{{ 0 | money }}{%- endif -%}-{%- if filter.max_value.value -%}{{ filter.max_value.value | money }}{%- else -%}{{ filter.range_max | money }}{%- endif -%}
-                              {% render 'icon-close-small' %}
+                              <svg class="icon icon-close" width="11" height="11" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="m1 1 9 9M10 1 1 10" stroke="currentColor" stroke-width="1.5"/>
+</svg>
                               <span class="visually-hidden">{{ 'products.facets.clear_filter' | t }}</span>
                             </span>
                           </a>
@@ -120,7 +126,9 @@
                         <summary class="facets__summary caption-large focus-offset">
                           <div>
                             <span>{{ filter.label | escape }}</span>
-                            {% render 'icon-caret' %}
+                            <svg class="icon icon-caret" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0.292893 0.292893C0.683417 -0.0976311 1.31658 -0.0976311 1.70711 0.292893L5 3.58579L8.29289 0.292893C8.68342 -0.0976311 9.31658 -0.0976311 9.70711 0.292893C10.0976 0.683417 10.0976 1.31658 9.70711 1.70711L5.70711 5.70711C5.31658 6.09763 4.68342 6.09763 4.29289 5.70711L0.292893 1.70711C-0.0976311 1.31658 -0.0976311 0.683417 0.292893 0.292893Z" fill="currentColor"/>
+</svg>
                           </div>
                         </summary>
                         <div class="facets__display">
@@ -152,7 +160,9 @@
                         <summary class="facets__summary caption-large focus-offset">
                           <div>
                             <span>{{ filter.label | escape }}</span>
-                            {% render 'icon-caret' %}
+                            <svg class="icon icon-caret" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0.292893 0.292893C0.683417 -0.0976311 1.31658 -0.0976311 1.70711 0.292893L5 3.58579L8.29289 0.292893C8.68342 -0.0976311 9.31658 -0.0976311 9.70711 0.292893C10.0976 0.683417 10.0976 1.31658 9.70711 1.70711L5.70711 5.70711C5.31658 6.09763 4.68342 6.09763 4.29289 5.70711L0.292893 1.70711C-0.0976311 1.31658 -0.0976311 0.683417 0.292893 0.292893Z" fill="currentColor"/>
+</svg>
                           </div>
                         </summary>
                         <div class="facets__display">
