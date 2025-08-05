@@ -34,9 +34,9 @@
             </button>
           {%- endif -%}
         </div>
-      </div>
-      
-      <!-- Availability Filter -->
+          </div>
+
+          <!-- Availability Filter -->
       <div class="filter-group" data-filter-group="availability">
         <h3 class="filter-title">AVAILABILITY</h3>
         <div class="filter-options">
@@ -44,15 +44,15 @@
             <input type="checkbox" name="availability" value="in_stock" data-filter="availability">
             <span class="checkmark"></span>
             IN STOCK
-          </label>
+              </label>
           <label class="filter-option">
             <input type="checkbox" name="availability" value="out_of_stock" data-filter="availability">
             <span class="checkmark"></span>
             OUT OF STOCK
-          </label>
-        </div>
-      </div>
-      
+              </label>
+            </div>
+          </div>
+
       <!-- Price Range Filter -->
       <div class="filter-group" data-filter-group="price">
         <h3 class="filter-title">PRICE</h3>
@@ -90,13 +90,13 @@
       </div>
       
     </aside>
-    
+
     <!-- Main Content Area -->
     <div class="pipeline-main-content">
-      
-      <!-- Toolbar -->
-      <div class="pipeline-toolbar">
-        <div class="toolbar-left">
+        
+        <!-- Toolbar -->
+        <div class="pipeline-toolbar">
+          <div class="toolbar-left">
           <button class="hide-filters-btn" data-toggle-filters>
             <span class="hamburger-icon">☰</span>
             HIDE FILTERS
@@ -104,18 +104,18 @@
           <span class="product-count-display">
             {{ collection.products_count }} products
           </span>
-        </div>
+          </div>
         
-        <div class="toolbar-right">
+          <div class="toolbar-right">
           <select class="pipeline-sort-select" data-sort-select>
             <option value="best-selling">BEST SELLING</option>
             <option value="featured">FEATURED</option>
             <option value="price-low-high">PRICE: LOW TO HIGH</option>
             <option value="price-high-low">PRICE: HIGH TO LOW</option>
             <option value="newest">NEWEST</option>
-          </select>
+            </select>
           
-          <div class="grid-view-toggle">
+            <div class="grid-view-toggle">
             <button class="view-btn active" data-view="3" title="3 columns">
               <svg width="16" height="16" viewBox="0 0 16 16">
                 <rect x="1" y="1" width="4" height="4" fill="currentColor"/>
@@ -191,13 +191,13 @@
                   {%- if product.media[1] -%}
                     <img class="pipeline-product-image-secondary"
                          src="{{ product.media[1] | img_url: '400x400' }}"
-                         alt="{{ product.title | escape }}"
-                         loading="lazy"
+                  alt="{{ product.title | escape }}"
+                  loading="lazy"
                          style="aspect-ratio: 1;">
                   {%- endif -%}
                 </a>
               </div>
-              
+
               <!-- Product Info -->
               <div class="pipeline-card-content">
                 <h3 class="pipeline-card-title">
@@ -221,7 +221,7 @@
             </li>
           {%- endfor -%}
         </ul>
-        
+
         <!-- Pagination -->
         {%- if paginate.pages > 1 -%}
           {% render 'pagination', paginate: paginate, anchor: '' %}

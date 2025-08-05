@@ -7,13 +7,8 @@
   <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- endif -%}
 
-{%- if section.settings.menu_type_desktop == 'mega' -%}
-  <link rel="stylesheet" href="{{ 'component-mega-menu.css' | asset_url }}" media="print" onload="this.media='all'">
-{%- endif -%}
-
-
 <style>
-  /* Clean header with Tailwind integration */
+  /* Clean header with proper navigation */
   .header-clean {
     border-bottom: 1px solid #e5e7eb;
     background: white;
@@ -36,10 +31,65 @@
     color: #374151;
     text-decoration: none;
     transition: color 0.2s ease;
+    position: relative;
   }
 
   .header__nav-link:hover {
     color: #111827;
+  }
+
+  .header__nav-link.has-dropdown {
+    padding-right: 1.5rem;
+  }
+
+  .header__nav-link.has-dropdown::after {
+    content: '▼';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.75rem;
+    color: #6b7280;
+  }
+
+  .header__dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    min-width: 200px;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+  }
+
+  .header__nav-item:hover .header__dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .header__dropdown-link {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: #374151;
+    text-decoration: none;
+    border-bottom: 1px solid #f3f4f6;
+    transition: background-color 0.2s ease;
+  }
+
+  .header__dropdown-link:hover {
+    background-color: #f9fafb;
+    color: #111827;
+  }
+
+  .header__dropdown-link:last-child {
+    border-bottom: none;
   }
 
   .header__logo-clean {
@@ -57,6 +107,10 @@
     .header-drawer-toggle {
       display: none;
     }
+  }
+
+  .header__nav-item {
+    position: relative;
   }
 </style>
 
@@ -145,14 +199,23 @@
 
         <!-- Desktop Navigation -->
         <nav class="header__nav-menu">
-          <!-- Pipeline Mega Menu -->
-          {% render 'mega-menu-pipeline' %}
-          
           {%- if section.settings.menu != blank -%}
             {%- for link in linklists[section.settings.menu].links -%}
-              <a href="{{ link.url }}" class="header__nav-link nav-link">
-                {{ link.title }}
-              </a>
+              <div class="header__nav-item">
+                <a href="{{ link.url }}" class="header__nav-link{% if link.links.size > 0 %} has-dropdown{% endif %}">
+                  {{ link.title }}
+                </a>
+                
+                {%- if link.links.size > 0 -%}
+                  <div class="header__dropdown">
+                    {%- for child_link in link.links -%}
+                      <a href="{{ child_link.url }}" class="header__dropdown-link">
+                        {{ child_link.title }}
+                      </a>
+                    {%- endfor -%}
+                  </div>
+                {%- endif -%}
+              </div>
             {%- endfor -%}
           {%- endif -%}
         </nav>
@@ -301,31 +364,16 @@
     }
 
     hide() {
-      if (this.headerIsAlwaysSticky) return;
       this.header.classList.add('shopify-section-header-hidden', 'shopify-section-header-sticky');
-      this.closeMenuDisclosure();
-      this.closeSearchModal();
     }
 
     reveal() {
-      if (this.headerIsAlwaysSticky) return;
       this.header.classList.add('shopify-section-header-sticky', 'animate');
       this.header.classList.remove('shopify-section-header-hidden');
     }
 
     reset() {
-      if (this.headerIsAlwaysSticky) return;
       this.header.classList.remove('shopify-section-header-hidden', 'shopify-section-header-sticky', 'animate');
-    }
-
-    closeMenuDisclosure() {
-      this.disclosures = this.disclosures || this.header.querySelectorAll('header-menu');
-      this.disclosures.forEach(disclosure => disclosure.close());
-    }
-
-    closeSearchModal() {
-      this.searchModal = this.searchModal || this.header.querySelector('details-modal');
-      this.searchModal.close(false);
     }
   }
 
@@ -376,32 +424,26 @@
 {
   "name": "t:sections.header.name",
   "class": "section-header",
-  "max_blocks": 3,
   "settings": [
     {
       "type": "select",
       "id": "logo_position",
       "options": [
         {
-          "value": "top-left",
-          "label": "t:sections.header.settings.logo_position.options__2.label"
-        },
-        {
-          "value": "top-center",
-          "label": "t:sections.header.settings.logo_position.options__3.label"
-        },
-        {
           "value": "middle-left",
           "label": "t:sections.header.settings.logo_position.options__1.label"
         },
         {
           "value": "middle-center",
-          "label": "t:sections.header.settings.logo_position.options__4.label"
+          "label": "t:sections.header.settings.logo_position.options__2.label"
+        },
+        {
+          "value": "middle-right",
+          "label": "t:sections.header.settings.logo_position.options__3.label"
         }
       ],
       "default": "middle-left",
-      "label": "t:sections.header.settings.logo_position.label",
-      "info": "t:sections.header.settings.logo_help.content"
+      "label": "t:sections.header.settings.logo_position.label"
     },
     {
       "type": "link_list",
@@ -427,8 +469,7 @@
         }
       ],
       "default": "dropdown",
-      "label": "t:sections.header.settings.menu_type_desktop.label",
-      "info": "t:sections.header.settings.menu_type_desktop.info"
+      "label": "t:sections.header.settings.menu_type_desktop.label"
     },
     {
       "type": "select",
@@ -461,54 +502,10 @@
       "label": "t:sections.header.settings.show_line_separator.label"
     },
     {
-      "type": "header",
-      "content": "t:sections.header.settings.header__1.content"
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "t:sections.all.colors.label",
-      "default": "scheme-1"
-    },
-    {
-      "type": "color_scheme",
-      "id": "menu_color_scheme",
-      "label": "t:sections.header.settings.menu_color_scheme.label",
-      "default": "scheme-1"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.header.settings.header__3.content",
-      "info": "t:sections.header.settings.header__4.info"
-    },
-    {
       "type": "checkbox",
       "id": "enable_country_selector",
-      "default": false,
-      "label": "t:sections.header.settings.enable_country_selector.label"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.header.settings.header__5.content",
-      "info": "t:sections.header.settings.header__6.info"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_language_selector",
-      "default": false,
-      "label": "t:sections.header.settings.enable_language_selector.label"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.header.settings.header__7.content",
-      "info": "t:sections.header.settings.header__7.info"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_customer_avatar",
       "default": true,
-      "label": "t:sections.header.settings.enable_customer_avatar.label",
-      "info": "t:sections.header.settings.enable_customer_avatar.info"
+      "label": "t:sections.header.settings.enable_country_selector.label"
     },
     {
       "type": "header",
@@ -532,7 +529,27 @@
     },
     {
       "type": "header",
-      "content": "t:sections.all.spacing"
+      "content": "t:sections.header.settings.padding.content"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 36,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.header.settings.padding.padding_top.label",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 36,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.header.settings.padding.padding_bottom.label",
+      "default": 20
     },
     {
       "type": "range",
@@ -546,27 +563,13 @@
     },
     {
       "type": "header",
-      "content": "t:sections.all.padding.section_padding_heading"
+      "content": "t:sections.header.settings.color_scheme.content"
     },
     {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 36,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_top",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 36,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_bottom",
-      "default": 20
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.header.settings.color_scheme.label",
+      "default": "scheme-1"
     }
   ],
   "blocks": [

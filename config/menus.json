@@ -15,11 +15,132 @@
         "menu_items": []
       },
       {
+        "id": "main-menu-bicycles",
+        "title": "Bicycles",
+        "url": "/collections/bicycles",
+        "type": "collection_link",
+        "position": 2,
+        "object_id": "bicycles",
+        "menu_items": [
+          {
+            "id": "main-menu-bicycles-city",
+            "title": "City Bikes",
+            "url": "/collections/city-bikes",
+            "type": "collection_link",
+            "position": 1,
+            "object_id": "city-bikes",
+            "menu_items": [
+              {
+                "id": "main-menu-city-urban",
+                "title": "Urban Bikes",
+                "url": "/collections/city-bikes?filter.v.option.style=Urban",
+                "type": "collection_link",
+                "position": 1,
+                "object_id": null,
+                "menu_items": []
+              },
+              {
+                "id": "main-menu-city-classic",
+                "title": "Classic City Bikes",
+                "url": "/collections/city-bikes?filter.v.option.style=Classic",
+                "type": "collection_link",
+                "position": 2,
+                "object_id": null,
+                "menu_items": []
+              },
+              {
+                "id": "main-menu-city-folding",
+                "title": "Folding Bikes",
+                "url": "/collections/city-bikes?filter.v.option.style=Folding",
+                "type": "collection_link",
+                "position": 3,
+                "object_id": null,
+                "menu_items": []
+              }
+            ]
+          },
+          {
+            "id": "main-menu-bicycles-mountain",
+            "title": "Mountain Bikes",
+            "url": "/collections/mountain-bikes",
+            "type": "collection_link",
+            "position": 2,
+            "object_id": "mountain-bikes",
+            "menu_items": [
+              {
+                "id": "main-menu-mtb-hardtail",
+                "title": "Hardtail MTB",
+                "url": "/collections/mountain-bikes?filter.v.option.suspension=Hardtail",
+                "type": "collection_link",
+                "position": 1,
+                "object_id": null,
+                "menu_items": []
+              },
+              {
+                "id": "main-menu-mtb-fully",
+                "title": "Fully MTB",
+                "url": "/collections/mountain-bikes?filter.v.option.suspension=Fully",
+                "type": "collection_link",
+                "position": 2,
+                "object_id": null,
+                "menu_items": []
+              },
+              {
+                "id": "main-menu-mtb-downhill",
+                "title": "Downhill",
+                "url": "/collections/mountain-bikes?filter.v.option.category=Downhill",
+                "type": "collection_link",
+                "position": 3,
+                "object_id": null,
+                "menu_items": []
+              },
+              {
+                "id": "main-menu-mtb-cross-country",
+                "title": "Cross Country",
+                "url": "/collections/mountain-bikes?filter.v.option.category=XC",
+                "type": "collection_link",
+                "position": 4,
+                "object_id": null,
+                "menu_items": []
+              }
+            ]
+          },
+          {
+            "id": "main-menu-bicycles-road",
+            "title": "Road Bikes",
+            "url": "/collections/road-bikes",
+            "type": "collection_link",
+            "position": 3,
+            "object_id": "road-bikes",
+            "menu_items": [
+              {
+                "id": "main-menu-road-racing",
+                "title": "Road Bikes",
+                "url": "/collections/road-bikes?filter.v.option.category=Racing",
+                "type": "collection_link",
+                "position": 1,
+                "object_id": null,
+                "menu_items": []
+              },
+              {
+                "id": "main-menu-road-gravel",
+                "title": "Gravel Bikes",
+                "url": "/collections/gravel-bikes",
+                "type": "collection_link",
+                "position": 2,
+                "object_id": "gravel-bikes",
+                "menu_items": []
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "main-menu-e-bikes",
         "title": "E-Bikes",
         "url": "/collections/e-bikes",
         "type": "collection_link",
-        "position": 2,
+        "position": 3,
         "object_id": "e-bikes",
         "menu_items": [
           {
@@ -61,94 +182,11 @@
         ]
       },
       {
-        "id": "main-menu-city-bikes",
-        "title": "City Bikes",
-        "url": "/collections/city-bikes",
-        "type": "collection_link",
-        "position": 3,
-        "object_id": "city-bikes",
-        "menu_items": [
-          {
-            "id": "main-menu-city-urban",
-            "title": "Urban Bikes",
-            "url": "/collections/city-bikes?filter.v.option.style=Urban",
-            "type": "collection_link",
-            "position": 1,
-            "object_id": null,
-            "menu_items": []
-          },
-          {
-            "id": "main-menu-city-classic",
-            "title": "Classic City Bikes",
-            "url": "/collections/city-bikes?filter.v.option.style=Classic",
-            "type": "collection_link",
-            "position": 2,
-            "object_id": null,
-            "menu_items": []
-          },
-          {
-            "id": "main-menu-city-folding",
-            "title": "Folding Bikes",
-            "url": "/collections/city-bikes?filter.v.option.style=Folding",
-            "type": "collection_link",
-            "position": 3,
-            "object_id": null,
-            "menu_items": []
-          }
-        ]
-      },
-      {
-        "id": "main-menu-mountain-bikes",
-        "title": "Mountain Bikes",
-        "url": "/collections/mountain-bikes",
-        "type": "collection_link",
-        "position": 4,
-        "object_id": "mountain-bikes",
-        "menu_items": [
-          {
-            "id": "main-menu-mtb-hardtail",
-            "title": "Hardtail MTB",
-            "url": "/collections/mountain-bikes?filter.v.option.suspension=Hardtail",
-            "type": "collection_link",
-            "position": 1,
-            "object_id": null,
-            "menu_items": []
-          },
-          {
-            "id": "main-menu-mtb-fully",
-            "title": "Fully MTB",
-            "url": "/collections/mountain-bikes?filter.v.option.suspension=Fully",
-            "type": "collection_link",
-            "position": 2,
-            "object_id": null,
-            "menu_items": []
-          },
-          {
-            "id": "main-menu-mtb-downhill",
-            "title": "Downhill",
-            "url": "/collections/mountain-bikes?filter.v.option.category=Downhill",
-            "type": "collection_link",
-            "position": 3,
-            "object_id": null,
-            "menu_items": []
-          },
-          {
-            "id": "main-menu-mtb-cross-country",
-            "title": "Cross Country",
-            "url": "/collections/mountain-bikes?filter.v.option.category=XC",
-            "type": "collection_link",
-            "position": 4,
-            "object_id": null,
-            "menu_items": []
-          }
-        ]
-      },
-      {
         "id": "main-menu-accessories",
         "title": "Accessories",
         "url": "/collections/accessories",
         "type": "collection_link",
-        "position": 5,
+        "position": 4,
         "object_id": "accessories",
         "menu_items": [
           {
@@ -203,7 +241,7 @@
         "title": "Services",
         "url": "/pages/services",
         "type": "page_link",
-        "position": 6,
+        "position": 5,
         "object_id": "services",
         "menu_items": [
           {
@@ -249,7 +287,7 @@
         "title": "About Us",
         "url": "/pages/about",
         "type": "page_link",
-        "position": 7,
+        "position": 6,
         "object_id": "about",
         "menu_items": [
           {
@@ -286,7 +324,7 @@
         "title": "Contact",
         "url": "/pages/contact",
         "type": "page_link",
-        "position": 8,
+        "position": 7,
         "object_id": "contact",
         "menu_items": []
       }
@@ -352,30 +390,21 @@
     "updated_at": "2025-01-28T15:00:00+01:00",
     "menu_items": [
       {
+        "id": "footer-cat-bicycles",
+        "title": "Bicycles",
+        "url": "/collections/bicycles",
+        "type": "collection_link",
+        "position": 1,
+        "object_id": "bicycles",
+        "menu_items": []
+      },
+      {
         "id": "footer-cat-e-bikes",
         "title": "E-Bikes",
         "url": "/collections/e-bikes",
         "type": "collection_link",
-        "position": 1,
-        "object_id": "e-bikes",
-        "menu_items": []
-      },
-      {
-        "id": "footer-cat-city",
-        "title": "City Bikes",
-        "url": "/collections/city-bikes",
-        "type": "collection_link",
         "position": 2,
-        "object_id": "city-bikes",
-        "menu_items": []
-      },
-      {
-        "id": "footer-cat-mountain",
-        "title": "Mountain Bikes",
-        "url": "/collections/mountain-bikes",
-        "type": "collection_link",
-        "position": 3,
-        "object_id": "mountain-bikes",
+        "object_id": "e-bikes",
         "menu_items": []
       },
       {
@@ -383,7 +412,7 @@
         "title": "Accessories",
         "url": "/collections/accessories",
         "type": "collection_link",
-        "position": 4,
+        "position": 3,
         "object_id": "accessories",
         "menu_items": []
       }
