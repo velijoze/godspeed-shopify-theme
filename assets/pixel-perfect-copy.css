@@ -211,7 +211,7 @@
 .products-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
+  gap: 3px;
   padding: 0;
   margin: 0;
   list-style: none;
@@ -235,11 +235,11 @@
 .product-image-container {
   position: relative;
   background: white;
-  height: 440px;
+  height: 480px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 3px;
+  padding: 2px;
 }
 
 .product-image {
@@ -269,7 +269,7 @@
 
 /* Product info - EXACTLY like target */
 .product-info {
-  padding: 6px 8px 10px 8px;
+  padding: 4px 6px 8px 6px;
   text-align: center;
 }
 
