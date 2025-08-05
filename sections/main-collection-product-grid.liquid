@@ -154,11 +154,11 @@
                 </select>
               </div>
               <div class="grid-view-options">
-                <button class="grid-view-btn active" data-columns="3" onclick="setGridColumns(3)">
-                  <span class="grid-icon">⊞</span>
+                <button class="grid-view-btn active" data-columns="3" onclick="setGridColumns(3)" title="3 columns">
+                  <span class="grid-icon">⊞⊞⊞</span>
                 </button>
-                <button class="grid-view-btn" data-columns="4" onclick="setGridColumns(4)">
-                  <span class="grid-icon">⊟</span>
+                <button class="grid-view-btn" data-columns="4" onclick="setGridColumns(4)" title="4 columns">
+                  <span class="grid-icon">⊞⊞⊞⊞</span>
                 </button>
               </div>
             </div>
@@ -234,14 +234,18 @@
 function toggleFilters() {
   const sidebar = document.querySelector('.facets-wrapper');
   const button = document.querySelector('.hide-filters-btn');
-  const icon = button.querySelector('.toolbar-icon');
+  const container = document.querySelector('.facets-vertical');
   
-  if (sidebar.style.display === 'none' || sidebar.style.display === '') {
-    sidebar.style.display = 'none';
-    button.innerHTML = '<span class="toolbar-icon">▸</span> Show Filters';
-  } else {
+  if (sidebar.classList.contains('hidden-filters')) {
+    sidebar.classList.remove('hidden-filters');
     sidebar.style.display = 'block';
     button.innerHTML = '<span class="toolbar-icon">◂</span> Hide Filters';
+    container.style.gap = '3rem';
+  } else {
+    sidebar.classList.add('hidden-filters');
+    sidebar.style.display = 'none';
+    button.innerHTML = '<span class="toolbar-icon">▸</span> Show Filters';
+    container.style.gap = '0';
   }
 }
 
@@ -251,10 +255,20 @@ function setGridColumns(columns) {
   
   if (grid) {
     grid.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+    
+    // Adjust gap based on columns
+    if (columns === 4) {
+      grid.style.gap = '1.5rem';
+    } else {
+      grid.style.gap = '2.5rem';
+    }
   }
   
   buttons.forEach(btn => btn.classList.remove('active'));
-  document.querySelector(`[data-columns="${columns}"]`).classList.add('active');
+  const activeButton = document.querySelector(`[data-columns="${columns}"]`);
+  if (activeButton) {
+    activeButton.classList.add('active');
+  }
 }
 </script>
 
