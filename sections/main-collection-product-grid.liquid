@@ -1,7 +1,7 @@
 {{ 'template-collection.css' | asset_url | stylesheet_tag }}
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
-{{ 'collection-layout-fix.css' | asset_url | stylesheet_tag }}
+{{ 'target-layout.css' | asset_url | stylesheet_tag }}
 
 {% if section.settings.image_shape == 'blob' %}
   {{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
@@ -108,6 +108,22 @@
           id="main-collection-filters"
           data-id="{{ section.id }}"
         >
+          <!-- Category Navigation -->
+          <div class="collection-categories">
+            <ul>
+              <li><a href="/collections" class="{% if collection.handle == blank %}active{% endif %}">ALL COLLECTIONS</a></li>
+              <li><a href="/collections/accessories">ACCESSORI BICI</a></li>
+              <li><a href="/collections/bicycles">BICYCLES</a></li>
+              <li><a href="/collections/caschi">CASCHI</a></li>
+              <li><a href="/collections/cestini">CESTINI</a></li>
+              <li><a href="/collections/e-bike-cargo">E-BIKE CARGO</a></li>
+              <li><a href="/collections/e-bikes" class="{% if collection.handle == 'e-bikes' %}active{% endif %}">E-BIKES</a></li>
+              <li><a href="/collections/luci">LUCI</a></li>
+              <li><a href="/collections/parafanghi">PARAFANGHI</a></li>
+              <li><a href="/collections/portapacchi">PORTAPACCHI</a></li>
+            </ul>
+          </div>
+          
           {% render 'facets',
             results: collection,
             enable_filtering: section.settings.enable_filtering,
