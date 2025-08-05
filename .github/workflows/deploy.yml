@@ -3,8 +3,6 @@ name: Deploy to Shopify
 on:
   push:
     branches: [ main, master ]
-    paths:
-      - 'godspeed-authentic/**'
   workflow_dispatch:
 
 jobs:
@@ -27,8 +25,7 @@ jobs:
         
     - name: Verify theme files exist
       run: |
-        cd godspeed-authentic
-        echo "Theme files in godspeed-authentic:"
+        echo "Theme files in root:"
         ls -la
         echo ""
         echo "Assets folder:"
@@ -39,8 +36,6 @@ jobs:
         
     - name: Deploy theme to Shopify
       run: |
-        cd godspeed-authentic
-        
         # Configure Shopify CLI for the store
         shopify theme push \
           --store="t0uds3-a2.myshopify.com" \
@@ -56,10 +51,9 @@ jobs:
         echo "✅ Deployment completed"
         echo "🏪 Store: t0uds3-a2.myshopify.com"
         echo "🎨 Deploying to live theme"
-        echo "📁 Deployed from: godspeed-authentic/"
+        echo "📁 Deployed from: root directory"
         echo ""
         echo "Key files that should be deployed:"
-        cd godspeed-authentic
         echo "- assets/godspeed-clean.css ($(wc -l < assets/godspeed-clean.css) lines)"
         echo "- layout/theme.liquid"
         echo "- sections/header.liquid"
