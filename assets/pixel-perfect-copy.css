@@ -235,11 +235,11 @@
 .product-image-container {
   position: relative;
   background: white;
-  height: 400px;
+  height: 420px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px;
+  padding: 5px;
 }
 
 .product-image {
@@ -269,7 +269,7 @@
 
 /* Product info - EXACTLY like target */
 .product-info {
-  padding: 12px;
+  padding: 8px 12px 12px 12px;
   text-align: center;
 }
 
