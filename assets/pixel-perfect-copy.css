@@ -1,0 +1,330 @@
+/* PIXEL PERFECT COPY - COMPLETELY IDENTICAL TO TARGET */
+
+/* Reset everything */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Hide all Dawn styling */
+.template-collection,
+.component-card,
+.component-price {
+  display: none !important;
+}
+
+/* Main page layout - EXACTLY like target */
+.main-page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: white;
+  padding: 20px;
+}
+
+/* Top toolbar - EXACTLY like target */
+.collection-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 20px;
+}
+
+.top-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.hide-filters-button {
+  background: white;
+  border: 1px solid #ccc;
+  padding: 8px 16px;
+  font-size: 12px;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.product-count-display {
+  font-size: 14px;
+  color: #666;
+}
+
+.top-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.sort-select {
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
+}
+
+.view-toggle {
+  display: flex;
+  border: 1px solid #ccc;
+  overflow: hidden;
+}
+
+.view-toggle button {
+  background: white;
+  border: none;
+  padding: 8px 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.view-toggle button.active {
+  background: #333;
+  color: white;
+}
+
+/* Main content grid - EXACTLY like target */
+.main-content-grid {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 30px;
+}
+
+/* Sidebar - EXACTLY like target */
+.filters-sidebar {
+  background: white;
+  padding: 0;
+}
+
+/* Category links - EXACTLY like target */
+.category-links {
+  margin-bottom: 30px;
+}
+
+.category-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.category-links li {
+  margin-bottom: 8px;
+}
+
+.category-links a {
+  color: #666;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: normal;
+  display: block;
+  padding: 2px 0;
+}
+
+.category-links a.active,
+.category-links a:hover {
+  color: #000;
+  font-weight: 600;
+}
+
+/* Availability filter - EXACTLY like target */
+.availability-filter {
+  margin-bottom: 25px;
+}
+
+.filter-title {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.filter-options {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.filter-options li {
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+}
+
+.filter-options input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  accent-color: #000;
+}
+
+.filter-options label {
+  font-size: 13px;
+  color: #666;
+  cursor: pointer;
+}
+
+/* Price filter - EXACTLY like target */
+.price-filter {
+  margin-bottom: 25px;
+}
+
+.price-range {
+  margin-top: 10px;
+}
+
+.price-slider {
+  width: 100%;
+  height: 4px;
+  background: #ddd;
+  border-radius: 2px;
+  position: relative;
+  margin: 10px 0;
+}
+
+.price-handle {
+  width: 14px;
+  height: 14px;
+  background: #333;
+  border-radius: 50%;
+  position: absolute;
+  top: -5px;
+  cursor: pointer;
+}
+
+.price-handle.min {
+  left: 20%;
+}
+
+.price-handle.max {
+  left: 80%;
+}
+
+/* Product grid - EXACTLY 3 columns like target */
+.products-container {
+  background: white;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* Product cards - EXACTLY like target */
+.product-card {
+  background: white;
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  transition: box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Product image - HUGE like target */
+.product-image-container {
+  position: relative;
+  background: white;
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+.product-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Sale badges - EXACTLY like target */
+.sale-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #e74c3c;
+  color: white;
+  padding: 4px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 2px;
+  z-index: 10;
+}
+
+.sold-out-badge {
+  background: #666;
+}
+
+/* Product info - EXACTLY like target */
+.product-info {
+  padding: 18px;
+  text-align: center;
+}
+
+.product-title {
+  font-size: 14px;
+  font-weight: normal;
+  color: #333;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.product-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.product-title a:hover {
+  color: #666;
+}
+
+/* Price - EXACTLY like target */
+.product-price {
+  margin-top: 8px;
+}
+
+.original-price {
+  color: #999;
+  text-decoration: line-through;
+  font-size: 13px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.sale-price {
+  color: #e74c3c;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.regular-price {
+  color: #333;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* Force this CSS to override everything */
+body .facets-vertical,
+body .facets-wrapper,
+body .product-grid-container,
+body #product-grid {
+  all: unset !important;
+}
+
+/* Apply the new structure */
+body .page-main {
+  all: unset !important;
+  display: block !important;
+}

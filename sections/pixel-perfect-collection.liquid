@@ -1,0 +1,140 @@
+{{ 'pixel-perfect-copy.css' | asset_url | stylesheet_tag }}
+
+<!-- PIXEL PERFECT TARGET LAYOUT -->
+<div class="main-page-container">
+  {%- paginate collection.products by section.settings.products_per_page -%}
+  
+  <!-- Top toolbar exactly like target -->
+  <div class="collection-top-bar">
+    <div class="top-bar-left">
+      <button class="hide-filters-button">◀ HIDE FILTERS</button>
+      <div class="product-count-display">{{ collection.products_count }} products</div>
+    </div>
+    <div class="top-bar-right">
+      <select class="sort-select">
+        {%- for option in collection.sort_options -%}
+          <option value="{{ option.value | escape }}">{{ option.name | escape }}</option>
+        {%- endfor -%}
+      </select>
+      <div class="view-toggle">
+        <button class="active">⊞⊞⊞</button>
+        <button>⊞⊞⊞⊞</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main content grid exactly like target -->
+  <div class="main-content-grid">
+    
+    <!-- Left sidebar exactly like target -->
+    <div class="filters-sidebar">
+      
+      <!-- Category links exactly like target -->
+      <div class="category-links">
+        <ul>
+          <li><a href="/collections" class="{% if collection.handle == blank %}active{% endif %}">ALL COLLECTIONS</a></li>
+          <li><a href="/collections/accessories">ACCESSORI BICI</a></li>
+          <li><a href="/collections/bicycles">BICYCLES</a></li>
+          <li><a href="/collections/caschi">CASCHI</a></li>
+          <li><a href="/collections/cestini">CESTINI</a></li>
+          <li><a href="/collections/e-bike-cargo">E-BIKE CARGO</a></li>
+          <li><a href="/collections/e-bikes" class="{% if collection.handle == 'e-bikes' %}active{% endif %}">E-BIKES</a></li>
+          <li><a href="/collections/luci">LUCI</a></li>
+          <li><a href="/collections/parafanghi">PARAFANGHI</a></li>
+          <li><a href="/collections/portapacchi">PORTAPACCHI</a></li>
+        </ul>
+      </div>
+
+      <!-- Availability filter exactly like target -->
+      <div class="availability-filter">
+        <div class="filter-title">AVAILABILITY</div>
+        <ul class="filter-options">
+          <li>
+            <input type="checkbox" id="in-stock">
+            <label for="in-stock">In stock ({{ collection.products_count }})</label>
+          </li>
+          <li>
+            <input type="checkbox" id="out-of-stock">
+            <label for="out-of-stock">Out of stock (0)</label>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Price filter exactly like target -->
+      <div class="price-filter">
+        <div class="filter-title">PRICE</div>
+        <div class="price-range">
+          <div class="price-slider">
+            <div class="price-handle min"></div>
+            <div class="price-handle max"></div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Products grid exactly like target -->
+    <div class="products-container">
+      <ul class="products-grid">
+        {%- for product in collection.products -%}
+          <li class="product-card">
+            
+            <!-- Product image exactly like target -->
+            <div class="product-image-container">
+              {%- if product.available == false -%}
+                <div class="sale-badge sold-out-badge">SOLD OUT</div>
+              {%- elsif product.compare_at_price > product.price -%}
+                <div class="sale-badge">SALE</div>
+              {%- endif -%}
+              
+              <img 
+                class="product-image"
+                src="{{ product.featured_media | img_url: '400x400' }}" 
+                alt="{{ product.title | escape }}"
+                loading="lazy"
+              >
+            </div>
+
+            <!-- Product info exactly like target -->
+            <div class="product-info">
+              <div class="product-title">
+                <a href="{{ product.url }}">{{ product.title | escape }}</a>
+              </div>
+              
+              <div class="product-price">
+                {%- if product.compare_at_price > product.price -%}
+                  <div class="original-price">{{ product.compare_at_price | money }}</div>
+                  <div class="sale-price">{{ product.price | money }}</div>
+                {%- else -%}
+                  <div class="regular-price">{{ product.price | money }}</div>
+                {%- endif -%}
+              </div>
+            </div>
+            
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+    
+  </div>
+  {%- endpaginate -%}
+</div>
+
+{% schema %}
+{
+  "name": "Pixel Perfect Collection",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 8,
+      "max": 48,
+      "step": 4,
+      "default": 16,
+      "label": "Products per page"
+    }
+  ]
+}
+{% endschema %}

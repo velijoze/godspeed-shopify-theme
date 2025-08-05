@@ -4,7 +4,7 @@
       "type": "main-collection-banner"
     },
     "product-grid": {
-      "type": "main-collection-product-grid",
+      "type": "pixel-perfect-collection",
       "settings": {
         "products_per_page": 16,
         "columns_desktop": 3,
