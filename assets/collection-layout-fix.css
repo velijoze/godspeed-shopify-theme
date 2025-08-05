@@ -313,11 +313,11 @@
   }
 }
 
-/* LOADING STATE */
-.collection.loading {
+/* REMOVED LOADING STATE - CAUSES VISUAL ISSUES */
+/* .collection.loading {
   pointer-events: none;
 }
 
 .collection.loading .loading-overlay {
   display: block;
-}
+} */

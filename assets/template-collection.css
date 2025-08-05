@@ -11,7 +11,8 @@
   }
 }
 
-.collection .loading-overlay {
+/* DISABLED LOADING OVERLAY - CAUSES VISUAL ISSUES */
+/* .collection .loading-overlay {
   position: absolute;
   z-index: 1;
   width: 1.8rem;
@@ -50,7 +51,7 @@
 
 .collection.loading .loading-overlay {
   display: block;
-}
+} */
 
 .collection--empty .title-wrapper {
   margin-top: 10rem;
