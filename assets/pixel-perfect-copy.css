@@ -111,16 +111,16 @@
 }
 
 .category-links li {
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 .category-links a {
   color: #666;
   text-decoration: none;
-  font-size: 13px;
+  font-size: 11px;
   font-weight: normal;
   display: block;
-  padding: 2px 0;
+  padding: 1px 0;
 }
 
 .category-links a.active,
@@ -235,11 +235,11 @@
 .product-image-container {
   position: relative;
   background: white;
-  height: 480px;
+  height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2px;
+  padding: 1px;
 }
 
 .product-image {
