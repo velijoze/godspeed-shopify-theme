@@ -251,12 +251,12 @@
 /* Sale badges - EXACTLY like target */
 .sale-badge {
   position: absolute;
-  top: 12px;
-  left: 12px;
+  top: 8px;
+  left: 8px;
   background: #e74c3c;
   color: white;
-  padding: 4px 8px;
-  font-size: 11px;
+  padding: 3px 6px;
+  font-size: 9px;
   font-weight: 600;
   text-transform: uppercase;
   border-radius: 2px;
@@ -274,11 +274,11 @@
 }
 
 .product-title {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: normal;
   color: #333;
-  margin-bottom: 6px;
-  line-height: 1.2;
+  margin-bottom: 4px;
+  line-height: 1.1;
 }
 
 .product-title a {
@@ -305,13 +305,13 @@
 
 .sale-price {
   color: #e74c3c;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
 }
 
 .regular-price {
   color: #333;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
 }
 
