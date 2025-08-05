@@ -1,347 +1,229 @@
-{{ 'template-collection.css' | asset_url | stylesheet_tag }}
-{{ 'component-card.css' | asset_url | stylesheet_tag }}
-{{ 'component-price.css' | asset_url | stylesheet_tag }}
-{{ 'component-facets.css' | asset_url | stylesheet_tag }}
+{{ 'pipeline-collection.css' | asset_url | stylesheet_tag }}
 
-{%- unless section.settings.quick_add == 'none' -%}
-  {{ 'quick-add.css' | asset_url | stylesheet_tag }}
-{%- endunless -%}
+{%- paginate collection.products by section.settings.products_per_page | default: settings.collection_products_per_page | default: 24 -%}
 
-{%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
-
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-  }
-
-  /* PIPELINE TARGET LAYOUT CSS */
-  .pipeline-collection-layout {
-    display: grid;
-    grid-template-columns: {{ section.settings.sidebar_width }}px 1fr;
-    gap: {{ section.settings.layout_gap }}px;
-    max-width: {{ section.settings.max_width }}px;
-    margin: 0 auto;
-    padding: {{ section.settings.container_padding }}px;
-    align-items: start;
-  }
-
-  @media screen and (max-width: 989px) {
-    .pipeline-collection-layout {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-  }
-
-  .pipeline-filters-sidebar {
-    background: white;
-    padding: 0;
-    position: sticky;
-    top: 2rem;
-  }
-
-  @media screen and (max-width: 989px) {
-    .pipeline-filters-sidebar {
-      position: relative;
-      top: 0;
-    }
-  }
-
-  /* Toolbar exactly like target */
-  .pipeline-toolbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #e0e0e0;
-    margin-bottom: 15px;
-  }
-
-  .toolbar-left {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
-
-  .hide-filters-btn {
-    background: white;
-    border: 1px solid #ccc;
-    padding: 8px 16px;
-    font-size: 12px;
-    text-transform: uppercase;
-    cursor: pointer;
-    font-weight: 500;
-  }
-
-  .product-count-display {
-    font-size: 14px;
-    color: #666;
-  }
-
-  .toolbar-right {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
-
-  .pipeline-sort-select {
-    border: 1px solid #ccc;
-    padding: 8px 12px;
-    font-size: 14px;
-    background: white;
-    cursor: pointer;
-  }
-
-  .grid-view-toggle {
-    display: flex;
-    border: 1px solid #ccc;
-    overflow: hidden;
-  }
-
-  .grid-view-toggle button {
-    background: white;
-    border: none;
-    padding: 8px 10px;
-    cursor: pointer;
-    font-size: 12px;
-  }
-
-  .grid-view-toggle button.active {
-    background: #333;
-    color: white;
-  }
-
-  /* Category navigation exactly like target */
-  .pipeline-categories ul {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 25px 0;
-  }
-
-  .pipeline-categories li {
-    margin-bottom: 4px;
-  }
-
-  .pipeline-categories a {
-    color: #666;
-    text-decoration: none;
-    font-size: 11px;
-    font-weight: normal;
-    display: block;
-    padding: 1px 0;
-  }
-
-  .pipeline-categories a.active,
-  .pipeline-categories a:hover {
-    color: #000;
-    font-weight: 600;
-  }
-
-  /* Products grid exactly like target */
-  .pipeline-products-grid {
-    display: grid;
-    grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr);
-    gap: {{ section.settings.product_gap }}px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  /* Product cards exactly like target */
-  .pipeline-product-card {
-    background: white;
-    border: 1px solid #f0f0f0;
-    border-radius: 4px;
-    overflow: hidden;
-    position: relative;
-    transition: box-shadow 0.2s ease;
-  }
-
-  .pipeline-product-card:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  }
-
-  .pipeline-card-media {
-    position: relative;
-    background: white;
-    height: {{ section.settings.image_height }}px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: {{ section.settings.image_padding }}px;
-  }
-
-  .pipeline-product-image {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-  }
-
-  .pipeline-card-badge {
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    background: #e74c3c;
-    color: white;
-    padding: 3px 6px;
-    font-size: 9px;
-    font-weight: 600;
-    text-transform: uppercase;
-    border-radius: 2px;
-    z-index: 10;
-  }
-
-  .pipeline-card-badge.sold-out {
-    background: #666;
-  }
-
-  .pipeline-card-content {
-    padding: 2px 4px 6px 4px;
-    text-align: center;
-  }
-
-  .pipeline-card-title {
-    font-size: 11px;
-    font-weight: normal;
-    color: #333;
-    margin-bottom: 4px;
-    line-height: 1.1;
-  }
-
-  .pipeline-card-title a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .pipeline-card-price {
-    margin-top: 4px;
-  }
-
-  .pipeline-original-price {
-    color: #999;
-    text-decoration: line-through;
-    font-size: 13px;
-    display: block;
-    margin-bottom: 4px;
-  }
-
-  .pipeline-sale-price {
-    color: #e74c3c;
-    font-size: 14px;
-    font-weight: 600;
-  }
-
-  .pipeline-regular-price {
-    color: #333;
-    font-size: 14px;
-    font-weight: 600;
-  }
-{%- endstyle -%}
-
-<div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
-  {%- paginate collection.products by section.settings.products_per_page -%}
-    <div class="pipeline-collection-layout">
-      
-      {%- if section.settings.show_filters -%}
-        <!-- Sidebar Filters -->
-        <div class="pipeline-filters-sidebar">
-          
-          <!-- Category Navigation -->
-          <div class="pipeline-categories">
-            <ul>
-              <li><a href="/collections" class="{% if collection.handle == blank %}active{% endif %}">ALL COLLECTIONS</a></li>
-              <li><a href="/collections/accessories">ACCESSORI BICI</a></li>
-              <li><a href="/collections/bicycles">BICYCLES</a></li>
-              <li><a href="/collections/caschi">CASCHI</a></li>
-              <li><a href="/collections/cestini">CESTINI</a></li>
-              <li><a href="/collections/e-bike-cargo">E-BIKE CARGO</a></li>
-              <li><a href="/collections/e-bikes" class="{% if collection.handle == 'e-bikes' %}active{% endif %}">E-BIKES</a></li>
-              <li><a href="/collections/luci">LUCI</a></li>
-              <li><a href="/collections/parafanghi">PARAFANGHI</a></li>
-              <li><a href="/collections/portapacchi">PORTAPACCHI</a></li>
-            </ul>
+<div class="pipeline-collection-container section-{{ section.id }}-padding">
+  
+  <!-- Main Layout Grid -->
+  <div class="pipeline-collection-layout" 
+       style="--sidebar-width: {{ settings.collection_sidebar_width | default: 280 }}px; 
+              --layout-gap: {{ settings.collection_layout_gap | default: 40 }}px; 
+              --max-width: {{ settings.collection_max_width | default: 1400 }}px;">
+    
+    <!-- Filters Sidebar -->
+    {%- if settings.collection_show_filters -%}
+      <aside class="pipeline-filters-sidebar" 
+             {% if settings.collection_sticky_filters %}data-sticky-filters{% endif %}>
+        
+        <!-- Collections Filter -->
+        {%- if settings.filter_collections -%}
+          <div class="filter-group">
+            <h3 class="filter-title">{{ settings.filter_collections_title | default: 'ALL COLLECTIONS' }}</h3>
+            <div class="filter-options">
+              {%- for collection in collections -%}
+                <label class="filter-option">
+                  <input type="checkbox" 
+                         name="collection" 
+                         value="{{ collection.handle }}"
+                         {% if collection.handle == current_collection.handle %}checked{% endif %}
+                         data-filter="collection">
+                  <span class="checkmark"></span>
+                  {{ collection.title }}
+                </label>
+              {%- endfor -%}
+              {%- if collections.size > 8 -%}
+                <button class="show-more-btn" data-show-more="collections">
+                  {{ settings.filter_show_more_text | default: 'SHOW MORE' }}
+                </button>
+              {%- endif -%}
+            </div>
           </div>
+        {%- endif -%}
 
           <!-- Availability Filter -->
-          <div class="pipeline-availability-filter">
-            <h3 style="font-size: 13px; font-weight: 600; text-transform: uppercase; color: #333; margin-bottom: 10px;">AVAILABILITY</h3>
-            <div>
-              <label style="display: flex; align-items: center; margin-bottom: 6px; font-size: 13px; color: #666;">
-                <input type="checkbox" style="margin-right: 8px; width: 16px; height: 16px; accent-color: #000;">
-                In stock ({{ collection.products_count }})
+        {%- if settings.filter_availability -%}
+          <div class="filter-group">
+            <h3 class="filter-title">{{ settings.filter_availability_title | default: 'AVAILABILITY' }}</h3>
+            <div class="filter-options">
+              <label class="filter-option">
+                <input type="checkbox" name="availability" value="in_stock" data-filter="availability">
+                <span class="checkmark"></span>
+                IN STOCK
               </label>
-              <label style="display: flex; align-items: center; margin-bottom: 6px; font-size: 13px; color: #666;">
-                <input type="checkbox" style="margin-right: 8px; width: 16px; height: 16px; accent-color: #000;">
-                Out of stock (0)
+              <label class="filter-option">
+                <input type="checkbox" name="availability" value="out_of_stock" data-filter="availability">
+                <span class="checkmark"></span>
+                OUT OF STOCK
               </label>
             </div>
           </div>
-
-          <!-- Price Filter -->
-          <div class="pipeline-price-filter" style="margin-top: 25px;">
-            <h3 style="font-size: 13px; font-weight: 600; text-transform: uppercase; color: #333; margin-bottom: 10px;">PRICE</h3>
-            <div style="width: 100%; height: 4px; background: #ddd; border-radius: 2px; position: relative; margin: 10px 0;">
-              <div style="width: 14px; height: 14px; background: #333; border-radius: 50%; position: absolute; top: -5px; left: 20%; cursor: pointer;"></div>
-              <div style="width: 14px; height: 14px; background: #333; border-radius: 50%; position: absolute; top: -5px; left: 80%; cursor: pointer;"></div>
+        {%- endif -%}
+        
+        <!-- Price Range Filter -->
+        {%- if settings.filter_price -%}
+          <div class="filter-group">
+            <h3 class="filter-title">{{ settings.filter_price_title | default: 'PRICE' }}</h3>
+            <div class="price-range-container">
+              <div class="price-inputs">
+                <div class="price-input">
+                  <label>CHF</label>
+                  <input type="number" 
+                         id="price-min" 
+                         placeholder="0" 
+                         min="0" 
+                         data-price-min>
+                  <button class="price-arrow up" data-price-action="min-up">▲</button>
+                  <button class="price-arrow down" data-price-action="min-down">▼</button>
+                </div>
+                <div class="price-input">
+                  <label>CHF</label>
+                  <input type="number" 
+                         id="price-max" 
+                         placeholder="4999" 
+                         min="0" 
+                         data-price-max>
+                  <button class="price-arrow up" data-price-action="max-up">▲</button>
+                  <button class="price-arrow down" data-price-action="max-down">▼</button>
+                </div>
+              </div>
+              <div class="price-slider-container">
+                <div class="price-slider" data-price-slider>
+                  <div class="price-slider-track"></div>
+                  <div class="price-slider-handle min" data-handle="min"></div>
+                  <div class="price-slider-handle max" data-handle="max"></div>
+                </div>
+              </div>
             </div>
           </div>
+        {%- endif -%}
           
-        </div>
+      </aside>
       {%- endif -%}
 
-      <!-- Product Grid -->
-      <div class="pipeline-product-container">
+    <!-- Main Content Area -->
+    <div class="pipeline-main-content">
         
         <!-- Toolbar -->
         <div class="pipeline-toolbar">
           <div class="toolbar-left">
-            <button class="hide-filters-btn">◀ HIDE FILTERS</button>
-            <div class="product-count-display">{{ collection.products_count }} products</div>
+          {%- if settings.collection_show_filter_toggle -%}
+            <button class="hide-filters-btn" data-toggle-filters>
+              <span class="hamburger-icon">☰</span>
+              {{ settings.toolbar_hide_filters_text | default: 'HIDE FILTERS' }}
+            </button>
+          {%- endif -%}
+          
+          {%- if settings.toolbar_show_product_count -%}
+            <span class="product-count-display">
+              {{ collection.products_count }} products
+            </span>
+          {%- endif -%}
           </div>
+        
           <div class="toolbar-right">
-            <select class="pipeline-sort-select">
-              {%- for option in collection.sort_options -%}
-                <option value="{{ option.value | escape }}">{{ option.name | escape }}</option>
-              {%- endfor -%}
+          {%- if settings.toolbar_show_sort -%}
+            <select class="pipeline-sort-select" data-sort-select>
+              <option value="best-selling">{{ settings.sort_best_selling | default: 'BEST SELLING' }}</option>
+              <option value="featured">{{ settings.sort_featured | default: 'FEATURED' }}</option>
+              <option value="price-low-high">{{ settings.sort_price_low_high | default: 'PRICE: LOW TO HIGH' }}</option>
+              <option value="price-high-low">{{ settings.sort_price_high_low | default: 'PRICE: HIGH TO LOW' }}</option>
+              <option value="newest">{{ settings.sort_newest | default: 'NEWEST' }}</option>
             </select>
+          {%- endif -%}
+          
+          {%- if settings.toolbar_show_view_toggle -%}
             <div class="grid-view-toggle">
-              <button class="active">⊞⊞⊞</button>
-              <button>⊞⊞⊞⊞</button>
+              <button class="view-btn active" data-view="3" title="3 columns">
+                <svg width="16" height="16" viewBox="0 0 16 16">
+                  <rect x="1" y="1" width="4" height="4" fill="currentColor"/>
+                  <rect x="7" y="1" width="4" height="4" fill="currentColor"/>
+                  <rect x="13" y="1" width="2" height="4" fill="currentColor"/>
+                  <rect x="1" y="7" width="4" height="4" fill="currentColor"/>
+                  <rect x="7" y="7" width="4" height="4" fill="currentColor"/>
+                  <rect x="13" y="7" width="2" height="4" fill="currentColor"/>
+                  <rect x="1" y="13" width="4" height="2" fill="currentColor"/>
+                  <rect x="7" y="13" width="4" height="2" fill="currentColor"/>
+                  <rect x="13" y="13" width="2" height="2" fill="currentColor"/>
+                </svg>
+              </button>
+              <button class="view-btn" data-view="4" title="4 columns">
+                <svg width="16" height="16" viewBox="0 0 16 16">
+                  <rect x="1" y="1" width="3" height="3" fill="currentColor"/>
+                  <rect x="6" y="1" width="3" height="3" fill="currentColor"/>
+                  <rect x="11" y="1" width="3" height="3" fill="currentColor"/>
+                  <rect x="1" y="6" width="3" height="3" fill="currentColor"/>
+                  <rect x="6" y="6" width="3" height="3" fill="currentColor"/>
+                  <rect x="11" y="6" width="3" height="3" fill="currentColor"/>
+                  <rect x="1" y="11" width="3" height="3" fill="currentColor"/>
+                  <rect x="6" y="11" width="3" height="3" fill="currentColor"/>
+                  <rect x="11" y="11" width="3" height="3" fill="currentColor"/>
+                </svg>
+              </button>
             </div>
-          </div>
+          {%- endif -%}
         </div>
-
-        <!-- Products -->
-        <ul class="pipeline-products-grid">
+      </div>
+      
+      <!-- Products Grid -->
+      <div class="pipeline-products-container">
+        <ul class="pipeline-products-grid" 
+            data-products-grid
+            style="--columns-desktop: {{ section.settings.columns_desktop | default: settings.collection_columns_desktop | default: 3 }};
+                   --columns-mobile: {{ section.settings.columns_mobile | default: settings.collection_columns_mobile | default: '2' }};
+                   --card-padding: {{ settings.card_padding | default: 15 }}px;
+                   --card-border-radius: {{ settings.card_border_radius | default: 0 }}px;
+                   --card-title-size: {{ settings.card_title_size | default: 14 }}px;
+                   --card-price-size: {{ settings.card_price_size | default: 14 }}px;">
+          
           {%- for product in collection.products -%}
-            <li class="pipeline-product-card">
+            <li class="pipeline-product-card" 
+                data-product-card
+                {% if settings.card_show_border %}style="border: 1px solid {{ settings.card_border_color | default: '#e0e0e0' }};"{% endif %}>
               
               <!-- Product Image -->
               <div class="pipeline-card-media">
+                {%- if settings.collection_show_badges -%}
                 {%- if product.available == false -%}
-                  <div class="pipeline-card-badge sold-out">SOLD OUT</div>
+                    <div class="pipeline-card-badge sold-out" 
+                         style="background-color: {{ settings.badge_sold_out_color | default: '#6b7280' }};
+                                color: {{ settings.badge_text_color | default: '#ffffff' }};">
+                      SOLD OUT
+                    </div>
                 {%- elsif product.compare_at_price > product.price -%}
-                  <div class="pipeline-card-badge">SALE</div>
+                    <div class="pipeline-card-badge sale" 
+                         style="background-color: {{ settings.badge_sale_color | default: '#dc2626' }};
+                                color: {{ settings.badge_text_color | default: '#ffffff' }};">
+                      SAVE CHF {{ product.compare_at_price | minus: product.price | money_without_currency | round }}
+                    </div>
+                  {%- endif -%}
                 {%- endif -%}
                 
-                <img 
-                  class="pipeline-product-image"
-                  src="{{ product.featured_media | img_url: '600x600' }}" 
+                <a href="{{ product.url }}" class="pipeline-card-image-link">
+                  <img class="pipeline-product-image"
+                       src="{{ product.featured_media | img_url: '400x400' }}"
+                       alt="{{ product.title | escape }}"
+                       loading="{% if forloop.index > 4 %}lazy{% else %}eager{% endif %}"
+                       {% if settings.collection_image_ratio == 'square' %}style="aspect-ratio: 1;"{% endif %}>
+                  
+                  {%- if settings.collection_show_secondary_image and product.media[1] -%}
+                    <img class="pipeline-product-image-secondary"
+                         src="{{ product.media[1] | img_url: '400x400' }}"
                   alt="{{ product.title | escape }}"
                   loading="lazy"
-                >
+                         {% if settings.collection_image_ratio == 'square' %}style="aspect-ratio: 1;"{% endif %}>
+                  {%- endif -%}
+                </a>
               </div>
 
               <!-- Product Info -->
               <div class="pipeline-card-content">
-                <div class="pipeline-card-title">
+                <h3 class="pipeline-card-title">
                   <a href="{{ product.url }}">{{ product.title | escape }}</a>
-                </div>
+                </h3>
+                
+                {%- if settings.collection_show_vendor and product.vendor -%}
+                  <div class="pipeline-card-vendor">{{ product.vendor }}</div>
+                {%- endif -%}
                 
                 <div class="pipeline-card-price">
                   {%- if product.compare_at_price > product.price -%}
@@ -351,57 +233,60 @@
                     <div class="pipeline-regular-price">{{ product.price | money }}</div>
                   {%- endif -%}
                 </div>
+                
+                {%- if product.available == false -%}
+                  <div class="pipeline-sold-out-text">Sold Out</div>
+                {%- endif -%}
               </div>
               
             </li>
           {%- endfor -%}
         </ul>
 
+        <!-- Pagination -->
         {%- if paginate.pages > 1 -%}
           {% render 'pagination', paginate: paginate, anchor: '' %}
         {%- endif -%}
         
       </div>
+      
     </div>
-  {%- endpaginate -%}
+    
+  </div>
+  
 </div>
 
-<script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
+{%- endpaginate -%}
 
-{%- if section.settings.quick_add == 'standard' -%}
-  <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
-  <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
-{%- endif -%}
+<script src="{{ 'pipeline-collection.js' | asset_url }}" defer="defer"></script>
 
 {% schema %}
 {
-  "name": "PIPELINE Collection Grid",
+  "name": "Pipeline Collection Grid",
   "tag": "section",
   "class": "section",
   "settings": [
     {
       "type": "range",
       "id": "products_per_page",
-      "min": 8,
+      "min": 12,
       "max": 48,
-      "step": 4,
-      "default": 16,
+      "step": 6,
+      "default": 24,
       "label": "Products per page"
     },
     {
       "type": "range",
       "id": "columns_desktop",
-      "min": 1,
+      "min": 2,
       "max": 5,
       "step": 1,
       "default": 3,
-      "label": "Number of columns on desktop"
+      "label": "Desktop columns"
     },
     {
       "type": "select",
       "id": "columns_mobile",
-      "default": "2",
-      "label": "Number of columns on mobile",
       "options": [
         {
           "value": "1",
@@ -411,7 +296,27 @@
           "value": "2",
           "label": "2 columns"
         }
-      ]
+      ],
+      "default": "2",
+      "label": "Mobile columns"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": true,
+      "label": "Show secondary image on hover"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "default": false,
+      "label": "Show product vendor"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": false,
+      "label": "Show product rating"
     },
     {
       "type": "select",
@@ -422,133 +327,20 @@
           "label": "Adapt to image"
         },
         {
-          "value": "portrait",
-          "label": "Portrait"
-        },
-        {
           "value": "square",
           "label": "Square"
+        },
+        {
+          "value": "portrait",
+          "label": "Portrait"
         }
       ],
-      "default": "adapt",
+      "default": "square",
       "label": "Image ratio"
     },
     {
-      "type": "checkbox",
-      "id": "show_secondary_image",
-      "default": false,
-      "label": "Show second image on hover"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_vendor",
-      "default": false,
-      "label": "Show vendor"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_rating",
-      "default": false,
-      "label": "Show product rating"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_filters",
-      "default": true,
-      "label": "Enable filtering"
-    },
-    {
-      "type": "select",
-      "id": "quick_add",
-      "default": "none",
-      "label": "Quick add",
-      "options": [
-        {
-          "value": "none",
-          "label": "None"
-        },
-        {
-          "value": "standard",
-          "label": "Standard"
-        },
-        {
-          "value": "bulk",
-          "label": "Bulk"
-        }
-      ]
-    },
-    {
       "type": "header",
-      "content": "PIPELINE Layout Settings"
-    },
-    {
-      "type": "range",
-      "id": "sidebar_width",
-      "min": 100,
-      "max": 300,
-      "step": 10,
-      "default": 120,
-      "label": "Sidebar width (px)"
-    },
-    {
-      "type": "range",
-      "id": "layout_gap",
-      "min": 0,
-      "max": 50,
-      "step": 2,
-      "default": 8,
-      "label": "Layout gap (px)"
-    },
-    {
-      "type": "range",
-      "id": "max_width",
-      "min": 1000,
-      "max": 1600,
-      "step": 50,
-      "default": 1200,
-      "label": "Max container width (px)"
-    },
-    {
-      "type": "range",
-      "id": "container_padding",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "default": 5,
-      "label": "Container padding (px)"
-    },
-    {
-      "type": "range",
-      "id": "product_gap",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "default": 1,
-      "label": "Product grid gap (px)"
-    },
-    {
-      "type": "range",
-      "id": "image_height",
-      "min": 200,
-      "max": 800,
-      "step": 10,
-      "default": 520,
-      "label": "Product image height (px)"
-    },
-    {
-      "type": "range",
-      "id": "image_padding",
-      "min": 0,
-      "max": 20,
-      "step": 1,
-      "default": 0,
-      "label": "Product image padding (px)"
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "Color scheme",
-      "default": "scheme-1"
+      "content": "Section Padding"
     },
     {
       "type": "range",
@@ -557,7 +349,7 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "Top padding",
+      "label": "Padding top",
       "default": 36
     },
     {
@@ -567,7 +359,7 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "Bottom padding",
+      "label": "Padding bottom",
       "default": 36
     }
   ]
