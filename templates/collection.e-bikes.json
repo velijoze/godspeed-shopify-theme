@@ -6,9 +6,17 @@
     "product-grid": {
       "type": "main-collection-product-grid",
       "settings": {
+        "products_per_page": 16,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "image_ratio": "adapt",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
         "enable_filtering": true,
         "filter_type": "vertical",
-        "enable_sorting": true
+        "enable_sorting": true,
+        "quick_add": "none"
       }
     }
   },
