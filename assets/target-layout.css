@@ -151,10 +151,11 @@
   padding: 0;
 }
 
-#product-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+#product-grid,
+.grid.product-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 30px !important;
   margin: 0;
   padding: 0;
   list-style: none;
