@@ -23,11 +23,11 @@
   /* PIPELINE TARGET LAYOUT CSS */
   .pipeline-collection-layout {
     display: grid;
-    grid-template-columns: 120px 1fr;
-    gap: 8px;
-    max-width: 1200px;
+    grid-template-columns: {{ section.settings.sidebar_width }}px 1fr;
+    gap: {{ section.settings.layout_gap }}px;
+    max-width: {{ section.settings.max_width }}px;
     margin: 0 auto;
-    padding: 5px;
+    padding: {{ section.settings.container_padding }}px;
     align-items: start;
   }
 
@@ -145,8 +145,8 @@
   /* Products grid exactly like target */
   .pipeline-products-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
+    grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr);
+    gap: {{ section.settings.product_gap }}px;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -169,11 +169,11 @@
   .pipeline-card-media {
     position: relative;
     background: white;
-    height: 520px;
+    height: {{ section.settings.image_height }}px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0px;
+    padding: {{ section.settings.image_padding }}px;
   }
 
   .pipeline-product-image {
@@ -375,7 +375,7 @@
 
 {% schema %}
 {
-  "name": "Pipeline Collection Grid",
+  "name": "PIPELINE Collection Grid",
   "tag": "section",
   "class": "section",
   "settings": [
@@ -476,6 +476,73 @@
           "label": "Bulk"
         }
       ]
+    },
+    {
+      "type": "header",
+      "content": "PIPELINE Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "sidebar_width",
+      "min": 100,
+      "max": 300,
+      "step": 10,
+      "default": 120,
+      "label": "Sidebar width (px)"
+    },
+    {
+      "type": "range",
+      "id": "layout_gap",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "default": 8,
+      "label": "Layout gap (px)"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 1000,
+      "max": 1600,
+      "step": 50,
+      "default": 1200,
+      "label": "Max container width (px)"
+    },
+    {
+      "type": "range",
+      "id": "container_padding",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 5,
+      "label": "Container padding (px)"
+    },
+    {
+      "type": "range",
+      "id": "product_gap",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "default": 1,
+      "label": "Product grid gap (px)"
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "min": 200,
+      "max": 800,
+      "step": 10,
+      "default": 520,
+      "label": "Product image height (px)"
+    },
+    {
+      "type": "range",
+      "id": "image_padding",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "default": 0,
+      "label": "Product image padding (px)"
     },
     {
       "type": "color_scheme",
