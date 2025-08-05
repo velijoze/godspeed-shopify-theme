@@ -871,7 +871,7 @@
       "cart_quantity_error_html": "You can only add {{ quantity }} of this item to your cart."
     },
     "collection_template": {
-      "title": ""
+      "title": "Collection"
     },
     "footer": {
       "payment": "Payment methods"
