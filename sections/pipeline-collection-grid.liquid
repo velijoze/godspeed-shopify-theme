@@ -39,8 +39,8 @@
             </div>
           </div>
         {%- endif -%}
-
-          <!-- Availability Filter -->
+        
+        <!-- Availability Filter -->
         {%- if settings.filter_availability -%}
           <div class="filter-group">
             <h3 class="filter-title">{{ settings.filter_availability_title | default: 'AVAILABILITY' }}</h3>
@@ -96,16 +96,16 @@
             </div>
           </div>
         {%- endif -%}
-          
+        
       </aside>
-      {%- endif -%}
-
+    {%- endif -%}
+    
     <!-- Main Content Area -->
     <div class="pipeline-main-content">
-        
-        <!-- Toolbar -->
-        <div class="pipeline-toolbar">
-          <div class="toolbar-left">
+      
+      <!-- Toolbar -->
+      <div class="pipeline-toolbar">
+        <div class="toolbar-left">
           {%- if settings.collection_show_filter_toggle -%}
             <button class="hide-filters-btn" data-toggle-filters>
               <span class="hamburger-icon">☰</span>
@@ -118,9 +118,9 @@
               {{ collection.products_count }} products
             </span>
           {%- endif -%}
-          </div>
+        </div>
         
-          <div class="toolbar-right">
+        <div class="toolbar-right">
           {%- if settings.toolbar_show_sort -%}
             <select class="pipeline-sort-select" data-sort-select>
               <option value="best-selling">{{ settings.sort_best_selling | default: 'BEST SELLING' }}</option>
@@ -178,18 +178,24 @@
           {%- for product in collection.products -%}
             <li class="pipeline-product-card" 
                 data-product-card
+                data-collection="{{ collection.handle }}"
+                data-available="{{ product.available }}"
+                data-price="{{ product.price | money_without_currency | replace: ',', '' }}"
+                data-created="{{ product.created_at }}"
+                data-featured="{{ product.featured }}"
+                data-sales="0"
                 {% if settings.card_show_border %}style="border: 1px solid {{ settings.card_border_color | default: '#e0e0e0' }};"{% endif %}>
               
               <!-- Product Image -->
               <div class="pipeline-card-media">
                 {%- if settings.collection_show_badges -%}
-                {%- if product.available == false -%}
+                  {%- if product.available == false -%}
                     <div class="pipeline-card-badge sold-out" 
                          style="background-color: {{ settings.badge_sold_out_color | default: '#6b7280' }};
                                 color: {{ settings.badge_text_color | default: '#ffffff' }};">
                       SOLD OUT
                     </div>
-                {%- elsif product.compare_at_price > product.price -%}
+                  {%- elsif product.compare_at_price > product.price -%}
                     <div class="pipeline-card-badge sale" 
                          style="background-color: {{ settings.badge_sale_color | default: '#dc2626' }};
                                 color: {{ settings.badge_text_color | default: '#ffffff' }};">
@@ -208,13 +214,13 @@
                   {%- if settings.collection_show_secondary_image and product.media[1] -%}
                     <img class="pipeline-product-image-secondary"
                          src="{{ product.media[1] | img_url: '400x400' }}"
-                  alt="{{ product.title | escape }}"
-                  loading="lazy"
+                         alt="{{ product.title | escape }}"
+                         loading="lazy"
                          {% if settings.collection_image_ratio == 'square' %}style="aspect-ratio: 1;"{% endif %}>
                   {%- endif -%}
                 </a>
               </div>
-
+              
               <!-- Product Info -->
               <div class="pipeline-card-content">
                 <h3 class="pipeline-card-title">
@@ -242,7 +248,7 @@
             </li>
           {%- endfor -%}
         </ul>
-
+        
         <!-- Pagination -->
         {%- if paginate.pages > 1 -%}
           {% render 'pagination', paginate: paginate, anchor: '' %}
