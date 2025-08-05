@@ -125,6 +125,45 @@
           data-cascade
         {% endif %}
       >
+        {%- if section.settings.filter_type == 'vertical' -%}
+          <div class="collection-toolbar">
+            <div class="toolbar-left">
+              <button class="hide-filters-btn" onclick="toggleFilters()">
+                <span class="toolbar-icon">◂</span>
+                Hide Filters
+              </button>
+            </div>
+            <div class="toolbar-center">
+              <span class="product-count-toolbar">
+                {%- if collection.products_count == collection.all_products_count -%}
+                  {{ collection.products_count }} products
+                {%- else -%}
+                  {{ collection.products_count }} of {{ collection.all_products_count }} products
+                {%- endif -%}
+              </span>
+            </div>
+            <div class="toolbar-right">
+              <div class="sort-dropdown">
+                <select onchange="this.form.submit()" form="FacetSortForm" name="sort_by" class="toolbar-sort">
+                  {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+                  {%- for option in collection.sort_options -%}
+                    <option value="{{ option.value | escape }}" {% if option.value == sort_by %}selected="selected"{% endif %}>
+                      {{ option.name | escape }}
+                    </option>
+                  {%- endfor -%}
+                </select>
+              </div>
+              <div class="grid-view-options">
+                <button class="grid-view-btn active" data-columns="3" onclick="setGridColumns(3)">
+                  <span class="grid-icon">⊞</span>
+                </button>
+                <button class="grid-view-btn" data-columns="4" onclick="setGridColumns(4)">
+                  <span class="grid-icon">⊟</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        {%- endif -%}
         {%- if collection.products.size == 0 -%}
           <div class="collection collection--empty page-width" id="product-grid" data-id="{{ section.id }}">
             <div class="loading-overlay gradient"></div>
@@ -190,6 +229,34 @@
     {{ 'mask-arch.svg' | inline_asset_content }}
   {%- endif -%}
 </div>
+
+<script>
+function toggleFilters() {
+  const sidebar = document.querySelector('.facets-wrapper');
+  const button = document.querySelector('.hide-filters-btn');
+  const icon = button.querySelector('.toolbar-icon');
+  
+  if (sidebar.style.display === 'none' || sidebar.style.display === '') {
+    sidebar.style.display = 'none';
+    button.innerHTML = '<span class="toolbar-icon">▸</span> Show Filters';
+  } else {
+    sidebar.style.display = 'block';
+    button.innerHTML = '<span class="toolbar-icon">◂</span> Hide Filters';
+  }
+}
+
+function setGridColumns(columns) {
+  const grid = document.querySelector('#product-grid');
+  const buttons = document.querySelectorAll('.grid-view-btn');
+  
+  if (grid) {
+    grid.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+  }
+  
+  buttons.forEach(btn => btn.classList.remove('active'));
+  document.querySelector(`[data-columns="${columns}"]`).classList.add('active');
+}
+</script>
 
 {% schema %}
 {

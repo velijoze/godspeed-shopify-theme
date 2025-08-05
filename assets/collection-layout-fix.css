@@ -46,18 +46,92 @@
     position: relative;
   }
 
-  /* Add top toolbar with sorting and grid options */
-  .collection::before {
-    content: "Hide Filters                                                                                Best Selling ▼    □ ☰";
-    display: block;
+  /* REAL TOOLBAR STYLING */
+  .collection-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 1rem 1.5rem;
     background: white;
     border: 1px solid #e5e5e5;
     border-radius: 6px;
     margin-bottom: 2rem;
     font-size: 0.9rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+
+  .toolbar-left, .toolbar-center, .toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hide-filters-btn {
+    background: none;
+    border: 1px solid #ddd;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
     color: #666;
-    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+  }
+
+  .hide-filters-btn:hover {
+    background: #f5f5f5;
+    border-color: #ccc;
+  }
+
+  .product-count-toolbar {
+    color: #666;
+    font-weight: 500;
+  }
+
+  .toolbar-sort {
+    background: white;
+    border: 1px solid #ddd;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    min-width: 150px;
+  }
+
+  .grid-view-options {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .grid-view-btn {
+    background: white;
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+
+  .grid-view-btn:hover {
+    background: #f5f5f5;
+    border-color: #ccc;
+  }
+
+  .grid-view-btn.active {
+    background: #2c5282;
+    border-color: #2c5282;
+    color: white;
+  }
+
+  .grid-icon {
+    font-size: 14px;
   }
 
   /* PRODUCT GRID - EXACTLY 3 COLUMNS */
