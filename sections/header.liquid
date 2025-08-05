@@ -349,9 +349,14 @@
   </header>
 </{% if section.settings.sticky_header_type != 'none' %}sticky-header{% else %}div{% endif %}>
 
+{%- comment -%}
+  Temporarily disabled cart notification to fix cart icon overlay issue
+{%- endcomment -%}
+{%- comment -%}
 {%- if settings.cart_type == "notification" -%}
   {%- render 'cart-notification', color_scheme: section.settings.color_scheme, desktop_menu_type: section.settings.menu_type_desktop -%}
 {%- endif -%}
+{%- endcomment -%}
 
 {% javascript %}
   class StickyHeader extends HTMLElement {
