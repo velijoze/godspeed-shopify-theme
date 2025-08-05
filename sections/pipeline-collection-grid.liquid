@@ -1,104 +1,95 @@
 {{ 'pipeline-collection.css' | asset_url | stylesheet_tag }}
 
-{%- paginate collection.products by section.settings.products_per_page | default: settings.collection_products_per_page | default: 24 -%}
+{%- paginate collection.products by section.settings.products_per_page | default: 24 -%}
 
 <div class="pipeline-collection-container section-{{ section.id }}-padding">
   
   <!-- Main Layout Grid -->
   <div class="pipeline-collection-layout" 
-       style="--sidebar-width: {{ settings.collection_sidebar_width | default: 280 }}px; 
-              --layout-gap: {{ settings.collection_layout_gap | default: 40 }}px; 
-              --max-width: {{ settings.collection_max_width | default: 1400 }}px;">
+       style="--sidebar-width: 280px; 
+              --layout-gap: 40px; 
+              --max-width: 1400px;">
     
     <!-- Filters Sidebar -->
-    {%- if settings.collection_show_filters -%}
-      <aside class="pipeline-filters-sidebar" 
-             {% if settings.collection_sticky_filters %}data-sticky-filters{% endif %}>
-        
-        <!-- Collections Filter -->
-        {%- if settings.filter_collections -%}
-          <div class="filter-group" data-filter-group="collections">
-            <h3 class="filter-title">{{ settings.filter_collections_title | default: 'ALL COLLECTIONS' }}</h3>
-            <div class="filter-options">
-              {%- for collection in collections -%}
-                <label class="filter-option" {% if forloop.index > 8 %}data-hidden="true"{% endif %}>
-                  <input type="checkbox" 
-                         name="collection" 
-                         value="{{ collection.handle }}"
-                         {% if collection.handle == current_collection.handle %}checked{% endif %}
-                         data-filter="collection">
-                  <span class="checkmark"></span>
-                  {{ collection.title }}
-                </label>
-              {%- endfor -%}
-              {%- if collections.size > 8 -%}
-                <button class="show-more-btn" data-show-more="collections">
-                  {{ settings.filter_show_more_text | default: 'SHOW MORE' }}
-                </button>
-              {%- endif -%}
+    <aside class="pipeline-filters-sidebar" data-sticky-filters>
+      
+      <!-- Collections Filter -->
+      <div class="filter-group" data-filter-group="collections">
+        <h3 class="filter-title">ALL COLLECTIONS</h3>
+        <div class="filter-options">
+          {%- for collection in collections -%}
+            <label class="filter-option" {% if forloop.index > 8 %}data-hidden="true"{% endif %}>
+              <input type="checkbox" 
+                     name="collection" 
+                     value="{{ collection.handle }}"
+                     {% if collection.handle == current_collection.handle %}checked{% endif %}
+                     data-filter="collection">
+              <span class="checkmark"></span>
+              {{ collection.title }}
+            </label>
+          {%- endfor -%}
+          {%- if collections.size > 8 -%}
+            <button class="show-more-btn" data-show-more="collections">
+              SHOW MORE
+            </button>
+          {%- endif -%}
+        </div>
+      </div>
+      
+      <!-- Availability Filter -->
+      <div class="filter-group" data-filter-group="availability">
+        <h3 class="filter-title">AVAILABILITY</h3>
+        <div class="filter-options">
+          <label class="filter-option">
+            <input type="checkbox" name="availability" value="in_stock" data-filter="availability">
+            <span class="checkmark"></span>
+            IN STOCK
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" name="availability" value="out_of_stock" data-filter="availability">
+            <span class="checkmark"></span>
+            OUT OF STOCK
+          </label>
+        </div>
+      </div>
+      
+      <!-- Price Range Filter -->
+      <div class="filter-group" data-filter-group="price">
+        <h3 class="filter-title">PRICE</h3>
+        <div class="price-range-container">
+          <div class="price-inputs">
+            <div class="price-input">
+              <label>CHF</label>
+              <input type="number" 
+                     id="price-min" 
+                     placeholder="0" 
+                     min="0" 
+                     data-price-min>
+              <button class="price-arrow up" data-price-action="min-up">▲</button>
+              <button class="price-arrow down" data-price-action="min-down">▼</button>
+            </div>
+            <div class="price-input">
+              <label>CHF</label>
+              <input type="number" 
+                     id="price-max" 
+                     placeholder="4999" 
+                     min="0" 
+                     data-price-max>
+              <button class="price-arrow up" data-price-action="max-up">▲</button>
+              <button class="price-arrow down" data-price-action="max-down">▼</button>
             </div>
           </div>
-        {%- endif -%}
-        
-        <!-- Availability Filter -->
-        {%- if settings.filter_availability -%}
-          <div class="filter-group" data-filter-group="availability">
-            <h3 class="filter-title">{{ settings.filter_availability_title | default: 'AVAILABILITY' }}</h3>
-            <div class="filter-options">
-              <label class="filter-option">
-                <input type="checkbox" name="availability" value="in_stock" data-filter="availability">
-                <span class="checkmark"></span>
-                IN STOCK
-              </label>
-              <label class="filter-option">
-                <input type="checkbox" name="availability" value="out_of_stock" data-filter="availability">
-                <span class="checkmark"></span>
-                OUT OF STOCK
-              </label>
+          <div class="price-slider-container">
+            <div class="price-slider" data-price-slider>
+              <div class="price-slider-track"></div>
+              <div class="price-slider-handle min" data-handle="min"></div>
+              <div class="price-slider-handle max" data-handle="max"></div>
             </div>
           </div>
-        {%- endif -%}
-        
-        <!-- Price Range Filter -->
-        {%- if settings.filter_price -%}
-          <div class="filter-group" data-filter-group="price">
-            <h3 class="filter-title">{{ settings.filter_price_title | default: 'PRICE' }}</h3>
-            <div class="price-range-container">
-              <div class="price-inputs">
-                <div class="price-input">
-                  <label>CHF</label>
-                  <input type="number" 
-                         id="price-min" 
-                         placeholder="0" 
-                         min="0" 
-                         data-price-min>
-                  <button class="price-arrow up" data-price-action="min-up">▲</button>
-                  <button class="price-arrow down" data-price-action="min-down">▼</button>
-                </div>
-                <div class="price-input">
-                  <label>CHF</label>
-                  <input type="number" 
-                         id="price-max" 
-                         placeholder="4999" 
-                         min="0" 
-                         data-price-max>
-                  <button class="price-arrow up" data-price-action="max-up">▲</button>
-                  <button class="price-arrow down" data-price-action="max-down">▼</button>
-                </div>
-              </div>
-              <div class="price-slider-container">
-                <div class="price-slider" data-price-slider>
-                  <div class="price-slider-track"></div>
-                  <div class="price-slider-handle min" data-handle="min"></div>
-                  <div class="price-slider-handle max" data-handle="max"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        {%- endif -%}
-        
-      </aside>
-    {%- endif -%}
+        </div>
+      </div>
+      
+    </aside>
     
     <!-- Main Content Area -->
     <div class="pipeline-main-content">
@@ -106,61 +97,52 @@
       <!-- Toolbar -->
       <div class="pipeline-toolbar">
         <div class="toolbar-left">
-          {%- if settings.collection_show_filter_toggle -%}
-            <button class="hide-filters-btn" data-toggle-filters>
-              <span class="hamburger-icon">☰</span>
-              {{ settings.toolbar_hide_filters_text | default: 'HIDE FILTERS' }}
-            </button>
-          {%- endif -%}
-          
-          {%- if settings.toolbar_show_product_count -%}
-            <span class="product-count-display">
-              {{ collection.products_count }} products
-            </span>
-          {%- endif -%}
+          <button class="hide-filters-btn" data-toggle-filters>
+            <span class="hamburger-icon">☰</span>
+            HIDE FILTERS
+          </button>
+          <span class="product-count-display">
+            {{ collection.products_count }} products
+          </span>
         </div>
         
         <div class="toolbar-right">
-          {%- if settings.toolbar_show_sort -%}
-            <select class="pipeline-sort-select" data-sort-select>
-              <option value="best-selling">{{ settings.sort_best_selling | default: 'BEST SELLING' }}</option>
-              <option value="featured">{{ settings.sort_featured | default: 'FEATURED' }}</option>
-              <option value="price-low-high">{{ settings.sort_price_low_high | default: 'PRICE: LOW TO HIGH' }}</option>
-              <option value="price-high-low">{{ settings.sort_price_high_low | default: 'PRICE: HIGH TO LOW' }}</option>
-              <option value="newest">{{ settings.sort_newest | default: 'NEWEST' }}</option>
-            </select>
-          {%- endif -%}
+          <select class="pipeline-sort-select" data-sort-select>
+            <option value="best-selling">BEST SELLING</option>
+            <option value="featured">FEATURED</option>
+            <option value="price-low-high">PRICE: LOW TO HIGH</option>
+            <option value="price-high-low">PRICE: HIGH TO LOW</option>
+            <option value="newest">NEWEST</option>
+          </select>
           
-          {%- if settings.toolbar_show_view_toggle -%}
-            <div class="grid-view-toggle">
-              <button class="view-btn active" data-view="3" title="3 columns">
-                <svg width="16" height="16" viewBox="0 0 16 16">
-                  <rect x="1" y="1" width="4" height="4" fill="currentColor"/>
-                  <rect x="7" y="1" width="4" height="4" fill="currentColor"/>
-                  <rect x="13" y="1" width="2" height="4" fill="currentColor"/>
-                  <rect x="1" y="7" width="4" height="4" fill="currentColor"/>
-                  <rect x="7" y="7" width="4" height="4" fill="currentColor"/>
-                  <rect x="13" y="7" width="2" height="4" fill="currentColor"/>
-                  <rect x="1" y="13" width="4" height="2" fill="currentColor"/>
-                  <rect x="7" y="13" width="4" height="2" fill="currentColor"/>
-                  <rect x="13" y="13" width="2" height="2" fill="currentColor"/>
-                </svg>
-              </button>
-              <button class="view-btn" data-view="4" title="4 columns">
-                <svg width="16" height="16" viewBox="0 0 16 16">
-                  <rect x="1" y="1" width="3" height="3" fill="currentColor"/>
-                  <rect x="6" y="1" width="3" height="3" fill="currentColor"/>
-                  <rect x="11" y="1" width="3" height="3" fill="currentColor"/>
-                  <rect x="1" y="6" width="3" height="3" fill="currentColor"/>
-                  <rect x="6" y="6" width="3" height="3" fill="currentColor"/>
-                  <rect x="11" y="6" width="3" height="3" fill="currentColor"/>
-                  <rect x="1" y="11" width="3" height="3" fill="currentColor"/>
-                  <rect x="6" y="11" width="3" height="3" fill="currentColor"/>
-                  <rect x="11" y="11" width="3" height="3" fill="currentColor"/>
-                </svg>
-              </button>
-            </div>
-          {%- endif -%}
+          <div class="grid-view-toggle">
+            <button class="view-btn active" data-view="3" title="3 columns">
+              <svg width="16" height="16" viewBox="0 0 16 16">
+                <rect x="1" y="1" width="4" height="4" fill="currentColor"/>
+                <rect x="7" y="1" width="4" height="4" fill="currentColor"/>
+                <rect x="13" y="1" width="2" height="4" fill="currentColor"/>
+                <rect x="1" y="7" width="4" height="4" fill="currentColor"/>
+                <rect x="7" y="7" width="4" height="4" fill="currentColor"/>
+                <rect x="13" y="7" width="2" height="4" fill="currentColor"/>
+                <rect x="1" y="13" width="4" height="2" fill="currentColor"/>
+                <rect x="7" y="13" width="4" height="2" fill="currentColor"/>
+                <rect x="13" y="13" width="2" height="2" fill="currentColor"/>
+              </svg>
+            </button>
+            <button class="view-btn" data-view="4" title="4 columns">
+              <svg width="16" height="16" viewBox="0 0 16 16">
+                <rect x="1" y="1" width="3" height="3" fill="currentColor"/>
+                <rect x="6" y="1" width="3" height="3" fill="currentColor"/>
+                <rect x="11" y="1" width="3" height="3" fill="currentColor"/>
+                <rect x="1" y="6" width="3" height="3" fill="currentColor"/>
+                <rect x="6" y="6" width="3" height="3" fill="currentColor"/>
+                <rect x="11" y="6" width="3" height="3" fill="currentColor"/>
+                <rect x="1" y="11" width="3" height="3" fill="currentColor"/>
+                <rect x="6" y="11" width="3" height="3" fill="currentColor"/>
+                <rect x="11" y="11" width="3" height="3" fill="currentColor"/>
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
       
@@ -168,12 +150,12 @@
       <div class="pipeline-products-container">
         <ul class="pipeline-products-grid" 
             data-products-grid
-            style="--columns-desktop: {{ section.settings.columns_desktop | default: settings.collection_columns_desktop | default: 3 }};
-                   --columns-mobile: {{ section.settings.columns_mobile | default: settings.collection_columns_mobile | default: '2' }};
-                   --card-padding: {{ settings.card_padding | default: 15 }}px;
-                   --card-border-radius: {{ settings.card_border_radius | default: 0 }}px;
-                   --card-title-size: {{ settings.card_title_size | default: 14 }}px;
-                   --card-price-size: {{ settings.card_price_size | default: 14 }}px;">
+            style="--columns-desktop: 3;
+                   --columns-mobile: 2;
+                   --card-padding: 15px;
+                   --card-border-radius: 0px;
+                   --card-title-size: 14px;
+                   --card-price-size: 14px;">
           
           {%- for product in collection.products -%}
             <li class="pipeline-product-card" 
@@ -183,25 +165,20 @@
                 data-price="{{ product.price | money_without_currency | replace: ',', '' }}"
                 data-created="{{ product.created_at }}"
                 data-featured="{{ product.featured }}"
-                data-sales="0"
-                {% if settings.card_show_border %}style="border: 1px solid {{ settings.card_border_color | default: '#e0e0e0' }};"{% endif %}>
+                data-sales="0">
               
               <!-- Product Image -->
               <div class="pipeline-card-media">
-                {%- if settings.collection_show_badges -%}
-                  {%- if product.available == false -%}
-                    <div class="pipeline-card-badge sold-out" 
-                         style="background-color: {{ settings.badge_sold_out_color | default: '#6b7280' }};
-                                color: {{ settings.badge_text_color | default: '#ffffff' }};">
-                      SOLD OUT
-                    </div>
-                  {%- elsif product.compare_at_price > product.price -%}
-                    <div class="pipeline-card-badge sale" 
-                         style="background-color: {{ settings.badge_sale_color | default: '#dc2626' }};
-                                color: {{ settings.badge_text_color | default: '#ffffff' }};">
-                      SAVE CHF {{ product.compare_at_price | minus: product.price | money_without_currency | round }}
-                    </div>
-                  {%- endif -%}
+                {%- if product.available == false -%}
+                  <div class="pipeline-card-badge sold-out" 
+                       style="background-color: #6b7280; color: #ffffff;">
+                    SOLD OUT
+                  </div>
+                {%- elsif product.compare_at_price > product.price -%}
+                  <div class="pipeline-card-badge sale" 
+                       style="background-color: #dc2626; color: #ffffff;">
+                    SAVE CHF {{ product.compare_at_price | minus: product.price | money_without_currency | round }}
+                  </div>
                 {%- endif -%}
                 
                 <a href="{{ product.url }}" class="pipeline-card-image-link">
@@ -209,14 +186,14 @@
                        src="{{ product.featured_media | img_url: '400x400' }}"
                        alt="{{ product.title | escape }}"
                        loading="{% if forloop.index > 4 %}lazy{% else %}eager{% endif %}"
-                       {% if settings.collection_image_ratio == 'square' %}style="aspect-ratio: 1;"{% endif %}>
+                       style="aspect-ratio: 1;">
                   
-                  {%- if settings.collection_show_secondary_image and product.media[1] -%}
+                  {%- if product.media[1] -%}
                     <img class="pipeline-product-image-secondary"
                          src="{{ product.media[1] | img_url: '400x400' }}"
                          alt="{{ product.title | escape }}"
                          loading="lazy"
-                         {% if settings.collection_image_ratio == 'square' %}style="aspect-ratio: 1;"{% endif %}>
+                         style="aspect-ratio: 1;">
                   {%- endif -%}
                 </a>
               </div>
@@ -226,10 +203,6 @@
                 <h3 class="pipeline-card-title">
                   <a href="{{ product.url }}">{{ product.title | escape }}</a>
                 </h3>
-                
-                {%- if settings.collection_show_vendor and product.vendor -%}
-                  <div class="pipeline-card-vendor">{{ product.vendor }}</div>
-                {%- endif -%}
                 
                 <div class="pipeline-card-price">
                   {%- if product.compare_at_price > product.price -%}

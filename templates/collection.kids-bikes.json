@@ -1,7 +1,7 @@
 {
   "sections": {
     "banner": {
-      "type": "pipeline-collection-banner",
+      "type": "main-collection-banner",
       "settings": {
         "show_collection_image": true,
         "show_collection_description": true,
@@ -12,81 +12,23 @@
         "color_scheme": "inverse"
       }
     },
-    "kids-bike-guide": {
-      "type": "rich-text",
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "scheme-2",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 20
-      },
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "=v Kids Bike Size Guide",
-            "heading_size": "h2"
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "<p><strong>Balance Bikes (2-4 years):</strong> No pedals, teaches balance and steering<br><strong>12\" Wheels (3-5 years):</strong> First pedal bikes with training wheels<br><strong>16\" Wheels (4-6 years):</strong> Growing confidence and skill development<br><strong>20\" Wheels (6-9 years):</strong> More adventures and longer rides<br><strong>24\" Wheels (8-12 years):</strong> Transition to adult features and gearing<br><strong>Youth Mountain (10+ years):</strong> Real mountain bike features for trail riding</p>"
-          }
-        },
-        "button": {
-          "type": "button",
-          "settings": {
-            "button_label": "=Ï Kids Size Calculator",
-            "button_link": "/pages/size-guide",
-            "button_style_secondary": false,
-            "button_label_2": "> Compare Kids Bikes",
-            "button_link_2": "/pages/compare",
-            "button_style_secondary_2": true
-          }
-        }
-      },
-      "block_order": ["heading", "text", "button"]
-    },
-    "toolbar": {
-      "type": "pipeline-collection-toolbar",
-      "settings": {
-        "enable_filtering": true,
-        "enable_sorting": true,
-        "enable_view_toggle": true
-      }
-    },
     "product-grid": {
-      "type": "pipeline-collection-grid", 
+      "type": "pipeline-collection-grid",
       "settings": {
         "products_per_page": 24,
-        "columns_desktop": 4,
-        "show_filters": true,
-        "enable_sticky_filters": true,
-        "enable_infinite_scroll": false,
-        "show_progress_bar": true,
-        "quick_add": "button",
+        "columns_desktop": 3,
+        "columns_mobile": "2",
         "show_secondary_image": true,
         "show_vendor": false,
-        "show_rating": true,
+        "show_rating": false,
         "image_ratio": "square",
-        "image_shape": "default",
-        "show_quick_view": true,
-        "show_badges": true,
-        "show_wishlist": true,
-        "columns_mobile": "2",
-        "color_scheme": "scheme-1",
-        "padding_top": 0,
+        "padding_top": 36,
         "padding_bottom": 60
       }
     }
   },
   "order": [
     "banner",
-    "kids-bike-guide", 
-    "toolbar",
     "product-grid"
   ]
 }

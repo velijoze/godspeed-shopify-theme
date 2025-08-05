@@ -1,7 +1,7 @@
 {
   "sections": {
     "banner": {
-      "type": "pipeline-collection-banner",
+      "type": "main-collection-banner",
       "settings": {
         "show_collection_image": true,
         "show_collection_description": true,
@@ -12,81 +12,23 @@
         "color_scheme": "inverse"
       }
     },
-    "mountain-bike-guide": {
-      "type": "rich-text",
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "scheme-2",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 20
-      },
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "🏔️ Mountain Bike Categories",
-            "heading_size": "h2"
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "<p><strong>Cross Country (XC):</strong> Lightweight, efficient bikes for racing and fast trail riding<br><strong>Trail:</strong> Versatile all-around bikes for most mountain bike trails<br><strong>Enduro/All-Mountain:</strong> Aggressive bikes for steep, technical terrain<br><strong>Downhill:</strong> Heavy-duty bikes built for lift-accessed downhill racing<br><strong>Fat Bikes:</strong> Wide-tire bikes for snow, sand, and extreme conditions</p>"
-          }
-        },
-        "button": {
-          "type": "button",
-          "settings": {
-            "button_label": "🤖 Compare Mountain Bikes with AI",
-            "button_link": "/pages/compare",
-            "button_style_secondary": false,
-            "button_label_2": "📏 Find Your Size",
-            "button_link_2": "/pages/size-guide",
-            "button_style_secondary_2": true
-          }
-        }
-      },
-      "block_order": ["heading", "text", "button"]
-    },
-    "toolbar": {
-      "type": "pipeline-collection-toolbar",
-      "settings": {
-        "enable_filtering": true,
-        "enable_sorting": true,
-        "enable_view_toggle": true
-      }
-    },
     "product-grid": {
       "type": "pipeline-collection-grid",
       "settings": {
         "products_per_page": 24,
-        "columns_desktop": 4,
-        "show_filters": true,
-        "enable_sticky_filters": true,
-        "enable_infinite_scroll": false,
-        "show_progress_bar": true,
-        "quick_add": "button",
+        "columns_desktop": 3,
+        "columns_mobile": "2",
         "show_secondary_image": true,
         "show_vendor": false,
-        "show_rating": true,
+        "show_rating": false,
         "image_ratio": "square",
-        "image_shape": "default",
-        "show_quick_view": true,
-        "show_badges": true,
-        "show_wishlist": true,
-        "columns_mobile": "2",
-        "color_scheme": "scheme-1",
-        "padding_top": 0,
+        "padding_top": 36,
         "padding_bottom": 60
       }
     }
   },
   "order": [
     "banner",
-    "mountain-bike-guide", 
-    "toolbar",
     "product-grid"
   ]
 }
