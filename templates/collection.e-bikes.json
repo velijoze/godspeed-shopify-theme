@@ -1,5 +1,8 @@
 {
   "sections": {
+    "test": {
+      "type": "test-pipeline"
+    },
     "banner": {
       "type": "pipeline-collection-banner",
       "settings": {
@@ -46,6 +49,7 @@
     }
   },
   "order": [
+    "test",
     "banner",
     "toolbar",
     "product-grid"
