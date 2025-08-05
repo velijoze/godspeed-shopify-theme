@@ -19,7 +19,7 @@
   max-width: 1200px;
   margin: 0 auto;
   background: white;
-  padding: 10px;
+  padding: 5px;
 }
 
 /* Top toolbar - EXACTLY like target */
@@ -269,7 +269,7 @@
 
 /* Product info - EXACTLY like target */
 .product-info {
-  padding: 4px 6px 8px 6px;
+  padding: 2px 4px 6px 4px;
   text-align: center;
 }
 
