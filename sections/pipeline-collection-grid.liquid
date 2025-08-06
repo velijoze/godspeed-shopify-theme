@@ -3,60 +3,178 @@
 {%- paginate collection.products by section.settings.products_per_page | default: 24 -%}
 
 <div class="pipeline-collection-container section-{{ section.id }}-padding">
-  <div class="pipeline-collection-layout">
+  
+  <!-- Main Layout Grid -->
+  <div class="pipeline-collection-layout" 
+       style="--sidebar-width: 280px; 
+              --layout-gap: 40px; 
+              --max-width: 1400px;">
     
-    <!-- Simple Filters Sidebar -->
-    <aside class="pipeline-filters-sidebar">
-      <div class="filter-group">
+    <!-- Filters Sidebar -->
+    <aside class="pipeline-filters-sidebar" data-sticky-filters>
+      
+      <!-- Collections Filter -->
+      <div class="filter-group" data-filter-group="collections">
         <h3 class="filter-title">ALL COLLECTIONS</h3>
         <div class="filter-options">
           {%- for collection in collections -%}
-            <label class="filter-option">
-              <input type="checkbox" name="collection" value="{{ collection.handle }}">
+            <label class="filter-option" {% if forloop.index > 8 %}data-hidden="true"{% endif %}>
+              <input type="checkbox" 
+                     name="collection" 
+                     value="{{ collection.handle }}"
+                     {% if collection.handle == current_collection.handle %}checked{% endif %}
+                     data-filter="collection">
               <span class="checkmark"></span>
               {{ collection.title }}
             </label>
           {%- endfor -%}
+          {%- if collections.size > 8 -%}
+            <button class="show-more-btn" data-show-more="collections">
+              SHOW MORE
+            </button>
+          {%- endif -%}
         </div>
       </div>
+      
+      <!-- Availability Filter -->
+      <div class="filter-group" data-filter-group="availability">
+        <h3 class="filter-title">AVAILABILITY</h3>
+        <div class="filter-options">
+          <label class="filter-option">
+            <input type="checkbox" name="availability" value="in_stock" data-filter="availability">
+            <span class="checkmark"></span>
+            IN STOCK
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" name="availability" value="out_of_stock" data-filter="availability">
+            <span class="checkmark"></span>
+            OUT OF STOCK
+          </label>
+        </div>
+      </div>
+      
+      <!-- Price Range Filter -->
+      <div class="filter-group" data-filter-group="price">
+        <h3 class="filter-title">PRICE</h3>
+        <div class="price-range-container">
+          <div class="price-inputs">
+            <div class="price-input">
+              <label>CHF</label>
+              <input type="number" 
+                     id="price-min" 
+                     placeholder="0" 
+                     min="0" 
+                     data-price-min>
+              <button class="price-arrow up" data-price-action="min-up">▲</button>
+              <button class="price-arrow down" data-price-action="min-down">▼</button>
+            </div>
+            <div class="price-input">
+              <label>CHF</label>
+              <input type="number" 
+                     id="price-max" 
+                     placeholder="4999" 
+                     min="0" 
+                     data-price-max>
+              <button class="price-arrow up" data-price-action="max-up">▲</button>
+              <button class="price-arrow down" data-price-action="max-down">▼</button>
+            </div>
+          </div>
+          <div class="price-slider-container">
+            <div class="price-slider" data-price-slider>
+              <div class="price-slider-track"></div>
+              <div class="price-slider-handle min" data-handle="min"></div>
+              <div class="price-slider-handle max" data-handle="max"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
     </aside>
 
     <!-- Main Content Area -->
     <div class="pipeline-main-content">
       
-      <!-- Simple Toolbar -->
+      <!-- Toolbar -->
       <div class="pipeline-toolbar">
         <div class="toolbar-left">
+          <button class="hide-filters-btn" data-toggle-filters>
+            <span class="hamburger-icon">☰</span>
+            HIDE FILTERS
+          </button>
           <span class="product-count-display">
             {{ collection.products_count }} products
           </span>
         </div>
         
         <div class="toolbar-right">
-          <select class="pipeline-sort-select">
+          <select class="pipeline-sort-select" data-sort-select>
             <option value="best-selling">BEST SELLING</option>
             <option value="featured">FEATURED</option>
             <option value="price-low-high">PRICE: LOW TO HIGH</option>
             <option value="price-high-low">PRICE: HIGH TO LOW</option>
             <option value="newest">NEWEST</option>
           </select>
+          
+          <div class="grid-view-toggle">
+            <button class="view-btn active" data-view="3" title="3 columns">
+              {% render 'icon-grid-3' %}
+            </button>
+            <button class="view-btn" data-view="4" title="4 columns">
+              {% render 'icon-grid-4' %}
+            </button>
+          </div>
         </div>
       </div>
       
       <!-- Products Grid -->
       <div class="pipeline-products-container">
-        <ul class="pipeline-products-grid">
+        <ul class="pipeline-products-grid" 
+            data-products-grid
+            style="--columns-desktop: 3;
+                   --columns-mobile: 2;
+                   --card-padding: 15px;
+                   --card-border-radius: 0px;
+                   --card-title-size: 14px;
+                   --card-price-size: 14px;">
           
           {%- for product in collection.products -%}
-            <li class="pipeline-product-card">
+            <li class="pipeline-product-card" 
+                data-product-card
+                data-collection="{{ collection.handle }}"
+                data-available="{{ product.available }}"
+                data-price="{{ product.price | money_without_currency | replace: ',', '' }}"
+                data-created="{{ product.created_at }}"
+                data-featured="{{ product.featured }}"
+                data-sales="0">
               
               <!-- Product Image -->
               <div class="pipeline-card-media">
+                {%- if product.available == false -%}
+                  <div class="pipeline-card-badge sold-out" 
+                       style="background-color: #6b7280; color: #ffffff;">
+                    SOLD OUT
+                  </div>
+                {%- elsif product.compare_at_price > product.price -%}
+                  <div class="pipeline-card-badge sale" 
+                       style="background-color: #dc2626; color: #ffffff;">
+                    SAVE CHF {{ product.compare_at_price | minus: product.price | money_without_currency | round }}
+                  </div>
+                {%- endif -%}
+                
                 <a href="{{ product.url }}" class="pipeline-card-image-link">
                   <img class="pipeline-product-image"
                        src="{{ product.featured_media | img_url: '400x400' }}"
                        alt="{{ product.title | escape }}"
-                       loading="{% if forloop.index > 4 %}lazy{% else %}eager{% endif %}">
+                       loading="{% if forloop.index > 4 %}lazy{% else %}eager{% endif %}"
+                       style="aspect-ratio: 1;">
+                  
+                  {%- if product.media[1] -%}
+                    <img class="pipeline-product-image-secondary"
+                         src="{{ product.media[1] | img_url: '400x400' }}"
+                         alt="{{ product.title | escape }}"
+                         loading="lazy"
+                         style="aspect-ratio: 1;">
+                  {%- endif -%}
                 </a>
               </div>
               
@@ -68,23 +186,21 @@
                 
                 <div class="pipeline-card-price">
                   {%- if product.compare_at_price > product.price -%}
-                    <div class="pipeline-original-price">{{ product.compare_at_price | money }}</div>
-                    <div class="pipeline-sale-price">{{ product.price | money }}</div>
+                    <span class="pipeline-original-price">{{ product.compare_at_price | money }}</span>
+                    <span class="pipeline-sale-price">{{ product.price | money }}</span>
                   {%- else -%}
-                    <div class="pipeline-regular-price">{{ product.price | money }}</div>
+                    <span class="pipeline-regular-price">{{ product.price | money }}</span>
+                  {%- endif -%}
+                  {%- if product.available == false -%}
+                    <span class="pipeline-sold-out-text">SOLD OUT</span>
                   {%- endif -%}
                 </div>
-                
-                {%- if product.available == false -%}
-                  <div class="pipeline-sold-out-text">Sold Out</div>
-                {%- endif -%}
               </div>
               
             </li>
           {%- endfor -%}
         </ul>
-
-        <!-- Pagination -->
+        
         {%- if paginate.pages > 1 -%}
           {% render 'pagination', paginate: paginate, anchor: '' %}
         {%- endif -%}
@@ -92,14 +208,11 @@
       </div>
       
     </div>
-    
   </div>
-  
 </div>
 
-{%- endpaginate -%}
-
 <script src="{{ 'pipeline-collection.js' | asset_url }}" defer="defer"></script>
+{%- endpaginate -%}
 
 {% schema %}
 {
