@@ -1,27 +1,35 @@
 {% comment %} Brand Carousel Section - Displays partner brand logos in a horizontal slider {% endcomment %}
 {{ 'section-brand-carousel.css' | asset_url | stylesheet_tag }}
 
-<div class="brand-carousel slider slider--tablet" id="brand-carousel-{{ section.id }}">
-  <div class="slider__viewport">
-    <ul class="brand-carousel__list gs-grid slider__grid" id="Slider-{{ section.id }}">
-      {% for block in section.blocks %}
-        <li class="brand-carousel__item slider__slide gs-col-span-2" {{ block.shopify_attributes }}>
-          {% if block.settings.logo != blank %}
-            <img src="{{ block.settings.logo | image_url: width: 300 }}" alt="{{ block.settings.logo.alt | escape }}" loading="lazy">
-          {% else %}
-            {{ 'image' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
-          {% endif %}
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
+<div class="brand-carousel-section color-{{ section.settings.color_scheme | default: 'background-1' }}">
+  <div class="page-width">
+    {% if section.settings.heading != blank %}
+      <h2 class="brand-carousel__heading">{{ section.settings.heading | escape }}</h2>
+    {% endif %}
+    
+    <div class="brand-carousel slider slider--tablet" id="brand-carousel-{{ section.id }}">
+      <div class="slider__viewport">
+        <ul class="brand-carousel__list gs-grid slider__grid" id="Slider-{{ section.id }}">
+          {% for block in section.blocks %}
+            <li class="brand-carousel__item slider__slide gs-col-span-2" {{ block.shopify_attributes }}>
+              {% if block.settings.logo != blank %}
+                <img src="{{ block.settings.logo | image_url: width: 300 }}" alt="{{ block.settings.logo.alt | escape }}" loading="lazy">
+              {% else %}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
 
-  <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="Previous">
-    {% render 'icon-arrow' %}
-  </button>
-  <button type="button" class="slider-button slider-button--next" name="next" aria-label="Next">
-    {% render 'icon-arrow' %}
-  </button>
+      <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="Previous">
+        {% render 'icon-arrow' %}
+      </button>
+      <button type="button" class="slider-button slider-button--next" name="next" aria-label="Next">
+        {% render 'icon-arrow' %}
+      </button>
+    </div>
+  </div>
 </div>
 
 {% schema %}
@@ -34,6 +42,12 @@
       "id": "heading",
       "label": "Heading",
       "default": "Brands we carry"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "background-1"
     }
   ],
   "blocks": [
