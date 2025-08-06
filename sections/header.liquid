@@ -67,12 +67,14 @@
     visibility: hidden;
     transform: translateY(-10px);
     transition: all 0.2s ease;
+    pointer-events: none;
   }
 
   .header__nav-item:hover .header__dropdown {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+    pointer-events: auto;
   }
 
   .header__dropdown-link {
@@ -107,7 +109,7 @@
     display: block;
   }
 
-  @media screen and (min-width: 990px) {
+  @media screen and (min-width: 750px) {
     .header-drawer-toggle {
       display: none;
     }
@@ -270,6 +272,7 @@
         <!-- Desktop Navigation -->
         <nav class="header__nav-menu">
           {%- if section.settings.menu != blank -%}
+            <!-- Menu: {{ section.settings.menu }} -->
             {%- for link in linklists[section.settings.menu].links -%}
               <div class="header__nav-item">
                 <a href="{{ link.url }}" class="header__nav-link{% if link.links.size > 0 %} has-dropdown{% endif %}">
@@ -287,6 +290,41 @@
                 {%- endif -%}
               </div>
             {%- endfor -%}
+          {%- else -%}
+            <!-- No menu selected in settings -->
+            <div class="header__nav-item">
+              <a href="/collections/e-bikes" class="header__nav-link has-dropdown">
+                E-BIKES
+              </a>
+              <div class="header__dropdown">
+                <a href="/collections/e-bikes?filter.v.option.category=City" class="header__dropdown-link">City E-Bikes</a>
+                <a href="/collections/e-bikes?filter.v.option.category=Trekking" class="header__dropdown-link">Trekking E-Bikes</a>
+                <a href="/collections/e-bikes?filter.v.option.category=Mountain" class="header__dropdown-link">E-Mountainbikes</a>
+                <a href="/collections/e-bikes?filter.v.option.category=Cargo" class="header__dropdown-link">Cargo E-Bikes</a>
+              </div>
+            </div>
+            <div class="header__nav-item">
+              <a href="/collections/bicycles" class="header__nav-link has-dropdown">
+                BICYCLES
+              </a>
+              <div class="header__dropdown">
+                <a href="/collections/city-bikes" class="header__dropdown-link">City Bikes</a>
+                <a href="/collections/mountain-bikes" class="header__dropdown-link">Mountain Bikes</a>
+                <a href="/collections/road-bikes" class="header__dropdown-link">Road Bikes</a>
+              </div>
+            </div>
+            <div class="header__nav-item">
+              <a href="/collections/accessories" class="header__nav-link">PARTS</a>
+            </div>
+            <div class="header__nav-item">
+              <a href="/collections/accessories" class="header__nav-link">ACCESSORIES</a>
+            </div>
+            <div class="header__nav-item">
+              <a href="/pages/sale" class="header__nav-link">SALE</a>
+            </div>
+            <div class="header__nav-item">
+              <a href="/pages/about" class="header__nav-link">ABOUT US</a>
+            </div>
           {%- endif -%}
         </nav>
 
