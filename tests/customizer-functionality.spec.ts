@@ -13,7 +13,7 @@ test.describe('Customizer Functionality Test', () => {
     // 1. Check if custom CSS variables are applied
     console.log('\n--- CSS VARIABLES TEST ---');
     
-    const layout = await page.locator('.pipeline-custom-collection-layout').first();
+    const layout = await page.locator('.custom-collection-layout').first();
     const layoutStyle = await layout.getAttribute('style');
     console.log(`Layout style: ${layoutStyle}`);
     
@@ -32,7 +32,7 @@ test.describe('Customizer Functionality Test', () => {
     // 2. Check if grid columns are configurable
     console.log('\n--- GRID COLUMNS TEST ---');
     
-    const grid = await page.locator('.pipeline-custom-products-grid').first();
+    const grid = await page.locator('.custom-products-grid').first();
     const gridStyle = await grid.getAttribute('style');
     console.log(`Grid style: ${gridStyle}`);
     
@@ -47,7 +47,7 @@ test.describe('Customizer Functionality Test', () => {
     // 3. Check if card styling is configurable
     console.log('\n--- CARD STYLING TEST ---');
     
-    const card = await page.locator('.pipeline-custom-product-card').first();
+    const card = await page.locator('.custom-product-card').first();
     const cardStyle = await card.getAttribute('style');
     console.log(`Card style: ${cardStyle}`);
     
@@ -70,11 +70,11 @@ test.describe('Customizer Functionality Test', () => {
     // 4. Check if badge colors are configurable
     console.log('\n--- BADGE COLORS TEST ---');
     
-    const badges = await page.locator('.pipeline-custom-card-badge').count();
+    const badges = await page.locator('.custom-card-badge').count();
     console.log(`Badges found: ${badges}`);
     
     for (let i = 0; i < Math.min(badges, 3); i++) {
-      const badge = page.locator('.pipeline-custom-card-badge').nth(i);
+      const badge = page.locator('.custom-card-badge').nth(i);
       const badgeStyle = await badge.getAttribute('style');
       console.log(`Badge ${i + 1} style: ${badgeStyle}`);
       
@@ -90,11 +90,11 @@ test.describe('Customizer Functionality Test', () => {
     // 5. Check if image ratio settings work
     console.log('\n--- IMAGE RATIO TEST ---');
     
-    const images = await page.locator('.pipeline-custom-product-image').count();
+    const images = await page.locator('.custom-product-image').count();
     console.log(`Images found: ${images}`);
     
     for (let i = 0; i < Math.min(images, 3); i++) {
-      const img = page.locator('.pipeline-custom-product-image').nth(i);
+      const img = page.locator('.custom-product-image').nth(i);
       const imgStyle = await img.getAttribute('style');
       console.log(`Image ${i + 1} style: ${imgStyle}`);
       
@@ -106,25 +106,25 @@ test.describe('Customizer Functionality Test', () => {
     // 6. Check if secondary images are conditional
     console.log('\n--- SECONDARY IMAGES TEST ---');
     
-    const secondaryImages = await page.locator('.pipeline-custom-product-image-secondary').count();
+    const secondaryImages = await page.locator('.custom-product-image-secondary').count();
     console.log(`Secondary images found: ${secondaryImages}`);
     
     // 7. Check if vendor display is conditional
     console.log('\n--- VENDOR DISPLAY TEST ---');
     
-    const vendors = await page.locator('.pipeline-custom-card-vendor').count();
+    const vendors = await page.locator('.custom-card-vendor').count();
     console.log(`Vendor elements found: ${vendors}`);
     
     // 8. Check if rating display is conditional
     console.log('\n--- RATING DISPLAY TEST ---');
     
-    const ratings = await page.locator('.pipeline-custom-card-rating').count();
+    const ratings = await page.locator('.custom-card-rating').count();
     console.log(`Rating elements found: ${ratings}`);
     
     // 9. Check if sold out text color is configurable
     console.log('\n--- SOLD OUT TEXT TEST ---');
     
-    const soldOutTexts = await page.locator('.pipeline-custom-sold-out-text').count();
+    const soldOutTexts = await page.locator('.custom-sold-out-text').count();
     console.log(`Sold out texts found: ${soldOutTexts}`);
     
     for (let i = 0; i < soldOutTexts; i++) {
@@ -141,29 +141,29 @@ test.describe('Customizer Functionality Test', () => {
     console.log('\n--- CUSTOM CLASS NAMES TEST ---');
     
     const customClasses = [
-      'pipeline-custom-collection-container',
-      'pipeline-custom-collection-layout',
-      'pipeline-custom-filters-sidebar',
-      'pipeline-custom-main-content',
-      'pipeline-custom-toolbar',
-      'pipeline-custom-sort-select',
-      'pipeline-custom-products-container',
-      'pipeline-custom-products-grid',
-      'pipeline-custom-product-card',
-      'pipeline-custom-card-media',
-      'pipeline-custom-card-image-link',
-      'pipeline-custom-product-image',
-      'pipeline-custom-product-image-secondary',
-      'pipeline-custom-card-badge',
-      'pipeline-custom-card-content',
-      'pipeline-custom-card-title',
-      'pipeline-custom-card-vendor',
-      'pipeline-custom-card-rating',
-      'pipeline-custom-card-price',
-      'pipeline-custom-regular-price',
-      'pipeline-custom-sale-price',
-      'pipeline-custom-original-price',
-      'pipeline-custom-sold-out-text'
+      'custom-collection-container',
+      'custom-collection-layout',
+      'custom-filters-sidebar',
+      'custom-main-content',
+      'custom-toolbar',
+      'custom-sort-select',
+      'custom-products-container',
+      'custom-products-grid',
+      'custom-product-card',
+      'custom-card-media',
+      'custom-card-image-link',
+      'custom-product-image',
+      'custom-product-image-secondary',
+      'custom-card-badge',
+      'custom-card-content',
+      'custom-card-title',
+      'custom-card-vendor',
+      'custom-card-rating',
+      'custom-card-price',
+      'custom-regular-price',
+      'custom-sale-price',
+      'custom-original-price',
+      'custom-sold-out-text'
     ];
     
     for (const className of customClasses) {

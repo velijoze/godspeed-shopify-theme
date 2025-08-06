@@ -103,6 +103,14 @@
     font-size: 1.5rem;
     color: #111827;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+
+  .header__logo-clean img {
+    max-height: 40px;
+    width: auto;
+    object-fit: contain;
   }
 
   .header-drawer-toggle {
@@ -135,6 +143,24 @@
 
   .header__logo-wrapper {
     flex-shrink: 0;
+  }
+
+  /* Center the navigation menu */
+  .header__nav-menu {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  @media screen and (max-width: 989px) {
+    .header__nav-menu {
+      position: static;
+      transform: none;
+      display: none;
+    }
   }
 
   .header__actions {

@@ -935,6 +935,44 @@
       "heading": "GODSPEED: Your destination for E-Bikes and affordable bikes online in Switzerland",
       "description": "Discover high-quality bicycles at unbeatable prices",
       "button_text": "Discover Now"
+    },
+    "sections": {
+      "countdown_timer": {
+        "heading": "Limited Time Launch Offer",
+        "text": "Get 20% off all e-bikes during our grand opening. Don't miss out!",
+        "expired_message": "This offer has expired",
+        "button_label": "Shop Now"
+      },
+      "featured_collection": {
+        "title": "Featured Products",
+        "view_all": "View all"
+      },
+      "brand_carousel": {
+        "heading": "Our Premium Brands"
+      },
+      "services": {
+        "heading": "Our Services",
+        "description": "Professional support from consultation to maintenance - everything from one source.",
+        "financing": {
+          "title": "0% Financing",
+          "text": "Up to 36 months interest-free financing. Fair terms without hidden costs.",
+          "button": "Apply Now"
+        },
+        "test_ride": {
+          "title": "Free Test Ride",
+          "text": "Test your dream e-bike for free at one of our 6 locations in Switzerland.",
+          "button": "Book Now"
+        },
+        "workshop": {
+          "title": "Professional Service",
+          "text": "Comprehensive maintenance and repair for all e-bikes and bicycles. Largest service center in Ticino.",
+          "button": "Book Service"
+        }
+      },
+      "newsletter": {
+        "heading": "Stay Informed",
+        "text": "Get exclusive offers, e-bike news and helpful tips delivered directly to your inbox."
+      }
     }
   },
   "collections": {
