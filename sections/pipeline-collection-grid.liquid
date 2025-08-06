@@ -2,16 +2,16 @@
 
 {%- paginate collection.products by section.settings.products_per_page | default: 24 -%}
 
-<div class="pipeline-collection-container section-{{ section.id }}-padding">
+<div class="custom-collection-container section-{{ section.id }}-padding">
   
   <!-- Main Layout Grid -->
-  <div class="pipeline-collection-layout" 
-       style="--sidebar-width: 280px; 
-              --layout-gap: 40px; 
-              --max-width: 1400px;">
+  <div class="custom-collection-layout" 
+       style="--custom-sidebar-width: {{ section.settings.custom_sidebar_width | default: 280 }}px; 
+              --custom-layout-gap: {{ section.settings.custom_layout_gap | default: 40 }}px; 
+              --custom-max-width: {{ section.settings.custom_max_width | default: 1400 }}px;">
     
     <!-- Filters Sidebar -->
-    <aside class="pipeline-filters-sidebar" data-sticky-filters>
+    <aside class="custom-filters-sidebar" data-sticky-filters>
       
       <!-- Collections Filter -->
       <div class="filter-group" data-filter-group="collections">
@@ -92,10 +92,10 @@
     </aside>
 
     <!-- Main Content Area -->
-    <div class="pipeline-main-content">
+    <div class="custom-main-content">
       
       <!-- Toolbar -->
-      <div class="pipeline-toolbar">
+      <div class="custom-toolbar">
         <div class="toolbar-left">
           <button class="hide-filters-btn" data-toggle-filters>
             <span class="hamburger-icon">☰</span>
@@ -107,7 +107,7 @@
         </div>
         
         <div class="toolbar-right">
-          <select class="pipeline-sort-select" data-sort-select>
+          <select class="custom-sort-select" data-sort-select>
             <option value="best-selling">BEST SELLING</option>
             <option value="featured">FEATURED</option>
             <option value="price-low-high">PRICE: LOW TO HIGH</option>
@@ -116,7 +116,7 @@
           </select>
           
           <div class="grid-view-toggle">
-            <button class="view-btn active" data-view="3" title="3 columns">
+            <button class="view-btn active" data-view="{{ section.settings.columns_desktop | default: 3 }}" title="{{ section.settings.columns_desktop | default: 3 }} columns">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="1" y="1" width="4" height="4" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
                 <rect x="6" y="1" width="4" height="4" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
@@ -154,18 +154,18 @@
       </div>
       
       <!-- Products Grid -->
-      <div class="pipeline-products-container">
-        <ul class="pipeline-products-grid" 
+      <div class="custom-products-container">
+        <ul class="custom-products-grid" 
             data-products-grid
-            style="--columns-desktop: 3;
-                   --columns-mobile: 2;
-                   --card-padding: 15px;
-                   --card-border-radius: 0px;
-                   --card-title-size: 14px;
-                   --card-price-size: 14px;">
+            style="--custom-columns-desktop: {{ section.settings.columns_desktop | default: 3 }};
+                   --custom-columns-mobile: {{ section.settings.columns_mobile | default: 2 }};
+                   --custom-card-padding: {{ section.settings.custom_card_padding | default: 15 }}px;
+                   --custom-card-border-radius: {{ section.settings.custom_card_border_radius | default: 0 }}px;
+                   --custom-card-title-size: {{ section.settings.custom_card_title_size | default: 14 }}px;
+                   --custom-card-price-size: {{ section.settings.custom_card_price_size | default: 14 }}px;">
           
           {%- for product in collection.products -%}
-            <li class="pipeline-product-card" 
+            <li class="custom-product-card" 
                 data-product-card
                 data-collection="{{ collection.handle }}"
                 data-available="{{ product.available }}"
@@ -175,53 +175,63 @@
                 data-sales="0">
               
               <!-- Product Image -->
-              <div class="pipeline-card-media">
+              <div class="custom-card-media">
                 {%- if product.available == false -%}
-                  <div class="pipeline-card-badge sold-out" 
-                       style="background-color: #6b7280; color: #ffffff;">
+                  <div class="custom-card-badge sold-out" 
+                       style="background-color: {{ section.settings.custom_sold_out_badge_color | default: '#6b7280' }}; color: #ffffff; font-size: {{ section.settings.custom_badge_font_size | default: 12 }}px;">
                     SOLD OUT
                   </div>
                 {%- elsif product.compare_at_price > product.price -%}
                   {%- assign discount_amount = product.compare_at_price | minus: product.price -%}
                   {%- assign discount_percentage = discount_amount | times: 100.0 | divided_by: product.compare_at_price | round -%}
-                  <div class="pipeline-card-badge sale" 
-                       style="background-color: #dc2626; color: #ffffff;">
+                  <div class="custom-card-badge sale" 
+                       style="background-color: {{ section.settings.custom_sale_badge_color | default: '#dc2626' }}; color: #ffffff; font-size: {{ section.settings.custom_badge_font_size | default: 12 }}px;">
                     -{{ discount_percentage }}%
                   </div>
                 {%- endif -%}
                 
-                <a href="{{ product.url }}" class="pipeline-card-image-link">
-                  <img class="pipeline-product-image"
+                <a href="{{ product.url }}" class="custom-card-image-link">
+                  <img class="custom-product-image"
                        src="{{ product.featured_media | img_url: '400x400' }}"
                        alt="{{ product.title | escape }}"
                        loading="{% if forloop.index > 4 %}lazy{% else %}eager{% endif %}"
-                       style="aspect-ratio: 1;">
+                       style="aspect-ratio: {% if section.settings.image_ratio == 'square' %}1{% elsif section.settings.image_ratio == 'portrait' %}3/4{% else %}adapt{% endif %};">
                   
-                  {%- if product.media[1] -%}
-                    <img class="pipeline-product-image-secondary"
+                  {%- if section.settings.show_secondary_image and product.media[1] -%}
+                    <img class="custom-product-image-secondary"
                          src="{{ product.media[1] | img_url: '400x400' }}"
                          alt="{{ product.title | escape }}"
                          loading="lazy"
-                         style="aspect-ratio: 1;">
+                         style="aspect-ratio: {% if section.settings.image_ratio == 'square' %}1{% elsif section.settings.image_ratio == 'portrait' %}3/4{% else %}adapt{% endif %};">
                   {%- endif -%}
                 </a>
               </div>
               
               <!-- Product Info -->
-              <div class="pipeline-card-content">
-                <h3 class="pipeline-card-title">
+              <div class="custom-card-content">
+                <h3 class="custom-card-title">
                   <a href="{{ product.url }}">{{ product.title | escape }}</a>
                 </h3>
                 
-                <div class="pipeline-card-price">
+                {%- if section.settings.show_vendor and product.vendor -%}
+                  <div class="custom-card-vendor">{{ product.vendor }}</div>
+                {%- endif -%}
+                
+                {%- if section.settings.show_rating -%}
+                  <div class="custom-card-rating">
+                    <!-- Rating stars would go here -->
+                  </div>
+                {%- endif -%}
+                
+                <div class="custom-card-price">
                   {%- if product.available == false -%}
-                    <span class="pipeline-sold-out-text">SOLD OUT</span>
+                    <span class="custom-sold-out-text">SOLD OUT</span>
                   {%- else -%}
                     {%- if product.compare_at_price > product.price -%}
-                      <span class="pipeline-original-price">{{ product.compare_at_price | money }}</span>
-                      <span class="pipeline-sale-price">{{ product.price | money }}</span>
+                      <span class="custom-original-price">{{ product.compare_at_price | money }}</span>
+                      <span class="custom-sale-price">{{ product.price | money }}</span>
                     {%- else -%}
-                      <span class="pipeline-regular-price">{{ product.price | money }}</span>
+                      <span class="custom-regular-price">{{ product.price | money }}</span>
                     {%- endif -%}
                   {%- endif -%}
                 </div>
@@ -246,10 +256,14 @@
 
 {% schema %}
 {
-  "name": "Pipeline Collection Grid",
+  "name": "Pipeline Custom Collection Grid",
   "tag": "section",
   "class": "section",
   "settings": [
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
     {
       "type": "range",
       "id": "products_per_page",
@@ -283,6 +297,80 @@
       ],
       "default": "2",
       "label": "Mobile columns"
+    },
+    {
+      "type": "range",
+      "id": "custom_sidebar_width",
+      "min": 200,
+      "max": 400,
+      "step": 10,
+      "unit": "px",
+      "label": "Sidebar width",
+      "default": 280
+    },
+    {
+      "type": "range",
+      "id": "custom_layout_gap",
+      "min": 20,
+      "max": 80,
+      "step": 10,
+      "unit": "px",
+      "label": "Layout gap",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "custom_max_width",
+      "min": 1200,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "label": "Maximum width",
+      "default": 1400
+    },
+    {
+      "type": "header",
+      "content": "Product Card Settings"
+    },
+    {
+      "type": "range",
+      "id": "custom_card_padding",
+      "min": 5,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "label": "Card padding",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "custom_card_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Card border radius",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "custom_card_title_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Card title font size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "custom_card_price_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Card price font size",
+      "default": 14
     },
     {
       "type": "checkbox",
@@ -321,6 +409,32 @@
       ],
       "default": "square",
       "label": "Image ratio"
+    },
+    {
+      "type": "header",
+      "content": "Badge Settings"
+    },
+    {
+      "type": "color",
+      "id": "custom_sale_badge_color",
+      "label": "Sale badge color",
+      "default": "#dc2626"
+    },
+    {
+      "type": "color",
+      "id": "custom_sold_out_badge_color",
+      "label": "Sold out badge color",
+      "default": "#6b7280"
+    },
+    {
+      "type": "range",
+      "id": "custom_badge_font_size",
+      "min": 8,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "label": "Badge font size",
+      "default": 12
     },
     {
       "type": "header",
