@@ -80,7 +80,8 @@
     "accessibility": "playwright + axe-core integration"
   },
   "dependencies": {
-    "@playwright/test": "^1.54.2"
+    "@playwright/test": "^1.54.2",
+    "playwright": "^1.54.2"
   },
   "devDependencies": {
     "playwright-core": "^1.54.2"

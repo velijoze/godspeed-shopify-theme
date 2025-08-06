@@ -207,12 +207,15 @@
   position: absolute;
   top: 8px;
   left: 8px;
-  padding: 3px 6px;
-  font-size: 9px;
+  padding: 2px 4px;
+  font-size: 8px !important;
   font-weight: 600;
   text-transform: uppercase;
   border-radius: 2px;
   z-index: 10;
+  line-height: 1.2;
+  min-width: auto;
+  max-width: none;
 }
 
 .pipeline-card-badge.sale {
@@ -550,6 +553,13 @@
   
   .pipeline-card-price {
     font-size: 12px;
+  }
+  
+  .pipeline-card-badge {
+    font-size: 7px !important;
+    padding: 1px 3px;
+    top: 5px;
+    left: 5px;
   }
 }
 

@@ -117,10 +117,37 @@
           
           <div class="grid-view-toggle">
             <button class="view-btn active" data-view="3" title="3 columns">
-              {% render 'icon-grid-3' %}
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1" y="1" width="4" height="4" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <rect x="6" y="1" width="4" height="4" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <rect x="11" y="1" width="4" height="4" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <rect x="1" y="6" width="4" height="4" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <rect x="6" y="6" width="4" height="4" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <rect x="11" y="6" width="4" height="4" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <rect x="1" y="11" width="4" height="4" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <rect x="6" y="11" width="4" height="4" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <rect x="11" y="11" width="4" height="4" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+              </svg>
             </button>
             <button class="view-btn" data-view="4" title="4 columns">
-              {% render 'icon-grid-4' %}
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1" y="1" width="3" height="3" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <rect x="5" y="1" width="3" height="3" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <rect x="9" y="1" width="3" height="3" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <rect x="13" y="1" width="2" height="3" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <rect x="1" y="5" width="3" height="3" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <rect x="5" y="5" width="3" height="3" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <rect x="9" y="5" width="3" height="3" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <rect x="13" y="5" width="2" height="3" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <rect x="1" y="9" width="3" height="3" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <rect x="5" y="9" width="3" height="3" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <rect x="9" y="9" width="3" height="3" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <rect x="13" y="9" width="2" height="3" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <rect x="1" y="13" width="3" height="2" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <rect x="5" y="13" width="3" height="2" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <rect x="9" y="13" width="3" height="2" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <rect x="13" y="13" width="2" height="2" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+              </svg>
             </button>
           </div>
         </div>
@@ -155,9 +182,11 @@
                     SOLD OUT
                   </div>
                 {%- elsif product.compare_at_price > product.price -%}
+                  {%- assign discount_amount = product.compare_at_price | minus: product.price -%}
+                  {%- assign discount_percentage = discount_amount | times: 100.0 | divided_by: product.compare_at_price | round -%}
                   <div class="pipeline-card-badge sale" 
                        style="background-color: #dc2626; color: #ffffff;">
-                    SAVE CHF {{ product.compare_at_price | minus: product.price | money_without_currency | round }}
+                    -{{ discount_percentage }}%
                   </div>
                 {%- endif -%}
                 
