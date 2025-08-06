@@ -214,14 +214,15 @@
                 </h3>
                 
                 <div class="pipeline-card-price">
-                  {%- if product.compare_at_price > product.price -%}
-                    <span class="pipeline-original-price">{{ product.compare_at_price | money }}</span>
-                    <span class="pipeline-sale-price">{{ product.price | money }}</span>
-                  {%- else -%}
-                    <span class="pipeline-regular-price">{{ product.price | money }}</span>
-                  {%- endif -%}
                   {%- if product.available == false -%}
                     <span class="pipeline-sold-out-text">SOLD OUT</span>
+                  {%- else -%}
+                    {%- if product.compare_at_price > product.price -%}
+                      <span class="pipeline-original-price">{{ product.compare_at_price | money }}</span>
+                      <span class="pipeline-sale-price">{{ product.price | money }}</span>
+                    {%- else -%}
+                      <span class="pipeline-regular-price">{{ product.price | money }}</span>
+                    {%- endif -%}
                   {%- endif -%}
                 </div>
               </div>
