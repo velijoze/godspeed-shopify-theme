@@ -19,47 +19,19 @@ jobs:
         
     - name: Install Shopify CLI
       run: |
-        npm install -g @shopify/cli@latest
-        shopify version
-        
-    - name: Verify theme files exist
-      run: |
-        echo "Theme files in root:"
-        ls -la
-        echo ""
-        echo "Assets folder:"
-        ls -la assets/ || echo "No assets folder"
-        echo ""
-        echo "CSS files:"
-        find . -name "*.css" -type f || echo "No CSS files found"
-        echo ""
-        echo "Layout folder:"
-        ls -la layout/ || echo "No layout folder"
-        echo ""
-        echo "Sections folder:"
-        ls -la sections/ || echo "No sections folder"
+        npm install -g @shopify/cli @shopify/theme
         
     - name: Deploy theme to Shopify
       run: |
-        echo "Attempting to deploy to Shopify..."
-        echo "Store: t0uds3-a2.myshopify.com"
-        echo "Using Shopify CLI with access token"
+        echo "Deploying to Shopify..."
         
-        # Deploy using Shopify CLI
-        shopify theme push --store="t0uds3-a2.myshopify.com" --live
+        # Create .shopify-cli.yml config
+        cat > .shopify-cli.yml << EOF
+        store: t0uds3-a2.myshopify.com
+        EOF
+        
+        # Deploy using token authentication
+        shopify theme push --live --allow-live --force
       env:
-        SHOPIFY_CLI_NO_ANALYTICS: 1
-        SHOPIFY_ACCESS_TOKEN: ${{ secrets.SHOPIFY_ACCESS_TOKEN }}
-        
-    - name: Verify deployment
-      run: |
-        echo "✅ Deployment completed successfully"
-        echo "Store: t0uds3-a2.myshopify.com"
-        echo "Deployed to live theme"
-        echo "Deployed from: root directory"
-        echo ""
-        echo "Key files deployed:"
-        echo "- assets/godspeed-clean.css"
-        echo "- layout/theme.liquid"
-        echo "- sections/header.liquid"
-        echo "- All other theme files"
+        SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_ACCESS_TOKEN }}
+        SHOPIFY_FLAG_STORE: t0uds3-a2.myshopify.com
