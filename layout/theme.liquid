@@ -1,14 +1,14 @@
 <!doctype html>
 <html class="js antialiased" lang="{{ request.locale.iso_code }}"
-      data-enable-social-proof="{{ settings.enable_social_proof | default: true }}"
-      data-enable-exit-intent="{{ settings.enable_exit_intent | default: true }}"
-      data-enable-form-validation="{{ settings.enable_form_validation | default: true }}"
-      data-enable-critical-css="{{ settings.enable_critical_css | default: true }}"
-      data-enable-resource-preloading="{{ settings.enable_resource_preloading | default: true }}"
-      data-enable-design-system="{{ settings.enable_design_system | default: true }}"
-      data-social-proof-accent-color="{{ settings.social_proof_accent_color | default: '#3B82F6' }}"
-      data-validation-error-color="{{ settings.validation_error_color | default: '#EF4444' }}"
-      data-validation-success-color="{{ settings.validation_success_color | default: '#10B981' }}">
+      data-enable-social-proof="true"
+      data-enable-exit-intent="true"
+      data-enable-form-validation="true"
+      data-enable-critical-css="true"
+      data-enable-resource-preloading="true"
+      data-enable-design-system="true"
+      data-social-proof-accent-color="#3B82F6"
+      data-validation-error-color="#EF4444"
+      data-validation-success-color="#10B981">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -62,9 +62,7 @@
         // Load immediately needed scripts
         loadScript('{{ 'details-disclosure.js' | asset_url }}');
         loadScript('{{ 'details-modal.js' | asset_url }}');
-        {%- if settings.enable_aria_states -%}
-          loadScript('{{ 'aria-menu-states.js' | asset_url }}');
-        {%- endif -%}
+        loadScript('{{ 'aria-menu-states.js' | asset_url }}');
         
         // Load performance/UX scripts on first user interaction
         let interactionLoaded = false;
@@ -76,9 +74,7 @@
           loadScript('{{ 'search-form.js' | asset_url }}');
           loadScript('{{ 'pipeline-zoom.js' | asset_url }}');
           loadScript('{{ 'pipeline-animations.js' | asset_url }}');
-          {%- if settings.enable_form_validation -%}
-            loadScript('{{ 'form-validation.js' | asset_url }}');
-          {%- endif -%}
+          loadScript('{{ 'form-validation.js' | asset_url }}');
           
           // Remove event listeners after loading
           document.removeEventListener('click', loadOnInteraction);
@@ -96,8 +92,7 @@
       });
     </script>
 
-    {%- if settings.animations_reveal_on_scroll -%}
-      <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
     
     <!-- SPECTACULAR EFFECTS -->
