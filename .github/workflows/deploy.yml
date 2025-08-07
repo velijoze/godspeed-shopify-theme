@@ -43,10 +43,13 @@ jobs:
       run: |
         echo "Attempting to deploy to Shopify..."
         echo "Store: t0uds3-a2.myshopify.com"
-        echo "Note: This will prompt for authentication if needed"
-        shopify theme push --store="t0uds3-a2.myshopify.com" --live
+        echo "Using Shopify CLI with access token authentication"
+        
+        # Deploy using CLI with access token
+        shopify theme push --store="t0uds3-a2.myshopify.com" --live --force
       env:
         SHOPIFY_CLI_NO_ANALYTICS: 1
+        SHOPIFY_ACCESS_TOKEN: ${{ secrets.SHOPIFY_ACCESS_TOKEN }}
         
     - name: Verify deployment
       run: |
