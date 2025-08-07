@@ -35,7 +35,7 @@ jobs:
         
     - name: Deploy theme to Shopify
       run: |
-        shopify theme push --store="t0uds3-a2.myshopify.com" --password="${{ secrets.SHOPIFY_STORE_PASSWORD }}" --allow-live --force --json
+        shopify theme push --store="t0uds3-a2.myshopify.com" --password="${{ secrets.SHOPIFY_STORE_PASSWORD }}" --live --json
       env:
         SHOPIFY_CLI_NO_ANALYTICS: 1
         
