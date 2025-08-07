@@ -1,126 +1,113 @@
-# Shopify Theme Deployment Setup
+# Shopify Theme Deployment Setup ✅
 
 ## Overview
-This repository now has automated deployment to Shopify via GitHub Actions. When you push changes to the `main` branch in the `godspeed-authentic/` directory, they will automatically deploy to your Shopify store.
+This repository has **WORKING** automated deployment to Shopify via GitHub Actions. When you push changes to the `main` branch, they automatically deploy to your Shopify store.
 
-## Required GitHub Secrets
+## ✅ DEPLOYMENT IS FIXED AND WORKING
 
-You need to configure these secrets in your GitHub repository:
+### Required GitHub Secret
+
+You only need ONE secret in your GitHub repository:
 
 1. Go to your GitHub repository: https://github.com/velijoze/godspeed-shopify-theme
 2. Click **Settings** → **Secrets and variables** → **Actions**
-3. Click **New repository secret** for each of these:
+3. Click **New repository secret**:
 
-### Required Secrets:
-
-#### `SHOPIFY_STORE_URL`
-- Your Shopify store URL
-- Example: `t0uds3-a2.myshopify.com` (without https://)
-- This is the domain you see in your Shopify admin
-
-#### `SHOPIFY_STORE_PASSWORD` 
-- Your theme access password
-- To get this:
-  1. Go to your Shopify admin
-  2. Online Store → Themes
-  3. Click **Actions** → **Edit code** on your current theme
-  4. Or create a Theme Access Password in Apps & sales channels
-
-#### `SHOPIFY_THEME_ID`
-- Your theme ID number
-- To find this:
-  1. Go to Online Store → Themes in Shopify admin
-  2. Click on your current theme
-  3. Look at the URL: `/themes/[THEME_ID]`
-  4. Use just the number (e.g., `123456789`)
+#### `SHOPIFY_ACCESS_TOKEN`
+- **Value**: Your Shopify Admin API access token
+- **Format**: `shpat_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`
+- **Current Token**: Already configured and working
 
 ## How It Works
 
 ### Automatic Deployment
-- Every time you push changes to the `main` branch in `godspeed-authentic/`, GitHub Actions will:
-  1. Install Shopify CLI
-  2. Deploy all your theme files to Shopify
-  3. Run tests to verify the deployment worked
-  4. Show you exactly what files were deployed
+Every time you push changes to the `main` branch, GitHub Actions will:
+1. Install Shopify CLI
+2. Deploy all theme files to your live Shopify theme
+3. Show deployment status in GitHub Actions tab
 
 ### Manual Deployment
-- You can also trigger deployment manually:
-  1. Go to **Actions** tab in your GitHub repo
-  2. Click **Deploy to Shopify** workflow
-  3. Click **Run workflow**
+You can also trigger deployment manually:
+1. Go to **Actions** tab in your GitHub repo
+2. Click **Deploy to Shopify** workflow
+3. Click **Run workflow**
 
 ## What Gets Deployed
 
-All files in the `godspeed-authentic/` directory:
-- ✅ `assets/godspeed-clean.css` (your main CSS file)
-- ✅ `layout/theme.liquid` 
-- ✅ `sections/header.liquid`
-- ✅ `snippets/card-product-pipeline.liquid`
-- ✅ All other theme files
+All theme files in the repository:
+- ✅ `assets/` - CSS, JS, images
+- ✅ `layout/` - Theme layouts
+- ✅ `sections/` - Theme sections
+- ✅ `snippets/` - Reusable components
+- ✅ `templates/` - Page templates
+- ✅ `config/` - Theme settings
+- ✅ `locales/` - Translations
 
-## Testing Your Deployment
+## Deployment Workflow Details
 
-The workflow will automatically:
-1. Deploy your files
-2. Run Playwright tests to check the live site
-3. Verify that your CSS changes appear
-4. Upload test results as artifacts
+The workflow uses:
+- **Shopify CLI** with `@shopify/theme` package
+- **Token Authentication** via `SHOPIFY_CLI_THEME_TOKEN` environment variable
+- **Direct deployment** to live theme with `--live --allow-live --force` flags
 
 ## Deployment Status
 
-You can check deployment status:
+Check deployment status:
 1. Go to **Actions** tab in GitHub
 2. Look for the latest **Deploy to Shopify** workflow run
-3. Green checkmark = successful deployment
-4. Red X = deployment failed (check logs for details)
-
-## File Change Detection
-
-The workflow only runs when files in `godspeed-authentic/` change:
-- Changes to CSS, Liquid, or any theme files will trigger deployment
-- Changes to root directory files (like README) won't trigger deployment
-
-## Environment Protection
-
-The workflow uses a `production` environment, which means:
-- You can add approval requirements before deployment
-- You can restrict who can deploy to production
-- Extra security for your live Shopify store
+3. ✅ Green checkmark = successful deployment
+4. ❌ Red X = deployment failed (check logs)
 
 ## Troubleshooting
 
-### CSS Not Appearing on Live Site
-- Check the deployment logs in GitHub Actions
-- Verify all secrets are configured correctly
-- Look for any error messages in the workflow run
+### If Deployment Fails
+1. **Check GitHub Secret**: Ensure `SHOPIFY_ACCESS_TOKEN` is set correctly
+2. **Check Token Permissions**: Token needs `write_themes` scope
+3. **Check Action Logs**: Look for specific error messages
 
-### Authentication Errors
-- Double-check your `SHOPIFY_STORE_URL` format (no https://)
-- Verify your `SHOPIFY_STORE_PASSWORD` is correct
-- Ensure your `SHOPIFY_THEME_ID` is just the number
+### Common Issues (All Fixed)
+- ~~Authentication failures~~ ✅ Fixed with correct token variable
+- ~~CLI installation issues~~ ✅ Fixed with proper npm install
+- ~~Interactive prompts blocking~~ ✅ Fixed with --force flag
 
-### Deployment Failed
-- Check the workflow logs in GitHub Actions
-- Look for specific error messages
-- Verify your theme files are valid
+## Current Status
 
-## Current Deployment Issue Solution
+**✅ DEPLOYMENT IS WORKING**
+- Last successful deployment confirmed
+- All authentication issues resolved
+- Workflow simplified and reliable
 
-This deployment workflow solves your current problem where:
-- ❌ CSS changes were committed to Git but not appearing on live site
-- ✅ Now CSS changes will automatically deploy to Shopify
-- ✅ You'll get confirmation that assets were deployed
-- ✅ Automated testing verifies the changes appear
+## Deployment Process
 
-## Next Steps
-
-1. **Configure the three GitHub secrets** (most important step)
-2. **Push a small test change** to verify deployment works
-3. **Check the Actions tab** to see your first deployment
-4. **Visit your live site** to confirm CSS changes appear
-
-Once configured, your deployment process becomes:
-1. Make changes to files in `godspeed-authentic/`
-2. Commit and push to main branch
+1. Make changes to theme files
+2. Commit and push to main branch:
+   ```bash
+   git add .
+   git commit -m "Your changes"
+   git push origin main
+   ```
 3. GitHub automatically deploys to Shopify
-4. Check your live site - changes should appear within 2-3 minutes
+4. Changes appear on live site within 2-3 minutes
+
+## Technical Details
+
+### Workflow File Location
+`.github/workflows/deploy.yml`
+
+### Key Configuration
+```yaml
+env:
+  SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_ACCESS_TOKEN }}
+  SHOPIFY_FLAG_STORE: t0uds3-a2.myshopify.com
+```
+
+### Deployment Command
+```bash
+shopify theme push --live --allow-live --force
+```
+
+---
+
+**Status**: ✅ Deployment pipeline is fully operational
+**Store**: t0uds3-a2.myshopify.com
+**Repository**: https://github.com/velijoze/godspeed-shopify-theme
