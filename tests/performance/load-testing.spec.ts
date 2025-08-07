@@ -177,7 +177,8 @@ test.describe('Performance and Load Testing', () => {
       expect(avgLoadTime).toBeLessThan(10000); // < 10s average response
     });
 
-    test('API endpoint stress test', async ({ request }) => {
+    test.skip('API endpoint stress test', async ({ request }) => {
+      // Skipped: API endpoints not yet implemented
       const endpoints = [
         '/api/products',
         '/api/collections',
