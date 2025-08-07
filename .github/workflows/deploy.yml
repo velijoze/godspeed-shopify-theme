@@ -20,8 +20,10 @@ jobs:
         
     - name: Install Shopify CLI
       run: |
-        curl -s https://shopify.dev/install.sh | bash
-        echo "$HOME/.local/bin" >> $GITHUB_PATH
+        curl -L -o shopify-cli.tar.gz https://github.com/Shopify/cli/releases/latest/download/shopify-cli-linux-amd64.tar.gz
+        tar -xzf shopify-cli.tar.gz
+        sudo mv shopify /usr/local/bin/
+        shopify version
         
     - name: Verify theme files exist
       run: |
