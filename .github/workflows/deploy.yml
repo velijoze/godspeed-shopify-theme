@@ -54,8 +54,8 @@ jobs:
         echo "📁 Deployed from: root directory"
         echo ""
         echo "Key files that should be deployed:"
-        echo "- assets/godspeed-clean.css ($(wc -l < assets/godspeed-clean.css) lines)"
-        echo "- layout/theme.liquid"
+        echo "- assets/godspeed-clean.css"
+        echo "- layout/theme.liquid"  
         echo "- sections/header.liquid"
         
   test-deployment:
