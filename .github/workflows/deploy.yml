@@ -43,14 +43,14 @@ jobs:
         
     - name: Verify CSS deployment
       run: |
-        echo "✅ Deployment completed"
-        echo "🏪 Store: t0uds3-a2.myshopify.com"
-        echo "🎨 Deploying to live theme"
-        echo "📁 Deployed from: root directory"
+        echo "Deployment completed"
+        echo "Store: t0uds3-a2.myshopify.com"
+        echo "Deploying to live theme"
+        echo "Deployed from: root directory"
         echo ""
         echo "Key files that should be deployed:"
         echo "- assets/godspeed-clean.css"
-        echo "- layout/theme.liquid"  
+        echo "- layout/theme.liquid"
         echo "- sections/header.liquid"
         
   test-deployment:
