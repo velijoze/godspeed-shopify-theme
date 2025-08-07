@@ -429,6 +429,16 @@
         "id": "enable_wishlist",
         "default": false,
         "label": "Enable wishlist"
+      },
+      {
+        "type": "header",
+        "content": "Homepage Settings"
+      },
+      {
+        "type": "collection",
+        "id": "featured_collection",
+        "label": "Featured collection",
+        "info": "Collection to display on homepage"
       }
     ]
   }
