@@ -441,5 +441,337 @@
         "info": "Collection to display on homepage"
       }
     ]
+  },
+  {
+    "name": "Social Proof Settings",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Social Proof Features"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_social_proof",
+        "default": true,
+        "label": "Enable social proof features"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_customer_count",
+        "default": true,
+        "label": "Show customer count"
+      },
+      {
+        "type": "text",
+        "id": "customer_count_number",
+        "default": "15000",
+        "label": "Customer count number"
+      },
+      {
+        "type": "text",
+        "id": "customer_count_label",
+        "default": "+ satisfied customers",
+        "label": "Customer count label"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_trust_badges",
+        "default": true,
+        "label": "Show trust badges"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_recent_purchases",
+        "default": false,
+        "label": "Show recent purchases"
+      },
+      {
+        "type": "range",
+        "id": "purchase_notification_frequency",
+        "min": 10,
+        "max": 60,
+        "step": 5,
+        "default": 20,
+        "label": "Purchase notification frequency (seconds)"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_stock_urgency",
+        "default": true,
+        "label": "Show stock urgency notifications"
+      },
+      {
+        "type": "range",
+        "id": "stock_urgency_threshold",
+        "min": 1,
+        "max": 20,
+        "step": 1,
+        "default": 10,
+        "label": "Stock urgency threshold"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_sales_popup",
+        "default": false,
+        "label": "Show sales popup notifications"
+      },
+      {
+        "type": "header",
+        "content": "Styling"
+      },
+      {
+        "type": "color",
+        "id": "social_proof_accent_color",
+        "default": "#3B82F6",
+        "label": "Social proof accent color"
+      },
+      {
+        "type": "color",
+        "id": "validation_error_color",
+        "default": "#EF4444",
+        "label": "Validation error color"
+      },
+      {
+        "type": "color",
+        "id": "validation_success_color",
+        "default": "#10B981",
+        "label": "Validation success color"
+      }
+    ]
+  },
+  {
+    "name": "Theme Features",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Feature Toggles"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_exit_intent",
+        "default": true,
+        "label": "Enable exit intent popups"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_form_validation",
+        "default": true,
+        "label": "Enable form validation"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_critical_css",
+        "default": true,
+        "label": "Enable critical CSS loading"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_resource_preloading",
+        "default": true,
+        "label": "Enable resource preloading"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_design_system",
+        "default": true,
+        "label": "Enable design system"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_aria_states",
+        "default": true,
+        "label": "Enable ARIA states"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_standardized_animations",
+        "default": true,
+        "label": "Enable standardized animations"
+      },
+      {
+        "type": "checkbox",
+        "id": "animations_reveal_on_scroll",
+        "default": true,
+        "label": "Enable scroll-triggered animations"
+      },
+      {
+        "type": "select",
+        "id": "animations_hover_elements",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "basic",
+            "label": "Basic"
+          },
+          {
+            "value": "advanced",
+            "label": "Advanced"
+          }
+        ],
+        "default": "basic",
+        "label": "Hover animation level"
+      }
+    ]
+  },
+  {
+    "name": "Header & Navigation",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image"
+      },
+      {
+        "type": "range",
+        "id": "logo_width",
+        "min": 50,
+        "max": 250,
+        "step": 10,
+        "default": 100,
+        "unit": "px",
+        "label": "Logo width"
+      },
+      {
+        "type": "header",
+        "content": "Social Media"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube_link",
+        "label": "YouTube"
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok_link",
+        "label": "TikTok"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter_link",
+        "label": "Twitter"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest_link",
+        "label": "Pinterest"
+      },
+      {
+        "type": "text",
+        "id": "social_snapchat_link",
+        "label": "Snapchat"
+      },
+      {
+        "type": "text",
+        "id": "social_tumblr_link",
+        "label": "Tumblr"
+      },
+      {
+        "type": "text",
+        "id": "social_vimeo_link",
+        "label": "Vimeo"
+      }
+    ]
+  },
+  {
+    "name": "Cart & Checkout",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Cart Type"
+      },
+      {
+        "type": "select",
+        "id": "cart_type",
+        "options": [
+          {
+            "value": "drawer",
+            "label": "Drawer"
+          },
+          {
+            "value": "page",
+            "label": "Page"
+          }
+        ],
+        "default": "drawer",
+        "label": "Cart type"
+      },
+      {
+        "type": "header",
+        "content": "Predictive Search"
+      },
+      {
+        "type": "checkbox",
+        "id": "predictive_search_enabled",
+        "default": true,
+        "label": "Enable predictive search"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Fonts"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_header_font",
+        "default": "assistant_n4",
+        "label": "Heading font"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_body_font",
+        "default": "assistant_n4",
+        "label": "Body font"
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Color Schemes"
+      },
+      {
+        "type": "color_scheme",
+        "id": "color_schemes",
+        "label": "Color schemes"
+      }
+    ]
+  },
+  {
+    "name": "Accessibility",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Accessibility Features"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_skip_to_content",
+        "default": true,
+        "label": "Enable skip to content link"
+      }
+    ]
   }
 ]
