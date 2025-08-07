@@ -1,4 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
+/// <reference types="node" />
 import * as dotenv from 'dotenv';
 
 // Load environment variables
@@ -72,6 +73,9 @@ export default defineConfig({
     
     // User agent
     userAgent: 'Mozilla/5.0 (compatible; GodspeedTestSuite/1.0; +https://godspeed.ch)',
+    
+    // Custom test data
+    storageState: process.env.CI ? undefined : 'playwright-results/auth.json',
   },
 
   // Test projects configuration
@@ -221,26 +225,10 @@ export default defineConfig({
   globalTeardown: require.resolve('./tests/utils/global-teardown'),
 
   // Output directory
-  outputDir: 'test-results/',
+  outputDir: 'playwright-results/',
   
-  // Test artifacts
-  use: {
-    ...this.use,
-    
-    // Custom test data
-    storageState: process.env.CI ? undefined : 'test-results/auth.json',
-  },
-
   // Web server configuration for local development
-  webServer: process.env.CI ? undefined : {
-    command: 'shopify theme dev --store=t0uds3-a2.myshopify.com',
-    port: 9292,
-    timeout: 120 * 1000,
-    reuseExistingServer: !process.env.CI,
-    env: {
-      NODE_ENV: 'test'
-    }
-  },
+  webServer: undefined, // Disabled to prevent timeout issues
 
   // Metadata for test reporting
   metadata: {

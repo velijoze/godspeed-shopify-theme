@@ -403,3 +403,16 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
     margin-left: 0;
   }
 }
+
+/* --- Mobile Safari Drawer Fixes --- */
+cart-drawer {
+  overscroll-behavior: contain;
+  -webkit-transform: translateZ(0); /* new stacking context for Safari */
+}
+
+@supports (-webkit-touch-callout: none) {
+  /* Target WebKit-based browsers (Safari iOS/Desktop) */
+  cart-drawer {
+    height: 100vh; /* Ensure drawer never exceeds viewport */
+  }
+}

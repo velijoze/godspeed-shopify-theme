@@ -87,3 +87,11 @@
 .mega-menu__list--condensed .mega-menu__link {
   font-weight: normal;
 }
+
+/* --- Firefox Column Width Fix --- */
+@-moz-document url-prefix() {
+  .mega-menu__column,
+  .mega-menu__list > li {
+    min-width: 200px;
+  }
+}

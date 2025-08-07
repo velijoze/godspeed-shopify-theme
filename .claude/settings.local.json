@@ -47,7 +47,18 @@
       "Bash(git revert:*)",
       "Bash(PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 node debug-page.js)",
       "Bash(PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 node visual-qa-test.js)",
-      "Bash(PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 node test-new-layout.js)"
+      "Bash(PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 node test-new-layout.js)",
+      "Bash(for page in test-ride size-guide compare financing-calculator range-calculator wishlist service-booking guides warranty faq contact locations services sustainability)",
+      "Bash(do echo -n \"$page: \")",
+      "Bash(done)",
+      "Bash(for collection in city-bikes mountain-bikes road-bikes gravel-bikes bicycles accessories)",
+      "Bash(do echo -n \"$collection: \")",
+      "Bash(yamllint:*)",
+      "Bash(bash:*)",
+      "Bash(gh run list:*)",
+      "Bash(tar:*)",
+      "WebFetch(domain:shopify.dev)",
+      "Bash(shopify:*)"
     ],
     "deny": []
   }

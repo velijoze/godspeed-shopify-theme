@@ -5,12 +5,17 @@ import path from 'path';
 async function globalSetup(config: FullConfig) {
   console.log('🚀 Starting Comprehensive Test Suite Setup...');
   
+  // Safety check for projects
+  if (!config.projects || config.projects.length === 0) {
+    throw new Error('No projects configured in Playwright config');
+  }
+  
   const { baseURL } = config.projects[0].use;
   const browser = await chromium.launch();
   
   try {
     // Create test results directory
-    const resultsDir = path.join(process.cwd(), 'test-results');
+    const resultsDir = path.join(process.cwd(), 'playwright-results');
     if (!fs.existsSync(resultsDir)) {
       fs.mkdirSync(resultsDir, { recursive: true });
     }
@@ -87,7 +92,7 @@ async function globalSetup(config: FullConfig) {
         await page.waitForURL('**/account', { timeout: 10000 });
         
         // Save authentication state
-        await page.context().storageState({ path: 'test-results/auth.json' });
+        await page.context().storageState({ path: 'playwright-results/auth.json' });
         console.log('✅ Test user authentication saved');
       } catch (error) {
         console.warn('⚠️  Test user authentication failed:', error.message);
@@ -101,8 +106,8 @@ async function globalSetup(config: FullConfig) {
       timestamp: new Date().toISOString(),
       baseURL: baseURL,
       environment: process.env.NODE_ENV || 'test',
-      userAgent: page.evaluate(() => navigator.userAgent),
-      products: [],
+      userAgent: await page.evaluate(() => navigator.userAgent),
+      products: [] as Array<{title: string, price: string, url: string}>,
       collections: []
     };
     

@@ -1,3 +1,5 @@
+<!-- TEST DEPLOYMENT - Added to test deployment workflow - Remove after testing -->
+
 # 🚴‍♂️ Godspeed E-Bike Store - Shopify Theme
 
 > A comprehensive, production-ready Shopify theme for e-bike retailers with advanced features, complete GUI administration, and extensive testing framework.
