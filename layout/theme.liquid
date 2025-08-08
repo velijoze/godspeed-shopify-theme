@@ -32,6 +32,7 @@
       {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
     </title>
     <meta name="x-deploy-id" content="59dcad0" />
+    <script>console.log('DEPLOY 59dcad0');</script>
 
     {% if page_description %}
       <meta name="description" content="{{ page_description | escape }}">
@@ -401,6 +402,7 @@
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
+    {%- if request.page_type == 'index' -%}<!-- INDEX OK 59dcad0 -->{%- endif -%}
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
