@@ -1,179 +1,5 @@
 {
   "sections": {
-    "hero_pipeline": {
-      "type": "hero-pipeline",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "{{ 'homepage.hero.heading' | t }}",
-            "heading_size": "h0"
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "<p>{{ 'homepage.hero.description' | t }}</p>",
-            "text_style": "subtitle"
-          }
-        },
-        "button": {
-          "type": "button",
-          "settings": {
-            "button_label": "{{ 'homepage.hero.button_text' | t }}",
-            "button_link": "/collections/e-bikes",
-            "button_style": "primary"
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "text",
-        "button"
-      ],
-      "settings": {
-        "image": "shopify://shop_images/maxresdefault.jpg",
-        "video": "",
-        "desktop_height": 700,
-        "mobile_height": 500,
-        "text_alignment": "center",
-        "overlay_opacity": 40,
-        "enable_parallax": true,
-        "color_scheme": "background-1"
-      }
-    },
-    "countdown_timer": {
-      "type": "countdown-timer",
-      "settings": {
-        "heading": "Limited Time Launch Offer",
-        "text": "<p>Get 20% off all e-bikes during our grand opening. Don't miss out!</p>",
-        "end_date": "2025-02-15 23:59",
-        "expired_message": "This offer has expired",
-        "button_label": "Shop Now",
-        "button_link": "/collections/e-bikes",
-        "color_scheme": "background-1"
-      }
-    },
-    "featured_collection": {
-      "type": "featured-collection",
-      "settings": {
-        "title": "Featured Products",
-        "heading_size": "h1",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "e-bikes",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "outline",
-        "enable_desktop_slider": false,
-        "color_scheme": "scheme-1",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "standard",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 44,
-        "padding_bottom": 36
-      }
-    },
-    "brand_carousel": {
-      "type": "brand-carousel",
-      "blocks": {
-        "cube": {
-          "type": "logo",
-          "settings": {}
-        },
-        "riese_muller": {
-          "type": "logo", 
-          "settings": {}
-        },
-        "tern": {
-          "type": "logo",
-          "settings": {}
-        },
-        "orbea": {
-          "type": "logo",
-          "settings": {}
-        },
-        "mondraker": {
-          "type": "logo",
-          "settings": {}
-        },
-        "brompton": {
-          "type": "logo",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "cube",
-        "riese_muller", 
-        "tern",
-        "orbea",
-        "mondraker",
-        "brompton"
-      ],
-      "settings": {
-        "heading": "Our Premium Brands"
-      }
-    },
-    "services_grid": {
-      "type": "services-grid",
-      "blocks": {
-        "financing": {
-          "type": "service",
-          "settings": {
-            "icon": "icon-price-tag.svg",
-            "title": "0% Financing",
-            "text": "<p>Up to 36 months interest-free financing. Fair terms without hidden costs.</p>",
-            "button_label": "Apply Now",
-            "button_link": "/pages/financing-calculator"
-          }
-        },
-        "test_ride": {
-          "type": "service", 
-          "settings": {
-            "icon": "icon-delivery.svg",
-            "title": "Free Test Ride",
-            "text": "<p>Test your dream e-bike for free at one of our 6 locations in Switzerland.</p>",
-            "button_label": "Book Now",
-            "button_link": "/pages/test-ride"
-          }
-        },
-        "workshop": {
-          "type": "service",
-          "settings": {
-            "icon": "icon-wrench.svg", 
-            "title": "Professional Service",
-            "text": "<p>Comprehensive maintenance and repair for all e-bikes and bicycles. Largest service center in Ticino.</p>",
-            "button_label": "Book Service",
-            "button_link": "/pages/service-booking"
-          }
-        }
-      },
-      "block_order": [
-        "financing",
-        "test_ride",
-        "workshop"
-      ],
-      "settings": {
-        "heading": "Our Services",
-        "heading_size": "h1",
-        "description": "<p>Professional support from consultation to maintenance - everything from one source.</p>",
-        "text_alignment": "center",
-        "card_text_alignment": "center",
-        "icon_size": 80,
-        "card_border_radius": 8,
-        "color_scheme": "background-2",
-        "padding_top": 60,
-        "padding_bottom": 60
-      }
-    },
     "newsletter": {
       "type": "newsletter",
       "blocks": {
@@ -185,7 +11,7 @@
           }
         },
         "paragraph": {
-          "type": "paragraph", 
+          "type": "paragraph",
           "settings": {
             "text": "<p>Get exclusive offers, e-bike news and helpful tips delivered directly to your inbox.</p>"
           }
@@ -197,7 +23,7 @@
       },
       "block_order": [
         "heading",
-        "paragraph", 
+        "paragraph",
         "email_form"
       ],
       "settings": {
@@ -206,15 +32,9 @@
         "padding_top": 40,
         "padding_bottom": 52
       }
-    },
-    
+    }
   },
   "order": [
-    "hero_pipeline",
-    "countdown_timer", 
-    "featured_collection",
-    "brand_carousel",
-    "services_grid",
     "newsletter"
   ]
-}
+} 
