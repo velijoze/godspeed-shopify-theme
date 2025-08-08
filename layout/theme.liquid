@@ -74,6 +74,9 @@
           
           loadScript('{{ 'pipeline-performance.js' | asset_url }}');
           loadScript('{{ 'search-form.js' | asset_url }}');
+          {%- if settings.predictive_search_enabled -%}
+          loadScript('{{ 'predictive-search.js' | asset_url }}');
+          {%- endif -%}
           loadScript('{{ 'pipeline-zoom.js' | asset_url }}');
           loadScript('{{ 'pipeline-animations.js' | asset_url }}');
           loadScript('{{ 'form-validation.js' | asset_url }}');
@@ -472,9 +475,7 @@
       };
     </script>
 
-    {%- if settings.predictive_search_enabled -%}
-      <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
-    {%- endif -%}
+    
 
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>

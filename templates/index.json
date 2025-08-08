@@ -1,5 +1,47 @@
 {
   "sections": {
+    "hero_pipeline": {
+      "type": "hero-pipeline",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "{{ 'homepage.hero.heading' | t }}",
+            "heading_size": "h0"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>{{ 'homepage.hero.description' | t }}</p>",
+            "text_style": "subtitle"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "button_label": "{{ 'homepage.hero.button_text' | t }}",
+            "button_link": "/collections/e-bikes",
+            "button_style": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text",
+        "button"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/maxresdefault.jpg",
+        "video": "",
+        "desktop_height": 700,
+        "mobile_height": 500,
+        "text_alignment": "center",
+        "overlay_opacity": 40,
+        "enable_parallax": true,
+        "color_scheme": "background-1"
+      }
+    },
     "newsletter": {
       "type": "newsletter",
       "blocks": {
@@ -35,6 +77,7 @@
     }
   },
   "order": [
+    "hero_pipeline",
     "newsletter"
   ]
 } 
