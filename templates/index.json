@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "hero_pipeline": {
@@ -61,12 +52,6 @@
         "button_label": "Shop Now",
         "button_link": "/collections/e-bikes",
         "color_scheme": "background-1"
-      }
-    },
-    "social_proof_customer_count": {
-      "type": "custom_liquid",
-      "settings": {
-        "custom_liquid": "{% render 'social-proof', type: 'customer-count' %}"
       }
     },
     "featured_collection": {
@@ -222,21 +207,14 @@
         "padding_bottom": 52
       }
     },
-    "social_proof_trust_badges": {
-      "type": "custom_liquid",
-      "settings": {
-        "custom_liquid": "{% render 'social-proof', type: 'trust-badges' %}"
-      }
-    }
+    
   },
   "order": [
     "hero_pipeline",
     "countdown_timer", 
-    "social_proof_customer_count",
     "featured_collection",
     "brand_carousel",
     "services_grid",
-    "newsletter",
-    "social_proof_trust_badges"
+    "newsletter"
   ]
 }
