@@ -1,0 +1,5 @@
+[33m686dc65[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m fix: add ALL missing settings and templates to resolve 404 errors - Added comprehensive social proof settings (enable_social_proof, show_customer_count, etc.) - Added theme feature toggles (enable_exit_intent, enable_form_validation, etc.) - Added header & navigation settings (logo, social media links) - Added cart & checkout settings (cart_type, predictive_search_enabled) - Added typography and color scheme settings - Added accessibility settings (enable_skip_to_content) - Created missing page.sale.json template for navigation link - Fixes all 404 errors by providing required theme configuration
+[33m8540e2c[m fix: add missing featured_collection setting to fix homepage 404 error
+[33m9a53756[m docs: recreate NEXT-SESSION-PROMPT.md without exposed tokens
+[33m8673a33[m docs: update deployment documentation with working solution and create next session prompt
+[33ma13903c[m FINAL FIX: Use correct Shopify CLI theme token authentication

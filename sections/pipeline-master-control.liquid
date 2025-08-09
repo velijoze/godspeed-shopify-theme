@@ -1,0 +1,62 @@
+{% comment %}
+  Custom – Pipeline Master Control
+  A settings display/control panel (frontend echo-only; real admin changes via theme editor).
+{% endcomment %}
+
+<section class="section-{{ section.id }}-padding pipeline-master-control" id="PipelineControl-{{ section.id }}">
+  <div class="page-width">
+    <div class="grid grid--1-col grid--2-col-desktop">
+      <div>
+        <h2 class="h2">Global Feature Toggles</h2>
+        <ul class="list-disc">
+          <li>Enhanced search: <strong>{{ section.settings.enable_enhanced_search }}</strong></li>
+          <li>Image zoom: <strong>{{ section.settings.enable_image_zoom }}</strong></li>
+          <li>Enhanced cart: <strong>{{ section.settings.enable_enhanced_cart }}</strong></li>
+          <li>Animations: <strong>{{ section.settings.enable_animations }}</strong></li>
+          <li>Lazy loading: <strong>{{ section.settings.enable_lazy_loading }}</strong></li>
+          <li>Prefetching: <strong>{{ section.settings.enable_prefetching }}</strong></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="h2">Search & Zoom</h2>
+        <p>Placeholder: {{ section.settings.search_placeholder }}</p>
+        <p>Zoom level (desktop/mobile): {{ section.settings.zoom_level }} / {{ section.settings.mobile_zoom_level }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom – Pipeline Master Control",
+  "settings": [
+    { "type": "checkbox", "id": "enable_all_pipeline", "label": "Enable all Pipeline features", "default": true },
+    { "type": "checkbox", "id": "enable_enhanced_search", "label": "Enhanced search", "default": true },
+    { "type": "text", "id": "search_placeholder", "label": "Search placeholder", "default": "Search our e-bikes..." },
+    { "type": "range", "id": "search_blur", "label": "Search blur", "min": 0, "max": 20, "step": 1, "default": 10 },
+    { "type": "color", "id": "search_button_color", "label": "Search button color", "default": "#2c2c2c" },
+    { "type": "checkbox", "id": "enable_image_zoom", "label": "Enable image zoom", "default": true },
+    { "type": "range", "id": "zoom_level", "label": "Zoom level", "min": 1, "max": 3, "step": 0.1, "default": 2 },
+    { "type": "range", "id": "mobile_zoom_level", "label": "Mobile zoom level", "min": 1, "max": 2, "step": 0.1, "default": 1.5 },
+    { "type": "checkbox", "id": "enable_enhanced_cart", "label": "Enhanced cart", "default": true },
+    { "type": "range", "id": "cart_width", "label": "Cart width", "unit": "px", "min": 320, "max": 600, "step": 10, "default": 420 },
+    { "type": "checkbox", "id": "cart_show_count_badge", "label": "Show cart count badge", "default": true },
+    { "type": "checkbox", "id": "enable_gallery_enhancements", "label": "Enable gallery enhancements", "default": true },
+    { "type": "range", "id": "gallery_border_radius", "label": "Gallery border radius", "unit": "px", "min": 0, "max": 24, "step": 2, "default": 12 },
+    { "type": "checkbox", "id": "enable_animations", "label": "Enable animations", "default": true },
+    { "type": "select", "id": "animation_speed", "label": "Animation speed", "options": [
+      { "value": "slow", "label": "Slow" },
+      { "value": "normal", "label": "Normal" },
+      { "value": "fast", "label": "Fast" }
+    ], "default": "normal" },
+    { "type": "checkbox", "id": "enable_lazy_loading", "label": "Enable lazy loading", "default": true },
+    { "type": "checkbox", "id": "enable_prefetching", "label": "Enable prefetching", "default": true },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Top padding", "default": 28 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Bottom padding", "default": 28 }
+  ],
+  "presets": [
+    { "name": "Custom – Pipeline Master Control" }
+  ]
+}
+{% endschema %}
+

@@ -1,0 +1,70 @@
+{% comment %}
+  Custom – Pipeline Main Product
+  Product detail layout wrapper aligning with Pipeline style.
+{% endcomment %}
+
+<section class="section-{{ section.id }}-padding pipeline-main-product" id="PipelineMainProduct-{{ section.id }}">
+  <div class="product page-width">
+    <div class="product__grid grid grid--1-col grid--2-col-tablet">
+      <div class="product__media">
+        {% render 'product-media-gallery', product: product, variant_images: variant_images %}
+      </div>
+      <div class="product__info-wrapper">
+        <product-info class="product__info">
+          {% if section.settings.show_breadcrumb %}
+            {% render 'pipeline-breadcrumbs' %}
+          {% endif %}
+
+          {% if section.settings.show_vendor and product.vendor %}
+            <div class="product__vendor">{{ product.vendor }}</div>
+          {% endif %}
+
+          <h1 class="product__title">{{ product.title }}</h1>
+          {% render 'price', product: product %}
+
+          {% if section.settings.show_payment_methods %}
+            {% render 'swiss-payment-methods' %}
+          {% endif %}
+
+          {% render 'product-variant-picker', product: product, block: nil, product_form_id: 'product-form-' | append: section.id %}
+
+          <product-form id="product-form-{{ section.id }}">
+            {% render 'buy-buttons', product: product, product_form_id: 'product-form-' | append: section.id, show_pickup_availability: true %}
+          </product-form>
+
+          {% if section.settings.enable_tabs %}
+            {% render 'product-info-tabs' %}
+          {% endif %}
+
+          {% if section.settings.enable_sticky_cart %}
+            {% render 'pipeline-sticky-cart' %}
+          {% endif %}
+        </product-info>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom – Pipeline Main Product",
+  "settings": [
+    { "type": "checkbox", "id": "show_breadcrumb", "default": true, "label": "Show breadcrumbs" },
+    { "type": "checkbox", "id": "show_vendor", "default": true, "label": "Show vendor" },
+    { "type": "checkbox", "id": "show_payment_methods", "default": true, "label": "Show payment methods" },
+    { "type": "checkbox", "id": "enable_tabs", "default": true, "label": "Enable product tabs" },
+    { "type": "checkbox", "id": "enable_sticky_cart", "default": true, "label": "Enable sticky cart" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Top padding", "default": 36 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Bottom padding", "default": 12 }
+  ],
+  "blocks": [],
+  "presets": [
+    { "name": "Custom – Pipeline Main Product" }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+.pipeline-main-product .product__vendor { margin-bottom: 0.5rem; font-size: 1.3rem; opacity: .8; }
+{% endstylesheet %}
+

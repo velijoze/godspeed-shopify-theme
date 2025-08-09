@@ -1,0 +1,29 @@
+{% comment %}
+  Custom – Pipeline Feature Identifier
+  Visual guide markers for custom sections (design-mode helpful hints only).
+{% endcomment %}
+
+<section class="section-{{ section.id }}-padding pipeline-feature-identifier">
+  <div class="page-width">
+    <h2 class="h2">Custom Feature Identifier</h2>
+    <p>This page highlights custom Pipeline components when in the theme editor.</p>
+    {% if request.design_mode %}
+      <div class="callout">Design mode: Custom components highlighted.</div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom – Pipeline Feature Identifier",
+  "settings": [
+    { "type": "checkbox", "id": "show_visual_guide", "label": "Show visual guide", "default": true },
+    { "type": "checkbox", "id": "show_test_buttons", "label": "Show test buttons", "default": true },
+    { "type": "checkbox", "id": "show_section_guide", "label": "Show section guide", "default": true },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Top padding", "default": 24 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Bottom padding", "default": 24 }
+  ],
+  "presets": [ { "name": "Custom – Pipeline Feature Identifier" } ]
+}
+{% endschema %}
+
