@@ -26,11 +26,7 @@
           }
         }
       },
-      "block_order": [
-        "heading",
-        "text",
-        "button"
-      ],
+      "block_order": ["heading", "text", "button"],
       "settings": {
         "image": "shopify://shop_images/maxresdefault.jpg",
         "video": "",
@@ -40,6 +36,34 @@
         "overlay_opacity": 40,
         "enable_parallax": true,
         "color_scheme": "background-1"
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Featured e-bikes",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "e-bikes",
+        "products_to_show": 4,
+        "columns_desktop": 3,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": false,
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "newsletter": {
@@ -63,11 +87,7 @@
           "settings": {}
         }
       },
-      "block_order": [
-        "heading",
-        "paragraph",
-        "email_form"
-      ],
+      "block_order": ["heading", "paragraph", "email_form"],
       "settings": {
         "color_scheme": "background-1",
         "full_width": true,
@@ -76,8 +96,5 @@
       }
     }
   },
-  "order": [
-    "hero_pipeline",
-    "newsletter"
-  ]
-} 
+  "order": ["hero_pipeline", "featured_collection", "newsletter"]
+}
