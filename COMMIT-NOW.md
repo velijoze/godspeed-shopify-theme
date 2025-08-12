@@ -8,7 +8,7 @@
 ## IMMEDIATE ACTION REQUIRED:
 ```bash
 git add .
-git commit -m "test: add deployment test comment and fix workflows"
+git commit -m "feat(theme): add missing sections/snippet; tests: add comprehensive Playwright suites"
 git push origin main
 ```
 

@@ -1,5 +1,30 @@
 # 🚴 Comprehensive Bicycle Menu Setup Guide
 
+## ✅ Finalized Core Collections (Theme-Aligned)
+
+Set up these collections and handles (use exact handles). Assign the suggested templates for best visuals.
+
+- E‑Bikes (handle: `e-bikes`) → template: `collection.e-bikes`
+  - Subcollections: `e-mountain-bikes`, `e-road-bikes`, `e-gravel-bikes`, `e-city-commuter`, `e-cargo-bikes`, `e-folding-bikes`, `e-touring-bikes`
+  - Template: default `collection` for subs (or create dedicated variants later)
+
+- Bicycles (handle: `bicycles`) → template: `collection.bicycles`
+  - Subcollections: `mountain-bikes` (template `collection.mountain-bikes`), `road-bikes` (template `collection.road-bikes`), `gravel-bikes` (template `collection.gravel-bikes`), `city-bikes` (template `collection.city-bikes`), `folding-bikes` (default template)
+
+- Accessories (handle: `accessories`) → template: `collection.accessories`
+  - Subcollections (default template): `helmets-safety`, `batteries-chargers`, `locks-security`, `bags-panniers`, `lights-visibility`, `maintenance-tools`, `clothing-gear`
+
+- Bikes (aggregator) (handle: `bikes`) → template: `collection` (or reuse `collection.bicycles`)
+  - Populate via tag "bike" on all bike products or curate manually
+
+- Special Collections (automated where possible)
+  - `new-arrivals` (products created in last 30 days → tag: new)
+  - `sale-items` (compare_at_price > price or tag: sale)
+  - `in-stock` (inventory > 0)
+  - `low-stock` (inventory <= 3 and > 0)
+  - `swiss-made` (tag: swiss-made or Vendor condition)
+  - `best-sellers` (tag: bestseller via sales velocity or manual)
+
 ## 📋 **SHOPIFY SETUP CHECKLIST**
 
 ### **Phase 1: Create Collections (Required)**

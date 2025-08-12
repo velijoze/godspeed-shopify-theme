@@ -1,0 +1,49 @@
+{% comment %}
+  Custom – Latest News
+  Shows recent articles from a chosen blog.
+{% endcomment %}
+
+<section class="section-{{ section.id }}-padding latest-news">
+  <div class="page-width">
+    {% if section.settings.heading != blank %}
+      <h2 class="h2">{{ section.settings.heading }}</h2>
+    {% endif %}
+    {% assign the_blog = blogs[section.settings.blog] %}
+    {% if the_blog and the_blog.articles_count > 0 %}
+      <div class="grid grid--1-col grid--3-col-desktop">
+        {% for article in the_blog.articles limit: section.settings.limit %}
+          <article class="card">
+            <a href="{{ article.url }}" class="full-unstyled-link">
+              {% if article.image %}
+                <img src="{{ article.image | image_url: width: 720 }}" alt="{{ article.image.alt | escape }}" loading="lazy" class="motion-reduce" />
+              {% endif %}
+              <h3 class="h4">{{ article.title }}</h3>
+              {% if article.excerpt != blank %}
+                <p>{{ article.excerpt | strip_html | truncate: 140 }}</p>
+              {% else %}
+                <p>{{ article.content | strip_html | truncate: 140 }}</p>
+              {% endif %}
+            </a>
+          </article>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p>{{ 'blogs.general.no_articles' | t | default: 'No articles yet.' }}</p>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom – Latest News",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Latest from the Blog" },
+    { "type": "blog", "id": "blog", "label": "Blog", "default": "journal" },
+    { "type": "range", "id": "limit", "min": 3, "max": 12, "step": 1, "label": "Number of articles", "default": 6 },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Padding top", "default": 36 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Padding bottom", "default": 36 }
+  ]
+}
+{% endschema %}
+
+

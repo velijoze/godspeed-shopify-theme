@@ -587,10 +587,9 @@ function resetComparison() {
 }
 
 function initializeSizeCalculator() {
-  const calculateBtn = document.querySelector('.calculate-btn');
-  if (calculateBtn) {
-    calculateBtn.addEventListener('click', calculateSize);
-  }
+  document.querySelectorAll('.calculate-btn').forEach(btn => {
+    btn.addEventListener('click', calculateSize);
+  });
 }
 
 function calculateSize() {
@@ -610,18 +609,17 @@ function calculateSize() {
   const inseam = parseInt(inseamInput.value);
   const bikeType = bikeTypeSelect.value;
   
+  const S = (window.__sizeCalcStrings || {});
   if (!height || !inseam) {
-    alert('Bitte geben Sie Körpergröße und Schrittlänge ein.');
+    alert(S.validation_missing || 'Please enter height and inseam.');
     return;
   }
-  
   if (height < 140 || height > 220) {
-    alert('Bitte geben Sie eine realistische Körpergröße zwischen 140 und 220 cm ein.');
+    alert(S.validation_height || 'Enter a realistic height between 140 and 220 cm.');
     return;
   }
-  
   if (inseam < 60 || inseam > 110) {
-    alert('Bitte geben Sie eine realistische Schrittlänge zwischen 60 und 110 cm ein.');
+    alert(S.validation_inseam || 'Enter a realistic inseam between 60 and 110 cm.');
     return;
   }
   
@@ -631,7 +629,7 @@ function calculateSize() {
   if (sizeResult && sizeAdvice && resultDiv) {
     sizeResult.textContent = frameSize;
     sizeAdvice.textContent = advice;
-    resultDiv.classList.add('show');
+    resultDiv.hidden = false;
     
     // Smooth scroll to result
     resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -654,22 +652,22 @@ function calculateFrameSize(height, bikeType) {
 }
 
 function generateAdvice(height, inseam, bikeType) {
-  let advice = 'Diese Empfehlung basiert auf Standardwerten. ';
+  const S = (window.__sizeCalcStrings || {});
+  let advice = (S.result_advice_prefix || 'This recommendation is a guideline. ') ;
   
   // Calculate inseam to height ratio
   const ratio = inseam / height;
   
   if (ratio < 0.43) {
-    advice += 'Sie haben relativ kurze Beine - eine niedrigere Rahmengröße könnte komfortabler sein. ';
+    advice += (S.leg_short || 'You have relatively short legs — a smaller frame may be more comfortable. ') ;
   } else if (ratio > 0.47) {
-    advice += 'Sie haben relativ lange Beine - eine höhere Rahmengröße könnte geeignet sein. ';
+    advice += (S.leg_long || 'You have relatively long legs — a larger frame may be suitable. ') ;
   }
   
   if (bikeType === 'cargo') {
-    advice += 'Cargo-Bikes haben spezielle Geometrien. ';
+    advice += (S.cargo_note || 'Cargo bikes have special geometries. ');
   }
-  
-  advice += 'Für die optimale Passform empfehlen wir eine persönliche Beratung und Probefahrt in unserem Geschäft.';
+  advice += (S.consultation || 'For the best fit, we recommend an in‑store consultation and test ride.');
   
   return advice;
 }

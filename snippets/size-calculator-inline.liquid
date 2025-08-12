@@ -1,0 +1,32 @@
+<div data-size-calculator-modal>
+  <div class="grid" style="gap: .75rem; align-items: end; grid-template-columns: repeat(2,minmax(0,1fr));">
+    <div>
+      <label for="height" class="field__label">{{ 'size_calculator.height_label' | t }}</label>
+      <input id="height" type="number" inputmode="numeric" class="field__input" placeholder="170" min="120" max="230" />
+    </div>
+    <div>
+      <label for="inseam" class="field__label">{{ 'size_calculator.inseam_label' | t }}</label>
+      <input id="inseam" type="number" inputmode="numeric" class="field__input" placeholder="80" min="50" max="120" />
+    </div>
+    <div>
+      <label for="bike-type" class="field__label">{{ 'size_calculator.type_label' | t }}</label>
+      <select id="bike-type" class="select">
+        <option value="city">{{ 'size_calculator.type.city' | t }}</option>
+        <option value="trekking">{{ 'size_calculator.type.trekking' | t }}</option>
+        <option value="mountain">{{ 'size_calculator.type.mountain' | t }}</option>
+        <option value="cargo">{{ 'size_calculator.type.cargo' | t }}</option>
+      </select>
+    </div>
+    <div>
+      <button type="button" class="button button--primary calculate-btn">{{ 'size_calculator.btn_calculate' | t }}</button>
+    </div>
+  </div>
+  <div id="result" class="card" style="margin-top:1rem; padding:1rem;" hidden>
+    <h4 class="h5">{{ 'size_calculator.result.title' | t }}</h4>
+    <p id="size-result"></p>
+    <p id="size-advice"></p>
+  </div>
+  <script>window.__sizeCalcStrings = {{ 'size_calculator.strings' | t | json }};</script>
+</div>
+
+

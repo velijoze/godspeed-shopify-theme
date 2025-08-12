@@ -654,4 +654,25 @@
       "button_text": "Scopri ora"
     }
   }
+  ,
+  "size_calculator": {
+    "heading": "Calcolatore taglia bici",
+    "height_label": "Altezza (cm)",
+    "inseam_label": "Cavallo (cm)",
+    "type_label": "Tipo di bici",
+    "type": { "city": "E‑bike urbana", "trekking": "E‑bike trekking", "mountain": "E‑MTB", "cargo": "E‑bike cargo" },
+    "btn_calculate": "Calcola taglia",
+    "result": { "title": "Taglia telaio consigliata" },
+    "strings": {
+      "validation_missing": "Inserisci altezza e cavallo.",
+      "validation_height": "Inserisci un'altezza realistica tra 140 e 220 cm.",
+      "validation_inseam": "Inserisci un cavallo realistico tra 60 e 110 cm.",
+      "result_advice_prefix": "Questa raccomandazione è indicativa.",
+      "cargo_note": "Le cargo bike hanno geometrie particolari.",
+      "leg_short": "Gambe relativamente corte — una taglia più piccola può essere più confortevole.",
+      "leg_long": "Gambe relativamente lunghe — una taglia più grande può essere adatta.",
+      "consultation": "Per la miglior vestibilità consigliamo consulenza in negozio e test ride."
+    }
+  },
+  "size_guide": { "title": "Guida alle taglie", "open_button": "Vedi guida alle taglie" }
 }

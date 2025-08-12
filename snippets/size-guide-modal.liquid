@@ -1,0 +1,27 @@
+<div id="size-guide-modal" hidden role="dialog" aria-modal="true" class="modal">
+  <div class="modal__overlay" data-close></div>
+  <div class="modal__content" role="document">
+    <button type="button" class="modal__close" data-close aria-label="{{ 'general.close' | t }}">×</button>
+    <h3 class="h3">{{ 'size_guide.title' | t }}</h3>
+    {% render 'size-calculator-inline' %}
+  </div>
+</div>
+<style>
+  .modal[hidden] { display: none; }
+  .modal__overlay { position: fixed; inset: 0; background: rgba(0,0,0,.5); }
+  .modal__content { position: fixed; inset: 10% auto auto 50%; transform: translateX(-50%); background: #fff; max-width: 720px; width: calc(100% - 2rem); padding: 1rem; border-radius: 8px; }
+  .modal__close { position: absolute; top: .5rem; right: .5rem; background: transparent; border: 0; font-size: 1.5rem; cursor: pointer; }
+</style>
+<script>
+  window.openSizeGuide = function () {
+    document.getElementById('size-guide-modal')?.removeAttribute('hidden');
+  };
+  document.addEventListener('click', function(e) {
+    const t = e.target;
+    if (t && (t.matches('[data-close]') || t.closest('[data-close]'))) {
+      document.getElementById('size-guide-modal')?.setAttribute('hidden','');
+    }
+  });
+</script>
+
+

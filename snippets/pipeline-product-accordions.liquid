@@ -161,8 +161,9 @@
       </summary>
       <div class="accordion__content">
         <button class="size-guide-button" data-open-size-guide>
-          📏 View Size Chart
+          📏 {{ 'size_guide.open_button' | t | default: 'View Size Chart' }}
         </button>
+        {% render 'size-guide-modal' %}
       </div>
     </details>
   {%- endif -%}

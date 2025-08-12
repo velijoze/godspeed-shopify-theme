@@ -930,6 +930,26 @@
     "view_all_mountain": "View All Mountain", 
     "view_all_cargo": "View All Cargo"
   },
+  "size_calculator": {
+    "heading": "Bike size calculator",
+    "height_label": "Your height (cm)",
+    "inseam_label": "Inseam (cm)",
+    "type_label": "Bike type",
+    "type": { "city": "City e‑bike", "trekking": "Trekking e‑bike", "mountain": "E‑MTB", "cargo": "Cargo e‑bike" },
+    "btn_calculate": "Calculate size",
+    "result": { "title": "Recommended frame size" },
+    "strings": {
+      "validation_missing": "Please enter height and inseam.",
+      "validation_height": "Enter a realistic height between 140 and 220 cm.",
+      "validation_inseam": "Enter a realistic inseam between 60 and 110 cm.",
+      "result_advice_prefix": "This recommendation is a guideline.",
+      "cargo_note": "Cargo bikes have special geometries.",
+      "leg_short": "You have relatively short legs — a smaller frame may be more comfortable.",
+      "leg_long": "You have relatively long legs — a larger frame may be suitable.",
+      "consultation": "For the best fit, we recommend an in‑store consultation and test ride."
+    }
+  },
+  "size_guide": { "title": "Size guide", "open_button": "View Size Chart" },
   "homepage": {
     "hero": {
       "heading": "GODSPEED: Your destination for E-Bikes and affordable bikes online in Switzerland",

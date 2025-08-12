@@ -172,7 +172,7 @@ You can teach the AI through the Shopify admin:
 
 ### Architecture Overview
 
-The bike comparison tool uses a sophisticated multi-layer system:
+The bike comparison tool uses a sophisticated multi-layer system and is validated via Playwright suites (structure, labels, visual, a11y). Run `npx playwright test` to verify.
 
 ```
 Customer Input → Data Processing → AI Analysis → Results Display

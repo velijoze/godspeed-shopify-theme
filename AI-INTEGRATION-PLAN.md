@@ -591,10 +591,10 @@ class AIPerformanceMonitor {
 
 ## 🔗 **NEXT STEPS**
 
-1. **API Setup**: Provide your Claude, OpenAI, and Gemini API credentials
-2. **Server Configuration**: Set up hosting for AI endpoints (Vercel/Netlify recommended)
-3. **Testing Environment**: Create staging environment for AI feature testing
-4. **Content Calendar**: Define blog publishing schedule and content themes
-5. **Training Data**: Compile additional Swiss e-bike knowledge for AI training
+1. **Collections & Navigation**: Create finalized core collections/handles (see Bicycle Menu Guide) and wire main menu
+2. **Customizer Labeling**: Prefix custom setting groups/sections with “Custom – …” for clarity (tests enforce)
+3. **Testing**: Run `npx playwright test` to validate structure, customizer labels, a11y, security, and create visual baselines
+4. **API Setup**: Provide Claude/OpenAI/Gemini API credentials when ready for server-side endpoints
+5. **Content Calendar**: Define blog schedule and enable AI content flows
 
 **Ready to transform your world-class e-bike store into an AI-powered industry leader!** 🚀

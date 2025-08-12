@@ -1,0 +1,20 @@
+{
+  "name": "news-aggregator",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --env-file=.env ./src/index.js",
+    "run": "node --env-file=.env ./src/index.js",
+    "build": "",
+    "fetch": "node --env-file=.env ./src/index.js fetch",
+    "publish": "node --env-file=.env ./src/index.js publish"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2",
+    "rss-parser": "^3.13.0",
+    "openai": "^4.55.0"
+  }
+}
+
+

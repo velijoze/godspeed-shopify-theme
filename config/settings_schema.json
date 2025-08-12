@@ -8,7 +8,7 @@
     "theme_support_url": ""
   },
   {
-    "name": "Collection Page Settings",
+    "name": "Custom – Collection Page Settings",
     "settings": [
       {
         "type": "header",
@@ -155,7 +155,7 @@
     ]
   },
   {
-    "name": "Filter Configuration",
+    "name": "Custom – Filter Configuration",
     "settings": [
       {
         "type": "header",
@@ -228,7 +228,7 @@
     ]
   },
   {
-    "name": "Toolbar Settings",
+    "name": "Custom – Toolbar Settings",
     "settings": [
       {
         "type": "header",
@@ -301,7 +301,7 @@
     ]
   },
   {
-    "name": "Product Card Styling",
+    "name": "Custom – Product Card Styling",
     "settings": [
       {
         "type": "header",
@@ -384,7 +384,7 @@
     ]
   },
   {
-    "name": "Performance & UX",
+    "name": "Custom – Performance & UX",
     "settings": [
       {
         "type": "header",
@@ -443,7 +443,7 @@
     ]
   },
   {
-    "name": "Social Proof Settings",
+    "name": "Custom – Social Proof Settings",
     "settings": [
       {
         "type": "header",
@@ -540,7 +540,7 @@
     ]
   },
   {
-    "name": "Theme Features",
+    "name": "Custom – Theme Features",
     "settings": [
       {
         "type": "header",

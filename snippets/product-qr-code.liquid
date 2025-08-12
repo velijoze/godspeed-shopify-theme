@@ -1,0 +1,18 @@
+{% comment %}
+  Custom – Product QR Code
+  Renders a QR code that opens the current product URL when scanned.
+{% endcomment %}
+
+<div class="product-qr-code" style="display:flex;align-items:center;gap:1rem">
+  <img
+    src="https://api.qrserver.com/v1/create-qr-code/?size={{ size | default: 160 }}x{{ size | default: 160 }}&data={{ request.origin | append: product.url | url_encode }}"
+    alt="QR code to {{ product.title | escape }}"
+    width="{{ size | default: 160 }}"
+    height="{{ size | default: 160 }}"
+    loading="lazy"
+  />
+  {% if caption != blank %}
+    <div class="qr-caption">{{ caption }}</div>
+  {% endif %}
+</div>
+

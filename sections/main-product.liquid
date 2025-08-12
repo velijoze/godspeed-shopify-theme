@@ -461,6 +461,11 @@
                   render 'share-button', block: block, share_link: share_url
                 %}
 
+              {%- when 'product_qr' -%}
+                <div class="product__qr" {{ block.shopify_attributes }}>
+                  {% render 'product-qr-code', product: product, size: block.settings.qr_size, caption: block.settings.qr_caption %}
+                </div>
+
               {%- when 'variant_picker' -%}
                 {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
               {%- when 'buy_buttons' -%}
@@ -939,6 +944,15 @@
           "type": "paragraph",
           "content": "t:sections.main-product.blocks.share.settings.title_info.content"
         }
+      ]
+    },
+    {
+      "type": "product_qr",
+      "name": "Custom – Product QR Code",
+      "limit": 1,
+      "settings": [
+        { "type": "range", "id": "qr_size", "min": 80, "max": 360, "step": 20, "label": "QR size (px)", "default": 160 },
+        { "type": "text", "id": "qr_caption", "label": "Caption", "default": "Scan to view online" }
       ]
     },
     {

@@ -248,6 +248,12 @@ npm run test:headed        # Visual browser testing
 npm run test:report        # View HTML reports
 ```
 
+#### Playwright (Theme integrity & visual baselines)
+```bash
+npx playwright test
+```
+Validates structure, customizer labels (Custom – …), a11y, security, and creates visual baselines in `tests/screenshots/`.
+
 ## 📊 Performance
 
 ### Core Web Vitals Compliance

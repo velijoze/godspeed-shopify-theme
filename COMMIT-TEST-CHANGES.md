@@ -12,14 +12,7 @@
 git add .
 
 # Commit with descriptive message
-git commit -m "fix: remove password requirements from deployment workflows
-
-- Removed SHOPIFY_STORE_PASSWORD from deployment workflow
-- Removed SHOPIFY_STORE_PASSWORD from test workflow
-- Added test comment to README.md for deployment testing
-- Updated documentation to reflect fixes
-
-This should resolve deployment failures caused by missing secrets."
+git commit -m "feat(theme): add missing sections/snippet; tests: add comprehensive Playwright suites"
 
 # Push to trigger deployment
 git push origin main

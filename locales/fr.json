@@ -676,4 +676,25 @@
       "categories": "Casques, Vêtements, Outils, Éclairage, Antivols, Sacoches"
     }
   }
+  ,
+  "size_calculator": {
+    "heading": "Calculateur de taille de vélo",
+    "height_label": "Votre taille (cm)",
+    "inseam_label": "Entrejambe (cm)",
+    "type_label": "Type de vélo",
+    "type": { "city": "Vélo électrique urbain", "trekking": "Vélo électrique de trekking", "mountain": "VTTAE", "cargo": "Vélo cargo électrique" },
+    "btn_calculate": "Calculer la taille",
+    "result": { "title": "Taille de cadre recommandée" },
+    "strings": {
+      "validation_missing": "Veuillez saisir taille et entrejambe.",
+      "validation_height": "Saisissez une taille réaliste entre 140 et 220 cm.",
+      "validation_inseam": "Saisissez un entrejambe réaliste entre 60 et 110 cm.",
+      "result_advice_prefix": "Cette recommandation est un repère.",
+      "cargo_note": "Les vélos cargo ont des géométries particulières.",
+      "leg_short": "Vous avez des jambes relativement courtes — un cadre plus petit peut être plus confortable.",
+      "leg_long": "Vous avez des jambes relativement longues — un cadre plus grand peut convenir.",
+      "consultation": "Pour un ajustement optimal, nous recommandons un conseil en magasin et un essai."
+    }
+  },
+  "size_guide": { "title": "Guide des tailles", "open_button": "Voir le guide des tailles" }
 }

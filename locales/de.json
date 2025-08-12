@@ -635,6 +635,26 @@
     "view_all_mountain": "Alle Mountain E-Bikes",
     "view_all_cargo": "Alle Cargo E-Bikes"
   },
+  "size_calculator": {
+    "heading": "Rahmengrößen-Rechner",
+    "height_label": "Körpergröße (cm)",
+    "inseam_label": "Schrittlänge (cm)",
+    "type_label": "Bike-Typ",
+    "type": { "city": "City E‑Bike", "trekking": "Trekking E‑Bike", "mountain": "E‑MTB", "cargo": "Cargo E‑Bike" },
+    "btn_calculate": "Größe berechnen",
+    "result": { "title": "Empfohlene Rahmengröße" },
+    "strings": {
+      "validation_missing": "Bitte Körpergröße und Schrittlänge eingeben.",
+      "validation_height": "Bitte eine realistische Größe zwischen 140 und 220 cm eingeben.",
+      "validation_inseam": "Bitte eine realistische Schrittlänge zwischen 60 und 110 cm eingeben.",
+      "result_advice_prefix": "Diese Empfehlung ist ein Richtwert.",
+      "cargo_note": "Cargo-Bikes haben spezielle Geometrien.",
+      "leg_short": "Relativ kurze Beine — eine kleinere Rahmengröße könnte bequemer sein.",
+      "leg_long": "Relativ lange Beine — eine größere Rahmengröße könnte geeignet sein.",
+      "consultation": "Für die optimale Passform empfehlen wir Beratung und Probefahrt im Geschäft."
+    }
+  },
+  "size_guide": { "title": "Größentabelle", "open_button": "Größentabelle anzeigen" },
   "homepage": {
     "hero": {
       "heading": "GODSPEED: Ihr Ziel für E-Bikes und günstige Velos online in der Schweiz",
