@@ -142,3 +142,36 @@ Actions:
   - Admin: `/admin`
 
 
+
+
+## 7) Deployment record — Cloud Run `vendor-connectors` (2025-08-14)
+
+- Revision: `vendor-connectors-00013-g8m`
+- Service URL: `https://vendor-connectors-802427545823.europe-west6.run.app`
+- Runtime SA: `802427545823-compute@developer.gserviceaccount.com`
+- Secret versions mapped (env):
+  - `CUBE_CLIENT_SECRET` → `CUBE_CLIENT_SECRET:1`
+  - `SHOPIFY_ADMIN_TOKEN` → `SHOPIFY_ADMIN_TOKEN:1`
+- IAM fix applied: granted `roles/secretmanager.secretAccessor` on `CUBE_CLIENT_SECRET` to runtime SA
+- CLI used:
+
+```
+gcloud secrets add-iam-policy-binding CUBE_CLIENT_SECRET \
+  --project=godspeed-backend \
+  --member=serviceAccount:802427545823-compute@developer.gserviceaccount.com \
+  --role=roles/secretmanager.secretAccessor
+
+gcloud run services update vendor-connectors \
+  --region=europe-west6 \
+  --project=godspeed-backend \
+  --update-secrets "CUBE_CLIENT_SECRET=CUBE_CLIENT_SECRET:1,SHOPIFY_ADMIN_TOKEN=SHOPIFY_ADMIN_TOKEN:1"
+```
+
+- Verification:
+  - `GET /health` → 200 OK with body: `{ ok: true, ts: <epoch-ms> }`
+  - `GET /admin` (no auth) → 401 Authentication required
+  - `GET /admin` with Basic Auth `admin:1234` → 200 OK
+
+- Notes:
+  - Use `--update-secrets` (not `--set-secrets`) for Cloud Run service updates
+  - Always pin a numeric secret version; avoid `latest`
