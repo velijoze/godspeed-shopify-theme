@@ -10,9 +10,9 @@
 <style>
   /* Clean header with proper navigation */
   .header-clean {
-    border-bottom: 1px solid #e5e7eb;
     background: white;
   }
+  .header-wrapper--border-bottom .header-clean { border-bottom: 1px solid #e5e7eb; }
 
   .header__nav-menu {
     display: none;
@@ -141,6 +141,19 @@
     padding: 1rem 0;
   }
 
+  /* Desktop logo alignment per Customizer setting */
+  @media screen and (min-width: 750px) {
+    .header__row[data-logo-position="middle-left"] .header__logo-wrapper { justify-content: flex-start; }
+    .header__row[data-logo-position="middle-center"] .header__logo-wrapper { justify-content: center; }
+    .header__row[data-logo-position="middle-right"] .header__logo-wrapper { justify-content: flex-end; }
+  }
+
+  /* Mobile logo alignment per Customizer setting */
+  @media screen and (max-width: 749px) {
+    .header__row[data-mobile-logo-position="left"] .header__logo-wrapper { justify-content: flex-start; }
+    .header__row[data-mobile-logo-position="center"] .header__logo-wrapper { justify-content: center; }
+  }
+
   .header__logo-wrapper {
     flex: 1 1 0;
     display: flex;
@@ -264,7 +277,7 @@
   -%}
   <header class="header-clean">
     <div class="container-custom">
-      <div class="header__row">
+      <div class="header__row" data-logo-position="{{ section.settings.logo_position }}" data-mobile-logo-position="{{ section.settings.mobile_logo_position }}">
         <!-- Mobile menu button - only visible on mobile and when a menu is configured -->
         {%- if section.settings.menu != blank -%}
         <details id="Details-menu-drawer-container" class="menu-drawer-container medium-hide large-up-hide">
