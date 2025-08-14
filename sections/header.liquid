@@ -142,17 +142,18 @@
   }
 
   .header__logo-wrapper {
-    flex-shrink: 0;
+    flex: 1 1 0;
+    display: flex;
+    justify-content: center;
   }
 
   /* Center the navigation menu */
   .header__nav-menu {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 2rem;
+    flex: 2 1 0;
   }
 
   @media screen and (max-width: 989px) {
@@ -167,6 +168,8 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+    justify-content: flex-end;
+    flex: 1 1 0;
   }
 
   .header__button {
@@ -264,13 +267,14 @@
       <div class="header__row">
         <!-- Mobile menu button - only visible on mobile and when a menu is configured -->
         {%- if section.settings.menu != blank -%}
-        <button type="button" class="header-drawer-toggle" aria-label="Open main menu">
-          <span class="visually-hidden">Open main menu</span>
-          <!-- Hamburger icon -->
-          <svg class="header__icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
+        <details id="Details-menu-drawer-container" class="menu-drawer-container medium-hide large-up-hide">
+          <summary class="header__icon header__icon--menu header__icon--summary link focus-inset" aria-label="{{ 'sections.header.menu' | t }}">
+            <span>
+              {{- 'icon-hamburger.svg' | inline_asset_content -}}
+              {{- 'icon-close.svg' | inline_asset_content -}}
+            </span>
+          </summary>
+        </details>
         {%- endif -%}
 
         <!-- Logo -->
