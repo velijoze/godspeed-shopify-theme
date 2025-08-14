@@ -119,6 +119,9 @@
                     <span>{{ 'products.product.volume_pricing.note' | t }}</span>
                   </div>
                 {%- endif -%}
+                {% if section.settings.show_vendor_badge %}
+                  {% render 'vendor-availability' %}
+                {% endif %}
                 {%- if cart.taxes_included or cart.duties_included or shop.shipping_policy.body != blank -%}
                   <div class="product__tax caption rte">
                     {%- if cart.duties_included and cart.taxes_included -%}
@@ -2096,6 +2099,12 @@
       "id": "enable_sticky_info",
       "default": true,
       "label": "t:sections.main-product.settings.enable_sticky_info.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor_badge",
+      "default": true,
+      "label": "Show vendor badge"
     },
     {
       "type": "color_scheme",
