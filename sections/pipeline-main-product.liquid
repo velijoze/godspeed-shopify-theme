@@ -21,6 +21,13 @@
 
           <h1 class="product__title">{{ product.title }}</h1>
           {% render 'price', product: product %}
+          {% render 'vendor-availability' %}
+
+          {% if section.settings.show_qr %}
+            <div class="product__qr">
+              {% render 'product-qr-code', product: product, size: section.settings.qr_size, caption: section.settings.qr_caption %}
+            </div>
+          {% endif %}
 
           {% if section.settings.show_payment_methods %}
             {% render 'swiss-payment-methods' %}
@@ -54,6 +61,9 @@
     { "type": "checkbox", "id": "show_payment_methods", "default": true, "label": "Show payment methods" },
     { "type": "checkbox", "id": "enable_tabs", "default": true, "label": "Enable product tabs" },
     { "type": "checkbox", "id": "enable_sticky_cart", "default": true, "label": "Enable sticky cart" },
+    { "type": "checkbox", "id": "show_qr", "default": true, "label": "Show product QR code" },
+    { "type": "range", "id": "qr_size", "min": 80, "max": 360, "step": 20, "label": "QR size (px)", "default": 160 },
+    { "type": "text", "id": "qr_caption", "label": "QR caption", "default": "Scan to view online" },
     { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Top padding", "default": 36 },
     { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Bottom padding", "default": 12 }
   ],

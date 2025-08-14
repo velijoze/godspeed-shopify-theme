@@ -94,7 +94,17 @@
         "padding_top": 40,
         "padding_bottom": 52
       }
+    },
+    "latest_news": {
+      "type": "latest-news",
+      "settings": {
+        "heading": "Latest from the Blog",
+        "blog": "journal",
+        "limit": 6,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
-  "order": ["hero_pipeline", "featured_collection", "newsletter"]
+  "order": ["hero_pipeline", "featured_collection", "latest_news", "newsletter"]
 }
