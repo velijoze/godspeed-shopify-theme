@@ -613,6 +613,42 @@
         ],
         "default": "basic",
         "label": "Hover animation level"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_ai_optimization",
+        "default": false,
+        "label": "Enable AI optimization"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_llm_optimization",
+        "default": false,
+        "label": "Enable LLM optimization"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_veloconnect_integration",
+        "default": false,
+        "label": "Enable VeloConnect integration"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_vendor_integration",
+        "default": false,
+        "label": "Enable Vendor API integration"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_live_chat",
+        "default": false,
+        "label": "Enable live chat widget"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_sticky_cart_global",
+        "default": false,
+        "label": "Enable sticky cart (layout-level)"
       }
     ]
   },

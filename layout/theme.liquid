@@ -1,14 +1,14 @@
 <!doctype html>
 <html class="js antialiased" lang="{{ request.locale.iso_code }}"
-      data-enable-social-proof="true"
-      data-enable-exit-intent="true"
-      data-enable-form-validation="true"
-      data-enable-critical-css="true"
-      data-enable-resource-preloading="true"
-      data-enable-design-system="true"
-      data-social-proof-accent-color="#3B82F6"
-      data-validation-error-color="#EF4444"
-      data-validation-success-color="#10B981">
+      data-enable-social-proof="{{ settings.enable_social_proof }}"
+      data-enable-exit-intent="{{ settings.enable_exit_intent }}"
+      data-enable-form-validation="{{ settings.enable_form_validation }}"
+      data-enable-critical-css="{{ settings.enable_critical_css }}"
+      data-enable-resource-preloading="{{ settings.enable_resource_preloading }}"
+      data-enable-design-system="{{ settings.enable_design_system }}"
+      data-social-proof-accent-color="{{ settings.social_proof_accent_color }}"
+      data-validation-error-color="{{ settings.validation_error_color }}"
+      data-validation-success-color="{{ settings.validation_success_color }}">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -480,48 +480,70 @@
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
-    
+
     {%- comment -%} AI-Enhanced Bike Comparison Tool {%- endcomment -%}
     <script src="{{ 'bike-comparison.js' | asset_url }}" defer="defer"></script>
     
     {%- comment -%} Pipeline Quick View Modal {%- endcomment -%}
-    {% render 'quick-view-modal-pipeline' %}
+    {%- if settings.enable_quick_view -%}
+      {% render 'quick-view-modal-pipeline' %}
+    {%- endif -%}
     
     {%- comment -%} Pipeline Sticky Cart (product pages only) {%- endcomment -%}
-    {%- if template contains 'product' -%}
+    {%- if settings.enable_sticky_cart_global and template contains 'product' -%}
       {% render 'pipeline-sticky-cart' %}
     {%- endif -%}
     
     {%- comment -%} Pipeline AI Optimization {%- endcomment -%}
-    {% render 'pipeline-ai-optimization' %}
+    {%- if settings.enable_ai_optimization -%}
+      {% render 'pipeline-ai-optimization' %}
+    {%- endif -%}
     
     {%- comment -%} Pipeline LLM Optimization {%- endcomment -%}
-    {% render 'pipeline-llm-optimization' %}
+    {%- if settings.enable_llm_optimization -%}
+      {% render 'pipeline-llm-optimization' %}
+    {%- endif -%}
     
     {%- comment -%} Pipeline SEO Optimization (already rendered in <head>; avoid duplicate render) {%- endcomment -%}
     
     {%- comment -%} Pipeline VeloConnect API Integration {%- endcomment -%}
-    {% render 'pipeline-veloconnect-api' %}
+    {%- if settings.enable_veloconnect_integration -%}
+      {% render 'pipeline-veloconnect-api' %}
+    {%- endif -%}
     
     {%- comment -%} Pipeline Vendor API Integration {%- endcomment -%}
-    {% render 'pipeline-vendor-api' %}
+    {%- if settings.enable_vendor_integration -%}
+      {% render 'pipeline-vendor-api' %}
+    {%- endif -%}
     
     {%- comment -%} Pipeline Wishlist Functionality {%- endcomment -%}
-    {% render 'pipeline-wishlist' %}
+    {%- if settings.enable_wishlist -%}
+      {% render 'pipeline-wishlist' %}
+    {%- endif -%}
     
     {%- comment -%} Pipeline Trust Badges {%- endcomment -%}
-    {% render 'pipeline-trust-badges' %}
+    {%- if settings.show_trust_badges -%}
+      {% render 'pipeline-trust-badges' %}
+    {%- endif -%}
     
     {%- comment -%} Pipeline Breadcrumbs (already rendered above header) {%- endcomment -%}
     
     {%- comment -%} Pipeline Live Chat Widget {%- endcomment -%}
-    {% render 'pipeline-live-chat' %}
+    {%- if settings.enable_live_chat -%}
+      {% render 'pipeline-live-chat' %}
+    {%- endif -%}
     
     {%- comment -%} Social Proof Elements {%- endcomment -%}
-    {% render 'social-proof', type: 'recent-purchases' %}
-    {% render 'social-proof', type: 'sales-popup' %}
+    {%- if settings.enable_social_proof and settings.show_recent_purchases -%}
+      {% render 'social-proof', type: 'recent-purchases' %}
+    {%- endif -%}
+    {%- if settings.enable_social_proof and settings.show_sales_popup -%}
+      {% render 'social-proof', type: 'sales-popup' %}
+    {%- endif -%}
     
     {%- comment -%} Exit Intent Offers {%- endcomment -%}
-    {% render 'exit-intent-offers' %}
+    {%- if settings.enable_exit_intent -%}
+      {% render 'exit-intent-offers' %}
+    {%- endif -%}
   </body>
 </html>

@@ -1,9 +1,5 @@
 {
   "sections": {
-    "breadcrumbs": {
-      "type": "pipeline-breadcrumbs",
-      "settings": {}
-    },
     "main": {
       "type": "pipeline-main-product",
       "blocks": {
@@ -110,22 +106,6 @@
         "padding_bottom": 12
       }
     },
-    "frequently-bought": {
-      "type": "pipeline-frequently-bought-together",
-      "settings": {
-        "heading": "{{ 'products.frequently_bought' | t }}",
-        "subtitle": "{{ 'products.complete_setup' | t }}",
-        "bundle_products": "",
-        "padding_top": 48,
-        "padding_bottom": 48
-      }
-    },
-    "sticky-cart": {
-      "type": "custom_liquid",
-      "settings": {
-        "custom_liquid": "{% render 'pipeline-sticky-cart' %}"
-      }
-    },
     "related-products": {
       "type": "related-products",
       "settings": {
@@ -146,10 +126,7 @@
     }
   },
   "order": [
-    "breadcrumbs",
     "main",
-    "frequently-bought",
-    "sticky-cart",
     "related-products"
   ]
 }
