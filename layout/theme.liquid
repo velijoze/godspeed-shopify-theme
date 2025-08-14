@@ -498,9 +498,7 @@
     {%- comment -%} Pipeline LLM Optimization {%- endcomment -%}
     {% render 'pipeline-llm-optimization' %}
     
-    {%- comment -%} Pipeline SEO Optimization {%- endcomment -%}
-    {% render 'site-specific-seo' %}
-    {% render 'seo-category-optimization' %}
+    {%- comment -%} Pipeline SEO Optimization (already rendered in <head>; avoid duplicate render) {%- endcomment -%}
     
     {%- comment -%} Pipeline VeloConnect API Integration {%- endcomment -%}
     {% render 'pipeline-veloconnect-api' %}
@@ -514,8 +512,7 @@
     {%- comment -%} Pipeline Trust Badges {%- endcomment -%}
     {% render 'pipeline-trust-badges' %}
     
-    {%- comment -%} Pipeline Breadcrumbs {%- endcomment -%}
-    {% render 'pipeline-breadcrumbs' %}
+    {%- comment -%} Pipeline Breadcrumbs (already rendered above header) {%- endcomment -%}
     
     {%- comment -%} Pipeline Live Chat Widget {%- endcomment -%}
     {% render 'pipeline-live-chat' %}
