@@ -52,7 +52,9 @@
     </div>
   </div>
 
-  {{ 'bike-comparison.js' | asset_url | script_tag }}
+  {%- comment -%}
+    Script is globally included from layout/theme.liquid to avoid duplicate listeners
+  {%- endcomment -%}
 </section>
 
 {% schema %}
