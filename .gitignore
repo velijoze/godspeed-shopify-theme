@@ -25,6 +25,7 @@ shopify.theme.toml
 # Test Results and Artifacts
 test-results/
 playwright-report/
+playwright-results/
 test-results-*/
 coverage/
 *.coverage
