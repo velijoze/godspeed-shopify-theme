@@ -376,4 +376,4 @@ versions/
 # Separate project (do not track embedded repo)
 migration/
 
-# End of .gitignore
+# End of .gitignore\nLOCAL-SECRETS-VALUES.md
