@@ -2419,6 +2419,17 @@ input[type='checkbox'] {
   transition: top 0.15s ease-out;
 }
 
+/* Reduce logo size sticky header variant */
+sticky-header[data-sticky-type="reduce-logo-size"].shopify-section-header-sticky .header__logo-clean img {
+  max-height: 30px;
+  transition: max-height 0.15s ease-out;
+}
+
+sticky-header[data-sticky-type="reduce-logo-size"] .header__logo-clean img {
+  max-height: 40px;
+  transition: max-height 0.15s ease-out;
+}
+
 .shopify-section-group-header-group {
   z-index: 4;
 }
@@ -3682,4 +3693,53 @@ details-disclosure > details {
   100% {
     transform: translateX(100%) scaleX(0);
   }
+}
+
+/* Color Schemes - Dawn compatible */
+.color-scheme-1 {
+  --color-background: 255, 255, 255;
+  --color-foreground: 18, 18, 18;
+  --color-accent: 18, 18, 18;
+  --color-link: 18, 18, 18;
+  --color-button: 18, 18, 18;
+  --color-button-text: 255, 255, 255;
+  --color-shadow: 18, 18, 18;
+  --color-text: 18, 18, 18;
+  --gradient-background: linear-gradient(180deg, rgb(255, 255, 255), rgb(255, 255, 255));
+}
+
+.color-scheme-2 {
+  --color-background: 249, 250, 251;
+  --color-foreground: 31, 41, 55;
+  --color-accent: 31, 41, 55;
+  --color-link: 31, 41, 55;
+  --color-button: 31, 41, 55;
+  --color-button-text: 255, 255, 255;
+  --color-shadow: 31, 41, 55;
+  --color-text: 31, 41, 55;
+  --gradient-background: linear-gradient(180deg, rgb(249, 250, 251), rgb(243, 244, 246));
+}
+
+.color-scheme-3 {
+  --color-background: 18, 18, 18;
+  --color-foreground: 255, 255, 255;
+  --color-accent: 255, 255, 255;
+  --color-link: 255, 255, 255;
+  --color-button: 255, 255, 255;
+  --color-button-text: 18, 18, 18;
+  --color-shadow: 255, 255, 255;
+  --color-text: 255, 255, 255;
+  --gradient-background: linear-gradient(180deg, rgb(18, 18, 18), rgb(31, 41, 55));
+}
+
+.color-scheme-4 {
+  --color-background: 59, 130, 246;
+  --color-foreground: 255, 255, 255;
+  --color-accent: 255, 255, 255;
+  --color-link: 255, 255, 255;
+  --color-button: 255, 255, 255;
+  --color-button-text: 59, 130, 246;
+  --color-shadow: 255, 255, 255;
+  --color-text: 255, 255, 255;
+  --gradient-background: linear-gradient(135deg, rgb(59, 130, 246), rgb(37, 99, 235));
 }

@@ -60,6 +60,7 @@
       "WebFetch(domain:shopify.dev)",
       "Bash(shopify:*)"
     ],
-    "deny": []
+    "deny": [],
+    "defaultMode": "acceptEdits"
   }
 }

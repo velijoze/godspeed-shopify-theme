@@ -2,6 +2,9 @@
 <link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-cart-notification.css' | asset_url }}" media="print" onload="this.media='all'">
+{%- if section.settings.menu_type_desktop == 'mega' -%}
+  <link rel="stylesheet" href="{{ 'component-mega-menu.css' | asset_url }}" media="print" onload="this.media='all'">
+{%- endif -%}
 
 {%- if settings.predictive_search_enabled -%}
   <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
@@ -169,12 +172,37 @@
     flex: 2 1 0;
   }
 
+  /* Hide navigation on mobile and tablet based on menu type */
   @media screen and (max-width: 989px) {
     .header__nav-menu {
       position: static;
       transform: none;
       display: none;
     }
+  }
+
+  /* Drawer menu type - hide navigation on desktop too */
+  .header-wrapper[data-desktop-menu-type="drawer"] .header__nav-menu {
+    display: none;
+  }
+
+  /* Show drawer toggle for drawer menu type on desktop */
+  .header-wrapper[data-desktop-menu-type="drawer"] .header-drawer-toggle {
+    display: block;
+  }
+
+  /* Menu type specific styling */
+  .header__nav-menu[data-menu-type="mega"] .header__dropdown {
+    position: fixed;
+    top: var(--header-height, 80px);
+    left: 0;
+    right: 0;
+    width: 100vw;
+    min-width: 100vw;
+    max-width: none;
+    border-radius: 0;
+    background: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   }
 
   .header__actions {
@@ -278,17 +306,7 @@
   <header class="header-clean">
     <div class="container-custom">
       <div class="header__row" data-logo-position="{{ section.settings.logo_position }}" data-mobile-logo-position="{{ section.settings.mobile_logo_position }}">
-        <!-- Mobile menu button - only visible on mobile and when a menu is configured -->
-        {%- if section.settings.menu != blank -%}
-        <details id="Details-menu-drawer-container" class="menu-drawer-container medium-hide large-up-hide">
-          <summary class="header__icon header__icon--menu header__icon--summary link focus-inset" aria-label="{{ 'sections.header.menu' | t }}">
-            <span>
-              {{- 'icon-hamburger.svg' | inline_asset_content -}}
-              {{- 'icon-close.svg' | inline_asset_content -}}
-            </span>
-          </summary>
-        </details>
-        {%- endif -%}
+        <!-- Mobile menu toggle is handled by header-drawer snippet rendered below -->
 
         <!-- Logo -->
         <div class="header__logo-wrapper">
@@ -694,6 +712,12 @@
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "t:sections.header.settings.color_scheme.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "color_scheme",
+      "id": "menu_color_scheme",
+      "label": "t:sections.header.settings.menu_color_scheme.label",
       "default": "scheme-1"
     }
   ],

@@ -6,12 +6,13 @@
   
   <!-- Main Layout Grid -->
   <div class="pipeline-collection-layout" 
-       style="--custom-sidebar-width: {{ section.settings.custom_sidebar_width | default: 280 }}px; 
-              --custom-layout-gap: {{ section.settings.custom_layout_gap | default: 40 }}px; 
-              --custom-max-width: {{ section.settings.custom_max_width | default: 1400 }}px;">
+       style="--custom-sidebar-width: {{ section.settings.custom_sidebar_width | default: settings.collection_sidebar_width | default: 280 }}px; 
+              --custom-layout-gap: {{ section.settings.custom_layout_gap | default: settings.collection_layout_gap | default: 40 }}px; 
+              --custom-max-width: {{ section.settings.custom_max_width | default: settings.collection_max_width | default: 1400 }}px;">
     
     <!-- Filters Sidebar -->
-    <aside class="pipeline-filters-sidebar" data-sticky-filters>
+    {%- if settings.collection_show_filters -%}
+    <aside class="pipeline-filters-sidebar" {% if settings.collection_sticky_filters %}data-sticky-filters{% endif %}>
       
       <!-- Collections Filter -->
       <div class="filter-group" data-filter-group="collections">
@@ -90,6 +91,7 @@
       </div>
       
     </aside>
+    {%- endif -%}
 
     <!-- Main Content Area -->
     <div class="pipeline-main-content">
@@ -97,10 +99,12 @@
       <!-- Toolbar -->
       <div class="pipeline-toolbar">
         <div class="toolbar-left">
+          {%- if settings.collection_show_filter_toggle and settings.collection_show_filters -%}
           <button class="hide-filters-btn" data-toggle-filters>
             <span class="hamburger-icon">☰</span>
             HIDE FILTERS
           </button>
+          {%- endif -%}
           <span class="product-count-display">
             {{ collection.products_count }} products
           </span>
@@ -197,7 +201,8 @@
                        loading="{% if forloop.index > 4 %}lazy{% else %}eager{% endif %}"
                        style="aspect-ratio: {% if section.settings.image_ratio == 'square' %}1{% elsif section.settings.image_ratio == 'portrait' %}3/4{% else %}adapt{% endif %};">
                   
-                  {%- if section.settings.show_secondary_image and product.media[1] -%}
+                  {%- assign show_secondary_image = section.settings.show_secondary_image | default: settings.collection_show_secondary_image -%}
+                  {%- if show_secondary_image and product.media[1] -%}
                     <img class="pipeline-product-image-secondary"
                          src="{{ product.media[1] | img_url: '400x400' }}"
                          alt="{{ product.title | escape }}"
@@ -213,11 +218,13 @@
                   <a href="{{ product.url }}">{{ product.title | escape }}</a>
                 </h3>
                 
-                {%- if section.settings.show_vendor and product.vendor -%}
+                {%- assign show_vendor = section.settings.show_vendor | default: settings.collection_show_vendor -%}
+                {%- if show_vendor and product.vendor -%}
                   <div class="pipeline-card-vendor">{{ product.vendor }}</div>
                 {%- endif -%}
                 
-                {%- if section.settings.show_rating -%}
+                {%- assign show_rating = section.settings.show_rating | default: settings.collection_show_rating -%}
+                {%- if show_rating -%}
                   <div class="pipeline-card-rating">
                     <!-- Rating stars would go here -->
                   </div>

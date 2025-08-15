@@ -648,7 +648,8 @@
         "type": "checkbox",
         "id": "enable_sticky_cart_global",
         "default": false,
-        "label": "Enable sticky cart (layout-level)"
+        "label": "Enable sticky cart (layout-level)",
+        "info": "Note: Product sections have their own sticky cart setting. Enable this only when sections don't handle sticky cart."
       }
     ]
   },

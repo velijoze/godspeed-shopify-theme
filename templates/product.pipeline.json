@@ -124,6 +124,20 @@
         "padding_bottom": 36
       }
     },
+    "image-hotspots": {
+      "type": "image-hotspots-pipeline",
+      "settings": {
+        "heading": "Key features",
+        "padding_top": 24,
+        "padding_bottom": 24
+      },
+      "blocks": {
+        "hotspot-1": { "type": "hotspot", "settings": { "title": "Motor", "text": "Powerful and efficient drive unit", "x": 35, "y": 62 } },
+        "hotspot-2": { "type": "hotspot", "settings": { "title": "Battery", "text": "Long‑range battery neatly integrated", "x": 55, "y": 48 } },
+        "hotspot-3": { "type": "hotspot", "settings": { "title": "Brakes", "text": "Hydraulic disc brakes for confident stopping", "x": 70, "y": 70 } }
+      },
+      "block_order": ["hotspot-1", "hotspot-2", "hotspot-3"]
+    },
     "related-products": {
       "type": "related-products",
       "settings": {
@@ -145,6 +159,7 @@
   },
   "order": [
     "main",
+    "image-hotspots",
     "buy-it-with",
     "product-info-tabs",
     "related-products"

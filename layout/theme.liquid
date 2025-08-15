@@ -402,6 +402,67 @@
       }
     </script>
     <!-- Removed wow-effects script -->
+    
+    {%- comment -%} Page-specific scripts {%- endcomment -%}
+    {%- if template contains 'page' and page.handle == 'compare' -%}
+      <script src="{{ 'bike-comparison.js' | asset_url }}" defer></script>
+    {%- endif -%}
+    
+    {%- if template contains 'page' and page.handle == 'size-guide' -%}
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const calculator = document.querySelector('[data-size-calculator]');
+          if (!calculator) return;
+          
+          const calculateBtn = calculator.querySelector('.calculate-btn');
+          const resultDiv = calculator.querySelector('#result');
+          const sizeResult = calculator.querySelector('#size-result');
+          const sizeAdvice = calculator.querySelector('#size-advice');
+          
+          calculateBtn.addEventListener('click', function() {
+            const height = parseInt(calculator.querySelector('#height').value);
+            const inseam = parseInt(calculator.querySelector('#inseam').value);
+            const bikeType = calculator.querySelector('#bike-type').value;
+            
+            if (!height || !inseam) {
+              alert('{{ "size_calculator.validation.fill_fields" | t | default: "Please fill in all fields" }}');
+              return;
+            }
+            
+            const recommendation = calculateSize(height, inseam, bikeType);
+            sizeResult.textContent = recommendation.size;
+            sizeAdvice.textContent = recommendation.advice;
+            resultDiv.hidden = false;
+          });
+          
+          function calculateSize(height, inseam, bikeType) {
+            let frameSize, advice;
+            
+            if (bikeType === 'mountain') {
+              if (height < 160) frameSize = 'XS (38-40 cm)';
+              else if (height < 170) frameSize = 'S (42-44 cm)';
+              else if (height < 180) frameSize = 'M (46-48 cm)';
+              else if (height < 190) frameSize = 'L (50-52 cm)';
+              else frameSize = 'XL (54-56 cm)';
+            } else if (bikeType === 'cargo') {
+              if (height < 165) frameSize = 'S (46-48 cm)';
+              else if (height < 180) frameSize = 'M (50-52 cm)';
+              else frameSize = 'L (54-56 cm)';
+            } else {
+              if (height < 160) frameSize = 'XS (44-46 cm)';
+              else if (height < 170) frameSize = 'S (48-50 cm)';
+              else if (height < 180) frameSize = 'M (52-54 cm)';
+              else if (height < 190) frameSize = 'L (56-58 cm)';
+              else frameSize = 'XL (60-62 cm)';
+            }
+            
+            advice = '{{ "size_calculator.result.advice" | t | default: "This recommendation is based on standard measurements. A test ride is recommended." }}';
+            
+            return { size: frameSize, advice };
+          }
+        });
+      </script>
+    {%- endif -%}
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
@@ -489,8 +550,9 @@
       {% render 'quick-view-modal-pipeline' %}
     {%- endif -%}
     
-    {%- comment -%} Pipeline Sticky Cart (product pages only) {%- endcomment -%}
+    {%- comment -%} Pipeline Sticky Cart (layout-level fallback - only when global enabled and not handled by section) {%- endcomment -%}
     {%- if settings.enable_sticky_cart_global and template contains 'product' -%}
+      {%- comment -%} Layout-level sticky cart - consider disabling if section handles it {%- endcomment -%}
       {% render 'pipeline-sticky-cart' %}
     {%- endif -%}
     

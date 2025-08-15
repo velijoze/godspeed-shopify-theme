@@ -43,12 +43,49 @@
         "show_test_buttons": true,
         "show_section_guide": true
       }
+    },
+    "veloconnect-vendors": {
+      "type": "veloconnect-vendors",
+      "settings": {
+        "heading": "VeloConnect Vendor Management",
+        "heading_size": "h2",
+        "padding_top": 36,
+        "padding_bottom": 36
+      },
+      "blocks": {
+        "cube-bikes": {
+          "type": "vendor",
+          "settings": {
+            "vendor_name": "Cube Bikes",
+            "endpoint": "https://api.cube.eu/products",
+            "enabled": true
+          }
+        },
+        "bosch-ebike": {
+          "type": "vendor",
+          "settings": {
+            "vendor_name": "Bosch eBike Systems",
+            "endpoint": "https://connect.bosch-ebike.com/api",
+            "enabled": true
+          }
+        },
+        "shimano-steps": {
+          "type": "vendor",
+          "settings": {
+            "vendor_name": "Shimano STEPS",
+            "endpoint": "https://api.shimano-steps.com/dealer",
+            "enabled": false
+          }
+        }
+      },
+      "block_order": ["cube-bikes", "bosch-ebike", "shimano-steps"]
     }
   },
   "order": [
     "pipeline-header",
     "pipeline-controls", 
     "pipeline-status",
-    "pipeline-identifier"
+    "pipeline-identifier",
+    "veloconnect-vendors"
   ]
 }
