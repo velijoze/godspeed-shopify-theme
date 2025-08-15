@@ -58,7 +58,10 @@
       "Bash(gh run list:*)",
       "Bash(tar:*)",
       "WebFetch(domain:shopify.dev)",
-      "Bash(shopify:*)"
+      "Bash(shopify:*)",
+      "Bash(git fetch:*)",
+      "Bash(git pull:*)",
+      "Bash(git checkout:*)"
     ],
     "deny": [],
     "defaultMode": "acceptEdits"

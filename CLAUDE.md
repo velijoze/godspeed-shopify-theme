@@ -15,12 +15,14 @@ This is a complete e-commerce solution built specifically for **Godspeed**, a pr
 
 ### ✨ Key Highlights
 
-- **🔍 Advanced Product Features**: Magnifying glass, bike comparison tool, intelligent size calculator
-- **📅 Integrated Booking Systems**: Test ride and service appointment scheduling
-- **🎛️ Complete GUI Control**: 313 admin settings across 5 organized panels
-- **🤖 Advanced AI Integration**: Claude/OpenAI/Gemini with intelligent fallback system
-- **🔌 API Integrations**: Cube API, VeloConnect, Calendly, Google Maps
-- **✅ 100% Validated Testing**: 41/41 automated checks passed, zero errors
+- **🛠️ 8 Pipeline Tools**: Compare, Size Guide, Financing, Range Calculator, Test Rides, Service Booking, Wishlist, Dashboard
+- **🔗 Complete Cross-linking**: All features discoverable from every page with smart context-aware suggestions
+- **📅 Integrated Booking Systems**: Test ride and service appointment scheduling with multi-location support
+- **🎛️ Complete GUI Control**: 313+ admin settings across 5 organized panels
+- **💰 Swiss Financing**: HeyLight 0% financing calculator with instant approval
+- **🔋 Advanced Calculators**: Intelligent range and size calculators with multi-factor analysis
+- **🔌 VeloConnect Integration**: Professional vendor API management through Pipeline Dashboard
+- **✅ 100% Feature Cross-linking**: Every page enhanced with related tools for maximum discoverability
 - **📱 Mobile-First Design**: Optimized for all devices with touch interactions
 - **🌐 Multi-language Support**: Swiss market localization (German, French, Italian)
 - **⚡ Performance Optimized**: Core Web Vitals compliant, sub-3s load times
@@ -72,33 +74,46 @@ This is a complete e-commerce solution built specifically for **Godspeed**, a pr
 - **Testing**: Playwright with multi-browser support
 - **APIs**: RESTful integrations with vendor systems
 - **Accessibility**: WCAG 2.1 AA compliant
+- **Theme Foundation**: Dawn base with Pipeline theme enhancements
 
 ### Project Structure
 
 ```
 godspeed-shopify-theme/
 ├── 📁 assets/                    # CSS, JS, and media files
-│   ├── application.css          # Main stylesheet (1295+ lines)
+│   ├── base.css                 # Dawn foundation styles
+│   ├── pipeline-*.css           # Pipeline-specific styling
 │   ├── bike-comparison.js       # Comparison tool functionality
-│   ├── api-dashboard.js         # API management interface
-│   └── godspeed-dynamic.css.liquid # Dynamic styling
+│   ├── size-calculator.js       # Size calculation logic
+│   └── core-bundle.js           # Core Pipeline functionality
 ├── 📁 config/
-│   └── settings_schema.json     # 120+ GUI admin controls
-├── 📁 templates/                # Page templates
+│   └── settings_schema.json     # 313+ GUI admin controls
+├── 📁 sections/                 # Liquid section files
+│   ├── hero-pipeline.liquid     # Enhanced hero section
+│   ├── bike-compare.liquid      # Comparison functionality
+│   ├── size-calculator.liquid   # Size calculation interface
+│   └── services-grid.liquid     # Service showcase grid
+├── 📁 templates/                # Page templates with cross-linking
 │   ├── page.compare.json        # Bike comparison tool
 │   ├── page.size-guide.json     # Size calculator
+│   ├── page.financing-calculator.json # 0% financing tool
+│   ├── page.range-calculator.json # Range estimation
 │   ├── page.test-ride.json      # Test ride booking
 │   ├── page.service-booking.json # Service appointments
-│   └── page.api-dashboard.json  # API management
+│   ├── page.contact.json        # Contact with tools showcase
+│   └── page.pipeline-dashboard.json # VeloConnect dashboard
 ├── 📁 tests/                    # Comprehensive test suite
 │   ├── e2e/                     # End-to-end tests
-│   ├── swe/                     # Simulated work environment
-│   ├── uat/                     # User acceptance testing
 │   ├── performance/             # Performance benchmarks
-│   └── api/                     # API integration tests
+│   ├── visual/                  # Visual regression tests
+│   └── pipeline-features.spec.ts # Pipeline feature validation
+├── 📁 pipeline-reference/        # Pipeline theme reference
+│   ├── sections/                # Reference section implementations
+│   ├── templates/               # Reference template patterns
+│   └── assets/                  # Reference styling and scripts
 ├── 📄 playwright.config.js      # Test configuration
 ├── 📄 package.json              # Dependencies and scripts
-└── 📄 README.md                 # This file
+└── 📄 CLAUDE.md                 # This development guide
 ```
 
 ## 🎨 Features
@@ -122,17 +137,39 @@ godspeed-shopify-theme/
 - **Additional Guidance**: Tips for edge cases and preferences
 - **Visual Size Guide**: Interactive sizing chart
 
+### 💰 **0% Financing Calculator**
+- **HeyLight Integration**: Swiss 0% financing solution
+- **Real-time Calculation**: Instant monthly payment estimates
+- **Flexible Terms**: 6-36 month financing options
+- **Multi-currency Support**: CHF primary, EUR/USD fallback
+- **Instant Approval**: Digital application process
+
+### 🔋 **Range Calculator**
+- **Multi-factor Analysis**: Battery, motor, terrain, weather, weight
+- **Realistic Estimates**: Conservative, realistic, optimistic scenarios
+- **Interactive Interface**: Dynamic calculation with immediate feedback
+- **Optimization Tips**: Personalized advice for range improvement
+- **Model-specific Data**: Accurate calculations per E-bike type
+
 ### 🚴 **Test Ride Booking System**
 - **Multi-location Support**: Different stores and service points
 - **Calendly Integration**: Professional appointment scheduling
 - **Contact Information**: Phone, email, directions for each location
 - **Business Hours**: Configurable availability per location
+- **Pre-ride Tools**: Size calculator and comparison integration
 
 ### 🔧 **Service Booking System**
 - **Tiered Service Packages**: Basic, Standard, Premium options
+- **Express Service**: Pickup/delivery with loaner bikes
 - **Detailed Pricing**: Transparent cost breakdown
 - **Service Descriptions**: Clear explanation of what's included
 - **Appointment Scheduling**: Integrated booking workflow
+
+### 🔗 **Cross-page Feature Discovery**
+- **Smart Cross-linking**: Related tools on every page
+- **Context-aware Suggestions**: Logical next steps for users
+- **Comprehensive Coverage**: All features discoverable from any entry point
+- **User Journey Optimization**: Seamless flow between tools
 
 ### 📱 **QR Code Generation**
 - **Product-specific QR Codes**: Easy mobile access
@@ -146,9 +183,10 @@ godspeed-shopify-theme/
 - **Contact Details**: Phone, email, hours per location
 - **Service Capabilities**: Different services per location
 
-### 🔌 **API Dashboard**
-- **Vendor Integration Management**: Cube API, VeloConnect
+### 🔌 **Pipeline Dashboard**
+- **VeloConnect Integration**: Vendor API management
 - **Real-time Status Monitoring**: Connection health, sync status
+- **Feature Control Center**: Master controls for all Pipeline features
 - **Error Handling**: Clear error messages and recovery options
 - **Rate Limit Management**: Prevents API throttling
 

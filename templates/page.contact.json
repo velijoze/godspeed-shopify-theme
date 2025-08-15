@@ -173,6 +173,69 @@
         "padding_bottom": 80
       }
     },
+    "our_tools": {
+      "type": "services-grid",
+      "blocks": {
+        "compare_tool": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-return.svg",
+            "title": "🔍 E-Bike Vergleich",
+            "text": "<p>Vergleichen Sie bis zu 3 E-Bikes intelligent</p><p>✓ KI-gestützte Empfehlungen<br>✓ Detaillierte Spezifikationen<br>✓ Preis-Leistung Analyse</p>",
+            "button_label": "Jetzt vergleichen",
+            "button_link": "/pages/compare"
+          }
+        },
+        "size_calculator": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-ruler.svg",
+            "title": "📐 Größenberater",
+            "text": "<p>Finden Sie die perfekte Rahmengröße</p><p>✓ Intelligente Berechnung<br>✓ Berücksichtigt E-Bike Typ<br>✓ Expertenempfehlungen</p>",
+            "button_label": "Größe berechnen",
+            "button_link": "/pages/size-guide"
+          }
+        },
+        "financing": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-price-tag.svg",
+            "title": "💰 0% Finanzierung",
+            "text": "<p>Berechnen Sie Ihre monatliche Rate</p><p>✓ 0% Zinsen, 6-36 Monate<br>✓ Sofortige Kalkulation<br>✓ Online Antrag</p>",
+            "button_label": "Rate berechnen",
+            "button_link": "/pages/financing-calculator"
+          }
+        },
+        "range_calc": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-lightning-bolt.svg",
+            "title": "🔋 Reichweiten-Rechner",
+            "text": "<p>Realistische Reichweite berechnen</p><p>✓ Alle Faktoren berücksichtigt<br>✓ Gelände & Wetterbedingungen<br>✓ Optimierungstipps</p>",
+            "button_label": "Reichweite prüfen",
+            "button_link": "/pages/range-calculator"
+          }
+        }
+      },
+      "block_order": [
+        "compare_tool",
+        "size_calculator",
+        "financing",
+        "range_calc"
+      ],
+      "settings": {
+        "heading": "🛠️ Nutzen Sie unsere intelligenten Tools",
+        "heading_size": "h1",
+        "description": "<p>Bevor Sie uns kontaktieren: Probieren Sie unsere kostenlosen Tools aus - vielleicht finden Sie bereits alle Antworten.</p>",
+        "text_alignment": "center",
+        "card_text_alignment": "left",
+        "icon_size": 80,
+        "card_border_radius": 8,
+        "color_scheme": "background-2",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
     "form": {
       "type": "contact-form",
       "settings": {
@@ -194,6 +257,7 @@
   "order": [
     "contact_hero",
     "contact_methods",
+    "our_tools",
     "locations_grid", 
     "form",
     "main"

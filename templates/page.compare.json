@@ -104,6 +104,69 @@
         "padding_bottom": 60
       }
     },
+    "next_steps_tools": {
+      "type": "services-grid",
+      "blocks": {
+        "size_calculator": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-ruler.svg",
+            "title": "📐 Perfekte Größe finden",
+            "text": "<p>Nach dem Vergleich die richtige Größe bestimmen</p><p>✓ Intelligente Größenberechnung<br>✓ Berücksichtigt E-Bike Typ<br>✓ Expertenempfehlungen</p>",
+            "button_label": "Größe berechnen",
+            "button_link": "/pages/size-guide"
+          }
+        },
+        "financing": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-price-tag.svg",
+            "title": "💰 0% Finanzierung",
+            "text": "<p>Monatliche Raten für Ihr Wunsch-E-Bike berechnen</p><p>✓ 0% Zinsen, 6-36 Monate<br>✓ Sofortige Kalkulation<br>✓ Online Antrag</p>",
+            "button_label": "Rate berechnen",
+            "button_link": "/pages/financing-calculator"
+          }
+        },
+        "test_ride": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-plane.svg",
+            "title": "🚴 Probefahrt buchen",
+            "text": "<p>Testen Sie Ihren Favoriten vor dem Kauf</p><p>✓ 4 Standorte verfügbar<br>✓ Kostenlos & unverbindlich<br>✓ Expertenberatung</p>",
+            "button_label": "Termin buchen",
+            "button_link": "/pages/test-ride"
+          }
+        },
+        "range_calculator": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-lightning-bolt.svg",
+            "title": "🔋 Reichweite prüfen",
+            "text": "<p>Realistische Reichweite für Ihre Strecken</p><p>✓ Alle Faktoren berücksichtigt<br>✓ Gelände & Wetter<br>✓ Optimierungstipps</p>",
+            "button_label": "Reichweite berechnen",
+            "button_link": "/pages/range-calculator"
+          }
+        }
+      },
+      "block_order": [
+        "size_calculator",
+        "financing",
+        "test_ride",
+        "range_calculator"
+      ],
+      "settings": {
+        "heading": "🛠️ Weitere nützliche Tools",
+        "heading_size": "h1",
+        "description": "<p>Nach dem Vergleich: Nutzen Sie unsere weiteren intelligenten Tools für die perfekte E-Bike Entscheidung.</p>",
+        "text_alignment": "center",
+        "card_text_alignment": "left",
+        "icon_size": 80,
+        "card_border_radius": 8,
+        "color_scheme": "background-2",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
     "next_steps": {
       "type": "company-story",
       "blocks": {
@@ -143,7 +206,8 @@
   "order": [
     "hero",
     "comparison_tool",
-    "comparison_tips", 
+    "comparison_tips",
+    "next_steps_tools", 
     "next_steps"
   ]
 }

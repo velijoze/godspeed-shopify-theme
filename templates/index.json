@@ -38,6 +38,113 @@
         "color_scheme": "background-1"
       }
     },
+    "features_showcase": {
+      "type": "services-grid",
+      "blocks": {
+        "compare_tool": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-return.svg",
+            "title": "🔍 Smart E-Bike Vergleich",
+            "text": "<p><strong>KI-gestützter Vergleich bis zu 3 E-Bikes</strong></p><p>✓ Detaillierte Spezifikationsvergleiche<br>✓ AI-powered Empfehlungen<br>✓ Preis-Leistung Analyse<br>✓ Interaktive Insights</p>",
+            "button_label": "E-Bikes vergleichen",
+            "button_link": "/pages/compare"
+          }
+        },
+        "size_calculator": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-ruler.svg",
+            "title": "📐 Größenberater",
+            "text": "<p><strong>Perfekte Rahmengröße finden</strong></p><p>✓ Intelligente Größenberechnung<br>✓ Berücksichtigt Fahrstil & Typ<br>✓ Localized Validierung<br>✓ Expertenempfehlungen</p>",
+            "button_label": "Größe berechnen",
+            "button_link": "/pages/size-guide"
+          }
+        },
+        "financing_calc": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-price-tag.svg",
+            "title": "💰 0% Finanzierung",
+            "text": "<p><strong>HeyLight Finanzierungsrechner</strong></p><p>✓ 0% Zinsen, 6-36 Monate<br>✓ Sofortige Kalkulation<br>✓ Keine versteckten Kosten<br>✓ Online Antrag möglich</p>",
+            "button_label": "Rate berechnen",
+            "button_link": "/pages/financing-calculator"
+          }
+        },
+        "range_calculator": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-lightning-bolt.svg",
+            "title": "🔋 Reichweiten-Rechner",
+            "text": "<p><strong>Realistische Reichweite berechnen</strong></p><p>✓ Berücksichtigt alle Faktoren<br>✓ Gelände & Wetter<br>✓ Fahrergewicht & Stil<br>✓ Optimierungstipps</p>",
+            "button_label": "Reichweite prüfen",
+            "button_link": "/pages/range-calculator"
+          }
+        },
+        "test_ride": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-plane.svg",
+            "title": "🚴 Probefahrt buchen",
+            "text": "<p><strong>Kostenlos & unverbindlich testen</strong></p><p>✓ 4 Standorte in der Schweiz<br>✓ Expertenberatung inklusive<br>✓ Verschiedene Strecken<br>✓ Online Terminbuchung</p>",
+            "button_label": "Termin buchen",
+            "button_link": "/pages/test-ride"
+          }
+        },
+        "service_booking": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-wrench.svg",
+            "title": "🔧 Service buchen",
+            "text": "<p><strong>Professioneller E-Bike Service</strong></p><p>✓ Basis-, Voll- & Express-Service<br>✓ Zertifizierte Techniker<br>✓ 6 Monate Garantie<br>✓ Express mit Abhol-Service</p>",
+            "button_label": "Service buchen",
+            "button_link": "/pages/service-booking"
+          }
+        },
+        "wishlist_feature": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-heart.svg",
+            "title": "❤️ Smart Wunschliste",
+            "text": "<p><strong>E-Bikes merken & verfolgen</strong></p><p>✓ Preise verfolgen<br>✓ Verfügbarkeit prüfen<br>✓ Benachrichtigungen<br>✓ Einfach vergleichen</p>",
+            "button_label": "Wunschliste ansehen",
+            "button_link": "/pages/wishlist"
+          }
+        },
+        "pipeline_dashboard": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-price-tag.svg",
+            "title": "🎛️ Pipeline Dashboard",
+            "text": "<p><strong>Admin Control Center</strong></p><p>✓ VeloConnect Vendor Management<br>✓ Feature Status Monitoring<br>✓ Performance Metrics<br>✓ Master Controls</p>",
+            "button_label": "Dashboard öffnen",
+            "button_link": "/pages/pipeline-dashboard"
+          }
+        }
+      },
+      "block_order": [
+        "compare_tool",
+        "size_calculator", 
+        "financing_calc",
+        "range_calculator",
+        "test_ride",
+        "service_booking",
+        "wishlist_feature",
+        "pipeline_dashboard"
+      ],
+      "settings": {
+        "heading": "🚀 Alle Pipeline Features auf einen Blick",
+        "heading_size": "h1",
+        "description": "<p>Entdecken Sie unsere intelligenten Tools und Services für das perfekte E-Bike Erlebnis. Von KI-gestütztem Vergleich bis hin zum professionellen Service - alles aus einer Hand.</p>",
+        "text_alignment": "center",
+        "card_text_alignment": "left",
+        "icon_size": 64,
+        "card_border_radius": 12,
+        "color_scheme": "background-2",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
     "featured_tabs": {
       "type": "featured-collections-tabs",
       "settings": {
@@ -53,6 +160,57 @@
         "color_scheme": "background-1",
         "padding_top": 36,
         "padding_bottom": 36
+      }
+    },
+    "quick_tools": {
+      "type": "multicolumn",
+      "blocks": {
+        "bike_compare_quick": {
+          "type": "column",
+          "settings": {
+            "title": "Sofort vergleichen",
+            "text": "<p>Starten Sie den intelligenten E-Bike Vergleich direkt von hier aus.</p>",
+            "link_label": "Vergleich starten",
+            "link": "/pages/compare"
+          }
+        },
+        "size_guide_quick": {
+          "type": "column", 
+          "settings": {
+            "title": "Größe finden",
+            "text": "<p>Ermitteln Sie in 30 Sekunden Ihre perfekte E-Bike Größe.</p>",
+            "link_label": "Größe berechnen",
+            "link": "/pages/size-guide"
+          }
+        },
+        "locations_quick": {
+          "type": "column",
+          "settings": {
+            "title": "Vor Ort testen",
+            "text": "<p>Besuchen Sie einen unserer 4 Standorte für eine Probefahrt.</p>",
+            "link_label": "Standorte finden",
+            "link": "/pages/locations"
+          }
+        }
+      },
+      "block_order": [
+        "bike_compare_quick",
+        "size_guide_quick", 
+        "locations_quick"
+      ],
+      "settings": {
+        "title": "Schnellzugriff",
+        "heading_size": "h2",
+        "image_width": "third",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "none",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "background-1",
+        "padding_top": 40,
+        "padding_bottom": 40
       }
     },
     "newsletter": {
@@ -95,5 +253,5 @@
       }
     }
   },
-  "order": ["hero_pipeline", "featured_tabs", "latest_news", "newsletter"]
+  "order": ["hero_pipeline", "pipeline_features_showcase", "featured_tabs", "quick_tools", "latest_news", "newsletter"]
 }

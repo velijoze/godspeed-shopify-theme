@@ -114,6 +114,69 @@
         "padding_bottom": 60
       }
     },
+    "related_tools": {
+      "type": "services-grid",
+      "blocks": {
+        "compare_bikes": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-return.svg",
+            "title": "🔍 E-Bikes vergleichen",
+            "text": "<p>Nach dem Service neue E-Bikes entdecken?</p><p>✓ KI-gestützter Vergleich<br>✓ Neueste Modelle<br>✓ Service-freundliche Bikes<br>✓ Wartungsintervalle vergleichen</p>",
+            "button_label": "Jetzt vergleichen",
+            "button_link": "/pages/compare"
+          }
+        },
+        "test_ride": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-plane.svg",
+            "title": "🚴 Probefahrt buchen",
+            "text": "<p>Nach dem Service ein neues E-Bike testen?</p><p>✓ 4 Standorte verfügbar<br>✓ Kostenlos & unverbindlich<br>✓ Vergleich mit Ihrem aktuellen Bike<br>✓ Expertenberatung</p>",
+            "button_label": "Termin buchen",
+            "button_link": "/pages/test-ride"
+          }
+        },
+        "financing": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-price-tag.svg",
+            "title": "💰 0% Finanzierung",
+            "text": "<p>Upgrade nach dem Service finanzieren</p><p>✓ 0% Zinsen, 6-36 Monate<br>✓ Sofortige Kalkulation<br>✓ Alte E-Bike in Zahlung nehmen<br>✓ Online Antrag</p>",
+            "button_label": "Rate berechnen",
+            "button_link": "/pages/financing-calculator"
+          }
+        },
+        "range_calculator": {
+          "type": "service",
+          "settings": {
+            "icon": "icon-lightning-bolt.svg",
+            "title": "🔋 Reichweite nach Service",
+            "text": "<p>Reichweite nach der Wartung optimieren</p><p>✓ Verbesserungen durch Service<br>✓ Optimale Einstellungen<br>✓ Effizienz maximieren<br>✓ Akku-Tipps</p>",
+            "button_label": "Reichweite prüfen",
+            "button_link": "/pages/range-calculator"
+          }
+        }
+      },
+      "block_order": [
+        "compare_bikes",
+        "test_ride",
+        "financing",
+        "range_calculator"
+      ],
+      "settings": {
+        "heading": "🛠️ Nach dem Service",
+        "heading_size": "h1",
+        "description": "<p>Nach dem professionellen Service: Entdecken Sie weitere Möglichkeiten für Ihr optimales E-Bike Erlebnis.</p>",
+        "text_alignment": "center",
+        "card_text_alignment": "left",
+        "icon_size": 80,
+        "card_border_radius": 8,
+        "color_scheme": "background-2",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
     "service_info": {
       "type": "company-story",
       "blocks": {
@@ -154,6 +217,7 @@
     "hero",
     "booking_form",
     "service_packages",
+    "related_tools",
     "service_info"
   ]
 }
