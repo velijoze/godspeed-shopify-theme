@@ -55,14 +55,19 @@ class PipelineCollection {
     // Price inputs
     if (this.priceMinInput) {
       this.priceMinInput.addEventListener('input', (e) => this.handlePriceInput('min', e.target.value));
+      this.priceMinInput.addEventListener('change', (e) => this.handlePriceInput('min', e.target.value));
     }
     if (this.priceMaxInput) {
+      this.priceMaxInput.addEventListener('input', (e) => this.handlePriceInput('max', e.target.value));
       this.priceMaxInput.addEventListener('change', (e) => this.handlePriceInput('max', e.target.value));
     }
     
     // Price arrows
     document.querySelectorAll('[data-price-action]').forEach(arrow => {
-      arrow.addEventListener('click', (e) => this.handlePriceArrow(e.target.dataset.priceAction));
+      arrow.addEventListener('click', (e) => {
+        const action = (e.currentTarget && e.currentTarget.dataset) ? e.currentTarget.dataset.priceAction : null;
+        if (action) this.handlePriceArrow(action);
+      });
     });
     
     // Show more buttons
@@ -219,13 +224,12 @@ class PipelineCollection {
     // Set initial positions
     this.updatePriceSlider();
     
-    // Add drag functionality
+    // Add drag/touch functionality using Pointer Events for broad support
     [minHandle, maxHandle].forEach(handle => {
-      handle.addEventListener('mousedown', (e) => this.startDrag(e, handle));
+      handle.addEventListener('pointerdown', (e) => this.startDrag(e, handle));
     });
-    
-    document.addEventListener('mouseup', () => this.stopDrag());
-    document.addEventListener('mousemove', (e) => this.drag(e));
+    document.addEventListener('pointerup', () => this.stopDrag());
+    document.addEventListener('pointermove', (e) => this.drag(e));
   }
   
   updatePriceSlider() {
@@ -248,10 +252,11 @@ class PipelineCollection {
   }
   
   startDrag(e, handle) {
-    e.preventDefault();
+    if (e && e.preventDefault) e.preventDefault();
     this.dragging = handle;
-    this.dragStartX = e.clientX;
-    this.dragStartLeft = parseFloat(handle.style.left);
+    this.dragStartX = (typeof e.clientX === 'number') ? e.clientX : (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
+    const currentLeft = parseFloat(handle.style.left);
+    this.dragStartLeft = isNaN(currentLeft) ? 0 : currentLeft;
   }
   
   stopDrag() {
@@ -261,7 +266,8 @@ class PipelineCollection {
   drag(e) {
     if (!this.dragging) return;
     
-    const deltaX = e.clientX - this.dragStartX;
+    const clientX = (typeof e.clientX === 'number') ? e.clientX : (e.touches && e.touches[0] ? e.touches[0].clientX : this.dragStartX);
+    const deltaX = clientX - this.dragStartX;
     const sliderWidth = this.priceSlider.offsetWidth;
     const deltaPercent = (deltaX / sliderWidth) * 100;
     const newLeft = Math.max(0, Math.min(100, this.dragStartLeft + deltaPercent));
@@ -280,6 +286,8 @@ class PipelineCollection {
     }
     
     this.updatePriceSlider();
+    // Live filter while dragging
+    this.applyFiltersAndSort();
   }
   
   applyFiltersAndSort() {

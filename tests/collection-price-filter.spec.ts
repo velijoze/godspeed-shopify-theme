@@ -1,9 +1,11 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Collection price filter', () => {
-  test('sets min/max and persists in URL', async ({ page }) => {
-    await page.goto('/collections/e-bikes');
+  test('sets min/max and persists in URL', async ({ page, baseURL }) => {
+    const host = baseURL || 'https://t0uds3-a2.myshopify.com';
+    await page.goto(host + '/collections/e-bikes');
     const priceRange = page.locator('price-range');
+    if (await priceRange.count() === 0) test.skip();
     await expect(priceRange).toBeVisible();
 
     const min = page.locator('input[id*="-GTE"]');

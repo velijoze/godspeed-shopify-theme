@@ -1,20 +1,10 @@
 {
-  "node": "v22.11.0",
+  "node": "v22.16.0",
   "playwright": "1.54.2",
   "os": "win32",
-  "ci": true,
-  "workers": 2,
+  "ci": false,
+  "workers": 4,
   "projects": [
-    "chromium-desktop",
-    "firefox-desktop",
-    "webkit-desktop",
-    "mobile-chrome",
-    "mobile-safari",
-    "uat-comprehensive",
-    "sit-integration",
-    "performance-testing",
-    "load-testing",
-    "accessibility",
-    "multilingual"
+    ""
   ]
 }

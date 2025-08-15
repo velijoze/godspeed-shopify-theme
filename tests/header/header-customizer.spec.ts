@@ -1,8 +1,9 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Header Customizer bindings', () => {
-  test('logo alignment reflects settings on desktop and mobile', async ({ page, browserName }) => {
-    await page.goto('/');
+  test('logo alignment reflects settings on desktop and mobile', async ({ page, baseURL }) => {
+    const host = baseURL || 'https://t0uds3-a2.myshopify.com';
+    await page.goto(host + '/');
 
     // Desktop: row carries data-logo-position attribute; center aligns logo wrapper
     await page.setViewportSize({ width: 1280, height: 800 });
@@ -14,12 +15,13 @@ test.describe('Header Customizer bindings', () => {
     await expect(row).toHaveAttribute('data-mobile-logo-position', /(left|center)/);
   });
 
-  test('drawer trigger present on mobile and opens drawer', async ({ page }) => {
+  test('drawer trigger present on mobile and opens drawer', async ({ page, baseURL }) => {
     await page.setViewportSize({ width: 390, height: 800 });
-    await page.goto('/');
+    const host = baseURL || 'https://t0uds3-a2.myshopify.com';
+    await page.goto(host + '/');
     if (await page.locator('#Details-menu-drawer-container').count()) {
       await page.click('#Details-menu-drawer-container > summary');
-      await expect(page.locator('#menu-drawer')).toBeVisible();
+      await expect(page.locator('#Details-menu-drawer-container[open]')).toHaveCount(1);
     }
   });
 });

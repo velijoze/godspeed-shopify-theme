@@ -262,7 +262,7 @@
   endfor
 -%}
 
-<{% if section.settings.sticky_header_type != 'none' %}sticky-header data-sticky-type="{{ section.settings.sticky_header_type }}"{% else %}div{% endif %} class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}">
+<{% if section.settings.sticky_header_type != 'none' %}sticky-header data-sticky-type="{{ section.settings.sticky_header_type }}"{% else %}div{% endif %} class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}" data-desktop-menu-type="{{ section.settings.menu_type_desktop }}">
   {%- liquid
     assign social_links = false
     assign localization_forms = false
@@ -315,7 +315,7 @@
         </div>
 
         <!-- Desktop Navigation -->
-        <nav class="header__nav-menu">
+        <nav class="header__nav-menu" data-menu-type="{{ section.settings.menu_type_desktop }}">
           {%- if section.settings.menu != blank -%}
             <!-- Menu: {{ section.settings.menu }} -->
             {%- for link in linklists[section.settings.menu].links -%}

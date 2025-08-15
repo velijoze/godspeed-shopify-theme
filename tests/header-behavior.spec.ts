@@ -1,16 +1,18 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Header behavior', () => {
-  test('desktop: nav visible, hamburger hidden', async ({ page }) => {
+  test('desktop: nav visible, hamburger hidden', async ({ page, baseURL }) => {
     await page.setViewportSize({ width: 1280, height: 900 });
-    await page.goto('/');
+    const host = baseURL || 'https://t0uds3-a2.myshopify.com';
+    await page.goto(host + '/');
     await expect(page.locator('.header__nav-menu')).toBeVisible();
     await expect(page.locator('.header-drawer-toggle')).toHaveCount(0);
   });
 
-  test('mobile: hamburger opens drawer', async ({ page }) => {
+  test('mobile: hamburger opens drawer', async ({ page, baseURL }) => {
     await page.setViewportSize({ width: 390, height: 844 });
-    await page.goto('/');
+    const host = baseURL || 'https://t0uds3-a2.myshopify.com';
+    await page.goto(host + '/');
     const toggle = page.locator('.header-drawer-toggle');
     const toggleCount = await toggle.count();
     if (toggleCount === 0) test.skip();
