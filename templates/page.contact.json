@@ -15,14 +15,14 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Kontakt",
+            "heading": "{{ 'pipeline.contact.heading' | t }}",
             "heading_size": "h0"
           }
         },
         "subheading": {
           "type": "subheading",
           "settings": {
-            "subheading": "Wir sind für Sie da - persönlich, telefonisch oder digital"
+            "subheading": "{{ 'pipeline.contact.subheading' | t }}"
           }
         },
         "text": {

@@ -15,17 +15,17 @@ This is a complete e-commerce solution built specifically for **Godspeed**, a pr
 
 ### ✨ Key Highlights
 
-- **🛠️ 8 Pipeline Tools**: Compare, Size Guide, Financing, Range Calculator, Test Rides, Service Booking, Wishlist, Dashboard
-- **🔗 Complete Cross-linking**: All features discoverable from every page with smart context-aware suggestions
-- **📅 Integrated Booking Systems**: Test ride and service appointment scheduling with multi-location support
-- **🎛️ Complete GUI Control**: 313+ admin settings across 5 organized panels
-- **💰 Swiss Financing**: HeyLight 0% financing calculator with instant approval
-- **🔋 Advanced Calculators**: Intelligent range and size calculators with multi-factor analysis
-- **🔌 VeloConnect Integration**: Professional vendor API management through Pipeline Dashboard
-- **✅ 100% Feature Cross-linking**: Every page enhanced with related tools for maximum discoverability
-- **📱 Mobile-First Design**: Optimized for all devices with touch interactions
-- **🌐 Multi-language Support**: Swiss market localization (German, French, Italian)
-- **⚡ Performance Optimized**: Core Web Vitals compliant, sub-3s load times
+- **🚀 Complete Pipeline Integration**: Full Pipeline theme functionality with all premium features
+- **🛠️ 8 Custom Pipeline Tools**: Compare, Size Guide, Financing, Range Calculator, Test Rides, Service Booking, Wishlist, Dashboard
+- **🛒 Advanced Ajax Cart**: Modal/drawer cart system with instant add-to-cart feedback
+- **🔍 Enhanced Search & Navigation**: Quick view, image zoom, advanced filtering, and pagination
+- **🎛️ Comprehensive Admin Control**: 330+ customizer settings including all Pipeline features
+- **🌐 Complete Internationalization**: 260+ translation keys for EN/DE/FR/IT (Swiss market ready)
+- **📱 Touch-Optimized Experience**: FastClick integration and mobile-first design
+- **⚡ Performance Excellence**: jQuery, Modernizr, lazy loading, and Core Web Vitals optimized
+- **🔗 Smart Cross-linking**: All features discoverable from every page with context-aware suggestions
+- **💰 Swiss E-commerce Features**: HeyLight 0% financing, multi-location support, and local payment methods
+- **♿ Accessibility Compliant**: WCAG 2.1 AA standards with comprehensive keyboard navigation
 
 ## 🚀 Quick Start
 
@@ -69,12 +69,17 @@ This is a complete e-commerce solution built specifically for **Godspeed**, a pr
 
 ### Built With
 
-- **Frontend**: Traditional CSS (component-based), Vanilla JavaScript
-- **Typography**: Inter font family for optimal readability
-- **Testing**: Playwright with multi-browser support
-- **APIs**: RESTful integrations with vendor systems
-- **Accessibility**: WCAG 2.1 AA compliant
-- **Theme Foundation**: Dawn base with Pipeline theme enhancements
+- **Theme Foundation**: Dawn base + Complete Pipeline theme integration
+- **Frontend**: Component-based CSS, jQuery, Vanilla JavaScript, Ajax functionality
+- **Performance**: jQuery, Modernizr, FastClick, lazy loading, infinite scroll
+- **Cross-Browser**: IE support (respond.js), modern browser optimizations
+- **Typography**: Inter font family + Pipeline Google Fonts integration
+- **Cart System**: Advanced Ajax cart with modal/drawer options
+- **Search & Navigation**: Enhanced filtering, quick view, image zoom
+- **Testing**: Playwright with multi-browser and visual regression testing
+- **APIs**: RESTful integrations with vendor systems + VeloConnect
+- **Internationalization**: 260+ translation keys for 4 languages (EN/DE/FR/IT)
+- **Accessibility**: WCAG 2.1 AA compliant with keyboard navigation
 
 ### Project Structure
 
@@ -82,16 +87,25 @@ This is a complete e-commerce solution built specifically for **Godspeed**, a pr
 godspeed-shopify-theme/
 ├── 📁 assets/                    # CSS, JS, and media files
 │   ├── base.css                 # Dawn foundation styles
-│   ├── pipeline-*.css           # Pipeline-specific styling
-│   ├── bike-comparison.js       # Comparison tool functionality
-│   ├── size-calculator.js       # Size calculation logic
-│   └── core-bundle.js           # Core Pipeline functionality
+│   ├── ajaxify.js              # Pipeline Ajax cart functionality
+│   ├── pipeline-shop.js        # Complete Pipeline shop features
+│   ├── jquery.min.js           # jQuery library
+│   ├── modernizr.min.js        # Feature detection
+│   ├── fastclick.min.js        # Touch optimization
+│   ├── pipeline-*.css          # Pipeline-specific styling
+│   ├── bike-comparison.js      # Comparison tool functionality
+│   ├── size-calculator.js      # Size calculation logic
+│   └── core-bundle.js          # Core Pipeline functionality
 ├── 📁 config/
-│   └── settings_schema.json     # 313+ GUI admin controls
+│   ├── settings_schema.json     # 330+ GUI admin controls (Pipeline enhanced)
+│   └── pipeline-settings-schema.json # Pipeline reference settings
 ├── 📁 sections/                 # Liquid section files
 │   ├── hero-pipeline.liquid     # Enhanced hero section
 │   ├── bike-compare.liquid      # Comparison functionality
 │   ├── size-calculator.liquid   # Size calculation interface
+│   ├── pipeline-collection-advanced.liquid # Advanced collection features
+│   ├── pipeline-product-advanced.liquid    # Enhanced product display
+│   ├── pipeline-index-*.liquid  # Advanced homepage sections
 │   └── services-grid.liquid     # Service showcase grid
 ├── 📁 templates/                # Page templates with cross-linking
 │   ├── page.compare.json        # Bike comparison tool
@@ -102,6 +116,15 @@ godspeed-shopify-theme/
 │   ├── page.service-booking.json # Service appointments
 │   ├── page.contact.json        # Contact with tools showcase
 │   └── page.pipeline-dashboard.json # VeloConnect dashboard
+├── 📁 snippets/                 # Reusable Liquid components
+│   ├── ajax-cart-template.liquid # Ajax cart functionality
+│   ├── pipeline-*.liquid        # Pipeline-specific snippets
+│   └── card-product-pipeline.liquid # Enhanced product cards
+├── 📁 locales/                  # Internationalization files
+│   ├── en.default.json         # English translations (260+ Pipeline keys)
+│   ├── de.json                 # German (Swiss) translations
+│   ├── fr.json                 # French translations
+│   └── it.json                 # Italian translations
 ├── 📁 tests/                    # Comprehensive test suite
 │   ├── e2e/                     # End-to-end tests
 │   ├── performance/             # Performance benchmarks
@@ -117,6 +140,36 @@ godspeed-shopify-theme/
 ```
 
 ## 🎨 Features
+
+### 🚀 **Complete Pipeline Integration**
+
+#### **Advanced Cart & Checkout System** 🛒
+- **Ajax Cart Functionality**: Instant add-to-cart with modal/drawer display
+- **Quick Add Options**: Add products without page reload
+- **Enhanced Cart Notes**: Customer order customization
+- **Additional Payment Methods**: Apple Pay, PayPal Express integration
+- **Quantity Management**: In-cart quantity adjustment with live updates
+
+#### **Enhanced Search & Navigation** 🔍
+- **Quick View**: Product preview without leaving collection page
+- **Advanced Filtering**: Multi-attribute product filtering
+- **Smart Pagination**: Custom pagination with infinite scroll option
+- **Breadcrumb Navigation**: Clear page hierarchy display
+- **Search Result Enhancement**: Grid and list view options
+
+#### **Advanced Product Display** 📦
+- **Image Zoom**: High-resolution product image zoom functionality
+- **Multiple Layout Options**: Grid, list, and masonry collection layouts
+- **Product Grid Enhancement**: Hover effects and quick actions
+- **Lazy Loading**: Performance-optimized image loading
+- **Cross-browser Compatibility**: IE support with modern fallbacks
+
+#### **Performance & Optimization** ⚡
+- **jQuery Integration**: Robust JavaScript foundation
+- **Modernizr Support**: Feature detection for progressive enhancement
+- **FastClick Implementation**: Touch optimization for mobile devices
+- **Responsive Design**: Mobile-first approach with touch interactions
+- **Font Management**: Google Fonts integration with web font loading
 
 ### 🔍 **Magnifying Glass & Image Zoom**
 - **Customizable Position**: Top-right, bottom-left, center, or custom
@@ -194,33 +247,40 @@ godspeed-shopify-theme/
 
 ### GUI Administration System
 
-The theme provides **313 configurable settings** organized across **5 intuitive panels**:
+The theme provides **330+ configurable settings** organized across **6 intuitive panels**:
 
-1. **🔧 E-Bike Features** (18+ settings)
+1. **🚀 Pipeline Features** (15+ settings)
+   - Ajax cart functionality toggle
+   - Cart display options (modal/drawer/page)
+   - Quick view and image zoom controls
+   - Collection layout styles (grid/list/masonry)
+   - Performance optimizations (lazy loading, infinite scroll)
+
+2. **🔧 E-Bike Features** (18+ settings)
    - Enable/disable all custom features
    - Magnifying glass customization
    - Comparison tool configuration
    - AI chatbot integration controls
 
-2. **🏪 Store Locations** (144+ settings)
+3. **🏪 Store Locations** (144+ settings)
    - Multi-location management (6 Swiss stores)
    - Contact information per location
    - Business hours and availability
    - Test ride booking locations
 
-3. **💬 Text & Messaging** (16+ settings)
+4. **💬 Text & Messaging** (16+ settings)
    - Multi-language content (German/French/Italian)
    - Button labels and descriptions
    - Custom messaging
    - AI chatbot prompts
 
-4. **🤖 AI Features** (20+ settings)
+5. **🤖 AI Features** (20+ settings)
    - Claude/OpenAI/Gemini API keys
    - Provider fallback configuration
    - Cache duration and timeout settings
    - Multi-language AI responses
 
-5. **🔌 API Integration** (12+ settings)
+6. **🔌 API Integration** (12+ settings)
    - Vendor API credentials
    - VeloConnect integration
    - Sync preferences

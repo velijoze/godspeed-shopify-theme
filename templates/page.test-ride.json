@@ -40,7 +40,7 @@
     "booking_form": {
       "type": "contact-form",
       "settings": {
-        "heading": "Probefahrt-Anfrage",
+        "heading": "{{ 'pipeline.test_ride.heading' | t }}",
         "heading_size": "h1",
         "color_scheme": "scheme-1",
         "padding_top": 36,
@@ -54,7 +54,7 @@
           "type": "service",
           "settings": {
             "icon": "icon-heart.svg",
-            "title": "Kostenlos & unverbindlich",
+            "title": "{{ 'pipeline.test_ride.free_title' | t }}",
             "text": "<p>Die Probefahrt ist völlig kostenlos und ohne Kaufverpflichtung. Nehmen Sie sich die Zeit, die Sie brauchen.</p>",
             "button_label": "",
             "button_link": ""
@@ -64,7 +64,7 @@
           "type": "service",
           "settings": {
             "icon": "icon-price-tag.svg",
-            "title": "Expertenberatung inklusive",
+            "title": "{{ 'pipeline.test_ride.expert_title' | t }}",
             "text": "<p>Unsere E-Bike Spezialisten erklären Ihnen alle Funktionen und stellen das Bike optimal für Sie ein.</p>",
             "button_label": "",
             "button_link": ""

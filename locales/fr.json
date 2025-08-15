@@ -696,5 +696,159 @@
       "consultation": "Pour un ajustement optimal, nous recommandons un conseil en magasin et un essai."
     }
   },
-  "size_guide": { "title": "Guide des tailles", "open_button": "Voir le guide des tailles" }
+  "size_guide": { "title": "Guide des tailles", "open_button": "Voir le guide des tailles" },
+  "pipeline": {
+    "compare": {
+      "heading": "Comparaison de Vélos Électriques",
+      "subheading": "Comparez les vélos électriques selon vos critères",
+      "interactive_heading": "Comparaison Interactive",
+      "interactive_subheading": "Comparez jusqu'à 3 vélos électriques",
+      "reset_label": "Réinitialiser",
+      "cta_label": "Voir tous les vélos électriques",
+      "expert_tips_heading": "Conseils de Comparaison de Nos Experts",
+      "motor_title": "Comparaison de Moteur",
+      "battery_title": "Capacité de Batterie",
+      "range_title": "Évaluer correctement l'autonomie",
+      "personal_consultation_highlight": "Consultation Personnelle",
+      "personal_consultation_text": "Avez-vous des questions sur la comparaison ou besoin d'aide pour choisir? Nos experts en vélos électriques vous conseillent volontiers gratuitement.",
+      "consultation_button": "Obtenir des conseils maintenant"
+    },
+    "financing": {
+      "heading": "Calculateur de Financement",
+      "subheading": "Calculez votre mensualité pour votre vélo électrique de rêve",
+      "apply_button": "Postuler maintenant",
+      "business_leasing_title": "Leasing Professionnel",
+      "business_leasing_button": "Demande de leasing",
+      "instant_decision_title": "Décision Instantanée",
+      "instant_decision_button": "Soumettre la demande",
+      "options_heading": "Nos Options de Financement",
+      "promise_highlight": "Notre Promesse",
+      "promise_text": "Conditions équitables, traitement transparent et conseil personnel. Vos données seront traitées de manière strictement confidentielle.",
+      "requirements_heading": "Exigences et Processus",
+      "financing_button": "Demander un financement"
+    },
+    "test_ride": {
+      "heading": "Demande d'Essai",
+      "free_title": "Gratuit et sans engagement",
+      "expert_title": "Conseil d'expert inclus",
+      "routes_title": "Différents parcours",
+      "benefits_heading": "Vos Avantages lors de l'Essai",
+      "safety_highlight": "La sécurité avant tout",
+      "safety_text": "Tous les essais sont accompagnés par nos experts. Vous recevrez un briefing de sécurité et un équipement de protection de haute qualité.",
+      "process_heading": "Le Processus d'Essai",
+      "book_button": "Réserver un rendez-vous maintenant"
+    },
+    "contact": {
+      "heading": "Contact",
+      "subheading": "Nous sommes là pour vous - en personne, par téléphone ou numériquement",
+      "phone_title": "Conseil téléphonique",
+      "phone_button": "Appeler maintenant",
+      "whatsapp_title": "Service WhatsApp",
+      "whatsapp_button": "Ouvrir WhatsApp",
+      "reach_us_heading": "Comment nous joindre",
+      "visit_heading": "Visitez-nous sur place",
+      "write_heading": "Écrivez-nous"
+    },
+    "locations": {
+      "heading": "Nos Emplacements",
+      "subheading": "Visitez-nous partout en Suisse",
+      "appointment_button": "Prendre rendez-vous",
+      "visit_heading": "Visitez-nous sur place",
+      "promise_highlight": "Notre Promesse de Service",
+      "promise_text": "Consultation initiale gratuite, politique de retour de 30 jours et support à vie pour tous les clients Godspeed."
+    },
+    "warranty": {
+      "heading": "Garantie et Assurance",
+      "subheading": "Protection complète pour votre vélo électrique",
+      "frame_title": "Garantie Cadre",
+      "motor_title": "Moteur et Électronique",
+      "battery_title": "Garantie Batterie",
+      "services_heading": "Nos Services de Garantie",
+      "hotline_highlight": "Hotline Garantie",
+      "hotline_text": "Pour les cas de garantie, vous pouvez joindre nos spécialistes au +41 44 123 45 67 ou garantie@godspeed.ch",
+      "process_heading": "Traitement de Garantie Étape par Étape",
+      "extended_motor_title": "Garantie Moteur Étendue",
+      "extended_motor_button": "Réserver la garantie étendue",
+      "premium_care_title": "Package Premium Care",
+      "premium_care_button": "Réserver Premium Care",
+      "battery_plus_title": "Garantie Batterie Plus",
+      "battery_plus_button": "Réserver Batterie Plus",
+      "extended_options_heading": "Options de Garantie Étendue",
+      "maintain_highlight": "Maintenir la garantie",
+      "maintain_text": "Traitez votre vélo électrique avec soin et faites-le entretenir régulièrement. Cela maintient la garantie valide et votre vélo électrique fonctionne parfaitement pendant des années.",
+      "exclusions_heading": "Exclusions de Garantie",
+      "service_button": "Réserver un service"
+    },
+    "wishlist": {
+      "heading": "Ma Liste de Souhaits",
+      "subheading": "Vos vélos électriques sauvegardés et favoris",
+      "track_prices_title": "Suivre les prix",
+      "check_availability_title": "Vérifier la disponibilité",
+      "easy_compare_title": "Comparaison facile",
+      "benefits_heading": "Avantages de la Liste de Souhaits"
+    },
+    "dashboard": {
+      "title": "Centre de Contrôle du Thème Pipeline",
+      "subtitle": "Gérez toutes vos fonctionnalités premium Pipeline en un seul endroit",
+      "search_placeholder": "Rechercher nos vélos électriques...",
+      "vendor_heading": "Gestion des Fournisseurs VeloConnect",
+      "cube_vendor": "Cube Bikes",
+      "bosch_vendor": "Bosch eBike Systems",
+      "shimano_vendor": "Shimano STEPS"
+    },
+    "range_calculator": {
+      "heading": "Calculateur d'Autonomie",
+      "subheading": "Calculez l'autonomie réaliste de votre vélo électrique",
+      "battery_label": "Capacité de batterie (Wh)",
+      "motor_label": "Type de moteur",
+      "terrain_label": "Terrain",
+      "weather_label": "Conditions météorologiques",
+      "weight_label": "Poids total (kg)",
+      "calculate_button": "Calculer l'autonomie",
+      "result_title": "Autonomie estimée",
+      "conservative": "Conservateur",
+      "realistic": "Réaliste",
+      "optimistic": "Optimiste",
+      "tips_heading": "Conseils d'Optimisation d'Autonomie"
+    },
+    "size_guide": {
+      "heading": "Guide des Tailles",
+      "subheading": "Trouvez la taille de cadre parfaite pour votre vélo électrique",
+      "height_label": "Votre taille (cm)",
+      "inseam_label": "Entrejambe (cm)",
+      "bike_type_label": "Type de vélo",
+      "calculate_button": "Calculer la taille",
+      "result_heading": "Taille de cadre recommandée",
+      "consultation_note": "Pour un ajustement optimal, nous recommandons une consultation en magasin et un essai."
+    },
+    "service_booking": {
+      "heading": "Réservation de Service",
+      "subheading": "Maintenance professionnelle pour votre vélo électrique",
+      "basic_title": "Service de Base",
+      "standard_title": "Service Standard",
+      "premium_title": "Service Premium",
+      "express_title": "Service Express",
+      "book_button": "Réserver un service",
+      "services_heading": "Nos Packages de Service",
+      "booking_heading": "Réservez Votre Rendez-vous de Service"
+    },
+    "common": {
+      "compare_button": "Comparer maintenant",
+      "size_button": "Calculer la taille",
+      "financing_button": "Calculer le taux",
+      "range_button": "Vérifier l'autonomie",
+      "test_ride_button": "Réserver un essai",
+      "service_button": "Réserver un service",
+      "contact_button": "Nous contacter",
+      "wishlist_button": "Ajouter à la liste de souhaits",
+      "back_button": "Retour",
+      "next_button": "Suivant",
+      "close_button": "Fermer",
+      "save_button": "Sauvegarder",
+      "reset_button": "Réinitialiser",
+      "apply_button": "Postuler",
+      "learn_more": "En savoir plus",
+      "view_details": "Voir les détails"
+    }
+  }
 }

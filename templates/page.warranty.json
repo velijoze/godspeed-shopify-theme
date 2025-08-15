@@ -6,14 +6,14 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Garantie & Gewährleistung",
+            "heading": "{{ 'pipeline.warranty.heading' | t }}",
             "heading_size": "h0"
           }
         },
         "subheading": {
           "type": "subheading",
           "settings": {
-            "subheading": "Umfassender Schutz für Ihr E-Bike"
+            "subheading": "{{ 'pipeline.warranty.subheading' | t }}"
           }
         },
         "text": {
@@ -44,7 +44,7 @@
           "type": "service",
           "settings": {
             "icon": "icon-heart.svg",
-            "title": "Rahmen-Garantie",
+            "title": "{{ 'pipeline.warranty.frame_title' | t }}",
             "text": "<p><strong>5 Jahre Garantie</strong></p><ul><li>✓ Materialfehler am Rahmen</li><li>✓ Risse durch Produktionsfehler</li><li>✓ Schweißnaht-Probleme</li><li>✓ Lackdefekte (2 Jahre)</li></ul><p><em>Ausgenommen: Verschleiß, Unfälle, unsachgemäße Nutzung</em></p>",
             "button_label": "",
             "button_link": ""
@@ -54,7 +54,7 @@
           "type": "service",
           "settings": {
             "icon": "icon-return.svg",
-            "title": "Motor & Elektronik",
+            "title": "{{ 'pipeline.warranty.motor_title' | t }}",
             "text": "<p><strong>2 Jahre Garantie</strong></p><ul><li>✓ Bosch, Shimano, Brose Motoren</li><li>✓ Display und Bedieneinheit</li><li>✓ Kabel und Steckverbindungen</li><li>✓ Sensoren und Controller</li></ul><p><em>Erweiterte Garantie bis 4 Jahre möglich</em></p>",
             "button_label": "",
             "button_link": ""
@@ -64,7 +64,7 @@
           "type": "service",
           "settings": {
             "icon": "icon-price-tag.svg",
-            "title": "Akku-Garantie",
+            "title": "{{ 'pipeline.warranty.battery_title' | t }}",
             "text": "<p><strong>2 Jahre / 500 Zyklen</strong></p><ul><li>✓ Mindestens 60% Kapazität nach 500 Zyklen</li><li>✓ Defekte Zellen oder BMS</li><li>✓ Lade-Probleme</li><li>✓ Ersatz bei Totalausfall</li></ul><p><em>Premium-Akkus: 3 Jahre / 1000 Zyklen</em></p>",
             "button_label": "",
             "button_link": ""
@@ -77,7 +77,7 @@
         "battery_warranty"
       ],
       "settings": {
-        "heading": "Unsere Garantieleistungen",
+        "heading": "{{ 'pipeline.warranty.services_heading' | t }}",
         "heading_size": "h1",
         "description": "<p>Alle E-Bikes von Godspeed sind umfassend abgesichert. Je nach Komponente bieten wir unterschiedliche Garantiezeiten.</p>",
         "text_alignment": "center",

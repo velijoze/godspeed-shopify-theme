@@ -6,14 +6,14 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Service Termin buchen",
+            "heading": "{{ 'pipeline.service_booking.heading' | t }}",
             "heading_size": "h0"
           }
         },
         "subheading": {
           "type": "subheading",
           "settings": {
-            "subheading": "Professioneller Service für Ihr E-Bike"
+            "subheading": "{{ 'pipeline.service_booking.subheading' | t }}"
           }
         },
         "text": {

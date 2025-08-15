@@ -674,5 +674,159 @@
       "consultation": "Per la miglior vestibilità consigliamo consulenza in negozio e test ride."
     }
   },
-  "size_guide": { "title": "Guida alle taglie", "open_button": "Vedi guida alle taglie" }
+  "size_guide": { "title": "Guida alle taglie", "open_button": "Vedi guida alle taglie" },
+  "pipeline": {
+    "compare": {
+      "heading": "Confronto E-Bike",
+      "subheading": "Confronta le e-bike secondo i tuoi criteri",
+      "interactive_heading": "Confronto Interattivo",
+      "interactive_subheading": "Confronta fino a 3 e-bike",
+      "reset_label": "Ripristina",
+      "cta_label": "Vedi tutte le e-bike",
+      "expert_tips_heading": "Consigli di Confronto dai Nostri Esperti",
+      "motor_title": "Confronto Motore",
+      "battery_title": "Capacità Batteria",
+      "range_title": "Valutare correttamente l'autonomia",
+      "personal_consultation_highlight": "Consulenza Personale",
+      "personal_consultation_text": "Hai domande sul confronto o hai bisogno di aiuto nella scelta? I nostri esperti di e-bike ti consigliano volentieri gratuitamente.",
+      "consultation_button": "Ottieni consigli ora"
+    },
+    "financing": {
+      "heading": "Calcolatore Finanziamento",
+      "subheading": "Calcola la tua rata mensile per la tua e-bike dei sogni",
+      "apply_button": "Applica ora",
+      "business_leasing_title": "Leasing Aziendale",
+      "business_leasing_button": "Richiesta leasing",
+      "instant_decision_title": "Decisione Istantanea",
+      "instant_decision_button": "Invia domanda",
+      "options_heading": "Le Nostre Opzioni di Finanziamento",
+      "promise_highlight": "La Nostra Promessa",
+      "promise_text": "Condizioni eque, elaborazione trasparente e consulenza personale. I tuoi dati saranno trattati in modo strettamente confidenziale.",
+      "requirements_heading": "Requisiti e Processo",
+      "financing_button": "Richiedi finanziamento"
+    },
+    "test_ride": {
+      "heading": "Richiesta Test Ride",
+      "free_title": "Gratuito e senza impegno",
+      "expert_title": "Consulenza esperta inclusa",
+      "routes_title": "Percorsi diversi",
+      "benefits_heading": "I Tuoi Vantaggi nel Test Ride",
+      "safety_highlight": "La sicurezza viene prima",
+      "safety_text": "Tutti i test ride sono accompagnati dai nostri esperti. Riceverai un briefing di sicurezza e attrezzature protettive di alta qualità.",
+      "process_heading": "Il Processo del Test Ride",
+      "book_button": "Prenota appuntamento ora"
+    },
+    "contact": {
+      "heading": "Contatto",
+      "subheading": "Siamo qui per te - di persona, per telefono o digitalmente",
+      "phone_title": "Consulenza telefonica",
+      "phone_button": "Chiama ora",
+      "whatsapp_title": "Servizio WhatsApp",
+      "whatsapp_button": "Apri WhatsApp",
+      "reach_us_heading": "Come raggiungerci",
+      "visit_heading": "Visitaci di persona",
+      "write_heading": "Scrivici"
+    },
+    "locations": {
+      "heading": "Le Nostre Sedi",
+      "subheading": "Visitaci in tutta la Svizzera",
+      "appointment_button": "Fissa appuntamento",
+      "visit_heading": "Visitaci di persona",
+      "promise_highlight": "La Nostra Promessa di Servizio",
+      "promise_text": "Consulenza iniziale gratuita, politica di reso di 30 giorni e supporto a vita per tutti i clienti Godspeed."
+    },
+    "warranty": {
+      "heading": "Garanzia e Assicurazione",
+      "subheading": "Protezione completa per la tua e-bike",
+      "frame_title": "Garanzia Telaio",
+      "motor_title": "Motore ed Elettronica",
+      "battery_title": "Garanzia Batteria",
+      "services_heading": "I Nostri Servizi di Garanzia",
+      "hotline_highlight": "Hotline Garanzia",
+      "hotline_text": "Per i casi di garanzia, puoi raggiungere i nostri specialisti al +41 44 123 45 67 o garantie@godspeed.ch",
+      "process_heading": "Elaborazione Garanzia Passo dopo Passo",
+      "extended_motor_title": "Garanzia Motore Estesa",
+      "extended_motor_button": "Prenota garanzia estesa",
+      "premium_care_title": "Pacchetto Premium Care",
+      "premium_care_button": "Prenota Premium Care",
+      "battery_plus_title": "Garanzia Batteria Plus",
+      "battery_plus_button": "Prenota Batteria Plus",
+      "extended_options_heading": "Opzioni di Garanzia Estesa",
+      "maintain_highlight": "Mantieni la garanzia",
+      "maintain_text": "Tratta la tua e-bike con cura e falla manutenere regolarmente. Questo mantiene valida la garanzia e la tua e-bike funziona perfettamente per anni.",
+      "exclusions_heading": "Esclusioni di Garanzia",
+      "service_button": "Prenota servizio"
+    },
+    "wishlist": {
+      "heading": "La Mia Lista Desideri",
+      "subheading": "Le tue e-bike salvate e preferite",
+      "track_prices_title": "Segui i prezzi",
+      "check_availability_title": "Controlla disponibilità",
+      "easy_compare_title": "Confronto facile",
+      "benefits_heading": "Vantaggi della Lista Desideri"
+    },
+    "dashboard": {
+      "title": "Centro di Controllo Tema Pipeline",
+      "subtitle": "Gestisci tutte le tue funzionalità premium Pipeline in un posto",
+      "search_placeholder": "Cerca le nostre e-bike...",
+      "vendor_heading": "Gestione Fornitori VeloConnect",
+      "cube_vendor": "Cube Bikes",
+      "bosch_vendor": "Bosch eBike Systems",
+      "shimano_vendor": "Shimano STEPS"
+    },
+    "range_calculator": {
+      "heading": "Calcolatore Autonomia",
+      "subheading": "Calcola l'autonomia realistica della tua e-bike",
+      "battery_label": "Capacità batteria (Wh)",
+      "motor_label": "Tipo di motore",
+      "terrain_label": "Terreno",
+      "weather_label": "Condizioni meteorologiche",
+      "weight_label": "Peso totale (kg)",
+      "calculate_button": "Calcola autonomia",
+      "result_title": "Autonomia stimata",
+      "conservative": "Conservativo",
+      "realistic": "Realistico",
+      "optimistic": "Ottimistico",
+      "tips_heading": "Consigli per l'Ottimizzazione dell'Autonomia"
+    },
+    "size_guide": {
+      "heading": "Guida alle Taglie",
+      "subheading": "Trova la taglia del telaio perfetta per la tua e-bike",
+      "height_label": "La tua altezza (cm)",
+      "inseam_label": "Cavallo (cm)",
+      "bike_type_label": "Tipo di bici",
+      "calculate_button": "Calcola taglia",
+      "result_heading": "Taglia telaio consigliata",
+      "consultation_note": "Per la migliore vestibilità, raccomandiamo una consulenza in negozio e un test ride."
+    },
+    "service_booking": {
+      "heading": "Prenotazione Servizio",
+      "subheading": "Manutenzione professionale per la tua e-bike",
+      "basic_title": "Servizio Base",
+      "standard_title": "Servizio Standard",
+      "premium_title": "Servizio Premium",
+      "express_title": "Servizio Express",
+      "book_button": "Prenota servizio",
+      "services_heading": "I Nostri Pacchetti di Servizio",
+      "booking_heading": "Prenota il Tuo Appuntamento di Servizio"
+    },
+    "common": {
+      "compare_button": "Confronta ora",
+      "size_button": "Calcola taglia",
+      "financing_button": "Calcola rata",
+      "range_button": "Controlla autonomia",
+      "test_ride_button": "Prenota test ride",
+      "service_button": "Prenota servizio",
+      "contact_button": "Contattaci",
+      "wishlist_button": "Aggiungi alla lista desideri",
+      "back_button": "Indietro",
+      "next_button": "Avanti",
+      "close_button": "Chiudi",
+      "save_button": "Salva",
+      "reset_button": "Ripristina",
+      "apply_button": "Applica",
+      "learn_more": "Per saperne di più",
+      "view_details": "Vedi dettagli"
+    }
+  }
 }

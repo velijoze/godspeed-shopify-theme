@@ -6,14 +6,14 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "E-Bike Vergleich",
+            "heading": "{{ 'pipeline.compare.heading' | t }}",
             "heading_size": "h0"
           }
         },
         "subheading": {
           "type": "subheading",
           "settings": {
-            "subheading": "Vergleichen Sie E-Bikes nach Ihren Kriterien"
+            "subheading": "{{ 'pipeline.compare.subheading' | t }}"
           }
         },
         "text": {
@@ -40,13 +40,13 @@
     "comparison_tool": {
       "type": "bike-compare",
       "settings": {
-        "heading": "Interaktiver Vergleich",
-        "subheading": "Vergleichen Sie bis zu 3 E‑Bikes",
+        "heading": "{{ 'pipeline.compare.interactive_heading' | t }}",
+        "subheading": "{{ 'pipeline.compare.interactive_subheading' | t }}",
         "intro": "<p>Wählen Sie Modelle aus der Liste, wir zeigen die wichtigsten Unterschiede.</p>",
         "columns": 3,
         "model_keys": "city-comfort, trekking-sport, mountain-trail, cargo-family",
-        "reset_label": "Zurücksetzen",
-        "cta_label": "Alle E‑Bikes ansehen",
+        "reset_label": "{{ 'pipeline.compare.reset_label' | t }}",
+        "cta_label": "{{ 'pipeline.compare.cta_label' | t }}",
         "cta_link": "/collections/e-bikes",
         "padding_top": 40,
         "padding_bottom": 40
@@ -59,7 +59,7 @@
           "type": "service",
           "settings": {
             "icon": "icon-price-tag.svg",
-            "title": "Motor-Vergleich",
+            "title": "{{ 'pipeline.compare.motor_title' | t }}",
             "text": "<p><strong>Worauf achten:</strong></p><ul><li><strong>Bosch Active Line:</strong> Sanfte Unterstützung, ideal für City</li><li><strong>Bosch Performance CX:</strong> Sportlich, für Trekking/MTB</li><li><strong>Shimano EP8:</strong> Leise, natürliches Fahrgefühl</li><li><strong>Bosch Cargo Line:</strong> Extra Kraft für schwere Lasten</li></ul>",
             "button_label": "",
             "button_link": ""
@@ -69,7 +69,7 @@
           "type": "service",
           "settings": {
             "icon": "icon-heart.svg",
-            "title": "Akku-Kapazität",
+            "title": "{{ 'pipeline.compare.battery_title' | t }}",
             "text": "<p><strong>Faustregel:</strong></p><ul><li><strong>400 Wh:</strong> City-Fahrten, ebenes Gelände</li><li><strong>500 Wh:</strong> Pendeln, mittlere Strecken</li><li><strong>625+ Wh:</strong> Lange Touren, Berge, schwere Lasten</li></ul><p>Höhere Kapazität = größere Reichweite, aber auch mehr Gewicht</p>",
             "button_label": "",
             "button_link": ""
@@ -79,7 +79,7 @@
           "type": "service",
           "settings": {
             "icon": "icon-truck.svg",
-            "title": "Reichweite richtig einschätzen",
+            "title": "{{ 'pipeline.compare.range_title' | t }}",
             "text": "<p><strong>Einflussfaktoren:</strong></p><ul><li>Unterstützungsstufe (Eco vs. Turbo)</li><li>Fahrergewicht und Zuladung</li><li>Gelände (eben vs. bergig)</li><li>Wetter (Gegenwind, Kälte)</li><li>Reifendruck und Fahrstil</li></ul><p>Reale Reichweite oft 20-30% unter Herstellerangabe</p>",
             "button_label": "",
             "button_link": ""
@@ -92,7 +92,7 @@
         "range_tip"
       ],
       "settings": {
-        "heading": "Vergleichs-Tipps von unseren Experten",
+        "heading": "{{ 'pipeline.compare.expert_tips_heading' | t }}",
         "heading_size": "h1",
         "description": "<p>Damit Sie die richtige Entscheidung treffen, erklären wir Ihnen die wichtigsten Spezifikationen und worauf Sie achten sollten.</p>",
         "text_alignment": "center",
@@ -113,7 +113,7 @@
             "icon": "icon-ruler.svg",
             "title": "📐 Perfekte Größe finden",
             "text": "<p>Nach dem Vergleich die richtige Größe bestimmen</p><p>✓ Intelligente Größenberechnung<br>✓ Berücksichtigt E-Bike Typ<br>✓ Expertenempfehlungen</p>",
-            "button_label": "Größe berechnen",
+            "button_label": "{{ 'pipeline.common.size_button' | t }}",
             "button_link": "/pages/size-guide"
           }
         },
@@ -123,7 +123,7 @@
             "icon": "icon-price-tag.svg",
             "title": "💰 0% Finanzierung",
             "text": "<p>Monatliche Raten für Ihr Wunsch-E-Bike berechnen</p><p>✓ 0% Zinsen, 6-36 Monate<br>✓ Sofortige Kalkulation<br>✓ Online Antrag</p>",
-            "button_label": "Rate berechnen",
+            "button_label": "{{ 'pipeline.common.financing_button' | t }}",
             "button_link": "/pages/financing-calculator"
           }
         },
@@ -133,7 +133,7 @@
             "icon": "icon-plane.svg",
             "title": "🚴 Probefahrt buchen",
             "text": "<p>Testen Sie Ihren Favoriten vor dem Kauf</p><p>✓ 4 Standorte verfügbar<br>✓ Kostenlos & unverbindlich<br>✓ Expertenberatung</p>",
-            "button_label": "Termin buchen",
+            "button_label": "{{ 'pipeline.common.test_ride_button' | t }}",
             "button_link": "/pages/test-ride"
           }
         },
@@ -143,7 +143,7 @@
             "icon": "icon-lightning-bolt.svg",
             "title": "🔋 Reichweite prüfen",
             "text": "<p>Realistische Reichweite für Ihre Strecken</p><p>✓ Alle Faktoren berücksichtigt<br>✓ Gelände & Wetter<br>✓ Optimierungstipps</p>",
-            "button_label": "Reichweite berechnen",
+            "button_label": "{{ 'pipeline.common.range_button' | t }}",
             "button_link": "/pages/range-calculator"
           }
         }
@@ -180,8 +180,8 @@
         "contact_highlight": {
           "type": "highlight",
           "settings": {
-            "highlight_heading": "Persönliche Beratung",
-            "highlight_text": "Haben Sie Fragen zum Vergleich oder benötigen Sie Hilfe bei der Auswahl? Unsere E-Bike Experten beraten Sie gerne kostenlos."
+            "highlight_heading": "{{ 'pipeline.compare.personal_consultation_highlight' | t }}",
+            "highlight_text": "{{ 'pipeline.compare.personal_consultation_text' | t }}"
           }
         }
       },
@@ -195,7 +195,7 @@
         "image_position": "left",
         "text_alignment": "left",
         "max_width": 1000,
-        "button_label": "Jetzt beraten lassen",
+        "button_label": "{{ 'pipeline.compare.consultation_button' | t }}",
         "button_link": "/pages/contact",
         "color_scheme": "background-1",
         "padding_top": 60,

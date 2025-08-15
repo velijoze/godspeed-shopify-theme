@@ -6,14 +6,14 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "E-Bike Reichweiten-Rechner",
+            "heading": "{{ 'pipeline.range_calculator.heading' | t }}",
             "heading_size": "h0"
           }
         },
         "subheading": {
           "type": "subheading",
           "settings": {
-            "subheading": "Berechnen Sie die realistische Reichweite Ihres E-Bikes"
+            "subheading": "{{ 'pipeline.range_calculator.subheading' | t }}"
           }
         },
         "text": {

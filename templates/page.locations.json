@@ -6,14 +6,14 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Unsere Standorte",
+            "heading": "{{ 'pipeline.locations.heading' | t }}",
             "heading_size": "h0"
           }
         },
         "subheading": {
           "type": "subheading",
           "settings": {
-            "subheading": "Besuchen Sie uns in der ganzen Schweiz"
+            "subheading": "{{ 'pipeline.locations.subheading' | t }}"
           }
         },
         "text": {
@@ -26,7 +26,7 @@
         "button": {
           "type": "button",
           "settings": {
-            "button_label": "Termin vereinbaren",
+            "button_label": "{{ 'pipeline.locations.appointment_button' | t }}",
             "button_link": "/pages/contact"
           }
         }

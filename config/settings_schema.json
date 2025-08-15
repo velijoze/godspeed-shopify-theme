@@ -742,6 +742,10 @@
             "label": "Drawer"
           },
           {
+            "value": "modal",
+            "label": "Modal (Pipeline)"
+          },
+          {
             "value": "page",
             "label": "Page"
           }
@@ -808,6 +812,104 @@
         "id": "enable_skip_to_content",
         "default": true,
         "label": "Enable skip to content link"
+      }
+    ]
+  },
+  {
+    "name": "Pipeline Features",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Ajax & Cart Features"
+      },
+      {
+        "type": "checkbox",
+        "id": "pipeline_ajaxify_enabled",
+        "default": true,
+        "label": "Enable Ajax cart functionality"
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_show_on_click",
+        "default": true,
+        "label": "Show modal when item is added"
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_vendor_enable",
+        "default": false,
+        "label": "Show product vendor in cart"
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_notes_enable",
+        "default": true,
+        "label": "Show cart notes"
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_quantity",
+        "default": true,
+        "label": "Show quantity selectors"
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_show_additional_buttons",
+        "default": true,
+        "label": "Show additional checkout options",
+        "info": "Apple Pay, PayPal express, etc"
+      },
+      {
+        "type": "header",
+        "content": "Advanced Product Features"
+      },
+      {
+        "type": "checkbox",
+        "id": "pipeline_quick_view_enabled",
+        "default": true,
+        "label": "Enable quick view on product cards"
+      },
+      {
+        "type": "checkbox",
+        "id": "pipeline_image_zoom_enabled",
+        "default": true,
+        "label": "Enable product image zoom"
+      },
+      {
+        "type": "select",
+        "id": "pipeline_grid_layout",
+        "options": [
+          {
+            "value": "grid",
+            "label": "Grid view"
+          },
+          {
+            "value": "list",
+            "label": "List view"
+          },
+          {
+            "value": "masonry",
+            "label": "Masonry layout"
+          }
+        ],
+        "default": "grid",
+        "label": "Collection layout style"
+      },
+      {
+        "type": "header",
+        "content": "Performance & Loading"
+      },
+      {
+        "type": "checkbox",
+        "id": "pipeline_lazy_loading",
+        "default": true,
+        "label": "Enable lazy loading for images"
+      },
+      {
+        "type": "checkbox",
+        "id": "pipeline_infinite_scroll",
+        "default": false,
+        "label": "Enable infinite scroll on collections"
       }
     ]
   }

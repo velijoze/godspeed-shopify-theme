@@ -6,14 +6,14 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Finanzierungsrechner",
+            "heading": "{{ 'pipeline.financing.heading' | t }}",
             "heading_size": "h0"
           }
         },
         "subheading": {
           "type": "subheading",
           "settings": {
-            "subheading": "Berechnen Sie Ihre monatliche Rate für Ihr Traum-E-Bike"
+            "subheading": "{{ 'pipeline.financing.subheading' | t }}"
           }
         },
         "text": {
@@ -71,7 +71,7 @@
             "icon": "icon-price-tag.svg",
             "title": "0% Finanzierung",
             "text": "<p><strong>Echte 0% Zinsen</strong></p><ul><li>✓ 6 bis 36 Monate Laufzeit</li><li>✓ Keine Bearbeitungsgebühren</li><li>✓ Keine versteckten Kosten</li><li>✓ Vorzeitige Rückzahlung möglich</li></ul><p>Ab CHF 500 Warenwert verfügbar</p>",
-            "button_label": "Jetzt beantragen",
+            "button_label": "{{ 'pipeline.financing.apply_button' | t }}",
             "button_link": "/pages/contact"
           }
         },
@@ -79,9 +79,9 @@
           "type": "service",
           "settings": {
             "icon": "icon-return.svg",
-            "title": "Business Leasing",
+            "title": "{{ 'pipeline.financing.business_leasing_title' | t }}",
             "text": "<p><strong>Für Unternehmen</strong></p><ul><li>✓ Steuerliche Vorteile</li><li>✓ Keine Anzahlung nötig</li><li>✓ Service-Paket inkludiert</li><li>✓ Kaufoption am Ende</li></ul><p>Ideal für Firmenfahrzeuge und Flotten</p>",
-            "button_label": "Leasing-Anfrage",
+            "button_label": "{{ 'pipeline.financing.business_leasing_button' | t }}",
             "button_link": "/pages/contact"
           }
         },
@@ -89,9 +89,9 @@
           "type": "service",
           "settings": {
             "icon": "icon-heart.svg",
-            "title": "Sofortentscheidung",
+            "title": "{{ 'pipeline.financing.instant_decision_title' | t }}",
             "text": "<p><strong>Schnell & unkompliziert</strong></p><ul><li>✓ Online-Antrag in 3 Minuten</li><li>✓ Sofortige Zusage-Entscheidung</li><li>✓ Digitale Vertragsabwicklung</li><li>✓ E-Bike sofort mitnehmen</li></ul><p>Bei positiver Bonität direkt im Shop</p>",
-            "button_label": "Antrag stellen",
+            "button_label": "{{ 'pipeline.financing.instant_decision_button' | t }}",
             "button_link": "/pages/contact"
           }
         }
@@ -102,7 +102,7 @@
         "instant"
       ],
       "settings": {
-        "heading": "Unsere Finanzierungsoptionen",
+        "heading": "{{ 'pipeline.financing.options_heading' | t }}",
         "heading_size": "h1",
         "description": "<p>Wählen Sie die Finanzierungsoption, die am besten zu Ihnen passt. Alle Optionen sind fair, transparent und ohne versteckte Kosten.</p>",
         "text_alignment": "center",
