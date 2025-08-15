@@ -57,24 +57,26 @@ async function globalSetup(config: FullConfig) {
       }
     }
     
-    // Check API endpoints
-    console.log('🔌 Checking API endpoints...');
+    // Check critical pages instead of API endpoints for Shopify theme testing
+    console.log('🔌 Checking critical pages...');
     
-    const apiEndpoints = [
-      '/api/2023-10/products.json',
-      '/api/2023-10/collections.json'
+    const criticalPages = [
+      '/',
+      '/collections/all',
+      '/pages/contact',
+      '/cart'
     ];
     
-    for (const endpoint of apiEndpoints) {
+    for (const pagePath of criticalPages) {
       try {
-        const response = await page.request.get(baseURL + endpoint);
+        const response = await page.request.get(baseURL + pagePath);
         if (response.status() === 200) {
-          console.log(`✅ API endpoint ${endpoint} is working`);
+          console.log(`✅ Page ${pagePath} is accessible`);
         } else {
-          console.warn(`⚠️  API endpoint ${endpoint} returned ${response.status()}`);
+          console.warn(`⚠️  Page ${pagePath} returned ${response.status()}`);
         }
       } catch (error) {
-        console.warn(`⚠️  API endpoint ${endpoint} failed:`, error.message);
+        console.warn(`⚠️  Page ${pagePath} failed:`, error.message);
       }
     }
     

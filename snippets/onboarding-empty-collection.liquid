@@ -1,0 +1,26 @@
+{%- comment -%}
+  Onboarding Empty Collection
+  Shown when collection has no products (for store setup)
+{%- endcomment -%}
+
+<div class="onboarding-empty-collection">
+  <div class="onboarding-empty-collection__content">
+    <h2 class="onboarding-empty-collection__title">
+      {{ 'onboarding.empty_collection.title' | t }}
+    </h2>
+    
+    <p class="onboarding-empty-collection__description">
+      {{ 'onboarding.empty_collection.description' | t }}
+    </p>
+    
+    <div class="onboarding-empty-collection__actions">
+      <a href="{{ routes.admin_url }}/products" class="btn btn--primary">
+        {{ 'onboarding.empty_collection.add_products' | t }}
+      </a>
+      
+      <a href="{{ routes.admin_url }}/collections" class="btn btn--secondary">
+        {{ 'onboarding.empty_collection.manage_collections' | t }}
+      </a>
+    </div>
+  </div>
+</div>

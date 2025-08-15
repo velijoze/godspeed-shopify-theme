@@ -1,0 +1,48 @@
+{%- comment -%}
+  Custom Pagination
+  Enhanced pagination with more options
+{%- endcomment -%}
+
+{%- if paginate.pages > 1 -%}
+  <nav class="pagination-custom" role="navigation" aria-label="{{ 'general.pagination.label' | t }}">
+    <ul class="pagination-custom__list">
+      {%- if paginate.previous -%}
+        <li class="pagination-custom__item">
+          <a href="{{ paginate.previous.url }}" class="pagination-custom__link pagination-custom__link--prev">
+            <span class="pagination-custom__icon">{{ 'general.pagination.previous' | t }}</span>
+          </a>
+        </li>
+      {%- endif -%}
+
+      {%- for part in paginate.parts -%}
+        {%- if part.is_link -%}
+          <li class="pagination-custom__item">
+            <a href="{{ part.url }}" class="pagination-custom__link">
+              {{ part.title }}
+            </a>
+          </li>
+        {%- else -%}
+          {%- if part.title == paginate.current_page -%}
+            <li class="pagination-custom__item">
+              <span class="pagination-custom__link pagination-custom__link--current" aria-current="page">
+                {{ part.title }}
+              </span>
+            </li>
+          {%- else -%}
+            <li class="pagination-custom__item">
+              <span class="pagination-custom__ellipsis">{{ part.title }}</span>
+            </li>
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+
+      {%- if paginate.next -%}
+        <li class="pagination-custom__item">
+          <a href="{{ paginate.next.url }}" class="pagination-custom__link pagination-custom__link--next">
+            <span class="pagination-custom__icon">{{ 'general.pagination.next' | t }}</span>
+          </a>
+        </li>
+      {%- endif -%}
+    </ul>
+  </nav>
+{%- endif -%}

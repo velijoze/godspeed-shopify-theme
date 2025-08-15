@@ -1,8 +1,8 @@
 {
-  "timestamp": "2025-08-15T07:36:11.612Z",
+  "timestamp": "2025-08-15T11:49:26.506Z",
   "baseURL": "https://t0uds3-a2.myshopify.com",
   "environment": "test",
-  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/139.0.7258.5 Safari/537.36",
+  "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/139.0.7258.5 Safari/537.36",
   "products": [],
   "collections": []
 }

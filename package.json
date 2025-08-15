@@ -1,0 +1,48 @@
+{
+  "name": "godspeed-shopify-theme",
+  "version": "1.0.0",
+  "description": "Godspeed E-Bike Store Shopify Theme with Pipeline Integration",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "test:codegen": "playwright codegen",
+    "test:report": "playwright show-report",
+    "test:install": "playwright install",
+    "test:install:deps": "playwright install-deps",
+    "test:quick": "playwright test tests/quick-verification.spec.ts",
+    "test:structure": "playwright test tests/structure/",
+    "test:pipeline": "playwright test tests/pipeline-*.spec.ts tests/ajax-cart.spec.ts tests/internationalization.spec.ts",
+    "test:visual": "playwright test tests/visual/ tests/pipeline-visual-regression.spec.ts",
+    "test:e2e": "playwright test tests/e2e/",
+    "test:performance": "playwright test tests/performance/",
+    "test:a11y": "playwright test tests/a11y/",
+    "test:security": "playwright test tests/security/",
+    "test:mobile": "playwright test --project='Mobile Chrome' --project='Mobile Safari'",
+    "test:desktop": "playwright test --project='chromium' --project='firefox' --project='webkit'",
+    "sync-locales": "node scripts/sync-locales.js"
+  },
+  "keywords": [
+    "shopify",
+    "theme",
+    "e-bike",
+    "pipeline",
+    "e-commerce"
+  ],
+  "author": "Godspeed Team",
+  "license": "UNLICENSED",
+  "private": true,
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
+    "@playwright/test": "^1.54.2"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/velijoze/godspeed-shopify-theme.git"
+  }
+}

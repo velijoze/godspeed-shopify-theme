@@ -1,0 +1,65 @@
+{%- comment -%}
+  Product Information Tabs
+  Tabbed interface for product details
+{%- endcomment -%}
+
+{%- assign product_for_tabs = product | default: product_item -%}
+
+{%- if product_for_tabs -%}
+  <div class="product-info-tabs" data-product-tabs>
+    <div class="product-info-tabs__nav">
+      <button class="product-info-tabs__tab active" data-tab="description">
+        {{ 'products.product.description' | t }}
+      </button>
+      
+      {%- if product_for_tabs.metafields.custom.specifications != blank -%}
+        <button class="product-info-tabs__tab" data-tab="specifications">
+          {{ 'products.product.specifications' | t }}
+        </button>
+      {%- endif -%}
+      
+      {%- if settings.show_size_guide -%}
+        <button class="product-info-tabs__tab" data-tab="size-guide">
+          {{ 'products.product.size_guide' | t }}
+        </button>
+      {%- endif -%}
+      
+      {%- if settings.show_shipping_info -%}
+        <button class="product-info-tabs__tab" data-tab="shipping">
+          {{ 'products.product.shipping' | t }}
+        </button>
+      {%- endif -%}
+    </div>
+    
+    <div class="product-info-tabs__content">
+      <div class="product-info-tabs__panel active" data-panel="description">
+        {%- if product_for_tabs.description != blank -%}
+          {{ product_for_tabs.description }}
+        {%- else -%}
+          <p>{{ 'products.product.no_description' | t }}</p>
+        {%- endif -%}
+      </div>
+      
+      {%- if product_for_tabs.metafields.custom.specifications != blank -%}
+        <div class="product-info-tabs__panel" data-panel="specifications">
+          {{ product_for_tabs.metafields.custom.specifications }}
+        </div>
+      {%- endif -%}
+      
+      {%- if settings.show_size_guide -%}
+        <div class="product-info-tabs__panel" data-panel="size-guide">
+          {%- render 'size-guide-modal' -%}
+        </div>
+      {%- endif -%}
+      
+      {%- if settings.show_shipping_info -%}
+        <div class="product-info-tabs__panel" data-panel="shipping">
+          <div class="shipping-info">
+            <h4>{{ 'products.product.shipping_title' | t }}</h4>
+            <p>{{ 'products.product.shipping_description' | t }}</p>
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}

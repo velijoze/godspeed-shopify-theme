@@ -1,0 +1,43 @@
+{%- comment -%}
+  Product Grid Item
+  Displays a product in grid layout
+{%- endcomment -%}
+
+{%- assign lazy_load = lazy_load | default: false -%}
+{%- assign show_quick_view = settings.show_quick_view | default: true -%}
+{%- assign show_vendor = settings.show_vendor | default: false -%}
+
+<div class="product-grid-item" data-product-id="{{ product.id }}">
+  <div class="product-grid-item__image-wrapper">
+    {%- if product.featured_media -%}
+      <a href="{{ product.url }}" class="product-grid-item__image-link">
+        <img class="product-grid-item__image"
+             src="{{ product.featured_media | image_url: width: 300 }}"
+             alt="{{ product.featured_media.alt | escape }}"
+             width="300"
+             height="300"
+             {% if lazy_load %}loading="lazy"{% endif %}>
+      </a>
+    {%- endif -%}
+    
+    {%- if show_quick_view -%}
+      <button class="product-grid-item__quick-view" data-product-url="{{ product.url }}">
+        {{ 'products.product.quick_view' | t }}
+      </button>
+    {%- endif -%}
+  </div>
+  
+  <div class="product-grid-item__info">
+    {%- if show_vendor and product.vendor != blank -%}
+      <div class="product-grid-item__vendor">{{ product.vendor }}</div>
+    {%- endif -%}
+    
+    <h3 class="product-grid-item__title">
+      <a href="{{ product.url }}">{{ product.title }}</a>
+    </h3>
+    
+    <div class="product-grid-item__price">
+      {%- render 'price', product: product -%}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+{%- comment -%}
+  Onboarding Product
+  Sample product for store setup
+{%- endcomment -%}
+
+<div class="onboarding-product">
+  <div class="onboarding-product__image">
+    <div class="onboarding-product__placeholder">
+      <svg viewBox="0 0 100 100" class="onboarding-product__icon">
+        <rect width="100" height="100" fill="#f3f3f3"/>
+        <rect width="60" height="40" x="20" y="30" fill="#ddd"/>
+      </svg>
+    </div>
+  </div>
+  
+  <div class="onboarding-product__info">
+    <h3 class="onboarding-product__title">
+      {{ 'onboarding.product.sample_title' | t }}
+    </h3>
+    
+    <div class="onboarding-product__price">
+      <span class="price">{{ 'onboarding.product.sample_price' | t }}</span>
+    </div>
+    
+    <div class="onboarding-product__description">
+      {{ 'onboarding.product.sample_description' | t }}
+    </div>
+    
+    <button class="btn btn--primary onboarding-product__cta">
+      {{ 'onboarding.product.add_real_products' | t }}
+    </button>
+  </div>
+</div>

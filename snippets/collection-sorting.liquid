@@ -1,0 +1,39 @@
+{%- comment -%}
+  Collection Sorting Controls
+  Provides sorting options for collection pages
+{%- endcomment -%}
+
+{%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+
+<div class="collection-sorting">
+  <label for="SortBy" class="collection-sorting__label">
+    {{ 'collections.sorting.title' | t }}
+  </label>
+  
+  <select name="sort_by" id="SortBy" class="collection-sorting__select">
+    <option value="manual"{% if sort_by == 'manual' %} selected="selected"{% endif %}>
+      {{ 'collections.sorting.featured' | t }}
+    </option>
+    <option value="best-selling"{% if sort_by == 'best-selling' %} selected="selected"{% endif %}>
+      {{ 'collections.sorting.best_selling' | t }}
+    </option>
+    <option value="title-ascending"{% if sort_by == 'title-ascending' %} selected="selected"{% endif %}>
+      {{ 'collections.sorting.az' | t }}
+    </option>
+    <option value="title-descending"{% if sort_by == 'title-descending' %} selected="selected"{% endif %}>
+      {{ 'collections.sorting.za' | t }}
+    </option>
+    <option value="price-ascending"{% if sort_by == 'price-ascending' %} selected="selected"{% endif %}>
+      {{ 'collections.sorting.price_ascending' | t }}
+    </option>
+    <option value="price-descending"{% if sort_by == 'price-descending' %} selected="selected"{% endif %}>
+      {{ 'collections.sorting.price_descending' | t }}
+    </option>
+    <option value="created-descending"{% if sort_by == 'created-descending' %} selected="selected"{% endif %}>
+      {{ 'collections.sorting.date_descending' | t }}
+    </option>
+    <option value="created-ascending"{% if sort_by == 'created-ascending' %} selected="selected"{% endif %}>
+      {{ 'collections.sorting.date_ascending' | t }}
+    </option>
+  </select>
+</div>

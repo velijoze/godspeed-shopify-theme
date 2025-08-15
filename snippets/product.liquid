@@ -1,0 +1,45 @@
+{%- comment -%}
+  Generic Product Display Snippet
+  Reusable product display component
+{%- endcomment -%}
+
+{%- assign product_to_display = product | default: product_item -%}
+{%- assign layout = layout | default: 'grid' -%}
+{%- assign show_vendor = show_vendor | default: false -%}
+{%- assign show_description = show_description | default: false -%}
+
+{%- if product_to_display -%}
+  <div class="product-snippet product-snippet--{{ layout }}" data-product-id="{{ product_to_display.id }}">
+    {%- if product_to_display.featured_media -%}
+      <div class="product-snippet__image">
+        <a href="{{ product_to_display.url }}">
+          <img src="{{ product_to_display.featured_media | image_url: width: 300 }}"
+               alt="{{ product_to_display.featured_media.alt | escape }}"
+               width="300"
+               height="300"
+               loading="lazy">
+        </a>
+      </div>
+    {%- endif -%}
+    
+    <div class="product-snippet__info">
+      {%- if show_vendor and product_to_display.vendor != blank -%}
+        <div class="product-snippet__vendor">{{ product_to_display.vendor }}</div>
+      {%- endif -%}
+      
+      <h3 class="product-snippet__title">
+        <a href="{{ product_to_display.url }}">{{ product_to_display.title }}</a>
+      </h3>
+      
+      <div class="product-snippet__price">
+        {%- render 'price', product: product_to_display -%}
+      </div>
+      
+      {%- if show_description and product_to_display.description != blank -%}
+        <div class="product-snippet__description">
+          {{ product_to_display.description | strip_html | truncate: 100 }}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}

@@ -1,0 +1,18 @@
+{%- comment -%}
+  Vendor Availability Display Snippet
+  Shows availability status from vendor APIs
+{%- endcomment -%}
+
+{%- assign product_id = product.id | default: product_id -%}
+{%- assign vendor = product.vendor | default: vendor -%}
+
+<div class="vendor-availability" data-product-id="{{ product_id }}">
+  {%- if vendor -%}
+    <div class="vendor-availability__status">
+      <span class="vendor-availability__label">{{ 'products.product.availability' | t }}:</span>
+      <span class="vendor-availability__value" data-vendor="{{ vendor }}">
+        {{ 'products.product.checking_availability' | t }}
+      </span>
+    </div>
+  {%- endif -%}
+</div>
