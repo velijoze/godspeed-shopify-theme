@@ -23,7 +23,8 @@
         "show_rating": false,
         "image_ratio": "square",
         "padding_top": 36,
-        "padding_bottom": 60
+        "padding_bottom": 60,
+        "quick_add": "standard"
       }
     }
   },
