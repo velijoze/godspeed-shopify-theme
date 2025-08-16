@@ -47,6 +47,18 @@
       {% render 'collection-seo-optimization' %}
     {% endif %}
 
+    <!-- Pipeline Core Libraries -->
+    <script src="{{ 'jquery.min.js' | asset_url }}"></script>
+    <script src="{{ 'modernizr.min.js' | asset_url }}"></script>
+    <script src="{{ 'fastclick.min.js' | asset_url }}"></script>
+    
+    <!-- Pipeline Core Functionality -->
+    <script src="{{ 'shop.js' | asset_url }}" defer></script>
+    <script src="{{ 'ajaxify.js' | asset_url }}" defer></script>
+    
+    <!-- Webfont Loader -->
+    <script src="{{ 'webfont.js' | asset_url }}" defer></script>
+    
     <!-- Core Bundle: Essential functionality in one file -->
     <script src="{{ 'core-bundle.js' | asset_url }}" defer="defer"></script>
     
