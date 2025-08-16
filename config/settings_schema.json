@@ -1,773 +1,138 @@
 [
   {
-    "name": "t:settings_schema.theme_info.name",
-    "theme_name": "Godspeed Pipeline",
-    "theme_version": "2.0.0",
-    "theme_author": "Godspeed E-Bikes",
-    "theme_documentation_url": "",
-    "theme_support_url": ""
+      "name": "theme_info",
+      "theme_name": "Pipeline",
+      "theme_author": "Corknine",
+      "theme_version": "2.4.1",
+      "theme_documentation_url": "http://corknine.com/pipeline-docs/",
+      "theme_support_email": "themes@corknine.com"
   },
   {
-    "name": "Custom – Collection Page Settings",
+    "name": "Color",
     "settings": [
       {
         "type": "header",
-        "content": "Layout Configuration"
-      },
-      {
-        "type": "range",
-        "id": "collection_sidebar_width",
-        "min": 200,
-        "max": 400,
-        "step": 10,
-        "default": 280,
-        "label": "Sidebar Width (px)",
-        "info": "Width of the filters sidebar"
-      },
-      {
-        "type": "range",
-        "id": "collection_layout_gap",
-        "min": 20,
-        "max": 60,
-        "step": 5,
-        "default": 40,
-        "label": "Layout Gap (px)",
-        "info": "Space between sidebar and product grid"
-      },
-      {
-        "type": "range",
-        "id": "collection_max_width",
-        "min": 1200,
-        "max": 1600,
-        "step": 50,
-        "default": 1400,
-        "label": "Maximum Page Width (px)",
-        "info": "Maximum width of the collection page"
-      },
-      {
-        "type": "header",
-        "content": "Product Grid"
-      },
-      {
-        "type": "range",
-        "id": "collection_products_per_page",
-        "min": 12,
-        "max": 48,
-        "step": 6,
-        "default": 24,
-        "label": "Products per page"
-      },
-      {
-        "type": "range",
-        "id": "collection_columns_desktop",
-        "min": 2,
-        "max": 5,
-        "step": 1,
-        "default": 3,
-        "label": "Desktop columns"
-      },
-      {
-        "type": "select",
-        "id": "collection_columns_mobile",
-        "options": [
-          {
-            "value": "1",
-            "label": "1 column"
-          },
-          {
-            "value": "2",
-            "label": "2 columns"
-          }
-        ],
-        "default": "2",
-        "label": "Mobile columns"
-      },
-      {
-        "type": "header",
-        "content": "Filter Settings"
-      },
-      {
-        "type": "checkbox",
-        "id": "collection_show_filters",
-        "default": true,
-        "label": "Show filters sidebar"
-      },
-      {
-        "type": "checkbox",
-        "id": "collection_sticky_filters",
-        "default": true,
-        "label": "Sticky filters sidebar"
-      },
-      {
-        "type": "checkbox",
-        "id": "collection_show_filter_toggle",
-        "default": true,
-        "label": "Show hide/show filters button"
-      },
-      {
-        "type": "header",
-        "content": "Product Cards"
-      },
-      {
-        "type": "checkbox",
-        "id": "collection_show_secondary_image",
-        "default": true,
-        "label": "Show secondary image on hover"
-      },
-      {
-        "type": "checkbox",
-        "id": "collection_show_vendor",
-        "default": false,
-        "label": "Show product vendor"
-      },
-      {
-        "type": "checkbox",
-        "id": "collection_show_rating",
-        "default": false,
-        "label": "Show product rating"
-      },
-      {
-        "type": "checkbox",
-        "id": "collection_show_badges",
-        "default": true,
-        "label": "Show sale/sold out badges"
-      },
-      {
-        "type": "select",
-        "id": "collection_image_ratio",
-        "options": [
-          {
-            "value": "adapt",
-            "label": "Adapt to image"
-          },
-          {
-            "value": "square",
-            "label": "Square"
-          },
-          {
-            "value": "portrait",
-            "label": "Portrait"
-          }
-        ],
-        "default": "square",
-        "label": "Image ratio"
-      }
-    ]
-  },
-  {
-    "name": "Custom – Filter Configuration",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Available Filters"
-      },
-      {
-        "type": "checkbox",
-        "id": "filter_collections",
-        "default": true,
-        "label": "Enable collection filter"
-      },
-      {
-        "type": "checkbox",
-        "id": "filter_availability",
-        "default": true,
-        "label": "Enable availability filter"
-      },
-      {
-        "type": "checkbox",
-        "id": "filter_price",
-        "default": true,
-        "label": "Enable price range filter"
-      },
-      {
-        "type": "checkbox",
-        "id": "filter_vendor",
-        "default": false,
-        "label": "Enable vendor filter"
-      },
-      {
-        "type": "checkbox",
-        "id": "filter_product_type",
-        "default": true,
-        "label": "Enable product type filter"
-      },
-      {
-        "type": "checkbox",
-        "id": "filter_tags",
-        "default": false,
-        "label": "Enable tags filter"
-      },
-      {
-        "type": "header",
-        "content": "Filter Display"
-      },
-      {
-        "type": "text",
-        "id": "filter_collections_title",
-        "default": "ALL COLLECTIONS",
-        "label": "Collections filter title"
-      },
-      {
-        "type": "text",
-        "id": "filter_availability_title",
-        "default": "AVAILABILITY",
-        "label": "Availability filter title"
-      },
-      {
-        "type": "text",
-        "id": "filter_price_title",
-        "default": "PRICE",
-        "label": "Price filter title"
-      },
-      {
-        "type": "text",
-        "id": "filter_show_more_text",
-        "default": "SHOW MORE",
-        "label": "Show more text"
-      }
-    ]
-  },
-  {
-    "name": "Custom – Toolbar Settings",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Toolbar Configuration"
-      },
-      {
-        "type": "checkbox",
-        "id": "toolbar_show_sort",
-        "default": true,
-        "label": "Show sorting dropdown"
-      },
-      {
-        "type": "checkbox",
-        "id": "toolbar_show_view_toggle",
-        "default": true,
-        "label": "Show grid view toggle"
-      },
-      {
-        "type": "checkbox",
-        "id": "toolbar_show_product_count",
-        "default": true,
-        "label": "Show product count"
-      },
-      {
-        "type": "text",
-        "id": "toolbar_hide_filters_text",
-        "default": "HIDE FILTERS",
-        "label": "Hide filters button text"
-      },
-      {
-        "type": "text",
-        "id": "toolbar_show_filters_text",
-        "default": "SHOW FILTERS",
-        "label": "Show filters button text"
-      },
-      {
-        "type": "header",
-        "content": "Sort Options"
-      },
-      {
-        "type": "text",
-        "id": "sort_best_selling",
-        "default": "BEST SELLING",
-        "label": "Best selling text"
-      },
-      {
-        "type": "text",
-        "id": "sort_featured",
-        "default": "FEATURED",
-        "label": "Featured text"
-      },
-      {
-        "type": "text",
-        "id": "sort_price_low_high",
-        "default": "PRICE: LOW TO HIGH",
-        "label": "Price low to high text"
-      },
-      {
-        "type": "text",
-        "id": "sort_price_high_low",
-        "default": "PRICE: HIGH TO LOW",
-        "label": "Price high to low text"
-      },
-      {
-        "type": "text",
-        "id": "sort_newest",
-        "default": "NEWEST",
-        "label": "Newest text"
-      }
-    ]
-  },
-  {
-    "name": "Custom – Product Card Styling",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Card Design"
-      },
-      {
-        "type": "range",
-        "id": "card_border_radius",
-        "min": 0,
-        "max": 20,
-        "step": 2,
-        "default": 0,
-        "label": "Card border radius (px)"
-      },
-      {
-        "type": "range",
-        "id": "card_padding",
-        "min": 10,
-        "max": 30,
-        "step": 5,
-        "default": 15,
-        "label": "Card padding (px)"
-      },
-      {
-        "type": "checkbox",
-        "id": "card_show_border",
-        "default": false,
-        "label": "Show card border"
+        "content": "Top bar"
       },
       {
         "type": "color",
-        "id": "card_border_color",
-        "default": "#e0e0e0",
-        "label": "Card border color"
-      },
-      {
-        "type": "header",
-        "content": "Typography"
-      },
-      {
-        "type": "range",
-        "id": "card_title_size",
-        "min": 12,
-        "max": 20,
-        "step": 1,
-        "default": 14,
-        "label": "Product title font size (px)"
-      },
-      {
-        "type": "range",
-        "id": "card_price_size",
-        "min": 12,
-        "max": 18,
-        "step": 1,
-        "default": 14,
-        "label": "Price font size (px)"
-      },
-      {
-        "type": "header",
-        "content": "Badge Styling"
+        "id": "color_account_bg",
+        "label": "Background",
+        "default": "#FFFFFF"
       },
       {
         "type": "color",
-        "id": "badge_sale_color",
-        "default": "#dc2626",
-        "label": "Sale badge color"
+        "id": "color_account_text",
+        "label": "Text",
+        "default": "#000000"
+      },
+      {
+        "type": "header",
+        "content": "Header"
       },
       {
         "type": "color",
-        "id": "badge_sold_out_color",
-        "default": "#6b7280",
-        "label": "Sold out badge color"
+        "id": "color_header_bg",
+        "label": "Background",
+        "default": "#ffffff"
       },
       {
         "type": "color",
-        "id": "badge_text_color",
-        "default": "#ffffff",
-        "label": "Badge text color"
-      }
-    ]
-  },
-  {
-    "name": "Custom – Performance & UX",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Loading & Performance"
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_lazy_loading",
-        "default": true,
-        "label": "Enable lazy loading"
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_infinite_scroll",
-        "default": false,
-        "label": "Enable infinite scroll"
-      },
-      {
-        "type": "checkbox",
-        "id": "show_loading_overlay",
-        "default": true,
-        "label": "Show loading overlay"
+        "id": "color_header_text",
+        "label": "Text",
+        "default": "#333333"
       },
       {
         "type": "header",
-        "content": "User Experience"
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_quick_add",
-        "default": false,
-        "label": "Enable quick add to cart"
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_quick_view",
-        "default": false,
-        "label": "Enable quick view"
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_wishlist",
-        "default": false,
-        "label": "Enable wishlist"
-      },
-      {
-        "type": "header",
-        "content": "Homepage Settings"
-      },
-      {
-        "type": "collection",
-        "id": "featured_collection",
-        "label": "Featured collection",
-        "info": "Collection to display on homepage"
-      }
-    ]
-  },
-  {
-    "name": "Custom – Social Proof Settings",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Social Proof Features"
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_social_proof",
-        "default": true,
-        "label": "Enable social proof features"
-      },
-      {
-        "type": "checkbox",
-        "id": "show_customer_count",
-        "default": true,
-        "label": "Show customer count"
-      },
-      {
-        "type": "text",
-        "id": "customer_count_number",
-        "default": "15000",
-        "label": "Customer count number"
-      },
-      {
-        "type": "text",
-        "id": "customer_count_label",
-        "default": "+ satisfied customers",
-        "label": "Customer count label"
-      },
-      {
-        "type": "checkbox",
-        "id": "show_trust_badges",
-        "default": true,
-        "label": "Show trust badges"
-      },
-      {
-        "type": "checkbox",
-        "id": "show_recent_purchases",
-        "default": false,
-        "label": "Show recent purchases"
-      },
-      {
-        "type": "range",
-        "id": "purchase_notification_frequency",
-        "min": 10,
-        "max": 60,
-        "step": 5,
-        "default": 20,
-        "label": "Purchase notification frequency (seconds)"
-      },
-      {
-        "type": "checkbox",
-        "id": "show_stock_urgency",
-        "default": true,
-        "label": "Show stock urgency notifications"
-      },
-      {
-        "type": "range",
-        "id": "stock_urgency_threshold",
-        "min": 1,
-        "max": 20,
-        "step": 1,
-        "default": 10,
-        "label": "Stock urgency threshold"
-      },
-      {
-        "type": "checkbox",
-        "id": "show_sales_popup",
-        "default": false,
-        "label": "Show sales popup notifications"
-      },
-      {
-        "type": "header",
-        "content": "Styling"
+        "content": "General"
       },
       {
         "type": "color",
-        "id": "social_proof_accent_color",
-        "default": "#3B82F6",
-        "label": "Social proof accent color"
+        "id": "color_body_bg",
+        "label": "Body background",
+        "default": "#ffffff"
       },
       {
         "type": "color",
-        "id": "validation_error_color",
-        "default": "#EF4444",
-        "label": "Validation error color"
+        "id": "color_body_text",
+        "label": "Body text",
+        "default": "#000000"
       },
       {
         "type": "color",
-        "id": "validation_success_color",
-        "default": "#10B981",
-        "label": "Validation success color"
-      }
-    ]
-  },
-  {
-    "name": "Custom – Theme Features",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Feature Toggles"
+        "id": "color_primary",
+        "label": "Link color",
+        "info": "For text links and primary buttons.",
+        "default": "#333333"
       },
       {
-        "type": "checkbox",
-        "id": "enable_exit_intent",
-        "default": true,
-        "label": "Enable exit intent popups"
+        "type": "color",
+        "id": "color_splash",
+        "label": "Accent color",
+        "info": "A bright color for highlighting elements.",
+        "default": "#1f9bde"
       },
       {
-        "type": "checkbox",
-        "id": "enable_form_validation",
-        "default": true,
-        "label": "Enable form validation"
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_critical_css",
-        "default": true,
-        "label": "Enable critical CSS loading"
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_resource_preloading",
-        "default": true,
-        "label": "Enable resource preloading"
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_design_system",
-        "default": true,
-        "label": "Enable design system"
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_aria_states",
-        "default": true,
-        "label": "Enable ARIA states"
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_standardized_animations",
-        "default": true,
-        "label": "Enable standardized animations"
-      },
-      {
-        "type": "checkbox",
-        "id": "animations_reveal_on_scroll",
-        "default": true,
-        "label": "Enable scroll-triggered animations"
-      },
-      {
-        "type": "select",
-        "id": "animations_hover_elements",
-        "options": [
-          {
-            "value": "none",
-            "label": "None"
-          },
-          {
-            "value": "basic",
-            "label": "Basic"
-          },
-          {
-            "value": "advanced",
-            "label": "Advanced"
-          }
-        ],
-        "default": "basic",
-        "label": "Hover animation level"
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_ai_optimization",
-        "default": false,
-        "label": "Enable AI optimization"
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_llm_optimization",
-        "default": false,
-        "label": "Enable LLM optimization"
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_veloconnect_integration",
-        "default": false,
-        "label": "Enable VeloConnect integration"
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_vendor_integration",
-        "default": false,
-        "label": "Enable Vendor API integration"
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_live_chat",
-        "default": false,
-        "label": "Enable live chat widget"
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_sticky_cart_global",
-        "default": false,
-        "label": "Enable sticky cart (layout-level)",
-        "info": "Note: Product sections have their own sticky cart setting. Enable this only when sections don't handle sticky cart."
-      }
-    ]
-  },
-  {
-    "name": "Header & Navigation",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Logo"
-      },
-      {
-        "type": "image_picker",
-        "id": "logo",
-        "label": "Logo image"
-      },
-      {
-        "type": "range",
-        "id": "logo_width",
-        "min": 50,
-        "max": 250,
-        "step": 10,
-        "default": 100,
-        "unit": "px",
-        "label": "Logo width"
+        "type": "color",
+        "id": "color_border",
+        "label": "Border color",
+        "default": "#cccccc"
       },
       {
         "type": "header",
-        "content": "Social Media"
+        "content": "Home page"
       },
       {
-        "type": "text",
-        "id": "social_facebook_link",
-        "label": "Facebook"
+        "type": "color",
+        "id": "homepage_background_light",
+        "label": "Light background",
+        "default": "#f7f7f7"
       },
       {
-        "type": "text",
-        "id": "social_instagram_link",
-        "label": "Instagram"
+        "type": "color",
+        "id": "homepage_background_dark",
+        "label": "Dark background",
+        "default": "#2e3438"
       },
-      {
-        "type": "text",
-        "id": "social_youtube_link",
-        "label": "YouTube"
-      },
-      {
-        "type": "text",
-        "id": "social_tiktok_link",
-        "label": "TikTok"
-      },
-      {
-        "type": "text",
-        "id": "social_twitter_link",
-        "label": "Twitter"
-      },
-      {
-        "type": "text",
-        "id": "social_pinterest_link",
-        "label": "Pinterest"
-      },
-      {
-        "type": "text",
-        "id": "social_snapchat_link",
-        "label": "Snapchat"
-      },
-      {
-        "type": "text",
-        "id": "social_tumblr_link",
-        "label": "Tumblr"
-      },
-      {
-        "type": "text",
-        "id": "social_vimeo_link",
-        "label": "Vimeo"
-      }
-    ]
-  },
-  {
-    "name": "Cart & Checkout",
-    "settings": [
+
       {
         "type": "header",
-        "content": "Cart Type"
+        "content": "Product page"
       },
       {
-        "type": "select",
-        "id": "cart_type",
-        "options": [
-          {
-            "value": "drawer",
-            "label": "Drawer"
-          },
-          {
-            "value": "modal",
-            "label": "Modal (Pipeline)"
-          },
-          {
-            "value": "page",
-            "label": "Page"
-          }
-        ],
-        "default": "drawer",
-        "label": "Cart type"
+        "type": "color",
+        "id": "product_background_color",
+        "label": "Background color",
+        "default": "#FFFFFF",
+        "info": "Choose the background color used in isolated product photos, usually white."
+      },
+      {
+        "type": "color",
+        "id": "product_slideshow_arrows",
+        "label": "Product slideshow arrows",
+        "default": "#cccccc"
       },
       {
         "type": "header",
-        "content": "Predictive Search"
+        "content": "Footer"
       },
       {
-        "type": "checkbox",
-        "id": "predictive_search_enabled",
-        "default": true,
-        "label": "Enable predictive search"
+        "type": "color",
+        "id": "color_footer_bg",
+        "label": "Background",
+        "default": "#f2f2f2"
       },
       {
-        "type": "checkbox",
-        "id": "enable_quick_add",
-        "default": true,
-        "label": "Enable quick add to cart buttons"
+        "type": "color",
+        "id": "color_footer_text",
+        "label": "Text",
+        "default": "#333333"
+      },
+      {
+        "type": "color",
+        "id": "color_footer_social_link",
+        "label": "Icons",
+        "default": "#333333"
       }
     ]
   },
@@ -775,112 +140,430 @@
     "name": "Typography",
     "settings": [
       {
+        "type": "paragraph",
+        "content": "Choose the fonts used on your site."
+      },
+      {
         "type": "header",
         "content": "Fonts"
       },
       {
-        "type": "font_picker",
-        "id": "type_header_font",
-        "default": "assistant_n4",
-        "label": "Heading font"
-      },
-      {
-        "type": "font_picker",
-        "id": "type_body_font",
-        "default": "assistant_n4",
-        "label": "Body font"
-      }
-    ]
-  },
-  {
-    "name": "Colors",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Color schemes"
-      },
-      {
-        "type": "color_scheme",
-        "id": "color_schemes",
-        "label": "Color scheme for sections",
-        "default": [
+        "type": "select",
+        "id": "font_title",
+        "label": "Headings font",
+        "options": [
           {
-            "id": "scheme-1",
-            "label": "Default",
-            "settings": {
-              "background": "#ffffff",
-              "text": "#121212",
-              "button": "#121212",
-              "button_label": "#ffffff",
-              "secondary_button_label": "#121212",
-              "shadow": "#121212"
-            }
+            "value": "'Century Gothic', CenturyGothic, 'AppleGothic', sans-serif",
+            "label": "Century Gothic",
+            "group": "Sans-serif"
           },
           {
-            "id": "scheme-2", 
-            "label": "Inverse",
-            "settings": {
-              "background": "#242833",
-              "text": "#ffffff", 
-              "button": "#ffffff",
-              "button_label": "#000000",
-              "secondary_button_label": "#ffffff",
-              "shadow": "#000000"
-            }
+            "value": "'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+            "label": "Helvetica / Arial",
+            "group": "Sans-serif"
           },
           {
-            "id": "scheme-3",
-            "label": "Accent", 
-            "settings": {
-              "background": "#f3f3f3",
-              "text": "#121212",
-              "button": "#334fb4",
-              "button_label": "#ffffff", 
-              "secondary_button_label": "#334fb4",
-              "shadow": "#121212"
-            }
+            "value": "google:sansStack:Montserrat:400",
+            "label": "Montserrat",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Questrial:400",
+            "label": "Questrial",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Open+Sans:400",
+            "label": "Open Sans",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Lato:400",
+            "label": "Lato",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Oswald:400",
+            "label": "Oswald",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Roboto:400",
+            "label": "Roboto",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Raleway:400",
+            "label": "Raleway",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Megrim:400",
+            "label": "Megrim",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Abel:400",
+            "label": "Abel",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Lobster+Two:400",
+            "label": "Lobster Two",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Source+Sans+Pro:400",
+            "label": "Source Sans Pro",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:PT+Mono:400",
+            "label": "PT Mono",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Josefin+Sans:400",
+            "label": "Josefin Sans",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "Garamond, Baskerville, 'Baskerville Old Face', 'Hoefler Text', 'Times New Roman', serif",
+            "label": "Garamond",
+            "group": "Serif"
+          },
+          {
+            "value": "'Hoefler Text','Baskerville Old Face',Garamond,'Times New Roman',serif",
+            "label": "Hoefler Text",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:Cardo:400",
+            "label": "Cardo",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:PT+Serif:400",
+            "label": "PT Serif",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:Lora:400",
+            "label": "Lora",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:Arvo:400",
+            "label": "Arvo",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:Slabo+13px:400",
+            "label": "Slabo 13px",
+            "group": "Serif"
+          },
+          {
+            "value": "google:sansStack:Josefin+Slab:400",
+            "label": "Josefin Slab",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:Glegoo:400",
+            "label": "Glegoo",
+            "group": "Serif"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "font_title_capitalize",
+        "label": "Capitalize headings"
+      },
+      {
+        "type": "select",
+        "id": "font_accent",
+        "label": "Subheading font",
+        "options": [
+          {
+            "value": "'Century Gothic', CenturyGothic, 'AppleGothic', sans-serif",
+            "label": "Century Gothic",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+            "label": "Helvetica / Arial",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Montserrat:400",
+            "label": "Montserrat",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Questrial:400",
+            "label": "Questrial",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Open+Sans:400",
+            "label": "Open Sans",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Lato:400",
+            "label": "Lato",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Oswald:400",
+            "label": "Oswald",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Roboto:400",
+            "label": "Roboto",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Raleway:400",
+            "label": "Raleway",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Megrim:400",
+            "label": "Megrim",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Abel:400",
+            "label": "Abel",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Lobster+Two:400",
+            "label": "Lobster Two",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Source+Sans+Pro:400",
+            "label": "Source Sans Pro",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:PT+Mono:400",
+            "label": "PT Mono",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Josefin+Sans:400",
+            "label": "Josefin Sans",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "Garamond, Baskerville, 'Baskerville Old Face', 'Hoefler Text', 'Times New Roman', serif",
+            "label": "Garamond",
+            "group": "Serif"
+          },
+          {
+            "value": "'Hoefler Text','Baskerville Old Face',Garamond,'Times New Roman',serif",
+            "label": "Hoefler Text",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:Cardo:400",
+            "label": "Cardo",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:PT+Serif:400",
+            "label": "PT Serif",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:Lora:400",
+            "label": "Lora",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:Arvo:400",
+            "label": "Arvo",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:Slabo+13px:400",
+            "label": "Slabo 13px",
+            "group": "Serif"
+          },
+          {
+            "value": "google:sansStack:Josefin+Slab:400",
+            "label": "Josefin Slab",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:Glegoo:400",
+            "label": "Glegoo",
+            "group": "Serif"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "font_body",
+        "label": "Body font",
+        "options": [
+          {
+            "value": "'Century Gothic', CenturyGothic, 'AppleGothic', sans-serif",
+            "label": "Century Gothic",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+            "label": "Helvetica / Arial",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Montserrat:400",
+            "label": "Montserrat",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Questrial:400",
+            "label": "Questrial",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Open+Sans:400",
+            "label": "Open Sans",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Lato:400",
+            "label": "Lato",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Oswald:400",
+            "label": "Oswald",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Roboto:400",
+            "label": "Roboto",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Raleway:400",
+            "label": "Raleway",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Megrim:400",
+            "label": "Megrim",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Abel:400",
+            "label": "Abel",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Lobster+Two:400",
+            "label": "Lobster Two",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Source+Sans+Pro:400",
+            "label": "Source Sans Pro",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:PT+Mono:400",
+            "label": "PT Mono",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Josefin+Sans:400",
+            "label": "Josefin Sans",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "Garamond, Baskerville, 'Baskerville Old Face', 'Hoefler Text', 'Times New Roman', serif",
+            "label": "Garamond",
+            "group": "Serif"
+          },
+          {
+            "value": "'Hoefler Text','Baskerville Old Face',Garamond,'Times New Roman',serif",
+            "label": "Hoefler Text",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:Cardo:400",
+            "label": "Cardo",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:PT+Serif:400",
+            "label": "PT Serif",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:Lora:400",
+            "label": "Lora",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:Arvo:400",
+            "label": "Arvo",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:Slabo+13px:400",
+            "label": "Slabo 13px",
+            "group": "Serif"
+          },
+          {
+            "value": "google:sansStack:Josefin+Slab:400",
+            "label": "Josefin Slab",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:Glegoo:400",
+            "label": "Glegoo",
+            "group": "Serif"
           }
         ]
       },
       {
         "type": "header",
-        "content": "Product cards"
+        "content": "Size"
       },
       {
-        "type": "color_scheme",
-        "id": "card_color_scheme", 
-        "label": "Color scheme for product cards",
-        "default": "scheme-1"
+        "type": "select",
+        "id": "base_font_size",
+        "label": "Base font size",
+        "info": "14px reccomended",
+        "default": "14px",
+        "options": [
+          { "value": "12px", "label": "12px"},
+          { "value": "13px", "label": "13px"},
+          { "value": "14px", "label": "14px"},
+          { "value": "15px", "label": "15px"},
+          { "value": "16px", "label": "16px"}
+        ]
       }
     ]
   },
   {
-    "name": "Accessibility",
+    "name": "Cart",
     "settings": [
       {
-        "type": "header",
-        "content": "Accessibility Features"
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_skip_to_content",
-        "default": true,
-        "label": "Enable skip to content link"
-      }
-    ]
-  },
-  {
-    "name": "Pipeline Features",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Ajax & Cart Features"
-      },
-      {
-        "type": "checkbox",
-        "id": "pipeline_ajaxify_enabled",
-        "default": true,
-        "label": "Enable Ajax cart functionality"
+        "type": "select",
+        "id": "cart_type",
+        "label": "Cart type",
+        "options": [
+          { "value": "modal", "label": "Modal"},
+          { "value": "page", "label": "Page"}
+        ]
       },
       {
         "type": "checkbox",
@@ -891,79 +574,188 @@
       {
         "type": "checkbox",
         "id": "cart_vendor_enable",
-        "default": false,
-        "label": "Show product vendor in cart"
+        "label": "Show product vendor"
       },
       {
         "type": "checkbox",
         "id": "cart_notes_enable",
-        "default": true,
         "label": "Show cart notes"
       },
       {
         "type": "checkbox",
         "id": "cart_quantity",
-        "default": true,
-        "label": "Show quantity selectors"
+        "label": "Show quantity selectors",
+        "default": true
       },
       {
         "type": "checkbox",
         "id": "cart_show_additional_buttons",
-        "default": true,
         "label": "Show additional checkout options",
-        "info": "Apple Pay, PayPal express, etc"
+        "info": "Apple Pay, PayPal express, etc",
+        "default": true
       },
+      {
+        "type": "url",
+        "id": "cart_continue_browsing",
+        "label": "Empty cart link",
+        "info": "Continue browsing link for the empty cart"
+      }
+    ]
+  },
+  {
+    "name": "Product grid",
+    "settings": [
       {
         "type": "header",
-        "content": "Advanced Product Features"
+        "content": "Product layout"
       },
       {
-        "type": "checkbox",
-        "id": "pipeline_quick_view_enabled",
-        "default": true,
-        "label": "Enable quick view on product cards"
-      },
-      {
-        "type": "checkbox",
-        "id": "pipeline_image_zoom_enabled",
-        "default": true,
-        "label": "Enable product image zoom"
+        "type": "paragraph",
+        "content": "Control how products look when displayed side-by-side in collections and groups of related products."
       },
       {
         "type": "select",
-        "id": "pipeline_grid_layout",
+        "id": "collection_text_alignment",
+        "label": "Text alignment",
         "options": [
-          {
-            "value": "grid",
-            "label": "Grid view"
-          },
-          {
-            "value": "list",
-            "label": "List view"
-          },
-          {
-            "value": "masonry",
-            "label": "Masonry layout"
-          }
+          { "value": "text-left", "label": "Left" },
+          { "value": "text-center", "label": "Center" },
+          { "value": "text-right", "label": "Right" }
         ],
-        "default": "grid",
-        "label": "Collection layout style"
+        "default": "text-center"
+      },
+      {
+        "type": "select",
+        "id": "product_grid_style",
+        "label": "Price hover effect",
+        "options": [
+           { "value": "under", "label": "Always show price"},
+           { "value": "hover", "label": "Show price on hover"}
+        ],
+        "info": "Price will always show on small devices and phones."
       },
       {
         "type": "header",
-        "content": "Performance & Loading"
+        "content": "Image auto-height"
+      },
+      {
+        "type": "paragraph",
+        "content": "Neatly align title and price fields underneath unevenly sized images."
       },
       {
         "type": "checkbox",
-        "id": "pipeline_lazy_loading",
-        "default": true,
-        "label": "Enable lazy loading for images"
+        "label": "Enable image auto-height",
+        "id": "image_autoheight_enable",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Social",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Accounts"
+      },
+      {
+        "type": "text",
+        "id": "twittercard_handle",
+        "label": "Twitter handle",
+        "info": "E.g. @Shopify. Required for Twitter cards."
+      },
+      {
+        "type": "text",
+        "id": "social_twitter_link",
+        "label": "Twitter",
+        "info": "https://twitter.com/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook",
+        "info": "https://facebook.com/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram",
+        "info": "https://instagram.com/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest_link",
+        "label": "Pinterest",
+        "info": "https://pinterest.com/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_google_link",
+        "label": "Google Plus",
+        "info": "https://plus.google.com/+shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube_link",
+        "label": "Youtube",
+        "info": "https://www.youtube.com/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_vimeo_link",
+        "label": "Vimeo",
+        "info": "https://vimeo.com/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_tumblr_link",
+        "label": "Tumblr",
+        "info": "http://shopify.tumblr.com"
+      },
+      {
+        "type": "text",
+        "id": "social_fancy_link",
+        "label": "Fancy",
+        "info": "http://fancy.com/shopify"
+      },
+      {
+        "type": "header",
+        "content": "Sharing"
       },
       {
         "type": "checkbox",
-        "id": "pipeline_infinite_scroll",
-        "default": false,
-        "label": "Enable infinite scroll on collections"
+        "id": "product_social_enable",
+        "label": "Enable product sharing"
+      },
+      {
+        "type": "checkbox",
+        "id": "share_enable_facebook",
+        "label": "Share on Facebook"
+      },
+      {
+        "type": "checkbox",
+        "id": "share_enable_twitter",
+        "label": "Tweet on Twitter"
+      },
+      {
+        "type": "checkbox",
+        "id": "share_enable_pinterest",
+        "label": "Pin on Pinterest"
+      },
+      {
+        "type": "checkbox",
+        "id": "share_enable_google",
+        "label": "+1 on Google Plus"
+      }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon image",
+        "info": "Will be scaled down to 32 x 32px"
       }
     ]
   }
