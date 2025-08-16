@@ -1,7 +1,6 @@
 {{ 'pipeline-collection.css' | asset_url | stylesheet_tag }}
-<link href="{{ 'quick-add.css' | asset_url }}" rel="stylesheet" type="text/css" media="all">
-<script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
-<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+{{ 'base.css' | asset_url | stylesheet_tag }}
+<!-- DEBUG: base.css should load above -->
 
 {%- paginate collection.products by section.settings.products_per_page | default: 24 -%}
 
