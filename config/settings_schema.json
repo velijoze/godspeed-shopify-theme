@@ -762,6 +762,12 @@
         "id": "predictive_search_enabled",
         "default": true,
         "label": "Enable predictive search"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_quick_add",
+        "default": true,
+        "label": "Enable quick add to cart buttons"
       }
     ]
   },
