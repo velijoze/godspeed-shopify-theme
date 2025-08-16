@@ -791,12 +791,60 @@
     "settings": [
       {
         "type": "header",
-        "content": "Color Schemes"
+        "content": "Color schemes"
       },
       {
         "type": "color_scheme",
         "id": "color_schemes",
-        "label": "Color schemes"
+        "label": "Color scheme for sections",
+        "default": [
+          {
+            "id": "scheme-1",
+            "label": "Default",
+            "settings": {
+              "background": "#ffffff",
+              "text": "#121212",
+              "button": "#121212",
+              "button_label": "#ffffff",
+              "secondary_button_label": "#121212",
+              "shadow": "#121212"
+            }
+          },
+          {
+            "id": "scheme-2", 
+            "label": "Inverse",
+            "settings": {
+              "background": "#242833",
+              "text": "#ffffff", 
+              "button": "#ffffff",
+              "button_label": "#000000",
+              "secondary_button_label": "#ffffff",
+              "shadow": "#000000"
+            }
+          },
+          {
+            "id": "scheme-3",
+            "label": "Accent", 
+            "settings": {
+              "background": "#f3f3f3",
+              "text": "#121212",
+              "button": "#334fb4",
+              "button_label": "#ffffff", 
+              "secondary_button_label": "#334fb4",
+              "shadow": "#121212"
+            }
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Product cards"
+      },
+      {
+        "type": "color_scheme",
+        "id": "card_color_scheme", 
+        "label": "Color scheme for product cards",
+        "default": "scheme-1"
       }
     ]
   },
