@@ -353,6 +353,7 @@
     <!-- Non-critical CSS loaded asynchronously -->
     <link rel="stylesheet" href="{{ 'base.css' | asset_url }}" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="{{ 'component-cart-notification.css' | asset_url }}" media="print" onload="this.media='all'">
 
     {%- if settings.cart_type == 'drawer' -%}
       <link rel="stylesheet" href="{{ 'component-cart-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
@@ -374,6 +375,7 @@
     <noscript>
       <link rel="stylesheet" href="{{ 'base.css' | asset_url }}">
       <link rel="stylesheet" href="{{ 'godspeed-clean.css' | asset_url }}">
+      <link rel="stylesheet" href="{{ 'component-cart-notification.css' | asset_url }}">
       {%- if settings.cart_type == 'drawer' -%}
         <link rel="stylesheet" href="{{ 'component-cart-drawer.css' | asset_url }}">
         <link rel="stylesheet" href="{{ 'component-cart.css' | asset_url }}">
@@ -488,6 +490,8 @@
       {%- render 'cart-drawer' -%}
     {%- endif -%}
 
+    {%- render 'cart-notification' -%}
+
     {% sections 'header-group' %}
     
     {% render 'pipeline-breadcrumbs' %}
@@ -553,6 +557,8 @@
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+
+    <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
 
     {%- comment -%} AI-Enhanced Bike Comparison Tool {%- endcomment -%}
     <script src="{{ 'bike-comparison.js' | asset_url }}" defer="defer"></script>

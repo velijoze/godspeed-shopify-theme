@@ -19,7 +19,7 @@
 - [x] **Handlebars templating** - ✅ Template engine functional
 - [x] **Navigation menu responsive** - ✅ Desktop navigation confirmed working
 - [x] **Quick add to cart broken** - ✅ Added quick-add buttons to pipeline-collection-grid section
-- [ ] **Cart notifications not showing** - Needs Ajax cart notification setup
+- [x] **Cart notifications not showing** - ✅ Added cart-notification to theme layout with CSS/JS
 
 ## 🎨 CUSTOMIZER ISSUES (Priority 2)
 - [x] **Translation keys broken** - ✅ Fixed 39/92 section files with proper English labels
