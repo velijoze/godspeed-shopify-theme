@@ -1,5 +1,6 @@
 {{ 'pipeline-collection.css' | asset_url | stylesheet_tag }}
 
+<!-- DEBUG: Pipeline Collection Grid v2.0 - Quick-add enabled -->
 {%- unless section.settings.quick_add == 'none' -%}
   {{ 'quick-add.css' | asset_url | stylesheet_tag }}
 {%- endunless -%}
