@@ -727,67 +727,35 @@
     ]
   },
   {
-    "name": "Cart",
+    "name": "Cart & Checkout",
     "settings": [
+      {
+        "type": "header",
+        "content": "Cart Type"
+      },
       {
         "type": "select",
         "id": "cart_type",
-        "label": "Cart type",
         "options": [
-          { "value": "modal", "label": "Modal"},
-          { "value": "drawer", "label": "Drawer"},
-          { "value": "page", "label": "Page"}
+          {
+            "value": "drawer",
+            "label": "Drawer"
+          },
+          {
+            "value": "modal",
+            "label": "Modal (Pipeline)"
+          },
+          {
+            "value": "page",
+            "label": "Page"
+          }
         ],
-        "default": "modal"
-      },
-      {
-        "type": "checkbox",
-        "id": "cart_show_on_click",
-        "default": true,
-        "label": "Show modal when item is added"
-      },
-      {
-        "type": "checkbox",
-        "id": "cart_vendor_enable",
-        "label": "Show product vendor"
-      },
-      {
-        "type": "checkbox",
-        "id": "cart_notes_enable",
-        "label": "Show cart notes"
-      },
-      {
-        "type": "checkbox",
-        "id": "cart_quantity",
-        "label": "Show quantity selectors",
-        "default": true
-      },
-      {
-        "type": "checkbox",
-        "id": "cart_show_additional_buttons",
-        "label": "Show additional checkout options",
-        "info": "Apple Pay, PayPal express, etc",
-        "default": true
-      },
-      {
-        "type": "url",
-        "id": "cart_continue_browsing",
-        "label": "Empty cart link",
-        "info": "Continue browsing link for the empty cart"
+        "default": "drawer",
+        "label": "Cart type"
       },
       {
         "type": "header",
-        "content": "Quick Add Features"
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_quick_add",
-        "default": true,
-        "label": "Enable quick add to cart buttons"
-      },
-      {
-        "type": "header",
-        "content": "Search"
+        "content": "Predictive Search"
       },
       {
         "type": "checkbox",
