@@ -412,6 +412,27 @@
       "content": "Product Card Settings"
     },
     {
+      "type": "select",
+      "id": "quick_add",
+      "default": "standard",
+      "label": "Quick add to cart",
+      "info": "Enable quick add buttons on product cards",
+      "options": [
+        {
+          "value": "none",
+          "label": "Disabled"
+        },
+        {
+          "value": "standard",
+          "label": "Standard"
+        },
+        {
+          "value": "bulk",
+          "label": "Bulk"
+        }
+      ]
+    },
+    {
       "type": "range",
       "id": "custom_card_padding",
       "min": 5,
@@ -538,26 +559,6 @@
       "unit": "px",
       "label": "Padding bottom",
       "default": 36
-    },
-    {
-      "type": "select",
-      "id": "quick_add",
-      "default": "standard",
-      "label": "Quick add to cart",
-      "options": [
-        {
-          "value": "none",
-          "label": "Disabled"
-        },
-        {
-          "value": "standard",
-          "label": "Standard"
-        },
-        {
-          "value": "bulk",
-          "label": "Bulk"
-        }
-      ]
     }
   ],
   "presets": [
