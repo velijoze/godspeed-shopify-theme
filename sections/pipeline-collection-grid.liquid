@@ -1,20 +1,10 @@
 {{ 'pipeline-collection.css' | asset_url | stylesheet_tag }}
 
-<!-- DEBUG: Pipeline Collection Grid v2.0 - Quick-add enabled -->
-{%- unless section.settings.quick_add == 'none' -%}
+<!-- DEBUG: Pipeline Collection Grid v3.0 - Using global quick-add setting -->
+{%- if settings.enable_quick_add -%}
   {{ 'quick-add.css' | asset_url | stylesheet_tag }}
-{%- endunless -%}
-
-{%- if section.settings.quick_add == 'standard' -%}
   <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
-{%- endif -%}
-
-{%- if section.settings.quick_add == 'bulk' -%}
-  <script src="{{ 'quick-add-bulk.js' | asset_url }}" defer="defer"></script>
-  <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
-  <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
-  <script src="{{ 'quick-order-list.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
 
 {%- paginate collection.products by section.settings.products_per_page | default: 24 -%}
@@ -260,7 +250,7 @@
                   {%- endif -%}
                 </div>
                 
-                {%- if product.available and product.variants.size == 1 -%}
+                {%- if product.available and product.variants.size == 1 and settings.enable_quick_add -%}
                   {%- assign product_form_id = 'quick-add-' | append: section.id | append: product.id -%}
                   <div class="quick-add no-js-hidden">
                     <product-form data-section-id="{{ section.id }}">
@@ -286,7 +276,7 @@
                       </form>
                     </product-form>
                   </div>
-                {%- elsif product.available -%}
+                {%- elsif product.available and settings.enable_quick_add -%}
                   <div class="quick-add no-js-hidden">
                     <modal-opener data-modal="#QuickAdd-{{ product.id }}">
                       <button
@@ -410,27 +400,6 @@
     {
       "type": "header",
       "content": "Product Card Settings"
-    },
-    {
-      "type": "select",
-      "id": "quick_add",
-      "default": "standard",
-      "label": "Quick add to cart",
-      "info": "Enable quick add buttons on product cards",
-      "options": [
-        {
-          "value": "none",
-          "label": "Disabled"
-        },
-        {
-          "value": "standard",
-          "label": "Standard"
-        },
-        {
-          "value": "bulk",
-          "label": "Bulk"
-        }
-      ]
     },
     {
       "type": "range",
